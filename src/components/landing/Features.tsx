@@ -11,7 +11,7 @@ import {
   Settings
 } from "lucide-react";
 
-const features = [
+const aiEmployees = [
   {
     icon: Phone,
     title: "Reception Specialist",
@@ -32,6 +32,9 @@ const features = [
     title: "Repeat Revenue Specialist",
     description: "Reaches out to past customers and converts them into repeat jobs automatically.",
   },
+];
+
+const softwareAutomations = [
   {
     icon: LayoutDashboard,
     title: "HVAC CRM",
@@ -64,6 +67,16 @@ const features = [
   },
 ];
 
+const FeatureCard = ({ feature, index }: { feature: typeof aiEmployees[0]; index: number }) => (
+  <div key={index} className="card-feature group">
+    <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 transition-colors group-hover:bg-primary/20">
+      <feature.icon className="h-6 w-6 text-primary" />
+    </div>
+    <h3 className="text-lg font-semibold text-foreground">{feature.title}</h3>
+    <p className="mt-2 text-muted-foreground">{feature.description}</p>
+  </div>
+);
+
 const Features = () => {
   return (
     <section id="features" className="bg-secondary/50 py-20 lg:py-28">
@@ -77,23 +90,34 @@ const Features = () => {
           </p>
         </div>
 
-        <div className="mx-auto mt-12 grid max-w-5xl gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {features.map((feature, index) => (
-            <div
-              key={index}
-              className="card-feature group"
-            >
-              <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 transition-colors group-hover:bg-primary/20">
-                <feature.icon className="h-6 w-6 text-primary" />
-              </div>
-              <h3 className="text-lg font-semibold text-foreground">
-                {feature.title}
-              </h3>
-              <p className="mt-2 text-muted-foreground">
-                {feature.description}
-              </p>
-            </div>
-          ))}
+        {/* AI Employees Section */}
+        <div className="mt-16">
+          <h3 className="text-center text-2xl font-bold text-foreground sm:text-3xl">
+            AI Employees
+          </h3>
+          <p className="mx-auto mt-2 max-w-2xl text-center text-muted-foreground">
+            Your always-on team that never misses a beat
+          </p>
+          <div className="mx-auto mt-8 grid max-w-5xl gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {aiEmployees.map((feature, index) => (
+              <FeatureCard key={index} feature={feature} index={index} />
+            ))}
+          </div>
+        </div>
+
+        {/* Software & Automations Section */}
+        <div className="mt-16">
+          <h3 className="text-center text-2xl font-bold text-foreground sm:text-3xl">
+            Software & Automations
+          </h3>
+          <p className="mx-auto mt-2 max-w-2xl text-center text-muted-foreground">
+            Tools that streamline your business operations
+          </p>
+          <div className="mx-auto mt-8 grid max-w-5xl gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {softwareAutomations.map((feature, index) => (
+              <FeatureCard key={index} feature={feature} index={index} />
+            ))}
+          </div>
         </div>
       </div>
     </section>
