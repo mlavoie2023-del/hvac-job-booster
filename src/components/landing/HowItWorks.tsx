@@ -23,7 +23,7 @@ const steps = [
 
 const HowItWorks = () => {
   return (
-    <section className="bg-background py-20 lg:py-28">
+    <section id="how-it-works" className="bg-background py-20 lg:py-28">
       <div className="section-container">
         <div className="mx-auto max-w-3xl text-center">
           <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl lg:text-5xl">
@@ -31,40 +31,60 @@ const HowItWorks = () => {
           </h2>
         </div>
 
-        <div className="mx-auto mt-16 max-w-4xl">
-          <div className="relative">
-            {/* Connecting Line */}
-            <div className="absolute left-8 top-8 hidden h-[calc(100%-4rem)] w-0.5 bg-gradient-to-b from-primary via-primary/50 to-primary/20 lg:left-1/2 lg:-ml-0.5 lg:block" />
+        {/* Desktop Layout */}
+        <div className="mx-auto mt-16 hidden max-w-5xl lg:block">
+          {/* Connecting Line */}
+          <div className="relative mb-8 flex justify-between px-16">
+            <div className="absolute left-16 right-16 top-1/2 h-1 -translate-y-1/2 rounded-full bg-gradient-to-r from-primary via-primary/70 to-primary/40" />
+            {steps.map((step, index) => (
+              <div key={index} className="relative z-10 flex h-12 w-12 items-center justify-center rounded-full bg-primary text-lg font-bold text-primary-foreground shadow-lg shadow-primary/30">
+                {step.number}
+              </div>
+            ))}
+          </div>
+          
+          {/* Cards */}
+          <div className="grid grid-cols-4 gap-6">
+            {steps.map((step, index) => (
+              <div
+                key={index}
+                className="rounded-xl border border-border bg-card p-5 text-center transition-all hover:border-primary/30 hover:shadow-lg"
+              >
+                <h3 className="text-lg font-semibold text-foreground">
+                  {step.title}
+                </h3>
+                <p className="mt-2 text-sm text-muted-foreground">
+                  {step.description}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
 
-            <div className="space-y-8 lg:space-y-12">
-              {steps.map((step, index) => (
-                <div
-                  key={index}
-                  className={`relative flex items-start gap-6 lg:gap-12 ${
-                    index % 2 === 1 ? "lg:flex-row-reverse" : ""
-                  }`}
-                >
-                  {/* Step Number */}
-                  <div className="relative z-10 flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl bg-primary text-2xl font-bold text-primary-foreground shadow-primary lg:absolute lg:left-1/2 lg:-ml-8">
-                    {step.number}
-                  </div>
-
-                  {/* Content */}
-                  <div
-                    className={`flex-1 rounded-xl border border-border bg-card p-6 lg:w-[calc(50%-4rem)] ${
-                      index % 2 === 1 ? "lg:mr-auto lg:ml-0" : "lg:ml-auto lg:mr-0"
-                    }`}
-                  >
-                    <h3 className="text-xl font-semibold text-foreground">
-                      {step.title}
-                    </h3>
-                    <p className="mt-2 text-muted-foreground">
-                      {step.description}
-                    </p>
-                  </div>
+        {/* Mobile Layout */}
+        <div className="mx-auto mt-12 max-w-md lg:hidden">
+          <div className="relative space-y-6">
+            {/* Vertical Line */}
+            <div className="absolute bottom-4 left-5 top-4 w-0.5 bg-gradient-to-b from-primary via-primary/50 to-primary/20" />
+            
+            {steps.map((step, index) => (
+              <div key={index} className="relative flex items-start gap-5">
+                {/* Number Circle */}
+                <div className="relative z-10 flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-primary text-sm font-bold text-primary-foreground shadow-lg shadow-primary/30">
+                  {step.number}
                 </div>
-              ))}
-            </div>
+                
+                {/* Card */}
+                <div className="flex-1 rounded-xl border border-border bg-card p-4">
+                  <h3 className="font-semibold text-foreground">
+                    {step.title}
+                  </h3>
+                  <p className="mt-1 text-sm text-muted-foreground">
+                    {step.description}
+                  </p>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
 
@@ -75,5 +95,4 @@ const HowItWorks = () => {
     </section>
   );
 };
-
 export default HowItWorks;
