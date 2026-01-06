@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import lavoieLogo from "@/assets/lavoie-logo.png";
 
 const Header = () => {
   return (
@@ -6,13 +7,12 @@ const Header = () => {
       <div className="section-container">
         <div className="flex h-16 items-center justify-between">
           {/* Logo */}
-          <div className="flex items-center gap-2">
-            <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-primary">
-              <span className="text-lg font-bold text-primary-foreground">L</span>
-            </div>
-            <span className="text-xl font-bold text-foreground">
-              Lavoie Systems
-            </span>
+          <div className="flex items-center">
+            <img 
+              src={lavoieLogo} 
+              alt="Lavoie Systems" 
+              className="h-10 w-auto"
+            />
           </div>
 
           {/* CTA */}
