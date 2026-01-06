@@ -55,11 +55,6 @@ const crmTools = [
     title: "Analytics and Reports",
     description: "Track all of your data in one simple dashboard so you know what's working and what's not.",
   },
-  {
-    icon: Settings,
-    title: "Ongoing Improvements and Maintenance",
-    description: "We keep your system running smoothly and improve it over time as your business grows.",
-  },
 ];
 
 const FeatureCard = ({ feature, index }: { feature: typeof aiEmployees[0]; index: number }) => (
