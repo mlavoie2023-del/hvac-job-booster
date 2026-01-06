@@ -16,8 +16,8 @@ const Header = () => {
           </div>
 
           {/* CTA */}
-          <Button variant="hero" size="default" asChild>
-            <a href="https://example.com">Get Started Free</a>
+          <Button variant="hero" size="default">
+            Get Started Free
           </Button>
         </div>
       </div>
