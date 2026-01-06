@@ -14,7 +14,7 @@ const Header = () => {
               className="h-9 w-9"
             />
             <span className="text-xl font-bold text-foreground">
-              Lavoie<span className="text-muted-foreground">/</span>Systems
+              Lavoie Systems
             </span>
           </div>
 
