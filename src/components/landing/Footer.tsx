@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import lavoieLogo from "@/assets/lavoie-logo-square.png";
 
 const Footer = () => {
@@ -24,18 +25,18 @@ const Footer = () => {
 
           {/* Links */}
           <div className="flex gap-6">
-            <a
-              href="#"
+            <Link
+              to="/privacy"
               className="text-sm text-muted-foreground transition-colors hover:text-foreground"
             >
               Privacy Policy
-            </a>
-            <a
-              href="#"
+            </Link>
+            <Link
+              to="/terms"
               className="text-sm text-muted-foreground transition-colors hover:text-foreground"
             >
               Terms of Service
-            </a>
+            </Link>
           </div>
         </div>
       </div>
