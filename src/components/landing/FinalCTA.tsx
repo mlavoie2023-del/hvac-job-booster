@@ -22,9 +22,11 @@ const FinalCTA = () => {
           </p>
 
           <div className="mt-10">
-            <Button variant="hero" size="xl">
-              Start My Free HVAC Software Install
-              <ArrowRight className="ml-2 h-5 w-5" />
+            <Button variant="hero" size="xl" asChild>
+              <a href="https://example.com">
+                Start My Free HVAC Software Install
+                <ArrowRight className="ml-2 h-5 w-5" />
+              </a>
             </Button>
           </div>
 
