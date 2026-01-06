@@ -40,7 +40,7 @@ const Hero = () => {
               </a>
             </Button>
             <Button variant="heroOutline" size="lg" className="w-full sm:w-auto" asChild>
-              <a href="#how-it-works">See How It Works</a>
+              <a href="#features">See How It Works</a>
             </Button>
           </div>
 
