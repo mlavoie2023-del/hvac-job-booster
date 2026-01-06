@@ -87,10 +87,6 @@ const HowItWorks = () => {
             ))}
           </div>
         </div>
-
-        <p className="mx-auto mt-12 max-w-lg text-center text-sm text-muted-foreground">
-          Card required to start. No charge unless you keep the system.
-        </p>
       </div>
     </section>
   );
