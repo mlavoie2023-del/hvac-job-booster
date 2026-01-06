@@ -1,8 +1,8 @@
 const steps = [
   {
     number: "01",
-    title: "Sign Up",
-    description: "Complete a short onboarding call so we understand your business",
+    title: "Demo Call",
+    description: "We'll show you how it works and see if your business is a good fit",
   },
   {
     number: "02",
