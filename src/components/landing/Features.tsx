@@ -5,44 +5,62 @@ import {
   LayoutDashboard,
   CalendarCheck,
   Star,
-  Users
+  Users,
+  FileText,
+  BarChart3,
+  Settings
 } from "lucide-react";
 
 const features = [
   {
     icon: Phone,
-    title: "24/7 AI Receptionist",
-    description: "Answers missed calls and books quotes around the clock",
-  },
-  {
-    icon: MessageSquare,
-    title: "AI Follow-Up",
-    description: "Consistently texts and emails every lead automatically",
+    title: "Reception Specialist",
+    description: "Answers every call you miss and books quotes for you, 24/7.",
   },
   {
     icon: MessagesSquare,
-    title: "Website Chat",
-    description: "Turns website visitors into real conversations",
+    title: "Website Chat Specialist",
+    description: "Turns website visitors into leads, 24/7.",
+  },
+  {
+    icon: MessageSquare,
+    title: "Lead Nurture Specialist",
+    description: "Automatically performs consistent follow up with every lead.",
+  },
+  {
+    icon: Users,
+    title: "Repeat Revenue Specialist",
+    description: "Reaches out to past customers and converts them into repeat jobs automatically.",
   },
   {
     icon: LayoutDashboard,
     title: "HVAC CRM",
-    description: "Track leads, jobs, and conversations in one place",
+    description: "Track your current jobs, leads, and conversations from an app on your phone.",
+  },
+  {
+    icon: FileText,
+    title: "Easy Estimate",
+    description: "Send estimates, invoices, and get paid faster.",
   },
   {
     icon: CalendarCheck,
-    title: "Instant Quote Booking",
-    description: "Confirmations and reminders sent automatically",
+    title: "Instant Appointments",
+    description: "Lets leads book quote appointments on your calendar with automatic confirmations and reminders.",
   },
   {
     icon: Star,
-    title: "Automated Reviews",
-    description: "Grow your Google rating on autopilot",
+    title: "Review Boost",
+    description: "Automatically requests reviews and filters out negative reviews from your Google page.",
   },
   {
-    icon: Users,
-    title: "Customer Reactivation",
-    description: "Bring past customers back for repeat business",
+    icon: BarChart3,
+    title: "Analytics and Reports",
+    description: "Track all of your data in one simple dashboard in your CRM so you know what's working and what's not.",
+  },
+  {
+    icon: Settings,
+    title: "Ongoing Improvements and Maintenance",
+    description: "We keep your system running smoothly and improve it over time as your business grows.",
   },
 ];
 
