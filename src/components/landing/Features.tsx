@@ -53,7 +53,7 @@ const crmTools = [
   {
     icon: CalendarCheck,
     title: "Instant Appointments",
-    description: "Let homeowners book service calls or quote appointments directly on your calendar with automatic confirmations and reminders.",
+    description: "Let customers book directly on your calendar with automatic reminders.",
     color: "text-blue-500",
     bg: "bg-blue-500/15",
   },
