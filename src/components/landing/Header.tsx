@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import lavoieLogo from "@/assets/lavoie-logo-square.png";
 
@@ -20,7 +21,7 @@ const Header = () => {
 
           {/* CTA */}
           <Button variant="hero" size="default" asChild>
-            <a href="https://lavoiesystems.com/book">Get Started Free</a>
+            <Link to="/book">Get Started Free</Link>
           </Button>
         </div>
       </div>
