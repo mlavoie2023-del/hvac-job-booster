@@ -95,51 +95,83 @@ const CrmToolCard = ({ feature, index }: { feature: typeof crmTools[0]; index: n
   </div>
 );
 
-// Simple Dashboard Mockup Component
-const DashboardMockup = () => (
-  <div className="rounded-xl border border-border/50 bg-background p-3 shadow-inner">
-    {/* Header bar */}
-    <div className="mb-3 flex items-center justify-between rounded-lg bg-primary/10 px-3 py-2">
-      <div className="flex items-center gap-2">
-        <div className="h-3 w-3 rounded-full bg-primary/60"></div>
-        <div className="h-2 w-16 rounded bg-primary/40"></div>
-      </div>
-      <div className="flex gap-1">
-        <div className="h-2 w-2 rounded-full bg-emerald-500"></div>
-        <div className="h-2 w-2 rounded-full bg-amber-500"></div>
-        <div className="h-2 w-2 rounded-full bg-red-400"></div>
+// Phone Mockup with Dashboard
+const PhoneMockup = () => (
+  <div className="relative mx-auto w-[180px]">
+    {/* Phone frame */}
+    <div className="rounded-[28px] border-[6px] border-gray-800 bg-gray-800 p-1 shadow-xl">
+      {/* Notch */}
+      <div className="absolute left-1/2 top-2 h-4 w-16 -translate-x-1/2 rounded-full bg-gray-800 z-10"></div>
+      
+      {/* Screen */}
+      <div className="rounded-[20px] bg-background overflow-hidden">
+        {/* Status bar */}
+        <div className="flex items-center justify-between bg-primary/10 px-3 py-1.5 pt-5">
+          <div className="text-[8px] font-medium text-foreground">9:41</div>
+          <div className="flex gap-0.5">
+            <div className="h-1.5 w-2.5 rounded-sm bg-foreground/60"></div>
+            <div className="h-1.5 w-1.5 rounded-full bg-foreground/60"></div>
+          </div>
+        </div>
+        
+        {/* App header */}
+        <div className="bg-primary/10 px-3 py-2">
+          <div className="text-[10px] font-bold text-foreground">Dashboard</div>
+        </div>
+        
+        {/* Stats */}
+        <div className="grid grid-cols-3 gap-1.5 p-2">
+          <div className="rounded-lg bg-emerald-500/15 p-1.5 text-center">
+            <div className="text-sm font-bold text-emerald-600">24</div>
+            <div className="text-[7px] text-muted-foreground">Jobs</div>
+          </div>
+          <div className="rounded-lg bg-blue-500/15 p-1.5 text-center">
+            <div className="text-sm font-bold text-blue-600">8</div>
+            <div className="text-[7px] text-muted-foreground">Leads</div>
+          </div>
+          <div className="rounded-lg bg-amber-500/15 p-1.5 text-center">
+            <div className="text-sm font-bold text-amber-600">$12k</div>
+            <div className="text-[7px] text-muted-foreground">Revenue</div>
+          </div>
+        </div>
+        
+        {/* Mini chart */}
+        <div className="mx-2 rounded-lg bg-muted/50 p-2 mb-2">
+          <div className="mb-1 text-[7px] font-medium text-muted-foreground">This Week</div>
+          <div className="flex items-end justify-between gap-0.5 h-6">
+            <div className="w-full rounded-t bg-primary/30 h-2"></div>
+            <div className="w-full rounded-t bg-primary/50 h-3"></div>
+            <div className="w-full rounded-t bg-primary/40 h-2.5"></div>
+            <div className="w-full rounded-t bg-primary/70 h-4"></div>
+            <div className="w-full rounded-t bg-primary/60 h-3.5"></div>
+            <div className="w-full rounded-t bg-primary/80 h-5"></div>
+            <div className="w-full rounded-t bg-primary h-6"></div>
+          </div>
+        </div>
+        
+        {/* Recent activity */}
+        <div className="px-2 pb-3">
+          <div className="text-[7px] font-medium text-muted-foreground mb-1">Recent</div>
+          <div className="space-y-1">
+            <div className="flex items-center gap-1.5 rounded bg-background border border-border/50 p-1.5">
+              <div className="h-4 w-4 rounded-full bg-emerald-500/20 flex items-center justify-center">
+                <div className="h-1.5 w-1.5 rounded-full bg-emerald-500"></div>
+              </div>
+              <div className="text-[7px] text-foreground">New job booked</div>
+            </div>
+            <div className="flex items-center gap-1.5 rounded bg-background border border-border/50 p-1.5">
+              <div className="h-4 w-4 rounded-full bg-blue-500/20 flex items-center justify-center">
+                <div className="h-1.5 w-1.5 rounded-full bg-blue-500"></div>
+              </div>
+              <div className="text-[7px] text-foreground">Lead responded</div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
     
-    {/* Stats row */}
-    <div className="mb-3 grid grid-cols-3 gap-2">
-      <div className="rounded-lg bg-emerald-500/15 p-2 text-center">
-        <div className="text-lg font-bold text-emerald-600">24</div>
-        <div className="text-[10px] text-muted-foreground">Active Jobs</div>
-      </div>
-      <div className="rounded-lg bg-blue-500/15 p-2 text-center">
-        <div className="text-lg font-bold text-blue-600">8</div>
-        <div className="text-[10px] text-muted-foreground">New Leads</div>
-      </div>
-      <div className="rounded-lg bg-amber-500/15 p-2 text-center">
-        <div className="text-lg font-bold text-amber-600">$12k</div>
-        <div className="text-[10px] text-muted-foreground">Revenue</div>
-      </div>
-    </div>
-    
-    {/* Mini chart */}
-    <div className="rounded-lg bg-muted/50 p-2">
-      <div className="mb-1 text-[10px] font-medium text-muted-foreground">Weekly Overview</div>
-      <div className="flex items-end justify-between gap-1 h-8">
-        <div className="w-full rounded-t bg-primary/30 h-3"></div>
-        <div className="w-full rounded-t bg-primary/50 h-5"></div>
-        <div className="w-full rounded-t bg-primary/40 h-4"></div>
-        <div className="w-full rounded-t bg-primary/70 h-6"></div>
-        <div className="w-full rounded-t bg-primary/60 h-5"></div>
-        <div className="w-full rounded-t bg-primary/80 h-7"></div>
-        <div className="w-full rounded-t bg-primary h-8"></div>
-      </div>
-    </div>
+    {/* Home indicator */}
+    <div className="absolute bottom-2 left-1/2 h-1 w-10 -translate-x-1/2 rounded-full bg-gray-600"></div>
   </div>
 );
 
@@ -186,20 +218,10 @@ const Features = () => {
               <div className="flex flex-col lg:flex-row">
                 {/* CRM Main Feature */}
                 <div className="flex flex-col items-center justify-center bg-gradient-to-br from-primary/10 to-primary/5 p-6 lg:w-2/5">
-                  <div className="flex items-center gap-4 mb-4">
-                    <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-primary to-primary/70 shadow-lg">
-                      <Smartphone className="h-8 w-8 text-white" />
-                    </div>
-                    <div className="text-left">
-                      <h4 className="text-xl font-bold text-foreground">HVAC CRM App</h4>
-                      <p className="text-sm text-muted-foreground">
-                        Your business in your pocket
-                      </p>
-                    </div>
-                  </div>
-                  <DashboardMockup />
-                  <p className="mt-4 text-center text-sm text-muted-foreground">
-                    Track jobs, leads, and conversations from your phone.
+                  <PhoneMockup />
+                  <h4 className="mt-4 text-xl font-bold text-foreground">HVAC CRM App</h4>
+                  <p className="mt-1 text-center text-sm text-muted-foreground">
+                    Your business in your pocket — track jobs, leads, and conversations.
                   </p>
                 </div>
                 
