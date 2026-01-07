@@ -78,8 +78,8 @@ const PrivacyPolicy = () => {
               <h2 className="text-2xl font-semibold">6. Contact Us</h2>
               <p className="mt-4 text-muted-foreground">
                 If you have any questions about this Privacy Policy, please contact us at{" "}
-                <a href="mailto:support@lavoiesystems.com" className="text-primary hover:underline">
-                  support@lavoiesystems.com
+                <a href="mailto:support@mail.lavoiesystems.com" className="text-primary hover:underline">
+                  support@mail.lavoiesystems.com
                 </a>
               </p>
             </section>
