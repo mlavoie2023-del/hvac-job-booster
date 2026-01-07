@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Shield, Clock, Wrench } from "lucide-react";
 
@@ -23,10 +24,10 @@ const FinalCTA = () => {
 
           <div className="mt-10">
             <Button variant="hero" size="xl" asChild>
-              <a href="https://lavoiesystems.com/book">
+              <Link to="/book">
                 Start My Free HVAC Software Install
                 <ArrowRight className="ml-2 h-5 w-5" />
-              </a>
+              </Link>
             </Button>
           </div>
 
