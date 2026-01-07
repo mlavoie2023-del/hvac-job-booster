@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { PhoneOff, ArrowRight } from "lucide-react";
 
@@ -34,10 +35,10 @@ const Hero = () => {
           {/* CTAs */}
           <div className="animate-fade-in-delay-2 mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
             <Button variant="hero" size="xl" className="w-full sm:w-auto" asChild>
-              <a href="https://lavoiesystems.com/book">
+              <Link to="/book">
                 Get My Free HVAC Software Install
                 <ArrowRight className="ml-2 h-5 w-5" />
-              </a>
+              </Link>
             </Button>
             <Button variant="heroOutline" size="lg" className="w-full sm:w-auto" asChild>
               <a href="#features">See How It Works</a>
