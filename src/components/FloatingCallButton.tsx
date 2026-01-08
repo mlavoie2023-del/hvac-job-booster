@@ -9,8 +9,8 @@ import {
   DialogDescription,
 } from "@/components/ui/dialog";
 
-const PHONE_NUMBER = "+1 (555) 123-4567"; // Replace with your actual AI receptionist number
-const PHONE_NUMBER_RAW = "+15551234567"; // For tel: link
+const PHONE_NUMBER = "+1 508 463 4418";
+const PHONE_NUMBER_RAW = "+15084634418";
 
 const FloatingCallButton = () => {
   const [isOpen, setIsOpen] = useState(false);
