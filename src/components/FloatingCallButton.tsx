@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Phone, X, Copy, Check } from "lucide-react";
+import { Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -14,13 +14,6 @@ const PHONE_NUMBER_RAW = "+15084634418";
 
 const FloatingCallButton = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [copied, setCopied] = useState(false);
-
-  const handleCopy = async () => {
-    await navigator.clipboard.writeText(PHONE_NUMBER);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
-  };
 
   return (
     <>
@@ -56,38 +49,18 @@ const FloatingCallButton = () => {
               <p className="text-2xl font-bold text-foreground">{PHONE_NUMBER}</p>
             </div>
 
-            {/* Action Buttons */}
-            <div className="flex flex-col gap-3">
-              <Button
-                variant="hero"
-                size="lg"
-                className="w-full h-14 text-base"
-                asChild
-              >
-                <a href={`tel:${PHONE_NUMBER_RAW}`} className="flex items-center justify-center gap-2">
-                  <Phone className="w-5 h-5" />
-                  Call Now
-                </a>
-              </Button>
-              <Button
-                variant="outline"
-                size="lg"
-                onClick={handleCopy}
-                className="w-full h-12"
-              >
-                {copied ? (
-                  <>
-                    <Check className="w-4 h-4" />
-                    Copied!
-                  </>
-                ) : (
-                  <>
-                    <Copy className="w-4 h-4" />
-                    Copy Number
-                  </>
-                )}
-              </Button>
-            </div>
+            {/* Action Button */}
+            <Button
+              variant="hero"
+              size="lg"
+              className="w-full h-14 text-base"
+              asChild
+            >
+              <a href={`tel:${PHONE_NUMBER_RAW}`} className="flex items-center justify-center gap-2">
+                <Phone className="w-5 h-5" />
+                Call Now
+              </a>
+            </Button>
 
             {/* What to Expect */}
             <div className="border-t pt-4">
