@@ -27,14 +27,13 @@ const FloatingCallButton = () => {
       {/* Floating Button */}
       <button
         onClick={() => setIsOpen(true)}
-        className="fixed bottom-6 right-6 z-50 flex items-center gap-2 bg-accent text-accent-foreground px-4 py-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 group"
+        className="fixed bottom-6 right-6 z-50 flex items-center gap-2 bg-accent text-accent-foreground px-5 py-3.5 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 group"
       >
         <div className="relative">
           <Phone className="w-5 h-5" />
           <span className="absolute -top-1 -right-1 w-3 h-3 bg-success rounded-full animate-pulse" />
         </div>
-        <span className="font-semibold hidden sm:inline">Try AI Receptionist</span>
-        <span className="font-semibold sm:hidden">Try AI</span>
+        <span className="font-semibold text-sm sm:text-base">Try AI Receptionist</span>
       </button>
 
       {/* Modal */}
@@ -58,15 +57,15 @@ const FloatingCallButton = () => {
             </div>
 
             {/* Action Buttons */}
-            <div className="flex flex-col sm:flex-row gap-3">
+            <div className="flex flex-col gap-3">
               <Button
                 variant="hero"
                 size="lg"
-                className="flex-1"
+                className="w-full h-14 text-base"
                 asChild
               >
                 <a href={`tel:${PHONE_NUMBER_RAW}`} className="flex items-center justify-center gap-2">
-                  <Phone className="w-4 h-4" />
+                  <Phone className="w-5 h-5" />
                   Call Now
                 </a>
               </Button>
@@ -74,7 +73,7 @@ const FloatingCallButton = () => {
                 variant="outline"
                 size="lg"
                 onClick={handleCopy}
-                className="flex-1"
+                className="w-full h-12"
               >
                 {copied ? (
                   <>
