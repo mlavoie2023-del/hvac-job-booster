@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
-import { ArrowLeft, Clock, Calendar, CheckCircle } from "lucide-react";
+import { ArrowLeft, PhoneCall, Wrench, Sparkles } from "lucide-react";
 
 const Book = () => {
   useEffect(() => {
@@ -45,29 +45,29 @@ const Book = () => {
             <div className="grid gap-4 sm:grid-cols-3">
               <div className="flex items-center gap-3 rounded-lg bg-secondary/50 p-4">
                 <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-primary/10">
-                  <Clock className="h-5 w-5 text-primary" />
+                  <PhoneCall className="h-5 w-5 text-primary" />
                 </div>
                 <div>
-                  <p className="font-medium text-foreground">30 Minutes</p>
-                  <p className="text-sm text-muted-foreground">Quick & focused</p>
+                  <p className="font-medium text-foreground">Never Miss a Lead</p>
+                  <p className="text-sm text-muted-foreground">24/7 call answering</p>
                 </div>
               </div>
               <div className="flex items-center gap-3 rounded-lg bg-secondary/50 p-4">
                 <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-primary/10">
-                  <Calendar className="h-5 w-5 text-primary" />
+                  <Wrench className="h-5 w-5 text-primary" />
                 </div>
                 <div>
-                  <p className="font-medium text-foreground">Flexible Times</p>
-                  <p className="text-sm text-muted-foreground">Pick what works</p>
+                  <p className="font-medium text-foreground">Built for HVAC</p>
+                  <p className="text-sm text-muted-foreground">Made for your industry</p>
                 </div>
               </div>
               <div className="flex items-center gap-3 rounded-lg bg-secondary/50 p-4">
                 <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-primary/10">
-                  <CheckCircle className="h-5 w-5 text-primary" />
+                  <Sparkles className="h-5 w-5 text-primary" />
                 </div>
                 <div>
-                  <p className="font-medium text-foreground">No Obligation</p>
-                  <p className="text-sm text-muted-foreground">Zero pressure</p>
+                  <p className="font-medium text-foreground">We Build It For You</p>
+                  <p className="text-sm text-muted-foreground">Custom setup in 7 days</p>
                 </div>
               </div>
             </div>
