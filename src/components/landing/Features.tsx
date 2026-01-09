@@ -475,21 +475,12 @@ const Features = () => {
   return (
     <section id="features" className="bg-secondary/50 py-20 lg:py-28">
       <div className="section-container">
-        <div className="mx-auto max-w-3xl text-center">
-          <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
-            Included in Your HVAC Software Install
-          </h2>
-          <p className="mt-4 text-lg text-muted-foreground">
-            Everything you need to capture, convert, and keep more customers
-          </p>
-        </div>
-
         {/* AI Employees Customer Journey Section */}
-        <div className="mt-16">
-          <h3 className="text-center text-2xl font-bold text-foreground sm:text-3xl">
+        <div>
+          <h2 className="text-center text-3xl font-bold text-foreground sm:text-4xl">
             AI Employees
-          </h3>
-          <p className="mx-auto mt-2 max-w-2xl text-center text-muted-foreground">
+          </h2>
+          <p className="mx-auto mt-3 max-w-2xl text-center text-lg text-muted-foreground">
             Your always-on team guides every customer through their entire journey
           </p>
           
