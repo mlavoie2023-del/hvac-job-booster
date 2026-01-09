@@ -556,14 +556,8 @@ const Features = () => {
   }, []);
 
   return (
-    <section id="features" className="relative overflow-hidden bg-gradient-to-br from-primary/5 via-background to-background py-20 lg:py-28">
-      {/* Animated Background - hidden on mobile for performance */}
-      <div className="absolute inset-0 opacity-40 hidden sm:block">
-        <div className="absolute top-20 left-10 w-72 h-72 bg-primary/10 rounded-full blur-3xl animate-float" />
-        <div className="absolute bottom-20 right-10 w-96 h-96 bg-accent/10 rounded-full blur-3xl animate-float" style={{ animationDelay: '2s' }} />
-      </div>
-
-      <div className="section-container relative z-10">
+    <section id="features" className="bg-background py-20 lg:py-28">
+      <div className="section-container">
         {/* AI Employees Customer Journey Section */}
         <div ref={sectionRef}>
           <h2 className={`text-center text-3xl font-bold text-foreground sm:text-4xl transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>

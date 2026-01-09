@@ -4,14 +4,9 @@ import { ArrowRight, Shield, Clock, Wrench } from "lucide-react";
 
 const FinalCTA = () => {
   return (
-    <section className="relative overflow-hidden bg-gradient-to-br from-primary/5 via-background to-background py-12 sm:py-16 lg:py-28">
-      {/* Background Pattern */}
-      <div className="absolute inset-0 opacity-10">
-        <div className="absolute -top-20 -left-20 h-64 sm:h-96 w-64 sm:w-96 rounded-full bg-accent blur-3xl" />
-        <div className="absolute -bottom-20 -right-20 h-64 sm:h-96 w-64 sm:w-96 rounded-full bg-background blur-3xl" />
-      </div>
+    <section className="bg-background py-12 sm:py-16 lg:py-28">
 
-      <div className="section-container relative z-10">
+      <div className="section-container">
         <div className="mx-auto max-w-3xl text-center px-2">
           <h2 className="text-3xl font-bold text-foreground sm:text-4xl">
             Get Your HVAC Software Installed — Risk Free
