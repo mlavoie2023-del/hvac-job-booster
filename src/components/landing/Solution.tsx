@@ -47,7 +47,7 @@ const Solution = () => {
           {solutions.map((solution, index) => (
             <div
               key={index}
-              className="rounded-xl border border-border bg-card p-6 text-center transition-all hover:border-primary/30 hover:shadow-lg"
+              className="rounded-xl border border-border bg-muted/50 p-6 text-center transition-all hover:border-primary/30 hover:shadow-lg"
             >
               <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10">
                 <solution.icon className="h-6 w-6 text-primary" />

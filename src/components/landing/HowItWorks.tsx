@@ -48,7 +48,7 @@ const HowItWorks = () => {
             {steps.map((step, index) => (
               <div
                 key={index}
-                className="rounded-xl border border-border bg-card p-5 text-center transition-all hover:border-primary/30 hover:shadow-lg"
+                className="rounded-xl border border-border bg-muted/50 p-5 text-center transition-all hover:border-primary/30 hover:shadow-lg"
               >
                 <h3 className="text-lg font-semibold text-foreground">
                   {step.title}
@@ -75,7 +75,7 @@ const HowItWorks = () => {
                 </div>
                 
                 {/* Card */}
-                <div className="flex-1 rounded-xl border border-border bg-card p-3 sm:p-4">
+                <div className="flex-1 rounded-xl border border-border bg-muted/50 p-3 sm:p-4">
                   <h3 className="text-sm sm:text-base font-semibold text-foreground">
                     {step.title}
                   </h3>
