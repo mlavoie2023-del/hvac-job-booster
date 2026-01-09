@@ -23,16 +23,16 @@ const steps = [
 
 const HowItWorks = () => {
   return (
-    <section id="how-it-works" className="bg-background py-20 lg:py-28">
+    <section id="how-it-works" className="bg-background py-12 sm:py-16 lg:py-28">
       <div className="section-container">
-        <div className="mx-auto max-w-3xl text-center">
-          <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl lg:text-5xl">
+        <div className="mx-auto max-w-3xl text-center px-2">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-foreground">
             How the Free HVAC Software Install Works
           </h2>
         </div>
 
         {/* Desktop Layout */}
-        <div className="mx-auto mt-16 hidden max-w-5xl lg:block">
+        <div className="mx-auto mt-12 sm:mt-16 hidden max-w-5xl lg:block">
           {/* Connecting Line */}
           <div className="relative mb-8 flex justify-between px-16">
             <div className="absolute left-16 right-16 top-1/2 h-1 -translate-y-1/2 rounded-full bg-gradient-to-r from-primary via-primary/70 to-primary/40" />
@@ -62,24 +62,24 @@ const HowItWorks = () => {
         </div>
 
         {/* Mobile Layout */}
-        <div className="mx-auto mt-12 max-w-md lg:hidden">
-          <div className="relative space-y-6">
+        <div className="mx-auto mt-8 sm:mt-12 max-w-md lg:hidden">
+          <div className="relative space-y-4 sm:space-y-6">
             {/* Vertical Line */}
-            <div className="absolute bottom-4 left-5 top-4 w-0.5 bg-gradient-to-b from-primary via-primary/50 to-primary/20" />
+            <div className="absolute bottom-4 left-[18px] sm:left-5 top-4 w-0.5 bg-gradient-to-b from-primary via-primary/50 to-primary/20" />
             
             {steps.map((step, index) => (
-              <div key={index} className="relative flex items-start gap-5">
+              <div key={index} className="relative flex items-start gap-3 sm:gap-5">
                 {/* Number Circle */}
-                <div className="relative z-10 flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-primary text-sm font-bold text-primary-foreground shadow-lg shadow-primary/30">
+                <div className="relative z-10 flex h-9 w-9 sm:h-10 sm:w-10 shrink-0 items-center justify-center rounded-full bg-primary text-xs sm:text-sm font-bold text-primary-foreground shadow-lg shadow-primary/30">
                   {step.number}
                 </div>
                 
                 {/* Card */}
-                <div className="flex-1 rounded-xl border border-border bg-card p-4">
-                  <h3 className="font-semibold text-foreground">
+                <div className="flex-1 rounded-xl border border-border bg-card p-3 sm:p-4">
+                  <h3 className="text-sm sm:text-base font-semibold text-foreground">
                     {step.title}
                   </h3>
-                  <p className="mt-1 text-sm text-muted-foreground">
+                  <p className="mt-1 text-xs sm:text-sm text-muted-foreground">
                     {step.description}
                   </p>
                 </div>

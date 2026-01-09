@@ -45,18 +45,18 @@ const Hero = () => {
 
   return (
     <section ref={sectionRef} className="relative overflow-hidden bg-gradient-to-br from-primary/5 via-background to-background">
-      {/* Animated Background */}
-      <div className="absolute inset-0 opacity-40">
+      {/* Animated Background - hidden on mobile for performance */}
+      <div className="absolute inset-0 opacity-40 hidden sm:block">
         <div className="absolute top-20 left-10 w-72 h-72 bg-primary/10 rounded-full blur-3xl animate-float" />
         <div className="absolute bottom-20 right-10 w-96 h-96 bg-accent/10 rounded-full blur-3xl animate-float" style={{ animationDelay: '2s' }} />
       </div>
 
-      <div className="section-container relative z-10 py-20 lg:py-28">
+      <div className="section-container relative z-10 py-12 sm:py-16 lg:py-28">
         <div className="mx-auto max-w-4xl text-center">
 
           {/* Headline */}
           <h1 
-            className={`text-4xl font-extrabold tracking-tight text-foreground sm:text-5xl lg:text-6xl xl:text-7xl transition-all duration-700 delay-100 ${
+            className={`text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-extrabold tracking-tight text-foreground transition-all duration-700 delay-100 ${
               isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
             }`}
           >
@@ -66,7 +66,7 @@ const Hero = () => {
 
           {/* Subheadline */}
           <p 
-            className={`mx-auto mt-6 max-w-2xl text-lg text-muted-foreground sm:text-xl lg:text-2xl transition-all duration-700 delay-200 ${
+            className={`mx-auto mt-4 sm:mt-6 max-w-2xl text-base sm:text-lg md:text-xl lg:text-2xl text-muted-foreground transition-all duration-700 delay-200 px-2 ${
               isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
             }`}
           >
@@ -75,13 +75,13 @@ const Hero = () => {
 
           {/* CTAs */}
           <div 
-            className={`mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row transition-all duration-700 delay-300 ${
+            className={`mt-8 sm:mt-10 flex flex-col items-center justify-center gap-3 sm:gap-4 sm:flex-row transition-all duration-700 delay-300 px-4 sm:px-0 ${
               isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
             }`}
           >
-            <div className="relative group">
+            <div className="relative group w-full sm:w-auto">
               <div className="absolute -inset-1 bg-gradient-to-r from-primary to-accent rounded-xl blur-md opacity-50 group-hover:opacity-75 transition-opacity" />
-              <Button variant="hero" size="xl" className="relative w-full sm:w-auto" asChild>
+              <Button variant="hero" size="lg" className="relative w-full sm:w-auto text-base" asChild>
                 <Link to="/book">
                   Start My Free Trial
                   <ArrowRight className="ml-2 h-5 w-5" />
@@ -95,7 +95,7 @@ const Hero = () => {
 
           {/* Trust Line */}
           <p 
-            className={`mt-6 text-sm text-muted-foreground transition-all duration-700 delay-400 ${
+            className={`mt-5 sm:mt-6 text-xs sm:text-sm text-muted-foreground transition-all duration-700 delay-400 ${
               isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
             }`}
           >
@@ -105,23 +105,23 @@ const Hero = () => {
 
         {/* Simple Feature Snapshot */}
         <div 
-          className={`mx-auto mt-16 max-w-3xl transition-all duration-700 delay-500 ${
+          className={`mx-auto mt-10 sm:mt-16 max-w-3xl transition-all duration-700 delay-500 ${
             isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
           }`}
         >
-          <div className="grid grid-cols-3 gap-4 sm:gap-8">
+          <div className="grid grid-cols-3 gap-3 sm:gap-8">
             {featureSnapshot.map((feature, index) => (
               <div 
                 key={index} 
                 className="flex flex-col items-center text-center"
               >
-                <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-primary/10 mb-3">
-                  <feature.icon className="h-7 w-7 text-primary" />
+                <div className="flex h-12 w-12 sm:h-14 sm:w-14 items-center justify-center rounded-xl sm:rounded-2xl bg-primary/10 mb-2 sm:mb-3">
+                  <feature.icon className="h-6 w-6 sm:h-7 sm:w-7 text-primary" />
                 </div>
-                <h3 className="font-semibold text-foreground text-sm sm:text-base">
+                <h3 className="font-semibold text-foreground text-xs sm:text-base">
                   {feature.title}
                 </h3>
-                <p className="text-xs sm:text-sm text-muted-foreground mt-1">
+                <p className="text-[10px] sm:text-sm text-muted-foreground mt-0.5 sm:mt-1 leading-tight">
                   {feature.description}
                 </p>
               </div>
