@@ -82,6 +82,12 @@ const PrivacyPolicy = () => {
                   support@mail.lavoiesystems.com
                 </a>
               </p>
+              <p className="mt-4 text-muted-foreground">
+                <strong className="text-foreground">Address:</strong><br />
+                1900 West Park Drive<br />
+                Westborough, MA 01581<br />
+                United States
+              </p>
             </section>
           </div>
         </div>
