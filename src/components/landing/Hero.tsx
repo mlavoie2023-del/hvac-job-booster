@@ -28,18 +28,9 @@ const Hero = () => {
       <div className="section-container py-12 sm:py-16 lg:py-28">
         <div className="mx-auto max-w-4xl text-center">
 
-          {/* Trust Line - Above headline */}
-          <p 
-            className={`text-xs sm:text-sm text-muted-foreground mb-4 sm:mb-6 transition-all duration-700 ${
-              isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
-            }`}
-          >
-            14-day free trial · No contracts · Cancel anytime
-          </p>
-
           {/* Headline */}
           <h1 
-            className={`text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-extrabold tracking-tight text-foreground transition-all duration-700 delay-100 ${
+            className={`text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-extrabold tracking-tight text-foreground transition-all duration-700 ${
               isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
             }`}
           >
@@ -49,7 +40,7 @@ const Hero = () => {
 
           {/* Subheadline */}
           <p 
-            className={`mx-auto mt-4 sm:mt-6 max-w-2xl text-base sm:text-lg md:text-xl lg:text-2xl text-muted-foreground transition-all duration-700 delay-200 px-2 ${
+            className={`mx-auto mt-4 sm:mt-6 max-w-2xl text-base sm:text-lg md:text-xl lg:text-2xl text-muted-foreground transition-all duration-700 delay-100 px-2 ${
               isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
             }`}
           >
@@ -58,7 +49,7 @@ const Hero = () => {
 
           {/* CTA Button */}
           <div 
-            className={`mt-8 sm:mt-10 transition-all duration-700 delay-300 ${
+            className={`mt-8 sm:mt-10 transition-all duration-700 delay-200 ${
               isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
             }`}
           >
@@ -73,25 +64,32 @@ const Hero = () => {
             </a>
           </div>
 
-          {/* Trust Stats */}
+          {/* Trust Line - Below CTA */}
+          <p 
+            className={`mt-4 text-xs sm:text-sm text-muted-foreground transition-all duration-700 delay-300 ${
+              isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+            }`}
+          >
+            14-day free trial · No contracts · Cancel anytime
+          </p>
+
+          {/* Trust Stats - Mobile friendly grid */}
           <div 
-            className={`mt-10 sm:mt-12 flex flex-col sm:flex-row items-center justify-center gap-6 sm:gap-10 transition-all duration-700 delay-400 ${
+            className={`mt-10 sm:mt-12 grid grid-cols-3 gap-4 sm:gap-8 max-w-md sm:max-w-xl mx-auto transition-all duration-700 delay-400 ${
               isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
             }`}
           >
             <div className="text-center">
-              <div className="text-2xl sm:text-3xl font-bold text-foreground">24/7</div>
-              <div className="text-xs sm:text-sm text-muted-foreground">Always Available</div>
+              <div className="text-xl sm:text-3xl font-bold text-foreground">24/7</div>
+              <div className="text-[10px] sm:text-sm text-muted-foreground">Always Available</div>
             </div>
-            <div className="hidden sm:block h-10 w-px bg-border" />
-            <div className="text-center">
-              <div className="text-2xl sm:text-3xl font-bold text-foreground">&lt;3s</div>
-              <div className="text-xs sm:text-sm text-muted-foreground">Response Time</div>
+            <div className="text-center border-x border-border">
+              <div className="text-xl sm:text-3xl font-bold text-foreground">&lt;3s</div>
+              <div className="text-[10px] sm:text-sm text-muted-foreground">Response Time</div>
             </div>
-            <div className="hidden sm:block h-10 w-px bg-border" />
             <div className="text-center">
-              <div className="text-2xl sm:text-3xl font-bold text-foreground">100%</div>
-              <div className="text-xs sm:text-sm text-muted-foreground">Calls Answered</div>
+              <div className="text-xl sm:text-3xl font-bold text-foreground">100%</div>
+              <div className="text-[10px] sm:text-sm text-muted-foreground">Calls Answered</div>
             </div>
           </div>
         </div>
