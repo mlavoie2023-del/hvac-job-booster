@@ -2,13 +2,14 @@ import {
   Phone, 
   MessageSquare, 
   MessagesSquare, 
-  Smartphone,
-  CalendarCheck,
   Star,
   Users,
-  FileText,
-  BarChart3,
-  Settings
+  Briefcase,
+  TrendingUp,
+  Calendar,
+  Send,
+  Eye,
+  Sliders
 } from "lucide-react";
 
 const aiEmployees = [
@@ -49,27 +50,26 @@ const aiEmployees = [
   },
 ];
 
-const crmTools = [
+const commandCenterFeatures = [
   {
-    icon: Users,
-    title: "Contact Management",
-    description: "Keep track of all your contacts, leads, and customers in one organized place.",
-    color: "text-emerald-500",
-    bg: "bg-emerald-500/15",
+    icon: Sliders,
+    title: "Control Your AI Team",
+    description: "Manage all your AI employees from one dashboard. Turn them on/off, adjust settings, and monitor their performance.",
   },
   {
-    icon: BarChart3,
-    title: "Analytics & Reports",
-    description: "Track all of your data in one simple dashboard so you know what's working and what's not.",
-    color: "text-blue-500",
-    bg: "bg-blue-500/15",
+    icon: Eye,
+    title: "See Your Data",
+    description: "View booked jobs, track leads, and monitor revenue — all your key metrics at a glance.",
   },
   {
-    icon: FileText,
-    title: "Easy Estimate",
-    description: "Send estimates, invoices, and get paid faster.",
-    color: "text-purple-500",
-    bg: "bg-purple-500/15",
+    icon: Send,
+    title: "Send Estimates",
+    description: "Create and send professional estimates to customers in seconds, right from your phone.",
+  },
+  {
+    icon: Calendar,
+    title: "Calendars",
+    description: "Let customers book appointments directly. Manage your schedule and send automatic reminders.",
   },
 ];
 
@@ -83,10 +83,10 @@ const FeatureCard = ({ feature, index }: { feature: typeof aiEmployees[0]; index
   </div>
 );
 
-const CrmToolCard = ({ feature, index }: { feature: typeof crmTools[0]; index: number }) => (
-  <div key={index} className="flex items-start gap-3 rounded-lg bg-background/50 p-4 transition-all hover:bg-background/80">
-    <div className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-xl ${feature.bg}`}>
-      <feature.icon className={`h-5 w-5 ${feature.color}`} />
+const CommandCenterCard = ({ feature, index }: { feature: typeof commandCenterFeatures[0]; index: number }) => (
+  <div key={index} className="group flex items-start gap-4 rounded-xl border border-border/50 bg-background/60 p-4 transition-all hover:border-primary/30 hover:bg-background/90 hover:shadow-lg">
+    <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-primary/20 to-primary/10 transition-transform group-hover:scale-110">
+      <feature.icon className="h-6 w-6 text-primary" />
     </div>
     <div>
       <h4 className="font-semibold text-foreground">{feature.title}</h4>
@@ -203,37 +203,59 @@ const Features = () => {
           </div>
         </div>
 
-        {/* HVAC CRM Section */}
-        <div className="mt-16">
+        {/* Command Center Section */}
+        <div className="mt-20">
           <h3 className="text-center text-2xl font-bold text-foreground sm:text-3xl">
-            HVAC CRM
+            Your Command Center
           </h3>
-          <p className="mx-auto mt-2 max-w-2xl text-center text-muted-foreground">
-            Your all-in-one command center — right from your phone
+          <p className="mx-auto mt-3 max-w-2xl text-center text-lg text-muted-foreground">
+            One app to control your entire AI team and run your business from anywhere
           </p>
           
-          {/* CRM Hero Card */}
-          <div className="mx-auto mt-8 max-w-5xl">
-            <div className="card-elevated overflow-hidden">
-              <div className="flex flex-col lg:flex-row">
-                {/* CRM Main Feature */}
-                <div className="flex flex-col items-center justify-center bg-gradient-to-br from-primary/10 to-primary/5 p-6 lg:w-2/5">
+          {/* Command Center Layout */}
+          <div className="mx-auto mt-10 max-w-5xl">
+            <div className="grid gap-8 lg:grid-cols-5">
+              {/* Phone Mockup - Left Side */}
+              <div className="flex flex-col items-center justify-center lg:col-span-2">
+                <div className="relative">
+                  {/* Glow effect behind phone */}
+                  <div className="absolute inset-0 -z-10 blur-3xl">
+                    <div className="h-full w-full rounded-full bg-gradient-to-br from-primary/30 to-primary/10"></div>
+                  </div>
                   <PhoneMockup />
-                  <h4 className="mt-4 text-xl font-bold text-foreground">HVAC CRM App</h4>
-                  <p className="mt-1 text-center text-sm text-muted-foreground">
-                    Your business in your pocket — track jobs, leads, and conversations.
+                </div>
+                <div className="mt-6 text-center">
+                  <h4 className="text-xl font-bold text-foreground">HVAC Business App</h4>
+                  <p className="mt-2 text-muted-foreground">
+                    Your business in your pocket
                   </p>
                 </div>
+              </div>
+              
+              {/* Features Grid - Right Side */}
+              <div className="lg:col-span-3">
+                <div className="grid gap-4 sm:grid-cols-2">
+                  {commandCenterFeatures.map((feature, index) => (
+                    <CommandCenterCard key={index} feature={feature} index={index} />
+                  ))}
+                </div>
                 
-                {/* Tools Inside CRM */}
-                <div className="flex-1 p-5 lg:p-6">
-                  <p className="mb-4 text-sm font-medium uppercase tracking-wide text-muted-foreground">
-                    Built-in Tools
-                  </p>
-                  <div className="grid gap-4 sm:grid-cols-2">
-                    {crmTools.map((feature, index) => (
-                      <CrmToolCard key={index} feature={feature} index={index} />
-                    ))}
+                {/* Stats highlight */}
+                <div className="mt-6 rounded-xl border border-primary/20 bg-gradient-to-r from-primary/10 to-primary/5 p-5">
+                  <p className="text-sm font-medium text-muted-foreground">Everything you need to see at a glance:</p>
+                  <div className="mt-3 flex flex-wrap gap-3">
+                    <span className="inline-flex items-center gap-1.5 rounded-full bg-emerald-500/15 px-3 py-1 text-sm font-medium text-emerald-600">
+                      <Briefcase className="h-3.5 w-3.5" /> Booked Jobs
+                    </span>
+                    <span className="inline-flex items-center gap-1.5 rounded-full bg-blue-500/15 px-3 py-1 text-sm font-medium text-blue-600">
+                      <Users className="h-3.5 w-3.5" /> Active Leads
+                    </span>
+                    <span className="inline-flex items-center gap-1.5 rounded-full bg-amber-500/15 px-3 py-1 text-sm font-medium text-amber-600">
+                      <TrendingUp className="h-3.5 w-3.5" /> Revenue
+                    </span>
+                    <span className="inline-flex items-center gap-1.5 rounded-full bg-purple-500/15 px-3 py-1 text-sm font-medium text-purple-600">
+                      <MessageSquare className="h-3.5 w-3.5" /> Conversations
+                    </span>
                   </div>
                 </div>
               </div>
