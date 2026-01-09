@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { ArrowRight } from "lucide-react";
 
 const Hero = () => {
   const sectionRef = useRef<HTMLElement>(null);
@@ -67,7 +68,8 @@ const Hero = () => {
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center rounded-full bg-primary px-8 py-4 text-base sm:text-lg font-semibold text-primary-foreground shadow-lg shadow-primary/30 transition-all hover:bg-primary/90 hover:shadow-xl hover:shadow-primary/40 hover:scale-105"
             >
-              Book a Free Demo
+              Start My Free Trial
+              <ArrowRight className="ml-2 h-5 w-5" />
             </a>
           </div>
 
