@@ -185,6 +185,20 @@
     display: none;
   }
 
+  /* Horizontal bounce animation for scroll hint */
+  .animate-bounce-x {
+    animation: bounceX 1s ease-in-out infinite;
+  }
+
+  @keyframes bounceX {
+    0%, 100% {
+      transform: translateX(0);
+    }
+    50% {
+      transform: translateX(4px);
+    }
+  }
+
   @keyframes fadeIn {
     from {
       opacity: 0;
