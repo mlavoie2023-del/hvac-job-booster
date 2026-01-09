@@ -162,11 +162,6 @@ const EmployeeCard = ({
         <h4 className="text-sm font-semibold text-foreground">{employee.title}</h4>
         <p className="mt-1 text-xs leading-relaxed text-muted-foreground">{employee.description}</p>
         
-        {/* Micro-stat */}
-        <div className="mt-3 flex items-center gap-1.5">
-          <Zap className="h-3 w-3 text-primary" />
-          <span className="text-[11px] font-medium text-primary">{employee.stat}</span>
-        </div>
         
         {/* Example interaction */}
         <div className="mt-3 rounded-lg bg-muted/50 p-2 border border-border/30">
