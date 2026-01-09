@@ -385,11 +385,6 @@ const PhoneMockup = () => {
     <div className="relative mx-auto w-[220px]">
       {/* Phone frame */}
       <div className="rounded-[32px] border-[8px] border-slate-900 bg-slate-900 p-1 shadow-2xl">
-        {/* Camera notch */}
-        <div className="absolute left-6 top-3 h-3 w-3 rounded-full bg-slate-800 z-10 flex items-center justify-center">
-          <div className="h-1.5 w-1.5 rounded-full bg-slate-700"></div>
-        </div>
-        
         {/* Screen */}
         <div className="rounded-[24px] bg-slate-50 overflow-hidden h-[380px] flex flex-col">
           {/* Status bar */}
@@ -489,7 +484,7 @@ const Features = () => {
         {/* Command Center Section */}
         <div className="mt-20">
           <h3 className="text-center text-2xl font-bold text-foreground sm:text-3xl">
-            Your Command Center
+            Your New CRM
           </h3>
           <p className="mx-auto mt-3 max-w-2xl text-center text-lg text-muted-foreground">
             One app to control your entire AI team and run your business from anywhere
