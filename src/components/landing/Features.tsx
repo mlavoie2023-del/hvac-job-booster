@@ -28,7 +28,7 @@ const customerJourneySteps = [
     employee: {
       icon: Phone,
       title: "Reception Specialist",
-      description: "Answers calls and chats, books quotes 24/7.",
+      description: "Answers calls and chats, books appointments 24/7.",
       gradient: "from-blue-500 to-blue-600",
       glowColor: "blue",
       stat: "< 3s response",
