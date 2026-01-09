@@ -484,7 +484,7 @@ const Features = () => {
         {/* Command Center Section */}
         <div className="mt-20">
           <h3 className="text-center text-2xl font-bold text-foreground sm:text-3xl">
-            Your New CRM
+            Meet Your New CRM
           </h3>
           <p className="mx-auto mt-3 max-w-2xl text-center text-lg text-muted-foreground">
             One app to manage your entire team and run your business from anywhere
