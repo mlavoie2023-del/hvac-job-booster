@@ -27,7 +27,7 @@ const customerJourneySteps = [
     employee: {
       icon: Phone,
       title: "Reception Specialist",
-      description: "Answers every call and website chat you miss, and books quotes for you 24/7.",
+      description: "Answers calls and chats, books quotes 24/7.",
       gradient: "from-emerald-500 to-teal-600",
     },
   },
@@ -37,7 +37,7 @@ const customerJourneySteps = [
     employee: {
       icon: MessageSquare,
       title: "Lead Nurture Specialist",
-      description: "Automatically performs consistent follow up with every lead until they book.",
+      description: "Follows up with every lead until they book.",
       gradient: "from-amber-500 to-orange-600",
     },
   },
@@ -53,7 +53,7 @@ const customerJourneySteps = [
     employee: {
       icon: Star,
       title: "Review Specialist",
-      description: "Automatically requests reviews and filters out negative reviews from your Google page.",
+      description: "Requests reviews and filters out negatives.",
       gradient: "from-yellow-500 to-amber-600",
     },
   },
@@ -63,7 +63,7 @@ const customerJourneySteps = [
     employee: {
       icon: Users,
       title: "Repeat Revenue Specialist",
-      description: "Reaches out to past customers months or years later to convert them into repeat jobs.",
+      description: "Re-engages past customers for new jobs.",
       gradient: "from-purple-500 to-pink-600",
     },
   },
