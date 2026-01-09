@@ -36,10 +36,10 @@ const Solution = () => {
       <div className="section-container">
         <div className="mx-auto max-w-3xl text-center">
           <h2 className="text-3xl font-bold text-foreground sm:text-4xl">
-            How We Solve It
+            We Build One Simple System
           </h2>
           <p className="mx-auto mt-3 max-w-2xl text-lg text-muted-foreground">
-            Your AI-powered office handles calls, follow-ups, and bookings — so you can focus on the work
+            That handles calls, follow-ups, and bookings — so you can focus on the work that pays
           </p>
         </div>
 
