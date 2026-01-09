@@ -15,7 +15,7 @@ const notForList = [
 
 const WhoIsFor = () => {
   return (
-    <section className="bg-secondary/30 py-12 sm:py-16 lg:py-28">
+    <section className="relative overflow-hidden bg-gradient-to-br from-primary/5 via-background to-background py-12 sm:py-16 lg:py-28">
       <div className="section-container">
         <div className="mx-auto max-w-3xl text-center px-2">
           <h2 className="text-3xl font-bold text-foreground sm:text-4xl">
