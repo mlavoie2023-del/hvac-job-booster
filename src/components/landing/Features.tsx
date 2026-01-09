@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { 
   Phone, 
   MessageSquare, 
@@ -12,12 +12,14 @@ import {
   Eye,
   Sliders,
   ChevronLeft,
+  ChevronRight,
   Search,
   Settings,
   DollarSign,
   BarChart3,
   CreditCard,
-  CheckCircle2
+  CheckCircle2,
+  Zap
 } from "lucide-react";
 
 const customerJourneySteps = [
@@ -29,6 +31,9 @@ const customerJourneySteps = [
       title: "Reception Specialist",
       description: "Answers calls and chats, books quotes 24/7.",
       gradient: "from-emerald-500 to-teal-600",
+      glowColor: "emerald",
+      stat: "< 3s response",
+      example: '"Hi! I can schedule your AC repair for tomorrow at 2pm..."',
     },
   },
   {
@@ -39,6 +44,9 @@ const customerJourneySteps = [
       title: "Nurture Specialist",
       description: "Follows up with every lead until they book.",
       gradient: "from-amber-500 to-orange-600",
+      glowColor: "amber",
+      stat: "5x more bookings",
+      example: '"Just checking in — still need that furnace quote?"',
     },
   },
   {
@@ -55,6 +63,9 @@ const customerJourneySteps = [
       title: "Review Specialist",
       description: "Requests reviews and filters out negatives.",
       gradient: "from-yellow-500 to-amber-600",
+      glowColor: "yellow",
+      stat: "4.9★ avg rating",
+      example: '"Thanks for choosing us! Mind leaving a quick review?"',
     },
   },
   {
@@ -65,6 +76,9 @@ const customerJourneySteps = [
       title: "Revenue Specialist",
       description: "Re-engages past customers for new jobs.",
       gradient: "from-purple-500 to-pink-600",
+      glowColor: "purple",
+      stat: "+40% repeat jobs",
+      example: '"Time for your annual AC tune-up! Book now?"',
     },
   },
 ];
@@ -92,22 +106,88 @@ const commandCenterFeatures = [
   },
 ];
 
-type EmployeeType = {
-  icon: typeof Phone;
-  title: string;
-  description: string;
-  gradient: string;
-};
-
-const EmployeeCard = ({ employee }: { employee: EmployeeType }) => (
-  <div className="group rounded-2xl border border-border/50 bg-background/80 p-4 transition-all hover:border-primary/30 hover:bg-background hover:shadow-xl">
-    <div className={`mb-3 flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br ${employee.gradient} shadow-lg transition-transform group-hover:scale-110`}>
-      <employee.icon className="h-6 w-6 text-white" />
+// Arrow connector between journey steps
+const ArrowConnector = ({ gradient }: { gradient: string }) => (
+  <div className="absolute -right-4 top-6 z-20 hidden lg:flex items-center justify-center">
+    <div className={`relative flex items-center justify-center w-8 h-8 rounded-full bg-gradient-to-r ${gradient} shadow-lg`}>
+      <ChevronRight className="h-5 w-5 text-white animate-flow-right" />
+      {/* Glow ring */}
+      <div className={`absolute inset-0 rounded-full bg-gradient-to-r ${gradient} opacity-40 blur-sm animate-glow-pulse`} />
     </div>
-    <h4 className="text-base font-semibold text-foreground">{employee.title}</h4>
-    <p className="mt-1.5 text-sm text-muted-foreground">{employee.description}</p>
   </div>
 );
+
+// Enhanced Employee Card with glow, badges, and micro-interactions
+const EmployeeCard = ({ 
+  employee, 
+  isVisible,
+  delay 
+}: { 
+  employee: {
+    icon: typeof Phone;
+    title: string;
+    description: string;
+    gradient: string;
+    glowColor: string;
+    stat: string;
+    example: string;
+  };
+  isVisible: boolean;
+  delay: number;
+}) => {
+  const glowColors: Record<string, string> = {
+    emerald: "from-emerald-500/20 to-teal-500/20 shadow-emerald-500/20",
+    amber: "from-amber-500/20 to-orange-500/20 shadow-amber-500/20",
+    yellow: "from-yellow-500/20 to-amber-500/20 shadow-yellow-500/20",
+    purple: "from-purple-500/20 to-pink-500/20 shadow-purple-500/20",
+  };
+
+  return (
+    <div 
+      className={`group relative min-h-[200px] rounded-2xl border border-border/50 bg-background/80 p-4 transition-all duration-500 hover:border-primary/40 hover:bg-background hover:shadow-2xl ${
+        isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+      }`}
+      style={{ transitionDelay: `${delay}ms` }}
+    >
+      {/* Glow effect on hover */}
+      <div className={`absolute inset-0 rounded-2xl bg-gradient-to-br ${glowColors[employee.glowColor]} opacity-0 blur-xl transition-opacity duration-500 group-hover:opacity-100`} />
+      
+      {/* Content */}
+      <div className="relative z-10">
+        {/* Header with icon and badge */}
+        <div className="flex items-start justify-between mb-3">
+          <div className={`flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br ${employee.gradient} shadow-lg transition-transform duration-300 group-hover:scale-110 group-hover:shadow-xl`}>
+            <employee.icon className="h-6 w-6 text-white" />
+          </div>
+          
+          {/* Live indicator badge */}
+          <div className="flex items-center gap-1.5 rounded-full bg-emerald-500/10 px-2.5 py-1 border border-emerald-500/20">
+            <span className="relative flex h-2 w-2">
+              <span className="absolute inline-flex h-full w-full animate-ping-slow rounded-full bg-emerald-400 opacity-75" />
+              <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500" />
+            </span>
+            <span className="text-[10px] font-medium text-emerald-600">24/7</span>
+          </div>
+        </div>
+        
+        {/* Title and description */}
+        <h4 className="text-sm font-semibold text-foreground">{employee.title}</h4>
+        <p className="mt-1 text-xs leading-relaxed text-muted-foreground">{employee.description}</p>
+        
+        {/* Micro-stat */}
+        <div className="mt-3 flex items-center gap-1.5">
+          <Zap className="h-3 w-3 text-primary" />
+          <span className="text-[11px] font-medium text-primary">{employee.stat}</span>
+        </div>
+        
+        {/* Example interaction */}
+        <div className="mt-3 rounded-lg bg-muted/50 p-2 border border-border/30">
+          <p className="text-[10px] italic text-muted-foreground leading-relaxed">{employee.example}</p>
+        </div>
+      </div>
+    </div>
+  );
+};
 
 const CommandCenterCard = ({ feature, index }: { feature: typeof commandCenterFeatures[0]; index: number }) => (
   <div key={index} className="group flex items-start gap-4 rounded-xl border border-border/50 bg-background/60 p-4 transition-all hover:border-primary/30 hover:bg-background/90 hover:shadow-lg">
@@ -472,15 +552,35 @@ const PhoneMockup = () => {
 };
 
 const Features = () => {
+  const [isVisible, setIsVisible] = useState(false);
+  const sectionRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <section id="features" className="bg-secondary/50 py-20 lg:py-28">
       <div className="section-container">
         {/* AI Employees Customer Journey Section */}
-        <div>
-          <h2 className="text-center text-3xl font-bold text-foreground sm:text-4xl">
+        <div ref={sectionRef}>
+          <h2 className={`text-center text-3xl font-bold text-foreground sm:text-4xl transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
             AI Employees
           </h2>
-          <p className="mx-auto mt-3 max-w-2xl text-center text-lg text-muted-foreground">
+          <p className={`mx-auto mt-3 max-w-2xl text-center text-lg text-muted-foreground transition-all duration-700 delay-100 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
             Your always-on team guides every customer through their entire journey
           </p>
           
@@ -488,50 +588,89 @@ const Features = () => {
           <div className="mx-auto mt-12 max-w-6xl">
             {/* Journey Timeline */}
             <div className="relative">
-              {/* Connecting line - hidden on mobile */}
-              <div className="absolute left-1/2 top-6 hidden h-1 w-[calc(100%-120px)] -translate-x-1/2 rounded-full bg-gradient-to-r from-emerald-500 via-amber-500 via-yellow-500 to-purple-500 lg:block" />
+              {/* Animated connecting line - hidden on mobile */}
+              <div className="absolute left-[60px] right-[60px] top-6 hidden h-1.5 rounded-full bg-gradient-to-r from-emerald-500 via-amber-500 via-yellow-500 to-purple-500 lg:block overflow-hidden">
+                {/* Animated glow overlay */}
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent animate-gradient-shift bg-[length:200%_100%]" />
+              </div>
               
               {/* Journey Steps */}
               <div className="grid gap-8 lg:grid-cols-5">
                 {customerJourneySteps.map((step, stepIndex) => (
                   <div key={stepIndex} className="relative flex flex-col items-center">
-                    {/* Stage Circle */}
-                    <div className={`relative z-10 flex h-12 w-12 items-center justify-center rounded-full border-4 border-background shadow-lg ${
-                      step.isMiddleStep 
-                        ? 'bg-gradient-to-br from-slate-600 to-slate-700' 
-                        : stepIndex === 0 
-                          ? 'bg-gradient-to-br from-emerald-500 to-teal-600'
-                          : stepIndex === 1
-                            ? 'bg-gradient-to-br from-amber-500 to-orange-600'
-                            : stepIndex === 3
-                              ? 'bg-gradient-to-br from-yellow-500 to-amber-600'
-                              : 'bg-gradient-to-br from-purple-500 to-pink-600'
-                    }`}>
-                      <span className="text-lg font-bold text-white">{step.stage}</span>
+                    {/* Arrow connector (not after last or middle step) */}
+                    {stepIndex < customerJourneySteps.length - 1 && !step.isMiddleStep && (
+                      <ArrowConnector 
+                        gradient={step.employee?.gradient || "from-slate-500 to-slate-600"} 
+                      />
+                    )}
+                    
+                    {/* Stage Circle with enhanced styling */}
+                    <div 
+                      className={`relative z-10 flex h-14 w-14 items-center justify-center rounded-full border-4 border-background shadow-xl transition-all duration-500 ${
+                        step.isMiddleStep 
+                          ? 'bg-gradient-to-br from-slate-600 to-slate-700' 
+                          : stepIndex === 0 
+                            ? 'bg-gradient-to-br from-emerald-500 to-teal-600'
+                            : stepIndex === 1
+                              ? 'bg-gradient-to-br from-amber-500 to-orange-600'
+                              : stepIndex === 3
+                                ? 'bg-gradient-to-br from-yellow-500 to-amber-600'
+                                : 'bg-gradient-to-br from-purple-500 to-pink-600'
+                      } ${isVisible ? 'scale-100 opacity-100' : 'scale-75 opacity-0'}`}
+                      style={{ transitionDelay: `${stepIndex * 100 + 200}ms` }}
+                    >
+                      {/* Glow ring */}
+                      <div className={`absolute inset-0 rounded-full animate-glow-pulse ${
+                        step.isMiddleStep 
+                          ? 'bg-slate-500/30' 
+                          : stepIndex === 0 
+                            ? 'bg-emerald-500/30'
+                            : stepIndex === 1
+                              ? 'bg-amber-500/30'
+                              : stepIndex === 3
+                                ? 'bg-yellow-500/30'
+                                : 'bg-purple-500/30'
+                      } blur-md`} />
+                      <span className="relative text-lg font-bold text-white">{step.stage}</span>
                     </div>
                     
                     {/* Stage Label */}
-                    <div className="mt-3 text-center">
+                    <div 
+                      className={`mt-3 text-center transition-all duration-500 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-2'}`}
+                      style={{ transitionDelay: `${stepIndex * 100 + 300}ms` }}
+                    >
                       <span className="text-sm font-semibold text-foreground">{step.stageLabel}</span>
                     </div>
                     
                     {/* Employee Card or Middle Step */}
                     <div className="mt-4 w-full">
                       {step.isMiddleStep ? (
-                        <div className="flex min-h-[160px] flex-col items-center justify-center rounded-2xl border-2 border-dashed border-border bg-muted/30 p-4 text-center">
-                          <Briefcase className="h-8 w-8 text-muted-foreground" />
-                          <p className="mt-2 text-sm font-medium text-muted-foreground">You complete the job</p>
+                        <div 
+                          className={`flex min-h-[200px] flex-col items-center justify-center rounded-2xl border-2 border-dashed border-border bg-muted/30 p-4 text-center transition-all duration-500 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
+                          style={{ transitionDelay: `${stepIndex * 100 + 400}ms` }}
+                        >
+                          <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-slate-200">
+                            <Briefcase className="h-6 w-6 text-muted-foreground" />
+                          </div>
+                          <p className="mt-3 text-sm font-medium text-muted-foreground">You complete the job</p>
+                          <p className="mt-1 text-xs text-muted-foreground/70">We handle everything else</p>
                         </div>
                       ) : step.employee ? (
-                        <div className="group min-h-[160px] rounded-2xl border border-border/50 bg-background/80 p-4 transition-all hover:border-primary/30 hover:bg-background hover:shadow-xl">
-                          <div className={`mb-3 flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br ${step.employee.gradient} shadow-lg transition-transform group-hover:scale-110`}>
-                            <step.employee.icon className="h-5 w-5 text-white" />
-                          </div>
-                          <h4 className="text-sm font-semibold text-foreground">{step.employee.title}</h4>
-                          <p className="mt-1.5 text-xs leading-relaxed text-muted-foreground">{step.employee.description}</p>
-                        </div>
+                        <EmployeeCard 
+                          employee={step.employee}
+                          isVisible={isVisible}
+                          delay={stepIndex * 100 + 400}
+                        />
                       ) : null}
                     </div>
+                    
+                    {/* Mobile arrow (vertical) */}
+                    {stepIndex < customerJourneySteps.length - 1 && (
+                      <div className="mt-4 flex justify-center lg:hidden">
+                        <ChevronRight className="h-6 w-6 text-muted-foreground rotate-90 animate-pulse" />
+                      </div>
+                    )}
                   </div>
                 ))}
               </div>
