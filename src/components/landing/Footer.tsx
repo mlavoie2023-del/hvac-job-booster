@@ -36,6 +36,12 @@ const Footer = () => {
 
           {/* Address & Copyright */}
           <div className="text-center sm:text-right">
+            <a 
+              href="mailto:support@mail.lavoiesystems.com" 
+              className="text-xs sm:text-sm text-muted-foreground transition-colors hover:text-foreground"
+            >
+              support@mail.lavoiesystems.com
+            </a>
             <p className="text-xs sm:text-sm text-muted-foreground">
               1900 West Park Drive, Westborough, MA 01581, USA
             </p>
