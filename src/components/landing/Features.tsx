@@ -12,7 +12,6 @@ import {
   Eye,
   Sliders,
   ChevronLeft,
-  ChevronRight,
   Search,
   Settings,
   DollarSign,
@@ -105,17 +104,6 @@ const commandCenterFeatures = [
     description: "View booked jobs, track leads, and monitor revenue — all your key business metrics at a glance.",
   },
 ];
-
-// Arrow connector between journey steps
-const ArrowConnector = ({ gradient }: { gradient: string }) => (
-  <div className="absolute -right-4 top-6 z-20 hidden lg:flex items-center justify-center">
-    <div className={`relative flex items-center justify-center w-8 h-8 rounded-full bg-gradient-to-r ${gradient} shadow-lg`}>
-      <ChevronRight className="h-5 w-5 text-white animate-flow-right" />
-      {/* Glow ring */}
-      <div className={`absolute inset-0 rounded-full bg-gradient-to-r ${gradient} opacity-40 blur-sm animate-glow-pulse`} />
-    </div>
-  </div>
-);
 
 // Enhanced Employee Card with glow, badges, and micro-interactions
 const EmployeeCard = ({ 
@@ -598,12 +586,6 @@ const Features = () => {
               <div className="grid gap-8 lg:grid-cols-5">
                 {customerJourneySteps.map((step, stepIndex) => (
                   <div key={stepIndex} className="relative flex flex-col items-center">
-                    {/* Arrow connector (not after last or middle step) */}
-                    {stepIndex < customerJourneySteps.length - 1 && !step.isMiddleStep && (
-                      <ArrowConnector 
-                        gradient={step.employee?.gradient || "from-slate-500 to-slate-600"} 
-                      />
-                    )}
                     
                     {/* Stage Circle with enhanced styling */}
                     <div 
@@ -666,11 +648,6 @@ const Features = () => {
                     </div>
                     
                     {/* Mobile arrow (vertical) */}
-                    {stepIndex < customerJourneySteps.length - 1 && (
-                      <div className="mt-4 flex justify-center lg:hidden">
-                        <ChevronRight className="h-6 w-6 text-muted-foreground rotate-90 animate-pulse" />
-                      </div>
-                    )}
                   </div>
                 ))}
               </div>
