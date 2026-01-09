@@ -1,6 +1,4 @@
-import { Link } from "react-router-dom";
-import { Button } from "@/components/ui/button";
-import { ArrowRight, Phone, CalendarCheck, MessageSquare, Zap } from "lucide-react";
+import { Phone, CalendarCheck, MessageSquare } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
 // Simple feature snapshot data
@@ -54,6 +52,15 @@ const Hero = () => {
       <div className="section-container relative z-10 py-12 sm:py-16 lg:py-28">
         <div className="mx-auto max-w-4xl text-center">
 
+          {/* Trust Line - Above headline */}
+          <p 
+            className={`text-xs sm:text-sm text-muted-foreground mb-4 sm:mb-6 transition-all duration-700 ${
+              isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+            }`}
+          >
+            14-day free trial · No contracts · Cancel anytime
+          </p>
+
           {/* Headline */}
           <h1 
             className={`text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-extrabold tracking-tight text-foreground transition-all duration-700 delay-100 ${
@@ -71,35 +78,6 @@ const Hero = () => {
             }`}
           >
             One system that answers calls, books jobs, and follows up with every lead — 24/7.
-          </p>
-
-          {/* CTAs */}
-          <div 
-            className={`mt-8 sm:mt-10 flex flex-col items-center justify-center gap-3 sm:gap-4 sm:flex-row transition-all duration-700 delay-300 px-4 sm:px-0 ${
-              isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
-            }`}
-          >
-            <div className="relative group w-full sm:w-auto">
-              <div className="absolute -inset-1 bg-gradient-to-r from-primary to-accent rounded-xl blur-md opacity-50 group-hover:opacity-75 transition-opacity" />
-              <Button variant="hero" size="lg" className="relative w-full sm:w-auto text-base" asChild>
-                <Link to="/book">
-                  Start My Free Trial
-                  <ArrowRight className="ml-2 h-5 w-5" />
-                </Link>
-              </Button>
-            </div>
-            <Button variant="heroOutline" size="lg" className="w-full sm:w-auto" asChild>
-              <a href="#features">See How It Works</a>
-            </Button>
-          </div>
-
-          {/* Trust Line */}
-          <p 
-            className={`mt-5 sm:mt-6 text-xs sm:text-sm text-muted-foreground transition-all duration-700 delay-400 ${
-              isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
-            }`}
-          >
-            14-day free trial · No contracts · Cancel anytime
           </p>
         </div>
 

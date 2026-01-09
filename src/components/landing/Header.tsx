@@ -15,8 +15,8 @@ const Header = () => {
               alt="Lavoie Systems" 
               className="h-8 w-8 sm:h-9 sm:w-9"
             />
-            <span className="text-lg sm:text-xl font-bold text-foreground hidden xs:inline">
-              Lavoie
+            <span className="text-lg sm:text-xl font-bold text-foreground">
+              Lavoie Systems
             </span>
           </Link>
 
