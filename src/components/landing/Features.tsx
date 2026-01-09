@@ -13,7 +13,11 @@ import {
   Sliders,
   ChevronLeft,
   Search,
-  Settings
+  Settings,
+  DollarSign,
+  BarChart3,
+  CreditCard,
+  CheckCircle2
 } from "lucide-react";
 
 const aiEmployees = [
@@ -221,52 +225,68 @@ const CalendarScreen = () => (
   </>
 );
 
-const OpportunitiesScreen = () => (
+const PaymentsScreen = () => (
   <>
     {/* App header */}
     <div className="flex items-center justify-between px-3 py-2 mt-1 bg-white">
-      <div className="flex items-center gap-1">
-        <ChevronLeft className="h-3 w-3 text-slate-500" />
-        <div className="text-[11px] font-bold text-slate-800">Opportunities</div>
-      </div>
+      <div className="text-[11px] font-bold text-slate-800">Payments</div>
       <Search className="h-3.5 w-3.5 text-slate-400" />
     </div>
     
-    {/* Pipeline tabs */}
-    <div className="flex gap-1 px-2 py-1.5">
-      <div className="flex-1 rounded-lg bg-primary py-1.5 text-center text-[8px] font-medium text-white">New Leads</div>
-      <div className="flex-1 rounded-lg bg-slate-100 py-1.5 text-center text-[8px] font-medium text-slate-600">Quoted</div>
+    {/* Balance card */}
+    <div className="mx-2 rounded-xl bg-gradient-to-br from-primary to-primary/80 p-3 shadow-lg">
+      <div className="text-[8px] text-white/70">Total Balance</div>
+      <div className="text-xl font-bold text-white mt-0.5">$24,850.00</div>
+      <div className="flex items-center gap-1 mt-1">
+        <TrendingUp className="h-2.5 w-2.5 text-emerald-300" />
+        <span className="text-[7px] text-emerald-300">+12.5% this month</span>
+      </div>
     </div>
     
-    <div className="px-2 text-[8px] text-slate-500 py-1">11 Leads | $11,000.00</div>
-    
-    {/* Opportunity cards */}
-    <div className="px-2 pb-3 space-y-1.5">
-      <div className="rounded-lg bg-white p-2.5 shadow-sm border border-slate-100">
-        <div className="flex items-center justify-between mb-1.5">
-          <div className="text-[9px] font-semibold text-slate-800">Daniel Morel</div>
-          <div className="h-6 w-6 rounded-full bg-gradient-to-br from-emerald-400 to-teal-500 flex items-center justify-center text-[7px] font-bold text-white">DM</div>
-        </div>
-        <div className="text-[10px] font-bold text-primary mb-1">$1,000.00</div>
-        <div className="text-[7px] text-slate-500 flex items-center gap-1"><Users className="h-2 w-2" /> HVAC system upgrade</div>
-        <div className="flex gap-1.5 mt-2">
-          <button className="rounded border border-slate-200 p-1.5"><Phone className="h-2.5 w-2.5 text-slate-500" /></button>
-          <button className="rounded border border-slate-200 p-1.5"><MessageSquare className="h-2.5 w-2.5 text-slate-500" /></button>
-          <button className="rounded bg-primary p-1.5"><Send className="h-2.5 w-2.5 text-white" /></button>
-        </div>
+    {/* Quick actions */}
+    <div className="flex gap-2 px-2 py-2">
+      <div className="flex-1 rounded-lg bg-slate-100 p-2 text-center">
+        <CreditCard className="h-3.5 w-3.5 mx-auto text-slate-600" />
+        <div className="text-[7px] text-slate-600 mt-1">Request</div>
       </div>
-      <div className="rounded-lg bg-white p-2.5 shadow-sm border border-slate-100">
-        <div className="flex items-center justify-between mb-1.5">
-          <div className="text-[9px] font-semibold text-slate-800">Corey Bayer</div>
-          <div className="h-6 w-6 rounded-full bg-gradient-to-br from-blue-400 to-indigo-500 flex items-center justify-center text-[7px] font-bold text-white">CB</div>
+      <div className="flex-1 rounded-lg bg-slate-100 p-2 text-center">
+        <Send className="h-3.5 w-3.5 mx-auto text-slate-600" />
+        <div className="text-[7px] text-slate-600 mt-1">Invoice</div>
+      </div>
+    </div>
+    
+    {/* Recent transactions */}
+    <div className="px-2 text-[8px] font-medium text-slate-500 py-1">Recent Transactions</div>
+    <div className="px-2 pb-3 space-y-1.5">
+      <div className="flex items-center gap-2 rounded-lg bg-white p-2 shadow-sm border border-slate-100">
+        <div className="h-7 w-7 rounded-full bg-emerald-100 flex items-center justify-center">
+          <CheckCircle2 className="h-3.5 w-3.5 text-emerald-600" />
         </div>
-        <div className="text-[10px] font-bold text-primary mb-1">$2,500.00</div>
-        <div className="text-[7px] text-slate-500 flex items-center gap-1"><Users className="h-2 w-2" /> New AC installation</div>
-        <div className="flex gap-1.5 mt-2">
-          <button className="rounded border border-slate-200 p-1.5"><Phone className="h-2.5 w-2.5 text-slate-500" /></button>
-          <button className="rounded border border-slate-200 p-1.5"><MessageSquare className="h-2.5 w-2.5 text-slate-500" /></button>
-          <button className="rounded bg-primary p-1.5"><Send className="h-2.5 w-2.5 text-white" /></button>
+        <div className="flex-1">
+          <div className="text-[9px] font-semibold text-slate-800">AC Installation</div>
+          <div className="text-[7px] text-slate-500">David Kim • Paid</div>
         </div>
+        <div className="text-[9px] font-bold text-emerald-600">+$3,200</div>
+      </div>
+      <div className="flex items-center gap-2 rounded-lg bg-white p-2 shadow-sm border border-slate-100">
+        <div className="h-7 w-7 rounded-full bg-emerald-100 flex items-center justify-center">
+          <CheckCircle2 className="h-3.5 w-3.5 text-emerald-600" />
+        </div>
+        <div className="flex-1">
+          <div className="text-[9px] font-semibold text-slate-800">Furnace Repair</div>
+          <div className="text-[7px] text-slate-500">Sarah Lee • Paid</div>
+        </div>
+        <div className="text-[9px] font-bold text-emerald-600">+$850</div>
+      </div>
+      <div className="flex items-center gap-2 rounded-lg bg-white p-2 shadow-sm border border-slate-100">
+        <div className="h-7 w-7 rounded-full bg-amber-100 flex items-center justify-center">
+          <DollarSign className="h-3.5 w-3.5 text-amber-600" />
+        </div>
+        <div className="flex-1">
+          <div className="text-[9px] font-semibold text-slate-800">Duct Cleaning</div>
+          <div className="text-[7px] text-slate-500">Mike Brown • Pending</div>
+        </div>
+        <div className="text-[9px] font-bold text-amber-600">$450</div>
       </div>
     </div>
   </>
@@ -344,8 +364,8 @@ const DashboardScreen = () => (
 const screens = [
   { component: ContactsScreen, label: "Contacts", icon: MessageSquare },
   { component: CalendarScreen, label: "Calendar", icon: Calendar },
-  { component: OpportunitiesScreen, label: "Leads", icon: Star },
-  { component: DashboardScreen, label: "Dashboard", icon: Users },
+  { component: PaymentsScreen, label: "Payments", icon: DollarSign },
+  { component: DashboardScreen, label: "Data", icon: BarChart3 },
 ];
 
 // Phone Mockup with animated screens
