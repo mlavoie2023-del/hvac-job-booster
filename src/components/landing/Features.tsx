@@ -95,83 +95,165 @@ const CommandCenterCard = ({ feature, index }: { feature: typeof commandCenterFe
   </div>
 );
 
-// Phone Mockup with Dashboard
+// Phone Mockup with CRM-style Contacts View
 const PhoneMockup = () => (
-  <div className="relative mx-auto w-[180px]">
+  <div className="relative mx-auto w-[220px]">
     {/* Phone frame */}
-    <div className="rounded-[28px] border-[6px] border-gray-800 bg-gray-800 p-1 shadow-xl">
-      {/* Notch */}
-      <div className="absolute left-1/2 top-2 h-4 w-16 -translate-x-1/2 rounded-full bg-gray-800 z-10"></div>
+    <div className="rounded-[32px] border-[8px] border-slate-900 bg-slate-900 p-1 shadow-2xl">
+      {/* Camera notch */}
+      <div className="absolute left-6 top-3 h-3 w-3 rounded-full bg-slate-800 z-10 flex items-center justify-center">
+        <div className="h-1.5 w-1.5 rounded-full bg-slate-700"></div>
+      </div>
       
       {/* Screen */}
-      <div className="rounded-[20px] bg-background overflow-hidden">
+      <div className="rounded-[24px] bg-slate-50 overflow-hidden">
         {/* Status bar */}
-        <div className="flex items-center justify-between bg-primary/10 px-3 py-1.5 pt-5">
-          <div className="text-[8px] font-medium text-foreground">9:41</div>
-          <div className="flex gap-0.5">
-            <div className="h-1.5 w-2.5 rounded-sm bg-foreground/60"></div>
-            <div className="h-1.5 w-1.5 rounded-full bg-foreground/60"></div>
+        <div className="flex items-center justify-between px-4 py-2 pt-3 bg-white">
+          <div className="text-[9px] font-semibold text-slate-800">9:41</div>
+          <div className="flex items-center gap-1">
+            <div className="flex gap-0.5">
+              <div className="h-1 w-1 rounded-full bg-slate-600"></div>
+              <div className="h-1 w-1 rounded-full bg-slate-600"></div>
+              <div className="h-1 w-1 rounded-full bg-slate-400"></div>
+              <div className="h-1 w-1 rounded-full bg-slate-300"></div>
+            </div>
+            <div className="h-2 w-4 rounded-sm border border-slate-600 ml-1">
+              <div className="h-full w-3/4 rounded-sm bg-slate-600"></div>
+            </div>
+          </div>
+        </div>
+        
+        {/* Incoming call notification */}
+        <div className="mx-2 mt-1 rounded-xl bg-slate-800 p-2.5 shadow-lg">
+          <div className="flex items-center gap-2">
+            <div className="h-6 w-6 rounded-full bg-primary flex items-center justify-center">
+              <Phone className="h-3 w-3 text-white" />
+            </div>
+            <div className="flex-1">
+              <div className="flex items-center gap-1">
+                <span className="text-[9px] font-semibold text-white">Incoming call</span>
+                <span className="text-[7px] text-slate-400">• now</span>
+              </div>
+              <div className="text-[8px] text-slate-300">+1 (555) 234-8901</div>
+            </div>
+          </div>
+          <div className="flex gap-2 mt-2">
+            <button className="flex-1 rounded-lg bg-slate-700 py-1.5 text-[8px] font-medium text-white">Decline</button>
+            <button className="flex-1 rounded-lg bg-primary py-1.5 text-[8px] font-medium text-white">Answer</button>
           </div>
         </div>
         
         {/* App header */}
-        <div className="bg-primary/10 px-3 py-2">
-          <div className="text-[10px] font-bold text-foreground">Dashboard</div>
-        </div>
-        
-        {/* Stats */}
-        <div className="grid grid-cols-3 gap-1.5 p-2">
-          <div className="rounded-lg bg-emerald-500/15 p-1.5 text-center">
-            <div className="text-sm font-bold text-emerald-600">24</div>
-            <div className="text-[7px] text-muted-foreground">Jobs</div>
-          </div>
-          <div className="rounded-lg bg-blue-500/15 p-1.5 text-center">
-            <div className="text-sm font-bold text-blue-600">8</div>
-            <div className="text-[7px] text-muted-foreground">Leads</div>
-          </div>
-          <div className="rounded-lg bg-amber-500/15 p-1.5 text-center">
-            <div className="text-sm font-bold text-amber-600">$12k</div>
-            <div className="text-[7px] text-muted-foreground">Revenue</div>
-          </div>
-        </div>
-        
-        {/* Mini chart */}
-        <div className="mx-2 rounded-lg bg-muted/50 p-2 mb-2">
-          <div className="mb-1 text-[7px] font-medium text-muted-foreground">This Week</div>
-          <div className="flex items-end justify-between gap-0.5 h-6">
-            <div className="w-full rounded-t bg-primary/30 h-2"></div>
-            <div className="w-full rounded-t bg-primary/50 h-3"></div>
-            <div className="w-full rounded-t bg-primary/40 h-2.5"></div>
-            <div className="w-full rounded-t bg-primary/70 h-4"></div>
-            <div className="w-full rounded-t bg-primary/60 h-3.5"></div>
-            <div className="w-full rounded-t bg-primary/80 h-5"></div>
-            <div className="w-full rounded-t bg-primary h-6"></div>
-          </div>
-        </div>
-        
-        {/* Recent activity */}
-        <div className="px-2 pb-3">
-          <div className="text-[7px] font-medium text-muted-foreground mb-1">Recent</div>
-          <div className="space-y-1">
-            <div className="flex items-center gap-1.5 rounded bg-background border border-border/50 p-1.5">
-              <div className="h-4 w-4 rounded-full bg-emerald-500/20 flex items-center justify-center">
-                <div className="h-1.5 w-1.5 rounded-full bg-emerald-500"></div>
-              </div>
-              <div className="text-[7px] text-foreground">New job booked</div>
+        <div className="flex items-center justify-between px-3 py-2 mt-2">
+          <div className="text-[11px] font-bold text-slate-800">Contacts</div>
+          <div className="flex items-center gap-2">
+            <div className="h-4 w-4 rounded bg-slate-100 flex items-center justify-center">
+              <div className="h-2 w-2 border border-slate-400 rounded-sm"></div>
             </div>
-            <div className="flex items-center gap-1.5 rounded bg-background border border-border/50 p-1.5">
-              <div className="h-4 w-4 rounded-full bg-blue-500/20 flex items-center justify-center">
-                <div className="h-1.5 w-1.5 rounded-full bg-blue-500"></div>
-              </div>
-              <div className="text-[7px] text-foreground">Lead responded</div>
+          </div>
+        </div>
+        
+        {/* Contact list */}
+        <div className="px-2 pb-3 space-y-1.5">
+          {/* Contact 1 */}
+          <div className="flex items-center gap-2 rounded-lg bg-white p-2 shadow-sm border border-slate-100">
+            <div className="h-8 w-8 rounded-full bg-gradient-to-br from-emerald-400 to-teal-500 flex items-center justify-center text-[9px] font-bold text-white">
+              JM
             </div>
+            <div className="flex-1 min-w-0">
+              <div className="text-[9px] font-semibold text-slate-800 truncate">James Morrison</div>
+              <div className="text-[7px] text-slate-500 flex items-center gap-1">
+                <Phone className="h-2 w-2" /> AC Repair Quote
+              </div>
+            </div>
+            <div className="text-right">
+              <div className="text-[7px] text-slate-400">2:30 PM</div>
+              <div className="h-3 w-3 rounded-full bg-primary text-[6px] text-white flex items-center justify-center mt-0.5 ml-auto">2</div>
+            </div>
+          </div>
+          
+          {/* Contact 2 */}
+          <div className="flex items-center gap-2 rounded-lg bg-white p-2 shadow-sm border border-slate-100">
+            <div className="h-8 w-8 rounded-full bg-gradient-to-br from-blue-400 to-indigo-500 flex items-center justify-center text-[9px] font-bold text-white">
+              SK
+            </div>
+            <div className="flex-1 min-w-0">
+              <div className="text-[9px] font-semibold text-slate-800 truncate">Sarah Kim</div>
+              <div className="text-[7px] text-slate-500 flex items-center gap-1">
+                <MessageSquare className="h-2 w-2" /> Thanks! See you...
+              </div>
+            </div>
+            <div className="text-right">
+              <div className="text-[7px] text-slate-400">11:15 AM</div>
+            </div>
+          </div>
+          
+          {/* Contact 3 */}
+          <div className="flex items-center gap-2 rounded-lg bg-white p-2 shadow-sm border border-slate-100">
+            <div className="h-8 w-8 rounded-full bg-gradient-to-br from-amber-400 to-orange-500 flex items-center justify-center text-[9px] font-bold text-white">
+              RB
+            </div>
+            <div className="flex-1 min-w-0">
+              <div className="text-[9px] font-semibold text-slate-800 truncate">Robert Brown</div>
+              <div className="text-[7px] text-slate-500 flex items-center gap-1">
+                <Phone className="h-2 w-2" /> Missed call
+              </div>
+            </div>
+            <div className="text-right">
+              <div className="text-[7px] text-slate-400">Yesterday</div>
+              <div className="h-3 w-3 rounded-full bg-amber-500 text-[6px] text-white flex items-center justify-center mt-0.5 ml-auto">1</div>
+            </div>
+          </div>
+          
+          {/* Contact 4 */}
+          <div className="flex items-center gap-2 rounded-lg bg-white p-2 shadow-sm border border-slate-100">
+            <div className="h-8 w-8 rounded-full bg-gradient-to-br from-purple-400 to-pink-500 flex items-center justify-center text-[9px] font-bold text-white">
+              LP
+            </div>
+            <div className="flex-1 min-w-0">
+              <div className="text-[9px] font-semibold text-slate-800 truncate">Lisa Park</div>
+              <div className="text-[7px] text-slate-500 flex items-center gap-1">
+                <Star className="h-2 w-2" /> Left a 5-star review
+              </div>
+            </div>
+            <div className="text-right">
+              <div className="text-[7px] text-slate-400">Monday</div>
+            </div>
+          </div>
+        </div>
+        
+        {/* Bottom navigation */}
+        <div className="flex items-center justify-around border-t border-slate-200 bg-white px-2 py-2">
+          <div className="flex flex-col items-center">
+            <div className="h-4 w-4 rounded bg-slate-100 flex items-center justify-center">
+              <div className="h-2 w-2 rounded-sm bg-slate-400"></div>
+            </div>
+          </div>
+          <div className="flex flex-col items-center">
+            <div className="h-5 w-5 rounded-full bg-primary/20 flex items-center justify-center">
+              <MessageSquare className="h-2.5 w-2.5 text-primary" />
+            </div>
+          </div>
+          <div className="flex flex-col items-center">
+            <Star className="h-3.5 w-3.5 text-slate-400" />
+          </div>
+          <div className="flex flex-col items-center">
+            <Calendar className="h-3.5 w-3.5 text-slate-400" />
+          </div>
+          <div className="flex flex-col items-center">
+            <Users className="h-3.5 w-3.5 text-slate-400" />
           </div>
         </div>
       </div>
     </div>
     
     {/* Home indicator */}
-    <div className="absolute bottom-2 left-1/2 h-1 w-10 -translate-x-1/2 rounded-full bg-gray-600"></div>
+    <div className="absolute bottom-2.5 left-1/2 h-1 w-12 -translate-x-1/2 rounded-full bg-slate-600"></div>
+    
+    {/* Floating action button */}
+    <div className="absolute bottom-14 right-4 h-8 w-8 rounded-full bg-primary shadow-lg flex items-center justify-center">
+      <span className="text-white text-lg font-light">+</span>
+    </div>
   </div>
 );
 
