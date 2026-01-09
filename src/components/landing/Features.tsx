@@ -123,22 +123,20 @@ const EmployeeCard = ({
   isVisible: boolean;
   delay: number;
 }) => {
-  const glowColors: Record<string, string> = {
-    blue: "from-blue-500/20 to-blue-600/20 shadow-blue-500/20",
-    red: "from-red-500/20 to-red-600/20 shadow-red-500/20",
-    yellow: "from-yellow-500/20 to-amber-500/20 shadow-yellow-500/20",
-    purple: "from-purple-500/20 to-pink-500/20 shadow-purple-500/20",
+  const hoverColors: Record<string, string> = {
+    blue: "hover:bg-blue-500/10 active:bg-blue-500/20",
+    red: "hover:bg-red-500/10 active:bg-red-500/20",
+    yellow: "hover:bg-yellow-500/10 active:bg-yellow-500/20",
+    purple: "hover:bg-purple-500/10 active:bg-purple-500/20",
   };
 
   return (
     <div 
-      className={`group relative min-h-[200px] rounded-2xl border border-border/50 bg-background/80 p-4 transition-all duration-500 hover:border-primary/40 hover:bg-background hover:shadow-2xl ${
+      className={`group relative min-h-[200px] rounded-2xl border border-border/50 bg-background/80 p-4 transition-all duration-300 hover:border-primary/40 hover:shadow-lg ${hoverColors[employee.glowColor]} ${
         isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
       }`}
       style={{ transitionDelay: `${delay}ms` }}
     >
-      {/* Glow effect on hover */}
-      <div className={`absolute inset-0 rounded-2xl bg-gradient-to-br ${glowColors[employee.glowColor]} opacity-0 blur-xl transition-opacity duration-500 group-hover:opacity-100`} />
       
       {/* Content */}
       <div className="relative z-10">
