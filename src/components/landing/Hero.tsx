@@ -71,8 +71,8 @@ const Hero = () => {
               isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
             }`}
           >
-            Stop Losing HVAC Jobs to{" "}
-            <span className="gradient-text">Missed Calls</span>
+            Your{" "}
+            <span className="gradient-text">AI-Powered</span> HVAC Office
           </h1>
 
           {/* Subheadline */}
@@ -81,7 +81,7 @@ const Hero = () => {
               isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
             }`}
           >
-            Your AI receptionist answers calls 24/7, books appointments, and follows up with leads — automatically.
+            One system that answers calls, books jobs, and follows up with every lead — 24/7.
           </p>
 
           {/* CTAs */}
