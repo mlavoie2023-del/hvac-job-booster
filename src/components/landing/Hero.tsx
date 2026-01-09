@@ -1,24 +1,4 @@
-import { Phone, CalendarCheck, MessageSquare } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
-
-// Simple feature snapshot data
-const featureSnapshot = [
-  { 
-    icon: Phone, 
-    title: "Answers Calls",
-    description: "24/7, never misses one"
-  },
-  { 
-    icon: CalendarCheck, 
-    title: "Books Jobs",
-    description: "Directly on your calendar"
-  },
-  { 
-    icon: MessageSquare, 
-    title: "Follows Up",
-    description: "Texts leads automatically"
-  },
-];
 
 const Hero = () => {
   const sectionRef = useRef<HTMLElement>(null);
@@ -79,32 +59,6 @@ const Hero = () => {
           >
             One system that answers calls, books jobs, and follows up with every lead — 24/7.
           </p>
-        </div>
-
-        {/* Simple Feature Snapshot */}
-        <div 
-          className={`mx-auto mt-10 sm:mt-16 max-w-3xl transition-all duration-700 delay-500 ${
-            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-          }`}
-        >
-          <div className="grid grid-cols-3 gap-3 sm:gap-8">
-            {featureSnapshot.map((feature, index) => (
-              <div 
-                key={index} 
-                className="flex flex-col items-center text-center"
-              >
-                <div className="flex h-12 w-12 sm:h-14 sm:w-14 items-center justify-center rounded-xl sm:rounded-2xl bg-primary/10 mb-2 sm:mb-3">
-                  <feature.icon className="h-6 w-6 sm:h-7 sm:w-7 text-primary" />
-                </div>
-                <h3 className="font-semibold text-foreground text-xs sm:text-base">
-                  {feature.title}
-                </h3>
-                <p className="text-[10px] sm:text-sm text-muted-foreground mt-0.5 sm:mt-1 leading-tight">
-                  {feature.description}
-                </p>
-              </div>
-            ))}
-          </div>
         </div>
       </div>
     </section>
