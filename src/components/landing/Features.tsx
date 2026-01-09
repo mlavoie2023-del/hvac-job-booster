@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import { 
   Phone, 
   MessageSquare, 
@@ -9,7 +10,10 @@ import {
   Calendar,
   Send,
   Eye,
-  Sliders
+  Sliders,
+  ChevronLeft,
+  Search,
+  Settings
 } from "lucide-react";
 
 const aiEmployees = [
@@ -95,167 +99,344 @@ const CommandCenterCard = ({ feature, index }: { feature: typeof commandCenterFe
   </div>
 );
 
-// Phone Mockup with CRM-style Contacts View
-const PhoneMockup = () => (
-  <div className="relative mx-auto w-[220px]">
-    {/* Phone frame */}
-    <div className="rounded-[32px] border-[8px] border-slate-900 bg-slate-900 p-1 shadow-2xl">
-      {/* Camera notch */}
-      <div className="absolute left-6 top-3 h-3 w-3 rounded-full bg-slate-800 z-10 flex items-center justify-center">
-        <div className="h-1.5 w-1.5 rounded-full bg-slate-700"></div>
+// Phone Screen Components
+const ContactsScreen = () => (
+  <>
+    {/* Incoming call notification */}
+    <div className="mx-2 mt-1 rounded-xl bg-slate-800 p-2.5 shadow-lg animate-pulse">
+      <div className="flex items-center gap-2">
+        <div className="h-6 w-6 rounded-full bg-primary flex items-center justify-center">
+          <Phone className="h-3 w-3 text-white" />
+        </div>
+        <div className="flex-1">
+          <div className="flex items-center gap-1">
+            <span className="text-[9px] font-semibold text-white">Incoming call</span>
+            <span className="text-[7px] text-slate-400">• now</span>
+          </div>
+          <div className="text-[8px] text-slate-300">+1 (555) 234-8901</div>
+        </div>
+      </div>
+      <div className="flex gap-2 mt-2">
+        <button className="flex-1 rounded-lg bg-slate-700 py-1.5 text-[8px] font-medium text-white">Decline</button>
+        <button className="flex-1 rounded-lg bg-primary py-1.5 text-[8px] font-medium text-white">Answer</button>
+      </div>
+    </div>
+    
+    {/* App header */}
+    <div className="flex items-center justify-between px-3 py-2 mt-2">
+      <div className="text-[11px] font-bold text-slate-800">Contacts</div>
+      <Search className="h-3.5 w-3.5 text-slate-400" />
+    </div>
+    
+    {/* Contact list */}
+    <div className="px-2 pb-3 space-y-1.5">
+      <div className="flex items-center gap-2 rounded-lg bg-white p-2 shadow-sm border border-slate-100">
+        <div className="h-8 w-8 rounded-full bg-gradient-to-br from-emerald-400 to-teal-500 flex items-center justify-center text-[9px] font-bold text-white">JM</div>
+        <div className="flex-1 min-w-0">
+          <div className="text-[9px] font-semibold text-slate-800 truncate">James Morrison</div>
+          <div className="text-[7px] text-slate-500 flex items-center gap-1"><Phone className="h-2 w-2" /> AC Repair Quote</div>
+        </div>
+        <div className="text-right">
+          <div className="text-[7px] text-slate-400">2:30 PM</div>
+          <div className="h-3 w-3 rounded-full bg-primary text-[6px] text-white flex items-center justify-center mt-0.5 ml-auto">2</div>
+        </div>
+      </div>
+      <div className="flex items-center gap-2 rounded-lg bg-white p-2 shadow-sm border border-slate-100">
+        <div className="h-8 w-8 rounded-full bg-gradient-to-br from-blue-400 to-indigo-500 flex items-center justify-center text-[9px] font-bold text-white">SK</div>
+        <div className="flex-1 min-w-0">
+          <div className="text-[9px] font-semibold text-slate-800 truncate">Sarah Kim</div>
+          <div className="text-[7px] text-slate-500 flex items-center gap-1"><MessageSquare className="h-2 w-2" /> Thanks! See you...</div>
+        </div>
+        <div className="text-[7px] text-slate-400">11:15 AM</div>
+      </div>
+      <div className="flex items-center gap-2 rounded-lg bg-white p-2 shadow-sm border border-slate-100">
+        <div className="h-8 w-8 rounded-full bg-gradient-to-br from-amber-400 to-orange-500 flex items-center justify-center text-[9px] font-bold text-white">RB</div>
+        <div className="flex-1 min-w-0">
+          <div className="text-[9px] font-semibold text-slate-800 truncate">Robert Brown</div>
+          <div className="text-[7px] text-slate-500 flex items-center gap-1"><Phone className="h-2 w-2" /> Missed call</div>
+        </div>
+        <div className="text-right">
+          <div className="text-[7px] text-slate-400">Yesterday</div>
+          <div className="h-3 w-3 rounded-full bg-amber-500 text-[6px] text-white flex items-center justify-center mt-0.5 ml-auto">1</div>
+        </div>
+      </div>
+    </div>
+  </>
+);
+
+const CalendarScreen = () => (
+  <>
+    {/* App header */}
+    <div className="flex items-center justify-between px-3 py-2 mt-1 bg-white">
+      <div className="text-[11px] font-bold text-slate-800">Calendar</div>
+      <div className="text-[9px] text-primary font-medium">Jan 2026</div>
+    </div>
+    
+    {/* Mini calendar */}
+    <div className="px-3 py-2">
+      <div className="grid grid-cols-7 gap-1 text-center text-[7px] text-slate-500 mb-1">
+        <span>M</span><span>T</span><span>W</span><span>T</span><span>F</span><span>S</span><span>S</span>
+      </div>
+      <div className="grid grid-cols-7 gap-1 text-center text-[8px]">
+        {[6,7,8,9,10,11,12].map(d => (
+          <div key={d} className={`py-1 rounded ${d === 9 ? 'bg-primary text-white' : 'text-slate-700'}`}>
+            {d}
+            {[7,9,10].includes(d) && <div className="h-0.5 w-0.5 rounded-full bg-primary mx-auto mt-0.5" />}
+          </div>
+        ))}
+      </div>
+    </div>
+    
+    {/* Appointments */}
+    <div className="px-2 pb-3 space-y-1.5">
+      <div className="text-[8px] font-medium text-slate-500 px-1">Today's Schedule</div>
+      <div className="rounded-lg bg-primary/10 border-l-2 border-primary p-2">
+        <div className="flex items-center gap-2">
+          <div className="h-7 w-7 rounded-full bg-gradient-to-br from-emerald-400 to-teal-500 flex items-center justify-center text-[8px] font-bold text-white">DK</div>
+          <div className="flex-1">
+            <div className="text-[9px] font-semibold text-slate-800">AC Installation - David K.</div>
+            <div className="text-[7px] text-primary">9:00 AM - 11:30 AM</div>
+          </div>
+        </div>
+      </div>
+      <div className="rounded-lg bg-blue-50 border-l-2 border-blue-500 p-2">
+        <div className="flex items-center gap-2">
+          <div className="h-7 w-7 rounded-full bg-gradient-to-br from-blue-400 to-indigo-500 flex items-center justify-center text-[8px] font-bold text-white">MW</div>
+          <div className="flex-1">
+            <div className="text-[9px] font-semibold text-slate-800">Furnace Repair - Mike W.</div>
+            <div className="text-[7px] text-blue-600">1:00 PM - 2:30 PM</div>
+          </div>
+        </div>
+      </div>
+      <div className="rounded-lg bg-amber-50 border-l-2 border-amber-500 p-2">
+        <div className="flex items-center gap-2">
+          <div className="h-7 w-7 rounded-full bg-gradient-to-br from-amber-400 to-orange-500 flex items-center justify-center text-[8px] font-bold text-white">JL</div>
+          <div className="flex-1">
+            <div className="text-[9px] font-semibold text-slate-800">Duct Cleaning - Jane L.</div>
+            <div className="text-[7px] text-amber-600">4:00 PM - 5:00 PM</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </>
+);
+
+const OpportunitiesScreen = () => (
+  <>
+    {/* App header */}
+    <div className="flex items-center justify-between px-3 py-2 mt-1 bg-white">
+      <div className="flex items-center gap-1">
+        <ChevronLeft className="h-3 w-3 text-slate-500" />
+        <div className="text-[11px] font-bold text-slate-800">Opportunities</div>
+      </div>
+      <Search className="h-3.5 w-3.5 text-slate-400" />
+    </div>
+    
+    {/* Pipeline tabs */}
+    <div className="flex gap-1 px-2 py-1.5">
+      <div className="flex-1 rounded-lg bg-primary py-1.5 text-center text-[8px] font-medium text-white">New Leads</div>
+      <div className="flex-1 rounded-lg bg-slate-100 py-1.5 text-center text-[8px] font-medium text-slate-600">Quoted</div>
+    </div>
+    
+    <div className="px-2 text-[8px] text-slate-500 py-1">11 Leads | $11,000.00</div>
+    
+    {/* Opportunity cards */}
+    <div className="px-2 pb-3 space-y-1.5">
+      <div className="rounded-lg bg-white p-2.5 shadow-sm border border-slate-100">
+        <div className="flex items-center justify-between mb-1.5">
+          <div className="text-[9px] font-semibold text-slate-800">Daniel Morel</div>
+          <div className="h-6 w-6 rounded-full bg-gradient-to-br from-emerald-400 to-teal-500 flex items-center justify-center text-[7px] font-bold text-white">DM</div>
+        </div>
+        <div className="text-[10px] font-bold text-primary mb-1">$1,000.00</div>
+        <div className="text-[7px] text-slate-500 flex items-center gap-1"><Users className="h-2 w-2" /> HVAC system upgrade</div>
+        <div className="flex gap-1.5 mt-2">
+          <button className="rounded border border-slate-200 p-1.5"><Phone className="h-2.5 w-2.5 text-slate-500" /></button>
+          <button className="rounded border border-slate-200 p-1.5"><MessageSquare className="h-2.5 w-2.5 text-slate-500" /></button>
+          <button className="rounded bg-primary p-1.5"><Send className="h-2.5 w-2.5 text-white" /></button>
+        </div>
+      </div>
+      <div className="rounded-lg bg-white p-2.5 shadow-sm border border-slate-100">
+        <div className="flex items-center justify-between mb-1.5">
+          <div className="text-[9px] font-semibold text-slate-800">Corey Bayer</div>
+          <div className="h-6 w-6 rounded-full bg-gradient-to-br from-blue-400 to-indigo-500 flex items-center justify-center text-[7px] font-bold text-white">CB</div>
+        </div>
+        <div className="text-[10px] font-bold text-primary mb-1">$2,500.00</div>
+        <div className="text-[7px] text-slate-500 flex items-center gap-1"><Users className="h-2 w-2" /> New AC installation</div>
+        <div className="flex gap-1.5 mt-2">
+          <button className="rounded border border-slate-200 p-1.5"><Phone className="h-2.5 w-2.5 text-slate-500" /></button>
+          <button className="rounded border border-slate-200 p-1.5"><MessageSquare className="h-2.5 w-2.5 text-slate-500" /></button>
+          <button className="rounded bg-primary p-1.5"><Send className="h-2.5 w-2.5 text-white" /></button>
+        </div>
+      </div>
+    </div>
+  </>
+);
+
+const DashboardScreen = () => (
+  <>
+    {/* App header */}
+    <div className="flex items-center justify-between px-3 py-2 mt-1 bg-white">
+      <div className="text-[11px] font-bold text-slate-800">Dashboard</div>
+      <Settings className="h-3.5 w-3.5 text-slate-400" />
+    </div>
+    
+    {/* Stats grid */}
+    <div className="grid grid-cols-2 gap-2 px-2 py-2">
+      <div className="rounded-lg bg-emerald-50 p-2.5 text-center">
+        <div className="text-lg font-bold text-emerald-600">24</div>
+        <div className="text-[7px] text-slate-600">Booked Jobs</div>
+      </div>
+      <div className="rounded-lg bg-blue-50 p-2.5 text-center">
+        <div className="text-lg font-bold text-blue-600">11</div>
+        <div className="text-[7px] text-slate-600">Active Leads</div>
+      </div>
+      <div className="rounded-lg bg-amber-50 p-2.5 text-center">
+        <div className="text-lg font-bold text-amber-600">$18.5k</div>
+        <div className="text-[7px] text-slate-600">Revenue</div>
+      </div>
+      <div className="rounded-lg bg-purple-50 p-2.5 text-center">
+        <div className="text-lg font-bold text-purple-600">4.9</div>
+        <div className="text-[7px] text-slate-600">Avg Rating</div>
+      </div>
+    </div>
+    
+    {/* Chart */}
+    <div className="mx-2 rounded-lg bg-white border border-slate-100 p-2.5 shadow-sm">
+      <div className="text-[8px] font-medium text-slate-600 mb-2">This Week's Revenue</div>
+      <div className="flex items-end justify-between gap-1 h-12">
+        <div className="w-full rounded-t bg-primary/30 h-3"></div>
+        <div className="w-full rounded-t bg-primary/50 h-5"></div>
+        <div className="w-full rounded-t bg-primary/40 h-4"></div>
+        <div className="w-full rounded-t bg-primary/70 h-8"></div>
+        <div className="w-full rounded-t bg-primary/60 h-6"></div>
+        <div className="w-full rounded-t bg-primary/80 h-10"></div>
+        <div className="w-full rounded-t bg-primary h-12"></div>
+      </div>
+      <div className="flex justify-between mt-1 text-[6px] text-slate-400">
+        <span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span><span>Sun</span>
+      </div>
+    </div>
+    
+    {/* AI status */}
+    <div className="mx-2 mt-2 rounded-lg bg-primary/5 border border-primary/20 p-2">
+      <div className="text-[8px] font-medium text-slate-700 mb-1.5">AI Employees Active</div>
+      <div className="flex items-center gap-1.5">
+        <div className="h-5 w-5 rounded-full bg-emerald-100 flex items-center justify-center">
+          <div className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse"></div>
+        </div>
+        <div className="h-5 w-5 rounded-full bg-blue-100 flex items-center justify-center">
+          <div className="h-1.5 w-1.5 rounded-full bg-blue-500 animate-pulse"></div>
+        </div>
+        <div className="h-5 w-5 rounded-full bg-amber-100 flex items-center justify-center">
+          <div className="h-1.5 w-1.5 rounded-full bg-amber-500 animate-pulse"></div>
+        </div>
+        <div className="h-5 w-5 rounded-full bg-purple-100 flex items-center justify-center">
+          <div className="h-1.5 w-1.5 rounded-full bg-purple-500 animate-pulse"></div>
+        </div>
+        <div className="h-5 w-5 rounded-full bg-yellow-100 flex items-center justify-center">
+          <div className="h-1.5 w-1.5 rounded-full bg-yellow-500 animate-pulse"></div>
+        </div>
+      </div>
+    </div>
+  </>
+);
+
+const screens = [
+  { component: ContactsScreen, label: "Contacts", icon: MessageSquare },
+  { component: CalendarScreen, label: "Calendar", icon: Calendar },
+  { component: OpportunitiesScreen, label: "Leads", icon: Star },
+  { component: DashboardScreen, label: "Dashboard", icon: Users },
+];
+
+// Phone Mockup with animated screens
+const PhoneMockup = () => {
+  const [activeScreen, setActiveScreen] = useState(0);
+  
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setActiveScreen((prev) => (prev + 1) % screens.length);
+    }, 4000);
+    return () => clearInterval(interval);
+  }, []);
+
+  const CurrentScreen = screens[activeScreen].component;
+
+  return (
+    <div className="relative mx-auto w-[220px]">
+      {/* Phone frame */}
+      <div className="rounded-[32px] border-[8px] border-slate-900 bg-slate-900 p-1 shadow-2xl">
+        {/* Camera notch */}
+        <div className="absolute left-6 top-3 h-3 w-3 rounded-full bg-slate-800 z-10 flex items-center justify-center">
+          <div className="h-1.5 w-1.5 rounded-full bg-slate-700"></div>
+        </div>
+        
+        {/* Screen */}
+        <div className="rounded-[24px] bg-slate-50 overflow-hidden h-[380px] flex flex-col">
+          {/* Status bar */}
+          <div className="flex items-center justify-between px-4 py-2 pt-3 bg-white">
+            <div className="text-[9px] font-semibold text-slate-800">9:41</div>
+            <div className="flex items-center gap-1">
+              <div className="flex gap-0.5">
+                <div className="h-1 w-1 rounded-full bg-slate-600"></div>
+                <div className="h-1 w-1 rounded-full bg-slate-600"></div>
+                <div className="h-1 w-1 rounded-full bg-slate-400"></div>
+                <div className="h-1 w-1 rounded-full bg-slate-300"></div>
+              </div>
+              <div className="h-2 w-4 rounded-sm border border-slate-600 ml-1">
+                <div className="h-full w-3/4 rounded-sm bg-slate-600"></div>
+              </div>
+            </div>
+          </div>
+          
+          {/* Screen content with animation */}
+          <div className="flex-1 overflow-hidden relative">
+            <div key={activeScreen} className="animate-fade-in">
+              <CurrentScreen />
+            </div>
+          </div>
+          
+          {/* Bottom navigation */}
+          <div className="flex items-center justify-around border-t border-slate-200 bg-white px-2 py-2 mt-auto">
+            {screens.map((screen, index) => (
+              <button
+                key={index}
+                onClick={() => setActiveScreen(index)}
+                className={`flex flex-col items-center transition-all duration-300 ${
+                  activeScreen === index ? 'scale-110' : 'opacity-50'
+                }`}
+              >
+                <div className={`p-1 rounded-full ${activeScreen === index ? 'bg-primary/20' : ''}`}>
+                  <screen.icon className={`h-3.5 w-3.5 ${activeScreen === index ? 'text-primary' : 'text-slate-400'}`} />
+                </div>
+              </button>
+            ))}
+          </div>
+        </div>
       </div>
       
-      {/* Screen */}
-      <div className="rounded-[24px] bg-slate-50 overflow-hidden">
-        {/* Status bar */}
-        <div className="flex items-center justify-between px-4 py-2 pt-3 bg-white">
-          <div className="text-[9px] font-semibold text-slate-800">9:41</div>
-          <div className="flex items-center gap-1">
-            <div className="flex gap-0.5">
-              <div className="h-1 w-1 rounded-full bg-slate-600"></div>
-              <div className="h-1 w-1 rounded-full bg-slate-600"></div>
-              <div className="h-1 w-1 rounded-full bg-slate-400"></div>
-              <div className="h-1 w-1 rounded-full bg-slate-300"></div>
-            </div>
-            <div className="h-2 w-4 rounded-sm border border-slate-600 ml-1">
-              <div className="h-full w-3/4 rounded-sm bg-slate-600"></div>
-            </div>
-          </div>
-        </div>
-        
-        {/* Incoming call notification */}
-        <div className="mx-2 mt-1 rounded-xl bg-slate-800 p-2.5 shadow-lg">
-          <div className="flex items-center gap-2">
-            <div className="h-6 w-6 rounded-full bg-primary flex items-center justify-center">
-              <Phone className="h-3 w-3 text-white" />
-            </div>
-            <div className="flex-1">
-              <div className="flex items-center gap-1">
-                <span className="text-[9px] font-semibold text-white">Incoming call</span>
-                <span className="text-[7px] text-slate-400">• now</span>
-              </div>
-              <div className="text-[8px] text-slate-300">+1 (555) 234-8901</div>
-            </div>
-          </div>
-          <div className="flex gap-2 mt-2">
-            <button className="flex-1 rounded-lg bg-slate-700 py-1.5 text-[8px] font-medium text-white">Decline</button>
-            <button className="flex-1 rounded-lg bg-primary py-1.5 text-[8px] font-medium text-white">Answer</button>
-          </div>
-        </div>
-        
-        {/* App header */}
-        <div className="flex items-center justify-between px-3 py-2 mt-2">
-          <div className="text-[11px] font-bold text-slate-800">Contacts</div>
-          <div className="flex items-center gap-2">
-            <div className="h-4 w-4 rounded bg-slate-100 flex items-center justify-center">
-              <div className="h-2 w-2 border border-slate-400 rounded-sm"></div>
-            </div>
-          </div>
-        </div>
-        
-        {/* Contact list */}
-        <div className="px-2 pb-3 space-y-1.5">
-          {/* Contact 1 */}
-          <div className="flex items-center gap-2 rounded-lg bg-white p-2 shadow-sm border border-slate-100">
-            <div className="h-8 w-8 rounded-full bg-gradient-to-br from-emerald-400 to-teal-500 flex items-center justify-center text-[9px] font-bold text-white">
-              JM
-            </div>
-            <div className="flex-1 min-w-0">
-              <div className="text-[9px] font-semibold text-slate-800 truncate">James Morrison</div>
-              <div className="text-[7px] text-slate-500 flex items-center gap-1">
-                <Phone className="h-2 w-2" /> AC Repair Quote
-              </div>
-            </div>
-            <div className="text-right">
-              <div className="text-[7px] text-slate-400">2:30 PM</div>
-              <div className="h-3 w-3 rounded-full bg-primary text-[6px] text-white flex items-center justify-center mt-0.5 ml-auto">2</div>
-            </div>
-          </div>
-          
-          {/* Contact 2 */}
-          <div className="flex items-center gap-2 rounded-lg bg-white p-2 shadow-sm border border-slate-100">
-            <div className="h-8 w-8 rounded-full bg-gradient-to-br from-blue-400 to-indigo-500 flex items-center justify-center text-[9px] font-bold text-white">
-              SK
-            </div>
-            <div className="flex-1 min-w-0">
-              <div className="text-[9px] font-semibold text-slate-800 truncate">Sarah Kim</div>
-              <div className="text-[7px] text-slate-500 flex items-center gap-1">
-                <MessageSquare className="h-2 w-2" /> Thanks! See you...
-              </div>
-            </div>
-            <div className="text-right">
-              <div className="text-[7px] text-slate-400">11:15 AM</div>
-            </div>
-          </div>
-          
-          {/* Contact 3 */}
-          <div className="flex items-center gap-2 rounded-lg bg-white p-2 shadow-sm border border-slate-100">
-            <div className="h-8 w-8 rounded-full bg-gradient-to-br from-amber-400 to-orange-500 flex items-center justify-center text-[9px] font-bold text-white">
-              RB
-            </div>
-            <div className="flex-1 min-w-0">
-              <div className="text-[9px] font-semibold text-slate-800 truncate">Robert Brown</div>
-              <div className="text-[7px] text-slate-500 flex items-center gap-1">
-                <Phone className="h-2 w-2" /> Missed call
-              </div>
-            </div>
-            <div className="text-right">
-              <div className="text-[7px] text-slate-400">Yesterday</div>
-              <div className="h-3 w-3 rounded-full bg-amber-500 text-[6px] text-white flex items-center justify-center mt-0.5 ml-auto">1</div>
-            </div>
-          </div>
-          
-          {/* Contact 4 */}
-          <div className="flex items-center gap-2 rounded-lg bg-white p-2 shadow-sm border border-slate-100">
-            <div className="h-8 w-8 rounded-full bg-gradient-to-br from-purple-400 to-pink-500 flex items-center justify-center text-[9px] font-bold text-white">
-              LP
-            </div>
-            <div className="flex-1 min-w-0">
-              <div className="text-[9px] font-semibold text-slate-800 truncate">Lisa Park</div>
-              <div className="text-[7px] text-slate-500 flex items-center gap-1">
-                <Star className="h-2 w-2" /> Left a 5-star review
-              </div>
-            </div>
-            <div className="text-right">
-              <div className="text-[7px] text-slate-400">Monday</div>
-            </div>
-          </div>
-        </div>
-        
-        {/* Bottom navigation */}
-        <div className="flex items-center justify-around border-t border-slate-200 bg-white px-2 py-2">
-          <div className="flex flex-col items-center">
-            <div className="h-4 w-4 rounded bg-slate-100 flex items-center justify-center">
-              <div className="h-2 w-2 rounded-sm bg-slate-400"></div>
-            </div>
-          </div>
-          <div className="flex flex-col items-center">
-            <div className="h-5 w-5 rounded-full bg-primary/20 flex items-center justify-center">
-              <MessageSquare className="h-2.5 w-2.5 text-primary" />
-            </div>
-          </div>
-          <div className="flex flex-col items-center">
-            <Star className="h-3.5 w-3.5 text-slate-400" />
-          </div>
-          <div className="flex flex-col items-center">
-            <Calendar className="h-3.5 w-3.5 text-slate-400" />
-          </div>
-          <div className="flex flex-col items-center">
-            <Users className="h-3.5 w-3.5 text-slate-400" />
-          </div>
-        </div>
+      {/* Home indicator */}
+      <div className="absolute bottom-2.5 left-1/2 h-1 w-12 -translate-x-1/2 rounded-full bg-slate-600"></div>
+      
+      {/* Floating action button */}
+      <div className="absolute bottom-16 right-4 h-8 w-8 rounded-full bg-primary shadow-lg flex items-center justify-center">
+        <span className="text-white text-lg font-light">+</span>
+      </div>
+      
+      {/* Screen indicator dots */}
+      <div className="flex justify-center gap-1.5 mt-4">
+        {screens.map((_, index) => (
+          <button
+            key={index}
+            onClick={() => setActiveScreen(index)}
+            className={`h-1.5 rounded-full transition-all duration-300 ${
+              activeScreen === index ? 'w-4 bg-primary' : 'w-1.5 bg-slate-300'
+            }`}
+          />
+        ))}
       </div>
     </div>
-    
-    {/* Home indicator */}
-    <div className="absolute bottom-2.5 left-1/2 h-1 w-12 -translate-x-1/2 rounded-full bg-slate-600"></div>
-    
-    {/* Floating action button */}
-    <div className="absolute bottom-14 right-4 h-8 w-8 rounded-full bg-primary shadow-lg flex items-center justify-center">
-      <span className="text-white text-lg font-light">+</span>
-    </div>
-  </div>
-);
+  );
+};
 
 const Features = () => {
   return (
