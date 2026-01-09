@@ -41,7 +41,7 @@ const Pricing = () => {
             Simple, Transparent Pricing
           </h1>
           <p className="text-muted-foreground max-w-xl mx-auto">
-            Choose the plan that fits your HVAC business. No hidden fees, cancel anytime.
+            Choose the plan that fits your HVAC business. Cancel anytime.
           </p>
         </div>
 
