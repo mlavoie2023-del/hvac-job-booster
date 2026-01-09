@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Phone, Wrench, Calendar, ShieldCheck, Zap, Clock, CheckCircle2 } from "lucide-react";
+import { ArrowRight, Phone, Wrench, Calendar, ShieldCheck, Zap } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
 // Conversation messages for the AI mockup
@@ -255,24 +255,6 @@ const Hero = () => {
             Your AI receptionist answers calls 24/7, books appointments on your calendar, and never lets a lead slip away — even at 2am.
           </p>
 
-          {/* Quick value props */}
-          <div 
-            className={`mt-8 flex flex-wrap items-center justify-center gap-x-6 gap-y-3 transition-all duration-700 delay-250 ${
-              isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
-            }`}
-          >
-            {[
-              { icon: Phone, text: "Answers every call" },
-              { icon: Calendar, text: "Books appointments" },
-              { icon: Clock, text: "Works 24/7" },
-            ].map((item, i) => (
-              <div key={i} className="flex items-center gap-2 text-sm text-muted-foreground">
-                <item.icon className="h-4 w-4 text-primary" />
-                <span>{item.text}</span>
-              </div>
-            ))}
-          </div>
-
           {/* CTAs */}
           <div 
             className={`mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row transition-all duration-700 delay-300 ${
@@ -280,7 +262,6 @@ const Hero = () => {
             }`}
           >
             <div className="relative group">
-              {/* Glow effect behind button */}
               <div className="absolute -inset-1 bg-gradient-to-r from-primary to-accent rounded-xl blur-md opacity-50 group-hover:opacity-75 transition-opacity" />
               <Button variant="hero" size="xl" className="relative w-full sm:w-auto" asChild>
                 <Link to="/book">
@@ -294,23 +275,14 @@ const Hero = () => {
             </Button>
           </div>
 
-          {/* Trust Line - More specific guarantees */}
-          <div 
-            className={`mt-8 flex flex-wrap items-center justify-center gap-x-4 gap-y-2 transition-all duration-700 delay-400 ${
+          {/* Trust Line */}
+          <p 
+            className={`mt-6 text-sm text-muted-foreground transition-all duration-700 delay-400 ${
               isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
             }`}
           >
-            {[
-              "14-day free trial",
-              "No credit card required",
-              "Cancel anytime",
-            ].map((item, i) => (
-              <div key={i} className="flex items-center gap-1.5 text-sm text-muted-foreground">
-                <CheckCircle2 className="h-4 w-4 text-success" />
-                <span>{item}</span>
-              </div>
-            ))}
-          </div>
+            14-day free trial · No contracts · Cancel anytime
+          </p>
         </div>
 
         {/* Two-Column Visual: Conversation + Trial Badges */}
