@@ -22,14 +22,9 @@ const Hero = () => {
   }, []);
 
   return (
-    <section ref={sectionRef} className="relative overflow-hidden bg-gradient-to-br from-primary/5 via-background to-background">
-      {/* Animated Background - hidden on mobile for performance */}
-      <div className="absolute inset-0 opacity-40 hidden sm:block">
-        <div className="absolute top-20 left-10 w-72 h-72 bg-primary/10 rounded-full blur-3xl animate-float" />
-        <div className="absolute bottom-20 right-10 w-96 h-96 bg-accent/10 rounded-full blur-3xl animate-float" style={{ animationDelay: '2s' }} />
-      </div>
+    <section ref={sectionRef} className="bg-background">
 
-      <div className="section-container relative z-10 py-12 sm:py-16 lg:py-28">
+      <div className="section-container py-12 sm:py-16 lg:py-28">
         <div className="mx-auto max-w-4xl text-center">
 
           {/* Trust Line - Above headline */}
