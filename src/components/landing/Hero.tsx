@@ -54,7 +54,7 @@ const Hero = () => {
             }`}
           >
             <a
-              href="https://calendly.com/lavoie-ai/lavoie-intro"
+              href="https://lavoiesystems.com/book"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center rounded-full bg-primary px-8 py-4 text-base sm:text-lg font-semibold text-primary-foreground shadow-lg shadow-primary/30 transition-all hover:bg-primary/90 hover:shadow-xl hover:shadow-primary/40 hover:scale-105"
