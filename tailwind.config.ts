@@ -116,6 +116,18 @@ export default {
         "ping-slow": {
           "75%, 100%": { transform: "scale(1.5)", opacity: "0" },
         },
+        "typing-dot": {
+          "0%, 60%, 100%": { transform: "translateY(0)" },
+          "30%": { transform: "translateY(-4px)" },
+        },
+        "float": {
+          "0%, 100%": { transform: "translateY(0px)" },
+          "50%": { transform: "translateY(-10px)" },
+        },
+        "message-in": {
+          "0%": { opacity: "0", transform: "translateY(10px) scale(0.95)" },
+          "100%": { opacity: "1", transform: "translateY(0) scale(1)" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -127,6 +139,9 @@ export default {
         "flow-right": "flow-right 1.5s ease-in-out infinite",
         "gradient-shift": "gradient-shift 3s ease infinite",
         "ping-slow": "ping-slow 2s cubic-bezier(0, 0, 0.2, 1) infinite",
+        "typing-dot": "typing-dot 1.4s ease-in-out infinite",
+        "float": "float 6s ease-in-out infinite",
+        "message-in": "message-in 0.4s ease-out forwards",
       },
     },
   },
