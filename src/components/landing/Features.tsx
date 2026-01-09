@@ -527,17 +527,17 @@ const Features = () => {
                     {/* Employee Card or Middle Step */}
                     <div className="mt-4 w-full">
                       {step.isMiddleStep ? (
-                        <div className="flex h-[140px] flex-col items-center justify-center rounded-2xl border-2 border-dashed border-border bg-muted/30 p-4 text-center">
+                        <div className="flex min-h-[160px] flex-col items-center justify-center rounded-2xl border-2 border-dashed border-border bg-muted/30 p-4 text-center">
                           <Briefcase className="h-8 w-8 text-muted-foreground" />
                           <p className="mt-2 text-sm font-medium text-muted-foreground">You complete the job</p>
                         </div>
                       ) : step.employee ? (
-                        <div className="group h-[140px] rounded-2xl border border-border/50 bg-background/80 p-4 transition-all hover:border-primary/30 hover:bg-background hover:shadow-xl">
+                        <div className="group min-h-[160px] rounded-2xl border border-border/50 bg-background/80 p-4 transition-all hover:border-primary/30 hover:bg-background hover:shadow-xl">
                           <div className={`mb-3 flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br ${step.employee.gradient} shadow-lg transition-transform group-hover:scale-110`}>
                             <step.employee.icon className="h-5 w-5 text-white" />
                           </div>
                           <h4 className="text-sm font-semibold text-foreground">{step.employee.title}</h4>
-                          <p className="mt-1 text-xs text-muted-foreground line-clamp-3">{step.employee.description}</p>
+                          <p className="mt-1.5 text-xs leading-relaxed text-muted-foreground">{step.employee.description}</p>
                         </div>
                       ) : null}
                     </div>
