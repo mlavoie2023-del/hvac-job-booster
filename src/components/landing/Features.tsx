@@ -556,14 +556,20 @@ const Features = () => {
   }, []);
 
   return (
-    <section id="features" className="bg-secondary/50 py-20 lg:py-28">
-      <div className="section-container">
+    <section id="features" className="relative overflow-hidden bg-gradient-to-br from-primary/5 via-background to-background py-20 lg:py-28">
+      {/* Animated Background - hidden on mobile for performance */}
+      <div className="absolute inset-0 opacity-40 hidden sm:block">
+        <div className="absolute top-20 left-10 w-72 h-72 bg-primary/10 rounded-full blur-3xl animate-float" />
+        <div className="absolute bottom-20 right-10 w-96 h-96 bg-accent/10 rounded-full blur-3xl animate-float" style={{ animationDelay: '2s' }} />
+      </div>
+
+      <div className="section-container relative z-10">
         {/* AI Employees Customer Journey Section */}
         <div ref={sectionRef}>
-          <h2 className={`text-center text-3xl font-bold text-foreground sm:text-4xl transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+          <h2 className={`text-center text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-foreground transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
             AI Employees
           </h2>
-          <p className={`mx-auto mt-3 max-w-2xl text-center text-lg text-muted-foreground transition-all duration-700 delay-100 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+          <p className={`mx-auto mt-4 sm:mt-6 max-w-2xl text-center text-base sm:text-lg md:text-xl lg:text-2xl text-muted-foreground transition-all duration-700 delay-100 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
             Your always-on team guides every customer through their entire journey
           </p>
           
@@ -651,11 +657,11 @@ const Features = () => {
         </div>
 
         {/* Command Center Section */}
-        <div className="mt-20">
-          <h3 className="text-center text-2xl font-bold text-foreground sm:text-3xl">
+        <div className="mt-20 lg:mt-28">
+          <h2 className="text-center text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-foreground">
             Meet Your New CRM
-          </h3>
-          <p className="mx-auto mt-3 max-w-2xl text-center text-lg text-muted-foreground">
+          </h2>
+          <p className="mx-auto mt-4 sm:mt-6 max-w-2xl text-center text-base sm:text-lg md:text-xl lg:text-2xl text-muted-foreground">
             One app to manage your entire team and run your business from anywhere
           </p>
           
