@@ -20,41 +20,66 @@ import {
   CheckCircle2
 } from "lucide-react";
 
-const aiEmployees = [
+const customerJourneySteps = [
   {
-    icon: Phone,
-    title: "Reception Specialist",
-    description: "Answers every call you miss and books quotes for you, 24/7.",
-    gradient: "from-emerald-500 to-teal-600",
-    bgGlow: "bg-emerald-500/20",
+    stage: 1,
+    stageLabel: "Lead Capture",
+    employees: [
+      {
+        icon: Phone,
+        title: "Reception Specialist",
+        description: "Answers every call you miss and books quotes for you, 24/7.",
+        gradient: "from-emerald-500 to-teal-600",
+      },
+      {
+        icon: MessagesSquare,
+        title: "Website Chat Specialist",
+        description: "Turns website visitors into leads, 24/7.",
+        gradient: "from-blue-500 to-indigo-600",
+      },
+    ],
   },
   {
-    icon: MessagesSquare,
-    title: "Website Chat Specialist",
-    description: "Turns website visitors into leads, 24/7.",
-    gradient: "from-blue-500 to-indigo-600",
-    bgGlow: "bg-blue-500/20",
+    stage: 2,
+    stageLabel: "Lead Nurturing",
+    employees: [
+      {
+        icon: MessageSquare,
+        title: "Lead Nurture Specialist",
+        description: "Automatically performs consistent follow up with every lead until they book.",
+        gradient: "from-amber-500 to-orange-600",
+      },
+    ],
   },
   {
-    icon: MessageSquare,
-    title: "Lead Nurture Specialist",
-    description: "Automatically performs consistent follow up with every lead.",
-    gradient: "from-amber-500 to-orange-600",
-    bgGlow: "bg-amber-500/20",
+    stage: 3,
+    stageLabel: "Job Completed",
+    isMiddleStep: true,
+    employees: [],
   },
   {
-    icon: Users,
-    title: "Repeat Revenue Specialist",
-    description: "Reaches out to past customers and converts them into repeat jobs automatically.",
-    gradient: "from-purple-500 to-pink-600",
-    bgGlow: "bg-purple-500/20",
+    stage: 4,
+    stageLabel: "Review Request",
+    employees: [
+      {
+        icon: Star,
+        title: "Review Specialist",
+        description: "Automatically requests reviews and filters out negative reviews from your Google page.",
+        gradient: "from-yellow-500 to-amber-600",
+      },
+    ],
   },
   {
-    icon: Star,
-    title: "Review Specialist",
-    description: "Automatically requests reviews and filters out negative reviews from your Google page.",
-    gradient: "from-yellow-500 to-amber-600",
-    bgGlow: "bg-yellow-500/20",
+    stage: 5,
+    stageLabel: "Repeat Business",
+    employees: [
+      {
+        icon: Users,
+        title: "Repeat Revenue Specialist",
+        description: "Reaches out to past customers months or years later to convert them into repeat jobs.",
+        gradient: "from-purple-500 to-pink-600",
+      },
+    ],
   },
 ];
 
@@ -81,13 +106,20 @@ const commandCenterFeatures = [
   },
 ];
 
-const FeatureCard = ({ feature, index }: { feature: typeof aiEmployees[0]; index: number }) => (
-  <div key={index} className="card-feature group">
-    <div className={`mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br ${feature.gradient} shadow-lg transition-transform group-hover:scale-110`}>
-      <feature.icon className="h-7 w-7 text-white" />
+type EmployeeType = {
+  icon: typeof Phone;
+  title: string;
+  description: string;
+  gradient: string;
+};
+
+const EmployeeCard = ({ employee }: { employee: EmployeeType }) => (
+  <div className="group rounded-2xl border border-border/50 bg-background/80 p-4 transition-all hover:border-primary/30 hover:bg-background hover:shadow-xl">
+    <div className={`mb-3 flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br ${employee.gradient} shadow-lg transition-transform group-hover:scale-110`}>
+      <employee.icon className="h-6 w-6 text-white" />
     </div>
-    <h3 className="text-lg font-semibold text-foreground">{feature.title}</h3>
-    <p className="mt-2 text-muted-foreground">{feature.description}</p>
+    <h4 className="text-base font-semibold text-foreground">{employee.title}</h4>
+    <p className="mt-1.5 text-sm text-muted-foreground">{employee.description}</p>
   </div>
 );
 
@@ -466,18 +498,63 @@ const Features = () => {
           </p>
         </div>
 
-        {/* AI Employees Section */}
+        {/* AI Employees Customer Journey Section */}
         <div className="mt-16">
           <h3 className="text-center text-2xl font-bold text-foreground sm:text-3xl">
             AI Employees
           </h3>
           <p className="mx-auto mt-2 max-w-2xl text-center text-muted-foreground">
-            Your always-on team that never misses a beat
+            Your always-on team guides every customer through their entire journey
           </p>
-          <div className="mx-auto mt-8 grid max-w-5xl gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {aiEmployees.map((feature, index) => (
-              <FeatureCard key={index} feature={feature} index={index} />
-            ))}
+          
+          {/* Customer Journey Roadmap */}
+          <div className="mx-auto mt-12 max-w-6xl">
+            {/* Journey Timeline */}
+            <div className="relative">
+              {/* Connecting line - hidden on mobile */}
+              <div className="absolute left-1/2 top-6 hidden h-1 w-[calc(100%-120px)] -translate-x-1/2 rounded-full bg-gradient-to-r from-emerald-500 via-amber-500 via-yellow-500 to-purple-500 lg:block" />
+              
+              {/* Journey Steps */}
+              <div className="grid gap-8 lg:grid-cols-5">
+                {customerJourneySteps.map((step, stepIndex) => (
+                  <div key={stepIndex} className="relative flex flex-col items-center">
+                    {/* Stage Circle */}
+                    <div className={`relative z-10 flex h-12 w-12 items-center justify-center rounded-full border-4 border-background shadow-lg ${
+                      step.isMiddleStep 
+                        ? 'bg-gradient-to-br from-slate-600 to-slate-700' 
+                        : stepIndex === 0 
+                          ? 'bg-gradient-to-br from-emerald-500 to-teal-600'
+                          : stepIndex === 1
+                            ? 'bg-gradient-to-br from-amber-500 to-orange-600'
+                            : stepIndex === 3
+                              ? 'bg-gradient-to-br from-yellow-500 to-amber-600'
+                              : 'bg-gradient-to-br from-purple-500 to-pink-600'
+                    }`}>
+                      <span className="text-lg font-bold text-white">{step.stage}</span>
+                    </div>
+                    
+                    {/* Stage Label */}
+                    <div className="mt-3 text-center">
+                      <span className="text-sm font-semibold text-foreground">{step.stageLabel}</span>
+                    </div>
+                    
+                    {/* Employee Cards or Middle Step */}
+                    <div className="mt-4 w-full space-y-3">
+                      {step.isMiddleStep ? (
+                        <div className="flex flex-col items-center justify-center rounded-2xl border-2 border-dashed border-border bg-muted/30 p-6 text-center">
+                          <Briefcase className="h-8 w-8 text-muted-foreground" />
+                          <p className="mt-2 text-sm font-medium text-muted-foreground">You complete the job</p>
+                        </div>
+                      ) : (
+                        step.employees.map((employee, empIndex) => (
+                          <EmployeeCard key={empIndex} employee={employee} />
+                        ))
+                      )}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
 
