@@ -579,6 +579,26 @@ const Features = () => {
           
           {/* Customer Journey Roadmap */}
           <div className="mx-auto mt-12 max-w-6xl">
+            {/* Mobile step indicator */}
+            <div className="flex items-center justify-center gap-2 mb-6 lg:hidden">
+              <div className="flex items-center gap-1.5">
+                {[1, 2, 3, 4, 5].map((step) => (
+                  <div key={step} className="flex items-center">
+                    <div className={`h-6 w-6 rounded-full flex items-center justify-center text-xs font-bold ${
+                      step === 3 
+                        ? 'bg-slate-200 text-slate-600' 
+                        : 'bg-primary text-white'
+                    }`}>
+                      {step}
+                    </div>
+                    {step < 5 && (
+                      <div className="w-4 h-0.5 bg-border" />
+                    )}
+                  </div>
+                ))}
+              </div>
+            </div>
+            
             {/* Journey Timeline */}
             <div className="relative">
               {/* Animated connecting line - hidden on mobile */}
@@ -588,37 +608,42 @@ const Features = () => {
               </div>
               
               {/* Journey Steps - Horizontal scroll on mobile, grid on desktop */}
-              <div className="flex gap-4 overflow-x-auto snap-x snap-mandatory pb-4 scrollbar-hide lg:grid lg:grid-cols-5 lg:gap-8 lg:overflow-visible lg:pb-0">
+              <div className="flex gap-4 overflow-x-auto snap-x snap-mandatory pb-4 px-4 -mx-4 scrollbar-hide lg:grid lg:grid-cols-5 lg:gap-8 lg:overflow-visible lg:pb-0 lg:px-0 lg:mx-0">
                 {customerJourneySteps.map((step, stepIndex) => {
-                  // Skip middle step on mobile
+                  // Middle step - show on both mobile and desktop
                   if (step.isMiddleStep) {
                     return (
-                      <div key={stepIndex} className="hidden lg:flex relative flex-col items-center">
-                        {/* Stage Circle with enhanced styling */}
+                      <div key={stepIndex} className="min-w-[280px] flex-shrink-0 snap-center lg:min-w-0 lg:flex-shrink relative flex flex-col items-center">
+                        {/* Stage Circle with enhanced styling - hidden on mobile */}
                         <div 
-                          className={`relative z-10 flex h-14 w-14 items-center justify-center rounded-full border-4 border-background shadow-xl transition-all duration-500 bg-gradient-to-br from-slate-600 to-slate-700 ${isVisible ? 'scale-100 opacity-100' : 'scale-75 opacity-0'}`}
+                          className={`hidden lg:flex relative z-10 h-14 w-14 items-center justify-center rounded-full border-4 border-background shadow-xl transition-all duration-500 bg-gradient-to-br from-slate-600 to-slate-700 ${isVisible ? 'scale-100 opacity-100' : 'scale-75 opacity-0'}`}
                           style={{ transitionDelay: `${stepIndex * 100 + 200}ms` }}
                         >
                           <div className="absolute inset-0 rounded-full animate-glow-pulse bg-slate-500/30 blur-md" />
                           <span className="relative text-lg font-bold text-white">{step.stage}</span>
                         </div>
                         
-                        {/* Stage Label */}
+                        {/* Stage Label - hidden on mobile */}
                         <div 
-                          className={`mt-3 text-center transition-all duration-500 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-2'}`}
+                          className={`hidden lg:block mt-3 text-center transition-all duration-500 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-2'}`}
                           style={{ transitionDelay: `${stepIndex * 100 + 300}ms` }}
                         >
                           <span className="text-sm font-semibold text-foreground">{step.stageLabel}</span>
                         </div>
                         
                         {/* Middle Step Card */}
-                        <div className="mt-4 w-full">
+                        <div className="lg:mt-4 w-full">
                           <div 
-                            className={`flex min-h-[200px] flex-col items-center justify-center rounded-2xl border-2 border-dashed border-border bg-muted/30 p-4 text-center transition-all duration-500 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
+                            className={`flex min-h-[160px] lg:min-h-[200px] flex-col items-center justify-center rounded-2xl border-2 border-dashed border-border bg-muted/30 p-4 text-center transition-all duration-500 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
                             style={{ transitionDelay: `${stepIndex * 100 + 400}ms` }}
                           >
-                            <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-slate-200">
-                              <Briefcase className="h-6 w-6 text-muted-foreground" />
+                            {/* Mobile stage badge */}
+                            <div className="lg:hidden absolute top-2 right-2 flex items-center gap-1.5 rounded-full px-2 py-0.5 bg-slate-600">
+                              <span className="text-[10px] font-semibold text-white">{step.stage}. {step.stageLabel}</span>
+                            </div>
+                            
+                            <div className="flex h-10 w-10 lg:h-12 lg:w-12 items-center justify-center rounded-xl bg-slate-200">
+                              <Briefcase className="h-5 w-5 lg:h-6 lg:w-6 text-muted-foreground" />
                             </div>
                             <p className="mt-3 text-sm font-medium text-muted-foreground">You complete the job</p>
                             <p className="mt-1 text-xs text-muted-foreground/70">We handle everything else</p>
@@ -682,9 +707,13 @@ const Features = () => {
                 })}
               </div>
               
-              {/* Mobile scroll indicators */}
-              <div className="flex justify-center gap-2 mt-4 lg:hidden">
-                <span className="text-xs text-muted-foreground">Swipe to explore →</span>
+              {/* Mobile scroll hint */}
+              <div className="flex flex-col items-center gap-1 mt-4 lg:hidden">
+                <div className="flex items-center gap-2 text-primary">
+                  <span className="text-sm font-medium">Swipe through the 5 steps</span>
+                  <span className="animate-bounce-x">→</span>
+                </div>
+                <p className="text-xs text-muted-foreground">See how we handle your customer journey</p>
               </div>
             </div>
           </div>
