@@ -546,7 +546,9 @@ const PhoneMockup = () => {
 
 const Features = () => {
   const [isVisible, setIsVisible] = useState(false);
+  const [activeStep, setActiveStep] = useState(1);
   const sectionRef = useRef<HTMLDivElement>(null);
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -563,6 +565,22 @@ const Features = () => {
     }
 
     return () => observer.disconnect();
+  }, []);
+
+  // Track scroll position to update active step
+  useEffect(() => {
+    const container = scrollContainerRef.current;
+    if (!container) return;
+
+    const handleScroll = () => {
+      const scrollLeft = container.scrollLeft;
+      const cardWidth = 280 + 16; // min-w-[280px] + gap-4 (16px)
+      const currentStep = Math.round(scrollLeft / cardWidth) + 1;
+      setActiveStep(Math.min(Math.max(currentStep, 1), 5));
+    };
+
+    container.addEventListener('scroll', handleScroll);
+    return () => container.removeEventListener('scroll', handleScroll);
   }, []);
 
   return (
@@ -584,15 +602,17 @@ const Features = () => {
               <div className="flex items-center gap-1.5">
                 {[1, 2, 3, 4, 5].map((step) => (
                   <div key={step} className="flex items-center">
-                    <div className={`h-6 w-6 rounded-full flex items-center justify-center text-xs font-bold ${
-                      step === 3 
-                        ? 'bg-slate-200 text-slate-600' 
-                        : 'bg-primary text-white'
+                    <div className={`h-6 w-6 rounded-full flex items-center justify-center text-xs font-bold transition-all duration-300 ${
+                      step <= activeStep 
+                        ? 'bg-primary text-white scale-110' 
+                        : 'bg-muted text-muted-foreground'
                     }`}>
                       {step}
                     </div>
                     {step < 5 && (
-                      <div className="w-4 h-0.5 bg-border" />
+                      <div className={`w-4 h-0.5 transition-colors duration-300 ${
+                        step < activeStep ? 'bg-primary' : 'bg-border'
+                      }`} />
                     )}
                   </div>
                 ))}
@@ -608,7 +628,10 @@ const Features = () => {
               </div>
               
               {/* Journey Steps - Horizontal scroll on mobile, grid on desktop */}
-              <div className="flex gap-4 overflow-x-auto snap-x snap-mandatory pb-4 px-4 -mx-4 scrollbar-hide lg:grid lg:grid-cols-5 lg:gap-8 lg:overflow-visible lg:pb-0 lg:px-0 lg:mx-0">
+              <div 
+                ref={scrollContainerRef}
+                className="flex gap-4 overflow-x-auto snap-x snap-mandatory pb-4 px-4 -mx-4 scrollbar-hide lg:grid lg:grid-cols-5 lg:gap-8 lg:overflow-visible lg:pb-0 lg:px-0 lg:mx-0"
+              >
                 {customerJourneySteps.map((step, stepIndex) => {
                   // Middle step - show on both mobile and desktop
                   if (step.isMiddleStep) {
