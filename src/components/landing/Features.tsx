@@ -109,7 +109,9 @@ const commandCenterFeatures = [
 const EmployeeCard = ({ 
   employee, 
   isVisible,
-  delay 
+  delay,
+  stageNumber,
+  stageLabel
 }: { 
   employee: {
     icon: typeof Phone;
@@ -122,6 +124,8 @@ const EmployeeCard = ({
   };
   isVisible: boolean;
   delay: number;
+  stageNumber: number;
+  stageLabel: string;
 }) => {
   const hoverColors: Record<string, string> = {
     blue: "hover:bg-blue-500/10 active:bg-blue-500/20",
@@ -132,7 +136,7 @@ const EmployeeCard = ({
 
   return (
     <div 
-      className={`group relative min-h-[200px] rounded-2xl border border-border/50 bg-muted/50 p-4 transition-[opacity,transform] duration-500 hover:border-primary/40 hover:shadow-lg ${hoverColors[employee.glowColor]} ${
+      className={`group relative min-h-[160px] lg:min-h-[200px] rounded-2xl border border-border/50 bg-muted/50 p-3 lg:p-4 transition-[opacity,transform] duration-500 hover:border-primary/40 hover:shadow-lg ${hoverColors[employee.glowColor]} ${
         isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
       }`}
       style={{ 
@@ -141,17 +145,21 @@ const EmployeeCard = ({
         transitionDuration: isVisible ? '100ms, 100ms, 100ms, 100ms, 100ms' : '500ms'
       }}
     >
+      {/* Mobile stage badge */}
+      <div className={`lg:hidden absolute top-2 right-2 flex items-center gap-1.5 rounded-full px-2 py-0.5 bg-gradient-to-br ${employee.gradient}`}>
+        <span className="text-[10px] font-semibold text-white">{stageNumber}. {stageLabel}</span>
+      </div>
       
       {/* Content */}
-      <div className="relative z-10">
+      <div className="relative z-10 mt-6 lg:mt-0">
         {/* Header with icon and badge */}
-        <div className="flex items-start justify-between mb-3">
-          <div className={`flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br ${employee.gradient} shadow-lg transition-transform duration-300 group-hover:scale-110 group-hover:shadow-xl`}>
-            <employee.icon className="h-6 w-6 text-white" />
+        <div className="flex items-start justify-between mb-2 lg:mb-3">
+          <div className={`flex h-10 w-10 lg:h-12 lg:w-12 items-center justify-center rounded-xl bg-gradient-to-br ${employee.gradient} shadow-lg transition-transform duration-300 group-hover:scale-110 group-hover:shadow-xl`}>
+            <employee.icon className="h-5 w-5 lg:h-6 lg:w-6 text-white" />
           </div>
           
-          {/* Live indicator badge */}
-          <div className="flex items-center gap-1.5 rounded-full bg-emerald-500/10 px-2.5 py-1 border border-emerald-500/20">
+          {/* Live indicator badge - hidden on mobile since we show stage badge */}
+          <div className="hidden lg:flex items-center gap-1.5 rounded-full bg-emerald-500/10 px-2.5 py-1 border border-emerald-500/20">
             <span className="relative flex h-2 w-2">
               <span className="absolute inline-flex h-full w-full animate-ping-slow rounded-full bg-emerald-400 opacity-75" />
               <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500" />
@@ -166,7 +174,7 @@ const EmployeeCard = ({
         
         
         {/* Example interaction */}
-        <div className="mt-3 rounded-lg bg-muted/50 p-2 border border-border/30">
+        <div className="mt-2 lg:mt-3 rounded-lg bg-muted/50 p-2 border border-border/30">
           <p className="text-[10px] italic text-muted-foreground leading-relaxed">{employee.example}</p>
         </div>
       </div>
@@ -579,74 +587,104 @@ const Features = () => {
                 <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent animate-gradient-shift bg-[length:200%_100%]" />
               </div>
               
-              {/* Journey Steps */}
-              <div className="grid gap-8 lg:grid-cols-5">
-                {customerJourneySteps.map((step, stepIndex) => (
-                  <div key={stepIndex} className="relative flex flex-col items-center">
-                    
-                    {/* Stage Circle with enhanced styling */}
-                    <div 
-                      className={`relative z-10 flex h-14 w-14 items-center justify-center rounded-full border-4 border-background shadow-xl transition-all duration-500 ${
-                        step.isMiddleStep 
-                          ? 'bg-gradient-to-br from-slate-600 to-slate-700' 
-                          : stepIndex === 0 
+              {/* Journey Steps - Horizontal scroll on mobile, grid on desktop */}
+              <div className="flex gap-4 overflow-x-auto snap-x snap-mandatory pb-4 scrollbar-hide lg:grid lg:grid-cols-5 lg:gap-8 lg:overflow-visible lg:pb-0">
+                {customerJourneySteps.map((step, stepIndex) => {
+                  // Skip middle step on mobile
+                  if (step.isMiddleStep) {
+                    return (
+                      <div key={stepIndex} className="hidden lg:flex relative flex-col items-center">
+                        {/* Stage Circle with enhanced styling */}
+                        <div 
+                          className={`relative z-10 flex h-14 w-14 items-center justify-center rounded-full border-4 border-background shadow-xl transition-all duration-500 bg-gradient-to-br from-slate-600 to-slate-700 ${isVisible ? 'scale-100 opacity-100' : 'scale-75 opacity-0'}`}
+                          style={{ transitionDelay: `${stepIndex * 100 + 200}ms` }}
+                        >
+                          <div className="absolute inset-0 rounded-full animate-glow-pulse bg-slate-500/30 blur-md" />
+                          <span className="relative text-lg font-bold text-white">{step.stage}</span>
+                        </div>
+                        
+                        {/* Stage Label */}
+                        <div 
+                          className={`mt-3 text-center transition-all duration-500 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-2'}`}
+                          style={{ transitionDelay: `${stepIndex * 100 + 300}ms` }}
+                        >
+                          <span className="text-sm font-semibold text-foreground">{step.stageLabel}</span>
+                        </div>
+                        
+                        {/* Middle Step Card */}
+                        <div className="mt-4 w-full">
+                          <div 
+                            className={`flex min-h-[200px] flex-col items-center justify-center rounded-2xl border-2 border-dashed border-border bg-muted/30 p-4 text-center transition-all duration-500 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
+                            style={{ transitionDelay: `${stepIndex * 100 + 400}ms` }}
+                          >
+                            <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-slate-200">
+                              <Briefcase className="h-6 w-6 text-muted-foreground" />
+                            </div>
+                            <p className="mt-3 text-sm font-medium text-muted-foreground">You complete the job</p>
+                            <p className="mt-1 text-xs text-muted-foreground/70">We handle everything else</p>
+                          </div>
+                        </div>
+                      </div>
+                    );
+                  }
+                  
+                  return (
+                    <div key={stepIndex} className="min-w-[280px] flex-shrink-0 snap-center lg:min-w-0 lg:flex-shrink relative flex flex-col items-center">
+                      
+                      {/* Stage Circle with enhanced styling - hidden on mobile */}
+                      <div 
+                        className={`hidden lg:flex relative z-10 h-14 w-14 items-center justify-center rounded-full border-4 border-background shadow-xl transition-all duration-500 ${
+                          stepIndex === 0 
                             ? 'bg-gradient-to-br from-blue-500 to-blue-600'
                             : stepIndex === 1
                               ? 'bg-gradient-to-br from-red-500 to-red-600'
                               : stepIndex === 3
                                 ? 'bg-gradient-to-br from-yellow-500 to-amber-600'
                                 : 'bg-gradient-to-br from-purple-500 to-pink-600'
-                      } ${isVisible ? 'scale-100 opacity-100' : 'scale-75 opacity-0'}`}
-                      style={{ transitionDelay: `${stepIndex * 100 + 200}ms` }}
-                    >
-                      {/* Glow ring */}
-                      <div className={`absolute inset-0 rounded-full animate-glow-pulse ${
-                        step.isMiddleStep 
-                          ? 'bg-slate-500/30' 
-                          : stepIndex === 0 
+                        } ${isVisible ? 'scale-100 opacity-100' : 'scale-75 opacity-0'}`}
+                        style={{ transitionDelay: `${stepIndex * 100 + 200}ms` }}
+                      >
+                        {/* Glow ring */}
+                        <div className={`absolute inset-0 rounded-full animate-glow-pulse ${
+                          stepIndex === 0 
                             ? 'bg-blue-500/30'
                             : stepIndex === 1
                               ? 'bg-red-500/30'
                               : stepIndex === 3
                                 ? 'bg-yellow-500/30'
                                 : 'bg-purple-500/30'
-                      } blur-md`} />
-                      <span className="relative text-lg font-bold text-white">{step.stage}</span>
+                        } blur-md`} />
+                        <span className="relative text-lg font-bold text-white">{step.stage}</span>
+                      </div>
+                      
+                      {/* Stage Label - hidden on mobile */}
+                      <div 
+                        className={`hidden lg:block mt-3 text-center transition-all duration-500 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-2'}`}
+                        style={{ transitionDelay: `${stepIndex * 100 + 300}ms` }}
+                      >
+                        <span className="text-sm font-semibold text-foreground">{step.stageLabel}</span>
+                      </div>
+                      
+                      {/* Employee Card */}
+                      <div className="lg:mt-4 w-full">
+                        {step.employee && (
+                          <EmployeeCard 
+                            employee={step.employee}
+                            isVisible={isVisible}
+                            delay={stepIndex * 100 + 400}
+                            stageNumber={step.stage}
+                            stageLabel={step.stageLabel}
+                          />
+                        )}
+                      </div>
                     </div>
-                    
-                    {/* Stage Label */}
-                    <div 
-                      className={`mt-3 text-center transition-all duration-500 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-2'}`}
-                      style={{ transitionDelay: `${stepIndex * 100 + 300}ms` }}
-                    >
-                      <span className="text-sm font-semibold text-foreground">{step.stageLabel}</span>
-                    </div>
-                    
-                    {/* Employee Card or Middle Step */}
-                    <div className="mt-4 w-full">
-                      {step.isMiddleStep ? (
-                        <div 
-                          className={`flex min-h-[200px] flex-col items-center justify-center rounded-2xl border-2 border-dashed border-border bg-muted/30 p-4 text-center transition-all duration-500 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
-                          style={{ transitionDelay: `${stepIndex * 100 + 400}ms` }}
-                        >
-                          <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-slate-200">
-                            <Briefcase className="h-6 w-6 text-muted-foreground" />
-                          </div>
-                          <p className="mt-3 text-sm font-medium text-muted-foreground">You complete the job</p>
-                          <p className="mt-1 text-xs text-muted-foreground/70">We handle everything else</p>
-                        </div>
-                      ) : step.employee ? (
-                        <EmployeeCard 
-                          employee={step.employee}
-                          isVisible={isVisible}
-                          delay={stepIndex * 100 + 400}
-                        />
-                      ) : null}
-                    </div>
-                    
-                    {/* Mobile arrow (vertical) */}
-                  </div>
-                ))}
+                  );
+                })}
+              </div>
+              
+              {/* Mobile scroll indicators */}
+              <div className="flex justify-center gap-2 mt-4 lg:hidden">
+                <span className="text-xs text-muted-foreground">Swipe to explore →</span>
               </div>
             </div>
           </div>
