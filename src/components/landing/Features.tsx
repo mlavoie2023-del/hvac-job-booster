@@ -29,8 +29,8 @@ const customerJourneySteps = [
       icon: Phone,
       title: "Reception Specialist",
       description: "Answers calls and chats, books quotes 24/7.",
-      gradient: "from-primary to-primary/80",
-      glowColor: "primary",
+      gradient: "from-blue-500 to-blue-600",
+      glowColor: "blue",
       stat: "< 3s response",
       example: '"Hi! I can schedule your AC repair for tomorrow at 2pm..."',
     },
@@ -42,8 +42,8 @@ const customerJourneySteps = [
       icon: MessageSquare,
       title: "Nurture Specialist",
       description: "Follows up with every lead until they book.",
-      gradient: "from-amber-500 to-orange-600",
-      glowColor: "amber",
+      gradient: "from-red-500 to-red-600",
+      glowColor: "red",
       stat: "5x more bookings",
       example: '"Just checking in — still need that furnace quote?"',
     },
@@ -124,9 +124,8 @@ const EmployeeCard = ({
   delay: number;
 }) => {
   const glowColors: Record<string, string> = {
-    primary: "from-primary/20 to-primary/10 shadow-primary/20",
-    emerald: "from-emerald-500/20 to-teal-500/20 shadow-emerald-500/20",
-    amber: "from-amber-500/20 to-orange-500/20 shadow-amber-500/20",
+    blue: "from-blue-500/20 to-blue-600/20 shadow-blue-500/20",
+    red: "from-red-500/20 to-red-600/20 shadow-red-500/20",
     yellow: "from-yellow-500/20 to-amber-500/20 shadow-yellow-500/20",
     purple: "from-purple-500/20 to-pink-500/20 shadow-purple-500/20",
   };
@@ -579,7 +578,7 @@ const Features = () => {
             {/* Journey Timeline */}
             <div className="relative">
               {/* Animated connecting line - hidden on mobile */}
-              <div className="absolute left-[60px] right-[60px] top-6 hidden h-1.5 rounded-full bg-gradient-to-r from-primary via-amber-500 via-yellow-500 to-purple-500 lg:block overflow-hidden">
+              <div className="absolute left-[60px] right-[60px] top-6 hidden h-1.5 rounded-full bg-gradient-to-r from-blue-500 via-red-500 via-yellow-500 to-purple-500 lg:block overflow-hidden">
                 {/* Animated glow overlay */}
                 <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent animate-gradient-shift bg-[length:200%_100%]" />
               </div>
@@ -595,9 +594,9 @@ const Features = () => {
                         step.isMiddleStep 
                           ? 'bg-gradient-to-br from-slate-600 to-slate-700' 
                           : stepIndex === 0 
-                            ? 'bg-gradient-to-br from-primary to-primary/80'
+                            ? 'bg-gradient-to-br from-blue-500 to-blue-600'
                             : stepIndex === 1
-                              ? 'bg-gradient-to-br from-amber-500 to-orange-600'
+                              ? 'bg-gradient-to-br from-red-500 to-red-600'
                               : stepIndex === 3
                                 ? 'bg-gradient-to-br from-yellow-500 to-amber-600'
                                 : 'bg-gradient-to-br from-purple-500 to-pink-600'
@@ -609,9 +608,9 @@ const Features = () => {
                         step.isMiddleStep 
                           ? 'bg-slate-500/30' 
                           : stepIndex === 0 
-                            ? 'bg-primary/30'
+                            ? 'bg-blue-500/30'
                             : stepIndex === 1
-                              ? 'bg-amber-500/30'
+                              ? 'bg-red-500/30'
                               : stepIndex === 3
                                 ? 'bg-yellow-500/30'
                                 : 'bg-purple-500/30'
