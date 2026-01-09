@@ -53,17 +53,6 @@ const Hero = () => {
 
       <div className="section-container relative z-10 py-20 lg:py-28">
         <div className="mx-auto max-w-4xl text-center">
-          {/* Badge */}
-          <div 
-            className={`mb-6 inline-flex items-center gap-2 rounded-full border border-success/30 bg-success/10 px-4 py-2 transition-all duration-700 ${
-              isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
-            }`}
-          >
-            <Zap className="h-4 w-4 text-success" />
-            <span className="text-sm font-medium text-foreground">
-              AI-Powered · Ready in 7 Days
-            </span>
-          </div>
 
           {/* Headline */}
           <h1 
