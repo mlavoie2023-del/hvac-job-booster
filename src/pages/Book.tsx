@@ -85,11 +85,6 @@ const Book = () => {
               />
             </div>
           </div>
-
-          {/* Trust text */}
-          <p className="mt-8 text-center text-sm text-muted-foreground">
-            Join dozens of HVAC contractors who are growing their business with Lavoie Systems.
-          </p>
         </div>
       </main>
     </div>
