@@ -487,7 +487,7 @@ const Features = () => {
             Your New CRM
           </h3>
           <p className="mx-auto mt-3 max-w-2xl text-center text-lg text-muted-foreground">
-            One app to control your entire AI team and run your business from anywhere
+            One app to manage your entire team and run your business from anywhere
           </p>
           
           {/* Command Center Layout */}
