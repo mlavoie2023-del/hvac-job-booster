@@ -60,24 +60,24 @@ const aiEmployees = [
 
 const commandCenterFeatures = [
   {
-    icon: Sliders,
-    title: "Control Your AI Team",
-    description: "Manage all your AI employees from one dashboard. Turn them on/off, adjust settings, and monitor their performance.",
-  },
-  {
-    icon: Eye,
-    title: "See Your Data",
-    description: "View booked jobs, track leads, and monitor revenue — all your key metrics at a glance.",
-  },
-  {
-    icon: Send,
-    title: "Send Estimates",
-    description: "Create and send professional estimates to customers in seconds, right from your phone.",
+    icon: MessageSquare,
+    title: "Contacts",
+    description: "All your leads and customers in one place. View call history, messages, and never lose track of a conversation.",
   },
   {
     icon: Calendar,
-    title: "Calendars",
+    title: "Calendar",
     description: "Let customers book appointments directly. Manage your schedule and send automatic reminders.",
+  },
+  {
+    icon: DollarSign,
+    title: "Payments",
+    description: "Track invoices, receive payments, and see your cash flow at a glance. Get paid faster.",
+  },
+  {
+    icon: BarChart3,
+    title: "Data",
+    description: "View booked jobs, track leads, and monitor revenue — all your key business metrics at a glance.",
   },
 ];
 
@@ -516,30 +516,19 @@ const Features = () => {
               </div>
               
               {/* Features Grid - Right Side */}
-              <div className="lg:col-span-3">
-                <div className="grid gap-4 sm:grid-cols-2">
+              <div className="lg:col-span-3 flex items-center">
+                <div className="grid gap-5 sm:grid-cols-2 w-full">
                   {commandCenterFeatures.map((feature, index) => (
-                    <CommandCenterCard key={index} feature={feature} index={index} />
+                    <div key={index} className="group flex items-start gap-4 rounded-2xl border border-border/50 bg-background/60 p-5 transition-all hover:border-primary/30 hover:bg-background/90 hover:shadow-xl">
+                      <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-primary/20 to-primary/10 transition-transform group-hover:scale-110">
+                        <feature.icon className="h-7 w-7 text-primary" />
+                      </div>
+                      <div>
+                        <h4 className="text-lg font-semibold text-foreground">{feature.title}</h4>
+                        <p className="mt-1.5 text-muted-foreground">{feature.description}</p>
+                      </div>
+                    </div>
                   ))}
-                </div>
-                
-                {/* Stats highlight */}
-                <div className="mt-6 rounded-xl border border-primary/20 bg-gradient-to-r from-primary/10 to-primary/5 p-5">
-                  <p className="text-sm font-medium text-muted-foreground">Everything you need to see at a glance:</p>
-                  <div className="mt-3 flex flex-wrap gap-3">
-                    <span className="inline-flex items-center gap-1.5 rounded-full bg-emerald-500/15 px-3 py-1 text-sm font-medium text-emerald-600">
-                      <Briefcase className="h-3.5 w-3.5" /> Booked Jobs
-                    </span>
-                    <span className="inline-flex items-center gap-1.5 rounded-full bg-blue-500/15 px-3 py-1 text-sm font-medium text-blue-600">
-                      <Users className="h-3.5 w-3.5" /> Active Leads
-                    </span>
-                    <span className="inline-flex items-center gap-1.5 rounded-full bg-amber-500/15 px-3 py-1 text-sm font-medium text-amber-600">
-                      <TrendingUp className="h-3.5 w-3.5" /> Revenue
-                    </span>
-                    <span className="inline-flex items-center gap-1.5 rounded-full bg-purple-500/15 px-3 py-1 text-sm font-medium text-purple-600">
-                      <MessageSquare className="h-3.5 w-3.5" /> Conversations
-                    </span>
-                  </div>
                 </div>
               </div>
             </div>
