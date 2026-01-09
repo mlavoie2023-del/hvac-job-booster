@@ -36,7 +36,7 @@ const customerJourneySteps = [
     stageLabel: "Lead Nurturing",
     employee: {
       icon: MessageSquare,
-      title: "Lead Nurture Specialist",
+      title: "Nurture Specialist",
       description: "Follows up with every lead until they book.",
       gradient: "from-amber-500 to-orange-600",
     },
@@ -62,7 +62,7 @@ const customerJourneySteps = [
     stageLabel: "Repeat Business",
     employee: {
       icon: Users,
-      title: "Repeat Revenue Specialist",
+      title: "Revenue Specialist",
       description: "Re-engages past customers for new jobs.",
       gradient: "from-purple-500 to-pink-600",
     },
