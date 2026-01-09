@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Phone, Wrench, Calendar, ShieldCheck } from "lucide-react";
+import { ArrowRight, Phone, Wrench, Calendar, ShieldCheck, Zap, Clock, CheckCircle2 } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
 // Conversation messages for the AI mockup
@@ -226,13 +226,13 @@ const Hero = () => {
         <div className="mx-auto max-w-4xl text-center">
           {/* Badge */}
           <div 
-            className={`mb-8 inline-flex items-center gap-2 rounded-full border border-accent/30 bg-accent/10 px-4 py-2 transition-all duration-700 ${
+            className={`mb-6 inline-flex items-center gap-2 rounded-full border border-success/30 bg-success/10 px-4 py-2 transition-all duration-700 ${
               isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
             }`}
           >
-            <span className="flex h-2 w-2 rounded-full bg-accent animate-pulse-soft" />
+            <Zap className="h-4 w-4 text-success" />
             <span className="text-sm font-medium text-foreground">
-              Free HVAC Software Install · 7-Day Build + 14-Day Trial · Cancel Anytime
+              AI-Powered · Works While You Sleep · Ready in 7 Days
             </span>
           </div>
 
@@ -246,14 +246,32 @@ const Hero = () => {
             <span className="gradient-text">Missed Calls</span>
           </h1>
 
-          {/* Subheadline */}
+          {/* Subheadline - More specific and benefit-driven */}
           <p 
             className={`mx-auto mt-6 max-w-2xl text-lg text-muted-foreground sm:text-xl lg:text-2xl transition-all duration-700 delay-200 ${
               isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
             }`}
           >
-            We install AI software that answers every call, follows up with every lead, and books more jobs — built for your HVAC business.
+            Your AI receptionist answers calls 24/7, books appointments on your calendar, and never lets a lead slip away — even at 2am.
           </p>
+
+          {/* Quick value props */}
+          <div 
+            className={`mt-8 flex flex-wrap items-center justify-center gap-x-6 gap-y-3 transition-all duration-700 delay-250 ${
+              isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+            }`}
+          >
+            {[
+              { icon: Phone, text: "Answers every call" },
+              { icon: Calendar, text: "Books appointments" },
+              { icon: Clock, text: "Works 24/7" },
+            ].map((item, i) => (
+              <div key={i} className="flex items-center gap-2 text-sm text-muted-foreground">
+                <item.icon className="h-4 w-4 text-primary" />
+                <span>{item.text}</span>
+              </div>
+            ))}
+          </div>
 
           {/* CTAs */}
           <div 
@@ -266,7 +284,7 @@ const Hero = () => {
               <div className="absolute -inset-1 bg-gradient-to-r from-primary to-accent rounded-xl blur-md opacity-50 group-hover:opacity-75 transition-opacity" />
               <Button variant="hero" size="xl" className="relative w-full sm:w-auto" asChild>
                 <Link to="/book">
-                  Get My Free HVAC Software Install
+                  Start My Free Trial
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </Link>
               </Button>
@@ -276,14 +294,23 @@ const Hero = () => {
             </Button>
           </div>
 
-          {/* Trust Line */}
-          <p 
-            className={`mt-6 text-sm text-muted-foreground transition-all duration-700 delay-400 ${
+          {/* Trust Line - More specific guarantees */}
+          <div 
+            className={`mt-8 flex flex-wrap items-center justify-center gap-x-4 gap-y-2 transition-all duration-700 delay-400 ${
               isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
             }`}
           >
-            No contracts · Cancel anytime · Built for HVAC only
-          </p>
+            {[
+              "14-day free trial",
+              "No credit card required",
+              "Cancel anytime",
+            ].map((item, i) => (
+              <div key={i} className="flex items-center gap-1.5 text-sm text-muted-foreground">
+                <CheckCircle2 className="h-4 w-4 text-success" />
+                <span>{item}</span>
+              </div>
+            ))}
+          </div>
         </div>
 
         {/* Two-Column Visual: Conversation + Trial Badges */}
