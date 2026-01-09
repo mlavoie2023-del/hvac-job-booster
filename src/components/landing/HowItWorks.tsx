@@ -26,7 +26,7 @@ const HowItWorks = () => {
     <section id="how-it-works" className="bg-background py-12 sm:py-16 lg:py-28">
       <div className="section-container">
         <div className="mx-auto max-w-3xl text-center px-2">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-foreground">
+          <h2 className="text-3xl font-bold text-foreground sm:text-4xl">
             How the Free HVAC Software Install Works
           </h2>
         </div>

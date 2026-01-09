@@ -18,7 +18,7 @@ const WhoIsFor = () => {
     <section className="bg-secondary/30 py-12 sm:py-16 lg:py-28">
       <div className="section-container">
         <div className="mx-auto max-w-3xl text-center px-2">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-foreground">
+          <h2 className="text-3xl font-bold text-foreground sm:text-4xl">
             This Is For HVAC Companies Who…
           </h2>
         </div>
