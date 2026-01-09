@@ -29,8 +29,8 @@ const customerJourneySteps = [
       icon: Phone,
       title: "Reception Specialist",
       description: "Answers calls and chats, books quotes 24/7.",
-      gradient: "from-emerald-500 to-teal-600",
-      glowColor: "emerald",
+      gradient: "from-primary to-primary/80",
+      glowColor: "primary",
       stat: "< 3s response",
       example: '"Hi! I can schedule your AC repair for tomorrow at 2pm..."',
     },
@@ -124,6 +124,7 @@ const EmployeeCard = ({
   delay: number;
 }) => {
   const glowColors: Record<string, string> = {
+    primary: "from-primary/20 to-primary/10 shadow-primary/20",
     emerald: "from-emerald-500/20 to-teal-500/20 shadow-emerald-500/20",
     amber: "from-amber-500/20 to-orange-500/20 shadow-amber-500/20",
     yellow: "from-yellow-500/20 to-amber-500/20 shadow-yellow-500/20",
@@ -578,7 +579,7 @@ const Features = () => {
             {/* Journey Timeline */}
             <div className="relative">
               {/* Animated connecting line - hidden on mobile */}
-              <div className="absolute left-[60px] right-[60px] top-6 hidden h-1.5 rounded-full bg-gradient-to-r from-emerald-500 via-amber-500 via-yellow-500 to-purple-500 lg:block overflow-hidden">
+              <div className="absolute left-[60px] right-[60px] top-6 hidden h-1.5 rounded-full bg-gradient-to-r from-primary via-amber-500 via-yellow-500 to-purple-500 lg:block overflow-hidden">
                 {/* Animated glow overlay */}
                 <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent animate-gradient-shift bg-[length:200%_100%]" />
               </div>
@@ -594,7 +595,7 @@ const Features = () => {
                         step.isMiddleStep 
                           ? 'bg-gradient-to-br from-slate-600 to-slate-700' 
                           : stepIndex === 0 
-                            ? 'bg-gradient-to-br from-emerald-500 to-teal-600'
+                            ? 'bg-gradient-to-br from-primary to-primary/80'
                             : stepIndex === 1
                               ? 'bg-gradient-to-br from-amber-500 to-orange-600'
                               : stepIndex === 3
@@ -608,7 +609,7 @@ const Features = () => {
                         step.isMiddleStep 
                           ? 'bg-slate-500/30' 
                           : stepIndex === 0 
-                            ? 'bg-emerald-500/30'
+                            ? 'bg-primary/30'
                             : stepIndex === 1
                               ? 'bg-amber-500/30'
                               : stepIndex === 3
