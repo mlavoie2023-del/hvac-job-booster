@@ -4,7 +4,7 @@ const benefits = [
   { icon: Phone, text: "Every call answered, 24/7" },
   { icon: Calendar, text: "Quotes booked automatically" },
   { icon: TrendingUp, text: "Leads followed up instantly" },
-  { icon: CheckCircle2, text: "Nothing falls through the cracks" },
+  { icon: CheckCircle2, text: "No more abandoned leads" },
 ];
 
 const Solution = () => {
