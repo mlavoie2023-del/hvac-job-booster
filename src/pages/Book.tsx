@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
-import { ArrowLeft, PhoneCall, Wrench, Sparkles } from "lucide-react";
+import { ArrowLeft, Eye, Lightbulb, Gift } from "lucide-react";
 
 const Book = () => {
   useEffect(() => {
@@ -45,29 +45,29 @@ const Book = () => {
             <div className="grid gap-4 sm:grid-cols-3">
               <div className="flex items-center gap-3 rounded-lg bg-secondary/50 p-4">
                 <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-primary/10">
-                  <PhoneCall className="h-5 w-5 text-primary" />
+                  <Eye className="h-5 w-5 text-primary" />
                 </div>
                 <div>
-                  <p className="font-medium text-foreground">Never Miss a Lead</p>
-                  <p className="text-sm text-muted-foreground">24/7 call answering</p>
+                  <p className="font-medium text-foreground">See It In Action</p>
+                  <p className="text-sm text-muted-foreground">Live demo of the system</p>
                 </div>
               </div>
               <div className="flex items-center gap-3 rounded-lg bg-secondary/50 p-4">
                 <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-primary/10">
-                  <Wrench className="h-5 w-5 text-primary" />
+                  <Lightbulb className="h-5 w-5 text-primary" />
                 </div>
                 <div>
-                  <p className="font-medium text-foreground">Built for HVAC</p>
-                  <p className="text-sm text-muted-foreground">Made for your industry</p>
+                  <p className="font-medium text-foreground">Get a Custom Plan</p>
+                  <p className="text-sm text-muted-foreground">Tailored to your business</p>
                 </div>
               </div>
               <div className="flex items-center gap-3 rounded-lg bg-secondary/50 p-4">
                 <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-primary/10">
-                  <Sparkles className="h-5 w-5 text-primary" />
+                  <Gift className="h-5 w-5 text-primary" />
                 </div>
                 <div>
-                  <p className="font-medium text-foreground">We Build It For You</p>
-                  <p className="text-sm text-muted-foreground">Custom setup in 7 days</p>
+                  <p className="font-medium text-foreground">Start Your Free Trial</p>
+                  <p className="text-sm text-muted-foreground">14 days, no obligation</p>
                 </div>
               </div>
             </div>
