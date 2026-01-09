@@ -41,19 +41,22 @@ const trialBadges = [
   },
 ];
 
-// Typing indicator component
-const TypingIndicator = () => (
-  <div className="flex items-center gap-1 px-4 py-3">
-    <div className="flex gap-1">
-      {[0, 1, 2].map((i) => (
+// Speaking indicator component
+const SpeakingIndicator = () => (
+  <div className="flex items-center gap-2 px-4 py-3">
+    <div className="flex items-center gap-1">
+      {[0, 1, 2, 3].map((i) => (
         <span 
           key={i} 
-          className="h-2 w-2 rounded-full bg-primary/60 animate-typing-dot"
-          style={{ animationDelay: `${i * 0.2}s` }}
+          className="w-1 bg-primary/60 rounded-full animate-typing-dot"
+          style={{ 
+            animationDelay: `${i * 0.15}s`,
+            height: `${8 + (i % 2) * 6}px`
+          }}
         />
       ))}
     </div>
-    <span className="ml-2 text-xs text-muted-foreground">AI is typing...</span>
+    <span className="text-xs text-muted-foreground">AI is speaking...</span>
   </div>
 );
 
@@ -103,7 +106,7 @@ const ConversationMockup = () => {
   const [showTyping, setShowTyping] = useState(false);
 
   useEffect(() => {
-    // Show typing indicator after all messages
+    // Show speaking indicator after all messages
     const timer = setTimeout(() => setShowTyping(true), 2400);
     return () => clearTimeout(timer);
   }, []);
@@ -143,7 +146,7 @@ const ConversationMockup = () => {
               delay={index * 800}
             />
           ))}
-          {showTyping && <TypingIndicator />}
+          {showTyping && <SpeakingIndicator />}
         </div>
       </div>
     </div>
