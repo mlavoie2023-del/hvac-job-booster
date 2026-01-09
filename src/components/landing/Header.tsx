@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
+import { ArrowRight } from "lucide-react";
 import lavoieLogo from "@/assets/lavoie-logo-square.png";
 
 const Header = () => {
@@ -21,7 +22,10 @@ const Header = () => {
 
           {/* CTA */}
           <Button variant="hero" size="default" asChild>
-            <Link to="/book">Get Started Free</Link>
+            <Link to="/book">
+              Start My Free Trial
+              <ArrowRight className="ml-2 h-4 w-4" />
+            </Link>
           </Button>
         </div>
       </div>

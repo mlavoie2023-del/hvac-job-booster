@@ -25,7 +25,7 @@ const FinalCTA = () => {
           <div className="mt-10">
             <Button variant="hero" size="xl" asChild>
               <Link to="/book">
-                Start My Free HVAC Software Install
+                Start My Free Trial
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Link>
             </Button>
