@@ -15,46 +15,46 @@ const notForList = [
 
 const WhoIsFor = () => {
   return (
-    <section className="bg-secondary/30 py-20 lg:py-28">
+    <section className="bg-secondary/30 py-12 sm:py-16 lg:py-28">
       <div className="section-container">
-        <div className="mx-auto max-w-3xl text-center">
-          <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
+        <div className="mx-auto max-w-3xl text-center px-2">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-foreground">
             This Is For HVAC Companies Who…
           </h2>
         </div>
 
-        <div className="mx-auto mt-12 grid max-w-4xl gap-8 lg:grid-cols-2">
+        <div className="mx-auto mt-8 sm:mt-12 grid max-w-4xl gap-4 sm:gap-8 lg:grid-cols-2">
           {/* For */}
-          <div className="card-elevated p-8">
-            <div className="mb-6 flex h-12 w-12 items-center justify-center rounded-xl bg-success/10">
-              <Check className="h-6 w-6 text-success" />
+          <div className="card-elevated p-5 sm:p-8">
+            <div className="mb-4 sm:mb-6 flex h-10 w-10 sm:h-12 sm:w-12 items-center justify-center rounded-lg sm:rounded-xl bg-success/10">
+              <Check className="h-5 w-5 sm:h-6 sm:w-6 text-success" />
             </div>
-            <h3 className="mb-4 text-xl font-semibold text-foreground">
+            <h3 className="mb-3 sm:mb-4 text-lg sm:text-xl font-semibold text-foreground">
               Perfect Fit
             </h3>
-            <ul className="space-y-3">
+            <ul className="space-y-2 sm:space-y-3">
               {forList.map((item, index) => (
-                <li key={index} className="flex items-start gap-3">
-                  <Check className="mt-1 h-5 w-5 shrink-0 text-success" />
-                  <span className="text-muted-foreground">{item}</span>
+                <li key={index} className="flex items-start gap-2 sm:gap-3">
+                  <Check className="mt-0.5 sm:mt-1 h-4 w-4 sm:h-5 sm:w-5 shrink-0 text-success" />
+                  <span className="text-sm sm:text-base text-muted-foreground">{item}</span>
                 </li>
               ))}
             </ul>
           </div>
 
           {/* Not For */}
-          <div className="card-elevated p-8">
-            <div className="mb-6 flex h-12 w-12 items-center justify-center rounded-xl bg-muted">
-              <X className="h-6 w-6 text-muted-foreground" />
+          <div className="card-elevated p-5 sm:p-8">
+            <div className="mb-4 sm:mb-6 flex h-10 w-10 sm:h-12 sm:w-12 items-center justify-center rounded-lg sm:rounded-xl bg-muted">
+              <X className="h-5 w-5 sm:h-6 sm:w-6 text-muted-foreground" />
             </div>
-            <h3 className="mb-4 text-xl font-semibold text-foreground">
+            <h3 className="mb-3 sm:mb-4 text-lg sm:text-xl font-semibold text-foreground">
               Not The Right Fit
             </h3>
-            <ul className="space-y-3">
+            <ul className="space-y-2 sm:space-y-3">
               {notForList.map((item, index) => (
-                <li key={index} className="flex items-start gap-3">
-                  <X className="mt-1 h-5 w-5 shrink-0 text-muted-foreground" />
-                  <span className="text-muted-foreground">{item}</span>
+                <li key={index} className="flex items-start gap-2 sm:gap-3">
+                  <X className="mt-0.5 sm:mt-1 h-4 w-4 sm:h-5 sm:w-5 shrink-0 text-muted-foreground" />
+                  <span className="text-sm sm:text-base text-muted-foreground">{item}</span>
                 </li>
               ))}
             </ul>
