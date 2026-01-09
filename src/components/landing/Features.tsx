@@ -132,10 +132,14 @@ const EmployeeCard = ({
 
   return (
     <div 
-      className={`group relative min-h-[200px] rounded-2xl border border-border/50 bg-background/80 p-4 transition-all duration-100 hover:border-primary/40 hover:shadow-lg ${hoverColors[employee.glowColor]} ${
+      className={`group relative min-h-[200px] rounded-2xl border border-border/50 bg-background/80 p-4 transition-[opacity,transform] duration-500 hover:border-primary/40 hover:shadow-lg ${hoverColors[employee.glowColor]} ${
         isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
       }`}
-      style={{ transitionDelay: `${delay}ms` }}
+      style={{ 
+        transitionDelay: isVisible ? '0ms' : `${delay}ms`,
+        transitionProperty: 'opacity, transform, background-color, border-color, box-shadow',
+        transitionDuration: isVisible ? '100ms, 100ms, 100ms, 100ms, 100ms' : '500ms'
+      }}
     >
       
       {/* Content */}
