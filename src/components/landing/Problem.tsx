@@ -40,7 +40,7 @@ const Problem = () => {
           {problems.map((problem, index) => (
             <div
               key={index}
-              className="rounded-xl border border-border bg-card p-6 text-center transition-all hover:border-destructive/30 hover:shadow-lg"
+              className="rounded-xl border border-border bg-muted/50 p-6 text-center transition-all hover:border-destructive/30 hover:shadow-lg"
             >
               <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-xl bg-destructive/10">
                 <problem.icon className="h-6 w-6 text-destructive" />

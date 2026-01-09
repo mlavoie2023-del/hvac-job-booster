@@ -132,7 +132,7 @@ const EmployeeCard = ({
 
   return (
     <div 
-      className={`group relative min-h-[200px] rounded-2xl border border-border/50 bg-background/80 p-4 transition-[opacity,transform] duration-500 hover:border-primary/40 hover:shadow-lg ${hoverColors[employee.glowColor]} ${
+      className={`group relative min-h-[200px] rounded-2xl border border-border/50 bg-muted/50 p-4 transition-[opacity,transform] duration-500 hover:border-primary/40 hover:shadow-lg ${hoverColors[employee.glowColor]} ${
         isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
       }`}
       style={{ 
@@ -685,7 +685,7 @@ const Features = () => {
               <div className="lg:col-span-3 flex items-center">
                 <div className="grid gap-5 sm:grid-cols-2 w-full">
                   {commandCenterFeatures.map((feature, index) => (
-                    <div key={index} className="group flex items-start gap-4 rounded-2xl border border-border/50 bg-background/60 p-5 transition-all hover:border-primary/30 hover:bg-background/90 hover:shadow-xl">
+                    <div key={index} className="group flex items-start gap-4 rounded-2xl border border-border/50 bg-muted/50 p-5 transition-all hover:border-primary/30 hover:shadow-xl">
                       <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-primary/20 to-primary/10 transition-transform group-hover:scale-110">
                         <feature.icon className="h-7 w-7 text-primary" />
                       </div>
