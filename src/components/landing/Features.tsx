@@ -743,7 +743,7 @@ const Features = () => {
         </div>
 
         {/* Command Center Section */}
-        <div className="mt-20">
+        <div className="mt-28 lg:mt-36">
           <h2 className="text-center text-3xl font-bold text-foreground sm:text-4xl">
             Meet Your New CRM
           </h2>
