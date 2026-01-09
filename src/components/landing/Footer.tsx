@@ -34,10 +34,15 @@ const Footer = () => {
             </Link>
           </div>
 
-          {/* Copyright */}
-          <p className="text-xs sm:text-sm text-muted-foreground">
-            © {new Date().getFullYear()} Lavoie Systems
-          </p>
+          {/* Address & Copyright */}
+          <div className="text-center sm:text-right">
+            <p className="text-xs sm:text-sm text-muted-foreground">
+              1900 West Park Drive, Westborough, MA 01581, USA
+            </p>
+            <p className="text-xs sm:text-sm text-muted-foreground">
+              © {new Date().getFullYear()} Lavoie Systems
+            </p>
+          </div>
         </div>
       </div>
     </footer>
