@@ -24,62 +24,48 @@ const customerJourneySteps = [
   {
     stage: 1,
     stageLabel: "Lead Capture",
-    employees: [
-      {
-        icon: Phone,
-        title: "Reception Specialist",
-        description: "Answers every call you miss and books quotes for you, 24/7.",
-        gradient: "from-emerald-500 to-teal-600",
-      },
-      {
-        icon: MessagesSquare,
-        title: "Website Chat Specialist",
-        description: "Turns website visitors into leads, 24/7.",
-        gradient: "from-blue-500 to-indigo-600",
-      },
-    ],
+    employee: {
+      icon: Phone,
+      title: "Reception Specialist",
+      description: "Answers every call and website chat you miss, and books quotes for you 24/7.",
+      gradient: "from-emerald-500 to-teal-600",
+    },
   },
   {
     stage: 2,
     stageLabel: "Lead Nurturing",
-    employees: [
-      {
-        icon: MessageSquare,
-        title: "Lead Nurture Specialist",
-        description: "Automatically performs consistent follow up with every lead until they book.",
-        gradient: "from-amber-500 to-orange-600",
-      },
-    ],
+    employee: {
+      icon: MessageSquare,
+      title: "Lead Nurture Specialist",
+      description: "Automatically performs consistent follow up with every lead until they book.",
+      gradient: "from-amber-500 to-orange-600",
+    },
   },
   {
     stage: 3,
     stageLabel: "Job Completed",
     isMiddleStep: true,
-    employees: [],
+    employee: null,
   },
   {
     stage: 4,
     stageLabel: "Review Request",
-    employees: [
-      {
-        icon: Star,
-        title: "Review Specialist",
-        description: "Automatically requests reviews and filters out negative reviews from your Google page.",
-        gradient: "from-yellow-500 to-amber-600",
-      },
-    ],
+    employee: {
+      icon: Star,
+      title: "Review Specialist",
+      description: "Automatically requests reviews and filters out negative reviews from your Google page.",
+      gradient: "from-yellow-500 to-amber-600",
+    },
   },
   {
     stage: 5,
     stageLabel: "Repeat Business",
-    employees: [
-      {
-        icon: Users,
-        title: "Repeat Revenue Specialist",
-        description: "Reaches out to past customers months or years later to convert them into repeat jobs.",
-        gradient: "from-purple-500 to-pink-600",
-      },
-    ],
+    employee: {
+      icon: Users,
+      title: "Repeat Revenue Specialist",
+      description: "Reaches out to past customers months or years later to convert them into repeat jobs.",
+      gradient: "from-purple-500 to-pink-600",
+    },
   },
 ];
 
@@ -538,18 +524,22 @@ const Features = () => {
                       <span className="text-sm font-semibold text-foreground">{step.stageLabel}</span>
                     </div>
                     
-                    {/* Employee Cards or Middle Step */}
-                    <div className="mt-4 w-full space-y-3">
+                    {/* Employee Card or Middle Step */}
+                    <div className="mt-4 w-full">
                       {step.isMiddleStep ? (
-                        <div className="flex flex-col items-center justify-center rounded-2xl border-2 border-dashed border-border bg-muted/30 p-6 text-center">
+                        <div className="flex h-[140px] flex-col items-center justify-center rounded-2xl border-2 border-dashed border-border bg-muted/30 p-4 text-center">
                           <Briefcase className="h-8 w-8 text-muted-foreground" />
                           <p className="mt-2 text-sm font-medium text-muted-foreground">You complete the job</p>
                         </div>
-                      ) : (
-                        step.employees.map((employee, empIndex) => (
-                          <EmployeeCard key={empIndex} employee={employee} />
-                        ))
-                      )}
+                      ) : step.employee ? (
+                        <div className="group h-[140px] rounded-2xl border border-border/50 bg-background/80 p-4 transition-all hover:border-primary/30 hover:bg-background hover:shadow-xl">
+                          <div className={`mb-3 flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br ${step.employee.gradient} shadow-lg transition-transform group-hover:scale-110`}>
+                            <step.employee.icon className="h-5 w-5 text-white" />
+                          </div>
+                          <h4 className="text-sm font-semibold text-foreground">{step.employee.title}</h4>
+                          <p className="mt-1 text-xs text-muted-foreground line-clamp-3">{step.employee.description}</p>
+                        </div>
+                      ) : null}
                     </div>
                   </div>
                 ))}
