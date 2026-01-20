@@ -22,7 +22,7 @@ const aiEmployees = [
   {
     icon: Phone,
     title: "Reception Specialist",
-    subtitle: "24/7 Call & Chat Handler",
+    subtitle: "Answers Calls 24/7",
     description: "Answers every call and chat instantly. Books appointments, answers questions, and never lets a lead slip away.",
     example: '"Hi! I can schedule your AC repair for tomorrow at 2pm. Does that work for you?"',
     accentColor: "from-blue-500 to-blue-600",
