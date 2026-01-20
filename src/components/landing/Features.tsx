@@ -13,9 +13,10 @@ import {
   CheckCircle2,
   TrendingUp,
   Send,
-  Clock,
-  Zap
+  Zap,
+  ChevronDown
 } from "lucide-react";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 const aiEmployees = [
   {
@@ -23,13 +24,8 @@ const aiEmployees = [
     title: "Reception Specialist",
     subtitle: "24/7 Call & Chat Handler",
     description: "Answers every call and chat instantly. Books appointments, answers questions, and never lets a lead slip away.",
-    stats: [
-      { label: "Response time", value: "< 3 sec" },
-      { label: "Availability", value: "24/7" }
-    ],
     example: '"Hi! I can schedule your AC repair for tomorrow at 2pm. Does that work for you?"',
     accentColor: "from-blue-500 to-blue-600",
-    lightBg: "bg-blue-50",
     textColor: "text-blue-600"
   },
   {
@@ -37,13 +33,8 @@ const aiEmployees = [
     title: "Review Specialist", 
     subtitle: "Reputation Builder",
     description: "Automatically requests reviews after every completed job. Filters feedback to protect your online reputation.",
-    stats: [
-      { label: "Avg rating", value: "4.9★" },
-      { label: "Review rate", value: "+300%" }
-    ],
     example: '"Thanks for choosing us! Would you mind leaving a quick review about your experience?"',
     accentColor: "from-amber-500 to-orange-500",
-    lightBg: "bg-amber-50",
     textColor: "text-amber-600"
   },
   {
@@ -51,13 +42,8 @@ const aiEmployees = [
     title: "Revenue Specialist",
     subtitle: "Customer Re-engagement",
     description: "Re-engages past customers with personalized outreach. Turns one-time jobs into recurring revenue.",
-    stats: [
-      { label: "Repeat jobs", value: "+40%" },
-      { label: "Revenue lift", value: "+25%" }
-    ],
     example: '"Hi Sarah! It\'s been 6 months since your last AC tune-up. Ready to schedule?"',
     accentColor: "from-purple-500 to-pink-500",
-    lightBg: "bg-purple-50",
     textColor: "text-purple-600"
   }
 ];
@@ -405,6 +391,11 @@ const AIEmployeeCard = ({
   isVisible: boolean;
 }) => {
   const Icon = employee.icon;
+  const isMobile = useIsMobile();
+  const [isExpanded, setIsExpanded] = useState(false);
+  
+  // On desktop, always show expanded content
+  const showContent = !isMobile || isExpanded;
   
   return (
     <div 
@@ -413,8 +404,12 @@ const AIEmployeeCard = ({
       }`}
       style={{ transitionDelay: `${index * 150}ms` }}
     >
-      {/* Header */}
-      <div className="flex items-start gap-4">
+      {/* Header - clickable on mobile */}
+      <button 
+        className="flex items-start gap-4 w-full text-left"
+        onClick={() => isMobile && setIsExpanded(!isExpanded)}
+        disabled={!isMobile}
+      >
         <div className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br ${employee.accentColor} shadow-lg`}>
           <Icon className="h-6 w-6 text-white" />
         </div>
@@ -422,36 +417,35 @@ const AIEmployeeCard = ({
           <h3 className="text-lg font-bold text-foreground">{employee.title}</h3>
           <p className={`text-sm font-medium ${employee.textColor}`}>{employee.subtitle}</p>
         </div>
-        {/* 24/7 badge */}
-        <div className="hidden sm:flex items-center gap-1.5 rounded-full bg-emerald-500/10 px-2.5 py-1 border border-emerald-500/20">
-          <span className="relative flex h-2 w-2">
-            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" style={{ animationDuration: '2s' }} />
-            <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500" />
-          </span>
-          <span className="text-xs font-medium text-emerald-600">24/7</span>
-        </div>
-      </div>
-      
-      {/* Description */}
-      <p className="mt-4 text-muted-foreground leading-relaxed">
-        {employee.description}
-      </p>
-      
-      {/* Stats */}
-      <div className="mt-4 flex gap-4">
-        {employee.stats.map((stat, statIndex) => (
-          <div key={statIndex} className={`rounded-lg ${employee.lightBg} px-3 py-2`}>
-            <div className={`text-lg font-bold ${employee.textColor}`}>{stat.value}</div>
-            <div className="text-xs text-muted-foreground">{stat.label}</div>
+        {/* Expand chevron on mobile, 24/7 badge on desktop */}
+        {isMobile ? (
+          <div className={`flex items-center justify-center h-8 w-8 rounded-full bg-muted transition-transform duration-300 ${isExpanded ? 'rotate-180' : ''}`}>
+            <ChevronDown className="h-5 w-5 text-muted-foreground" />
           </div>
-        ))}
-      </div>
+        ) : (
+          <div className="flex items-center gap-1.5 rounded-full bg-emerald-500/10 px-2.5 py-1 border border-emerald-500/20">
+            <span className="relative flex h-2 w-2">
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" style={{ animationDuration: '2s' }} />
+              <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500" />
+            </span>
+            <span className="text-xs font-medium text-emerald-600">24/7</span>
+          </div>
+        )}
+      </button>
       
-      {/* Example quote */}
-      <div className="mt-4 rounded-xl bg-muted/50 p-4 border border-border/50">
-        <p className="text-sm italic text-muted-foreground leading-relaxed">
-          {employee.example}
+      {/* Expandable content */}
+      <div className={`overflow-hidden transition-all duration-300 ${showContent ? 'max-h-96 opacity-100 mt-4' : 'max-h-0 opacity-0 mt-0'}`}>
+        {/* Description */}
+        <p className="text-muted-foreground leading-relaxed">
+          {employee.description}
         </p>
+        
+        {/* Example quote */}
+        <div className="mt-4 rounded-xl bg-muted/50 p-4 border border-border/50">
+          <p className="text-sm italic text-muted-foreground leading-relaxed">
+            {employee.example}
+          </p>
+        </div>
       </div>
     </div>
   );
