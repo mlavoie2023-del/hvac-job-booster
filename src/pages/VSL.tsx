@@ -32,7 +32,7 @@ const VSL = () => {
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Link>
             </Button>
-            <p className="mt-4 text-sm text-muted-foreground">21-day free trial • Cancel Anytime</p>
+            <p className="mt-4 text-sm text-muted-foreground">21-day free trial • No contracts • Cancel anytime</p>
           </div>
         </div>
       </main>
