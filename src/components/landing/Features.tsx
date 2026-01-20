@@ -467,7 +467,7 @@ const AIEmployeeCard = ({
         {index === 0 && (
           <div 
             ref={widgetContainerRef}
-            className="mt-4 min-h-[350px] rounded-xl overflow-hidden border border-border/50"
+            className="mt-4"
           />
         )}
       </div>
