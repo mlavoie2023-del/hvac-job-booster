@@ -31,7 +31,7 @@ const aiEmployees = [
   {
     icon: Star,
     title: "Review Specialist", 
-    subtitle: "Reputation Builder",
+    subtitle: "5 Stars Only",
     description: "Automatically requests reviews after every completed job. Filters feedback to protect your online reputation.",
     example: '"Thanks for choosing us! Would you mind leaving a quick review about your experience?"',
     accentColor: "from-amber-500 to-orange-500",
