@@ -549,6 +549,7 @@ const Features = () => {
   const [activeStep, setActiveStep] = useState(1);
   const sectionRef = useRef<HTMLDivElement>(null);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
+  const widgetContainerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -565,6 +566,27 @@ const Features = () => {
     }
 
     return () => observer.disconnect();
+  }, []);
+
+  // Load inline LeadConnector widget for Reception Specialist section
+  useEffect(() => {
+    if (!widgetContainerRef.current) return;
+    
+    // Check if script already exists
+    const existingScript = document.querySelector('script[data-widget-id="696fce2f24cb5a018aa31418"]');
+    if (existingScript) return;
+
+    const script = document.createElement('script');
+    script.src = 'https://beta.leadconnectorhq.com/loader.js';
+    script.setAttribute('data-resources-url', 'https://beta.leadconnectorhq.com/chat-widget/loader.js');
+    script.setAttribute('data-widget-id', '696fce2f24cb5a018aa31418');
+    widgetContainerRef.current.appendChild(script);
+
+    return () => {
+      if (script.parentNode) {
+        script.parentNode.removeChild(script);
+      }
+    };
   }, []);
 
   // Track scroll position to update active step
@@ -713,9 +735,23 @@ const Features = () => {
                         <span className="text-sm font-semibold text-foreground">{step.stageLabel}</span>
                       </div>
                       
-                      {/* Employee Card */}
+                      {/* Employee Card or Widget */}
                       <div className="lg:mt-4 w-full">
-                        {step.employee && (
+                        {stepIndex === 0 ? (
+                          // Inline LeadConnector widget for Reception Specialist
+                          <div 
+                            ref={widgetContainerRef}
+                            className={`relative min-h-[400px] lg:min-h-[450px] rounded-2xl border border-border/50 bg-muted/50 overflow-hidden transition-[opacity,transform] duration-500 hover:border-primary/40 hover:shadow-lg ${
+                              isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+                            }`}
+                            style={{ transitionDelay: isVisible ? '0ms' : `${stepIndex * 100 + 400}ms` }}
+                          >
+                            {/* Mobile stage badge */}
+                            <div className="lg:hidden absolute top-2 right-2 z-10 flex items-center gap-1.5 rounded-full px-2 py-0.5 bg-gradient-to-br from-blue-500 to-blue-600">
+                              <span className="text-[10px] font-semibold text-white">{step.stage}. {step.stageLabel}</span>
+                            </div>
+                          </div>
+                        ) : step.employee && (
                           <EmployeeCard 
                             employee={step.employee}
                             isVisible={isVisible}
