@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
-import { ArrowRight } from "lucide-react";
+import { Link } from "react-router-dom";
+import { Play } from "lucide-react";
 
 const Hero = () => {
   const sectionRef = useRef<HTMLElement>(null);
@@ -53,15 +54,13 @@ const Hero = () => {
               isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
             }`}
           >
-            <a
-              href="https://lavoiesystems.com/book"
-              target="_blank"
-              rel="noopener noreferrer"
+            <Link
+              to="/vsl"
               className="inline-flex items-center justify-center rounded-full bg-primary px-8 py-4 text-base sm:text-lg font-semibold text-primary-foreground shadow-lg shadow-primary/30 transition-all hover:bg-primary/90 hover:shadow-xl hover:shadow-primary/40 hover:scale-105"
             >
-              Start My Free Trial
-              <ArrowRight className="ml-2 h-5 w-5" />
-            </a>
+              See How It Works
+              <Play className="ml-2 h-5 w-5" />
+            </Link>
           </div>
 
           {/* Trust Line - Below CTA */}
