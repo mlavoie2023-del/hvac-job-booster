@@ -19,7 +19,7 @@ const FinalCTA = () => {
           <div className="mt-8 sm:mt-10 px-4 sm:px-0">
             <Button variant="hero" size="lg" className="w-full sm:w-auto" asChild>
               <Link to="/vsl">
-                See How It Works
+                Watch Demo
                 <Play className="ml-2 h-5 w-5" />
               </Link>
             </Button>

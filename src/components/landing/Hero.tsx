@@ -58,7 +58,7 @@ const Hero = () => {
               to="/vsl"
               className="inline-flex items-center justify-center rounded-full bg-primary px-8 py-4 text-base sm:text-lg font-semibold text-primary-foreground shadow-lg shadow-primary/30 transition-all hover:bg-primary/90 hover:shadow-xl hover:shadow-primary/40 hover:scale-105"
             >
-              See How It Works
+              Watch Demo
               <Play className="ml-2 h-5 w-5" />
             </Link>
           </div>
