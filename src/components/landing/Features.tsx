@@ -40,7 +40,7 @@ const aiEmployees = [
   {
     icon: Users,
     title: "Revenue Specialist",
-    subtitle: "Customer Re-engagement",
+    subtitle: "Repeat Revenue",
     description: "Re-engages past customers with personalized outreach. Turns one-time jobs into recurring revenue.",
     example: '"Hi Sarah! It\'s been 6 months since your last AC tune-up. Ready to schedule?"',
     accentColor: "from-purple-500 to-pink-500",
