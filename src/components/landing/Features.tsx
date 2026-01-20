@@ -2,84 +2,64 @@ import { useState, useEffect, useRef } from "react";
 import { 
   Phone, 
   MessageSquare, 
-  MessagesSquare, 
   Star,
   Users,
-  Briefcase,
-  TrendingUp,
   Calendar,
-  Send,
-  Eye,
-  Sliders,
-  ChevronLeft,
   Search,
   Settings,
   DollarSign,
   BarChart3,
   CreditCard,
   CheckCircle2,
+  TrendingUp,
+  Send,
+  Clock,
   Zap
 } from "lucide-react";
 
-const customerJourneySteps = [
+const aiEmployees = [
   {
-    stage: 1,
-    stageLabel: "Lead Capture",
-    employee: {
-      icon: Phone,
-      title: "Reception Specialist",
-      description: "Answers calls and chats, books appointments 24/7.",
-      gradient: "from-blue-500 to-blue-600",
-      glowColor: "blue",
-      stat: "< 3s response",
-      example: '"Hi! I can schedule your AC repair for tomorrow at 2pm..."',
-    },
+    icon: Phone,
+    title: "Reception Specialist",
+    subtitle: "24/7 Call & Chat Handler",
+    description: "Answers every call and chat instantly. Books appointments, answers questions, and never lets a lead slip away.",
+    stats: [
+      { label: "Response time", value: "< 3 sec" },
+      { label: "Availability", value: "24/7" }
+    ],
+    example: '"Hi! I can schedule your AC repair for tomorrow at 2pm. Does that work for you?"',
+    accentColor: "from-blue-500 to-blue-600",
+    lightBg: "bg-blue-50",
+    textColor: "text-blue-600"
   },
   {
-    stage: 2,
-    stageLabel: "Lead Nurturing",
-    employee: {
-      icon: MessageSquare,
-      title: "Nurture Specialist",
-      description: "Follows up with every lead until they book.",
-      gradient: "from-red-500 to-red-600",
-      glowColor: "red",
-      stat: "5x more bookings",
-      example: '"Just checking in — still need that furnace quote?"',
-    },
+    icon: Star,
+    title: "Review Specialist", 
+    subtitle: "Reputation Builder",
+    description: "Automatically requests reviews after every completed job. Filters feedback to protect your online reputation.",
+    stats: [
+      { label: "Avg rating", value: "4.9★" },
+      { label: "Review rate", value: "+300%" }
+    ],
+    example: '"Thanks for choosing us! Would you mind leaving a quick review about your experience?"',
+    accentColor: "from-amber-500 to-orange-500",
+    lightBg: "bg-amber-50",
+    textColor: "text-amber-600"
   },
   {
-    stage: 3,
-    stageLabel: "Job Completed",
-    isMiddleStep: true,
-    employee: null,
-  },
-  {
-    stage: 4,
-    stageLabel: "Review Request",
-    employee: {
-      icon: Star,
-      title: "Review Specialist",
-      description: "Requests reviews and filters out negatives.",
-      gradient: "from-yellow-500 to-amber-600",
-      glowColor: "yellow",
-      stat: "4.9★ avg rating",
-      example: '"Thanks for choosing us! Mind leaving a quick review?"',
-    },
-  },
-  {
-    stage: 5,
-    stageLabel: "Repeat Business",
-    employee: {
-      icon: Users,
-      title: "Revenue Specialist",
-      description: "Re-engages past customers for new jobs.",
-      gradient: "from-purple-500 to-pink-600",
-      glowColor: "purple",
-      stat: "+40% repeat jobs",
-      example: '"Time for your annual AC tune-up! Book now?"',
-    },
-  },
+    icon: Users,
+    title: "Revenue Specialist",
+    subtitle: "Customer Re-engagement",
+    description: "Re-engages past customers with personalized outreach. Turns one-time jobs into recurring revenue.",
+    stats: [
+      { label: "Repeat jobs", value: "+40%" },
+      { label: "Revenue lift", value: "+25%" }
+    ],
+    example: '"Hi Sarah! It\'s been 6 months since your last AC tune-up. Ready to schedule?"',
+    accentColor: "from-purple-500 to-pink-500",
+    lightBg: "bg-purple-50",
+    textColor: "text-purple-600"
+  }
 ];
 
 const commandCenterFeatures = [
@@ -104,95 +84,6 @@ const commandCenterFeatures = [
     description: "View booked jobs, track leads, and monitor revenue — all your key business metrics at a glance.",
   },
 ];
-
-// Enhanced Employee Card with glow, badges, and micro-interactions
-const EmployeeCard = ({ 
-  employee, 
-  isVisible,
-  delay,
-  stageNumber,
-  stageLabel
-}: { 
-  employee: {
-    icon: typeof Phone;
-    title: string;
-    description: string;
-    gradient: string;
-    glowColor: string;
-    stat: string;
-    example: string;
-  };
-  isVisible: boolean;
-  delay: number;
-  stageNumber: number;
-  stageLabel: string;
-}) => {
-  const hoverColors: Record<string, string> = {
-    blue: "hover:bg-blue-500/10 active:bg-blue-500/20",
-    red: "hover:bg-red-500/10 active:bg-red-500/20",
-    yellow: "hover:bg-yellow-500/10 active:bg-yellow-500/20",
-    purple: "hover:bg-purple-500/10 active:bg-purple-500/20",
-  };
-
-  return (
-    <div 
-      className={`group relative min-h-[160px] lg:min-h-[200px] rounded-2xl border border-border/50 bg-muted/50 p-3 lg:p-4 transition-[opacity,transform] duration-500 hover:border-primary/40 hover:shadow-lg ${hoverColors[employee.glowColor]} ${
-        isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-      }`}
-      style={{ 
-        transitionDelay: isVisible ? '0ms' : `${delay}ms`,
-        transitionProperty: 'opacity, transform, background-color, border-color, box-shadow',
-        transitionDuration: isVisible ? '100ms, 100ms, 100ms, 100ms, 100ms' : '500ms'
-      }}
-    >
-      {/* Mobile stage badge */}
-      <div className={`lg:hidden absolute top-2 right-2 flex items-center gap-1.5 rounded-full px-2 py-0.5 bg-gradient-to-br ${employee.gradient}`}>
-        <span className="text-[10px] font-semibold text-white">{stageNumber}. {stageLabel}</span>
-      </div>
-      
-      {/* Content */}
-      <div className="relative z-10 mt-6 lg:mt-0">
-        {/* Header with icon and badge */}
-        <div className="flex items-start justify-between mb-2 lg:mb-3">
-          <div className={`flex h-10 w-10 lg:h-12 lg:w-12 items-center justify-center rounded-xl bg-gradient-to-br ${employee.gradient} shadow-lg transition-transform duration-300 group-hover:scale-110 group-hover:shadow-xl`}>
-            <employee.icon className="h-5 w-5 lg:h-6 lg:w-6 text-white" />
-          </div>
-          
-          {/* Live indicator badge - hidden on mobile since we show stage badge */}
-          <div className="hidden lg:flex items-center gap-1.5 rounded-full bg-emerald-500/10 px-2.5 py-1 border border-emerald-500/20">
-            <span className="relative flex h-2 w-2">
-              <span className="absolute inline-flex h-full w-full animate-ping-slow rounded-full bg-emerald-400 opacity-75" />
-              <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500" />
-            </span>
-            <span className="text-[10px] font-medium text-emerald-600">24/7</span>
-          </div>
-        </div>
-        
-        {/* Title and description */}
-        <h4 className="text-sm font-semibold text-foreground">{employee.title}</h4>
-        <p className="mt-1 text-xs leading-relaxed text-muted-foreground">{employee.description}</p>
-        
-        
-        {/* Example interaction */}
-        <div className="mt-2 lg:mt-3 rounded-lg bg-muted/50 p-2 border border-border/30">
-          <p className="text-[10px] italic text-muted-foreground leading-relaxed">{employee.example}</p>
-        </div>
-      </div>
-    </div>
-  );
-};
-
-const CommandCenterCard = ({ feature, index }: { feature: typeof commandCenterFeatures[0]; index: number }) => (
-  <div key={index} className="group flex items-start gap-4 rounded-xl border border-border/50 bg-background/60 p-4 transition-all hover:border-primary/30 hover:bg-background/90 hover:shadow-lg">
-    <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-primary/20 to-primary/10 transition-transform group-hover:scale-110">
-      <feature.icon className="h-6 w-6 text-primary" />
-    </div>
-    <div>
-      <h4 className="font-semibold text-foreground">{feature.title}</h4>
-      <p className="mt-1 text-sm text-muted-foreground">{feature.description}</p>
-    </div>
-  </div>
-);
 
 // Phone Screen Components
 const ContactsScreen = () => (
@@ -414,129 +305,88 @@ const DashboardScreen = () => (
     {/* Chart */}
     <div className="mx-2 rounded-lg bg-white border border-slate-100 p-2.5 shadow-sm">
       <div className="text-[8px] font-medium text-slate-600 mb-2">This Week's Revenue</div>
-      <div className="flex items-end justify-between gap-1 h-12">
-        <div className="w-full rounded-t bg-primary/30 h-3"></div>
-        <div className="w-full rounded-t bg-primary/50 h-5"></div>
-        <div className="w-full rounded-t bg-primary/40 h-4"></div>
-        <div className="w-full rounded-t bg-primary/70 h-8"></div>
-        <div className="w-full rounded-t bg-primary/60 h-6"></div>
-        <div className="w-full rounded-t bg-primary/80 h-10"></div>
-        <div className="w-full rounded-t bg-primary h-12"></div>
-      </div>
-      <div className="flex justify-between mt-1 text-[6px] text-slate-400">
-        <span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span><span>Sun</span>
+      <div className="flex items-end justify-between h-16 px-1">
+        {[35, 52, 48, 70, 45, 85, 60].map((height, i) => (
+          <div key={i} className="flex flex-col items-center gap-1">
+            <div 
+              className="w-4 rounded-t bg-gradient-to-t from-primary to-primary/60 transition-all duration-500"
+              style={{ height: `${height}%` }}
+            />
+            <span className="text-[6px] text-slate-400">
+              {['M', 'T', 'W', 'T', 'F', 'S', 'S'][i]}
+            </span>
+          </div>
+        ))}
       </div>
     </div>
     
-    {/* AI status */}
-    <div className="mx-2 mt-2 rounded-lg bg-primary/5 border border-primary/20 p-2">
-      <div className="text-[8px] font-medium text-slate-700 mb-1.5">AI Employees Active</div>
-      <div className="flex items-center gap-1.5">
-        <div className="h-5 w-5 rounded-full bg-emerald-100 flex items-center justify-center">
-          <div className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse"></div>
-        </div>
-        <div className="h-5 w-5 rounded-full bg-blue-100 flex items-center justify-center">
-          <div className="h-1.5 w-1.5 rounded-full bg-blue-500 animate-pulse"></div>
-        </div>
-        <div className="h-5 w-5 rounded-full bg-amber-100 flex items-center justify-center">
-          <div className="h-1.5 w-1.5 rounded-full bg-amber-500 animate-pulse"></div>
-        </div>
-        <div className="h-5 w-5 rounded-full bg-purple-100 flex items-center justify-center">
-          <div className="h-1.5 w-1.5 rounded-full bg-purple-500 animate-pulse"></div>
-        </div>
-        <div className="h-5 w-5 rounded-full bg-yellow-100 flex items-center justify-center">
-          <div className="h-1.5 w-1.5 rounded-full bg-yellow-500 animate-pulse"></div>
-        </div>
+    {/* AI Summary */}
+    <div className="mx-2 mt-2 rounded-lg bg-gradient-to-r from-primary/10 to-primary/5 p-2.5 border border-primary/20">
+      <div className="flex items-center gap-1.5 mb-1">
+        <Zap className="h-3 w-3 text-primary" />
+        <span className="text-[8px] font-semibold text-primary">AI Insight</span>
       </div>
+      <p className="text-[7px] text-slate-600 leading-relaxed">
+        Revenue up 12% this week! 3 leads ready to book - follow up recommended.
+      </p>
     </div>
   </>
 );
 
-const screens = [
-  { component: ContactsScreen, label: "Contacts", icon: MessageSquare },
-  { component: CalendarScreen, label: "Calendar", icon: Calendar },
-  { component: PaymentsScreen, label: "Payments", icon: DollarSign },
-  { component: DashboardScreen, label: "Data", icon: BarChart3 },
-];
-
-// Phone Mockup with animated screens
 const PhoneMockup = () => {
   const [activeScreen, setActiveScreen] = useState(0);
-  
+  const screens = [
+    { name: 'Contacts', component: ContactsScreen },
+    { name: 'Calendar', component: CalendarScreen },
+    { name: 'Payments', component: PaymentsScreen },
+    { name: 'Dashboard', component: DashboardScreen }
+  ];
+
   useEffect(() => {
     const interval = setInterval(() => {
       setActiveScreen((prev) => (prev + 1) % screens.length);
     }, 4000);
     return () => clearInterval(interval);
-  }, []);
+  }, [screens.length]);
 
-  const CurrentScreen = screens[activeScreen].component;
+  const ActiveScreenComponent = screens[activeScreen].component;
 
   return (
-    <div className="relative mx-auto w-[220px]">
+    <div className="relative">
       {/* Phone frame */}
-      <div className="rounded-[32px] border-[8px] border-slate-900 bg-slate-900 p-1 shadow-2xl">
-        {/* Screen */}
-        <div className="rounded-[24px] bg-slate-50 overflow-hidden h-[380px] flex flex-col">
+      <div className="relative w-[200px] h-[400px] bg-slate-900 rounded-[2.5rem] p-2 shadow-2xl">
+        {/* Inner bezel */}
+        <div className="relative w-full h-full bg-slate-100 rounded-[2rem] overflow-hidden">
           {/* Status bar */}
-          <div className="flex items-center justify-between px-4 py-2 pt-3 bg-white">
-            <div className="text-[9px] font-semibold text-slate-800">9:41</div>
+          <div className="flex items-center justify-between px-4 py-1.5 bg-white">
+            <span className="text-[9px] font-medium text-slate-800">9:41</span>
+            <div className="absolute left-1/2 -translate-x-1/2 w-16 h-5 bg-slate-900 rounded-full" />
             <div className="flex items-center gap-1">
-              <div className="flex gap-0.5">
-                <div className="h-1 w-1 rounded-full bg-slate-600"></div>
-                <div className="h-1 w-1 rounded-full bg-slate-600"></div>
-                <div className="h-1 w-1 rounded-full bg-slate-400"></div>
-                <div className="h-1 w-1 rounded-full bg-slate-300"></div>
-              </div>
-              <div className="h-2 w-4 rounded-sm border border-slate-600 ml-1">
-                <div className="h-full w-3/4 rounded-sm bg-slate-600"></div>
+              <div className="w-3.5 h-2 border border-slate-800 rounded-sm relative">
+                <div className="absolute inset-0.5 bg-slate-800 rounded-[1px]" style={{ width: '70%' }} />
               </div>
             </div>
           </div>
           
-          {/* Screen content with animation */}
-          <div className="flex-1 overflow-hidden relative">
-            <div key={activeScreen} className="animate-fade-in">
-              <CurrentScreen />
-            </div>
-          </div>
-          
-          {/* Bottom navigation */}
-          <div className="flex items-center justify-around border-t border-slate-200 bg-white px-2 py-2 mt-auto">
-            {screens.map((screen, index) => (
-              <button
-                key={index}
-                onClick={() => setActiveScreen(index)}
-                className={`flex flex-col items-center transition-all duration-300 ${
-                  activeScreen === index ? 'scale-110' : 'opacity-50'
-                }`}
-              >
-                <div className={`p-1 rounded-full ${activeScreen === index ? 'bg-primary/20' : ''}`}>
-                  <screen.icon className={`h-3.5 w-3.5 ${activeScreen === index ? 'text-primary' : 'text-slate-400'}`} />
-                </div>
-              </button>
-            ))}
+          {/* Screen content */}
+          <div className="h-[calc(100%-28px)] overflow-hidden bg-slate-50">
+            <ActiveScreenComponent />
           </div>
         </div>
       </div>
       
-      {/* Home indicator */}
-      <div className="absolute bottom-2.5 left-1/2 h-1 w-12 -translate-x-1/2 rounded-full bg-slate-600"></div>
-      
-      {/* Floating action button */}
-      <div className="absolute bottom-16 right-4 h-8 w-8 rounded-full bg-primary shadow-lg flex items-center justify-center">
-        <span className="text-white text-lg font-light">+</span>
-      </div>
-      
-      {/* Screen indicator dots */}
-      <div className="flex justify-center gap-1.5 mt-4">
-        {screens.map((_, index) => (
+      {/* Navigation dots */}
+      <div className="flex justify-center gap-2 mt-4">
+        {screens.map((screen, index) => (
           <button
-            key={index}
+            key={screen.name}
             onClick={() => setActiveScreen(index)}
-            className={`h-1.5 rounded-full transition-all duration-300 ${
-              activeScreen === index ? 'w-4 bg-primary' : 'w-1.5 bg-slate-300'
+            className={`w-2 h-2 rounded-full transition-all duration-300 ${
+              index === activeScreen 
+                ? 'bg-primary w-6' 
+                : 'bg-muted-foreground/30 hover:bg-muted-foreground/50'
             }`}
+            aria-label={`View ${screen.name} screen`}
           />
         ))}
       </div>
@@ -544,12 +394,72 @@ const PhoneMockup = () => {
   );
 };
 
+// AI Employee Card Component
+const AIEmployeeCard = ({ 
+  employee, 
+  index,
+  isVisible 
+}: { 
+  employee: typeof aiEmployees[0];
+  index: number;
+  isVisible: boolean;
+}) => {
+  const Icon = employee.icon;
+  
+  return (
+    <div 
+      className={`relative rounded-2xl border border-border bg-background p-5 transition-all duration-500 hover:shadow-lg hover:border-primary/30 ${
+        isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+      }`}
+      style={{ transitionDelay: `${index * 150}ms` }}
+    >
+      {/* Header */}
+      <div className="flex items-start gap-4">
+        <div className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br ${employee.accentColor} shadow-lg`}>
+          <Icon className="h-6 w-6 text-white" />
+        </div>
+        <div className="flex-1 min-w-0">
+          <h3 className="text-lg font-bold text-foreground">{employee.title}</h3>
+          <p className={`text-sm font-medium ${employee.textColor}`}>{employee.subtitle}</p>
+        </div>
+        {/* 24/7 badge */}
+        <div className="hidden sm:flex items-center gap-1.5 rounded-full bg-emerald-500/10 px-2.5 py-1 border border-emerald-500/20">
+          <span className="relative flex h-2 w-2">
+            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" style={{ animationDuration: '2s' }} />
+            <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500" />
+          </span>
+          <span className="text-xs font-medium text-emerald-600">24/7</span>
+        </div>
+      </div>
+      
+      {/* Description */}
+      <p className="mt-4 text-muted-foreground leading-relaxed">
+        {employee.description}
+      </p>
+      
+      {/* Stats */}
+      <div className="mt-4 flex gap-4">
+        {employee.stats.map((stat, statIndex) => (
+          <div key={statIndex} className={`rounded-lg ${employee.lightBg} px-3 py-2`}>
+            <div className={`text-lg font-bold ${employee.textColor}`}>{stat.value}</div>
+            <div className="text-xs text-muted-foreground">{stat.label}</div>
+          </div>
+        ))}
+      </div>
+      
+      {/* Example quote */}
+      <div className="mt-4 rounded-xl bg-muted/50 p-4 border border-border/50">
+        <p className="text-sm italic text-muted-foreground leading-relaxed">
+          {employee.example}
+        </p>
+      </div>
+    </div>
+  );
+};
+
 const Features = () => {
   const [isVisible, setIsVisible] = useState(false);
-  const [activeStep, setActiveStep] = useState(1);
   const sectionRef = useRef<HTMLDivElement>(null);
-  const scrollContainerRef = useRef<HTMLDivElement>(null);
-  const widgetContainerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -568,218 +478,35 @@ const Features = () => {
     return () => observer.disconnect();
   }, []);
 
-  // Load inline LeadConnector widget for Reception Specialist section
-  useEffect(() => {
-    if (!widgetContainerRef.current) return;
-    
-    // Check if script already exists
-    const existingScript = document.querySelector('script[data-widget-id="696fce2f24cb5a018aa31418"]');
-    if (existingScript) return;
-
-    const script = document.createElement('script');
-    script.src = 'https://beta.leadconnectorhq.com/loader.js';
-    script.setAttribute('data-resources-url', 'https://beta.leadconnectorhq.com/chat-widget/loader.js');
-    script.setAttribute('data-widget-id', '696fce2f24cb5a018aa31418');
-    widgetContainerRef.current.appendChild(script);
-
-    return () => {
-      if (script.parentNode) {
-        script.parentNode.removeChild(script);
-      }
-    };
-  }, []);
-
-  // Track scroll position to update active step
-  useEffect(() => {
-    const container = scrollContainerRef.current;
-    if (!container) return;
-
-    const handleScroll = () => {
-      const scrollLeft = container.scrollLeft;
-      const cardWidth = 280 + 16; // min-w-[280px] + gap-4 (16px)
-      const currentStep = Math.round(scrollLeft / cardWidth) + 1;
-      setActiveStep(Math.min(Math.max(currentStep, 1), 5));
-    };
-
-    container.addEventListener('scroll', handleScroll);
-    return () => container.removeEventListener('scroll', handleScroll);
-  }, []);
-
   return (
-    <section id="features" className="bg-background py-20 lg:py-28">
+    <section id="features" className="bg-background py-16 lg:py-24">
       <div className="section-container">
-        {/* AI Employees Customer Journey Section */}
+        {/* AI Employees Section */}
         <div ref={sectionRef}>
-          <h2 className={`text-center text-3xl font-bold text-foreground sm:text-4xl transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
-            AI Employees
-          </h2>
-          <p className={`mx-auto mt-3 max-w-2xl text-center text-lg text-muted-foreground transition-all duration-700 delay-100 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
-            Your always-on team guides every customer through their entire journey
-          </p>
+          <div className="text-center">
+            <h2 className={`text-3xl font-bold text-foreground sm:text-4xl transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+              Your AI Team
+            </h2>
+            <p className={`mx-auto mt-3 max-w-xl text-lg text-muted-foreground transition-all duration-700 delay-100 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+              Three specialists working around the clock to grow your business
+            </p>
+          </div>
           
-          {/* Customer Journey Roadmap */}
-          <div className="mx-auto mt-12 max-w-6xl">
-            {/* Mobile step indicator */}
-            <div className="flex items-center justify-center gap-2 mb-6 lg:hidden">
-              <div className="flex items-center gap-1.5">
-                {[1, 2, 3, 4, 5].map((step) => (
-                  <div key={step} className="flex items-center">
-                    <div className={`h-6 w-6 rounded-full flex items-center justify-center text-xs font-bold transition-all duration-300 ${
-                      step <= activeStep 
-                        ? 'bg-primary text-white scale-110' 
-                        : 'bg-muted text-muted-foreground'
-                    }`}>
-                      {step}
-                    </div>
-                    {step < 5 && (
-                      <div className={`w-4 h-0.5 transition-colors duration-300 ${
-                        step < activeStep ? 'bg-primary' : 'bg-border'
-                      }`} />
-                    )}
-                  </div>
-                ))}
-              </div>
-            </div>
-            
-            {/* Journey Timeline */}
-            <div className="relative">
-              {/* Animated connecting line - hidden on mobile */}
-              <div className="absolute left-[60px] right-[60px] top-6 hidden h-1.5 rounded-full bg-gradient-to-r from-blue-500 via-red-500 via-yellow-500 to-purple-500 lg:block overflow-hidden">
-                {/* Animated glow overlay */}
-                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent animate-gradient-shift bg-[length:200%_100%]" />
-              </div>
-              
-              {/* Journey Steps - Horizontal scroll on mobile, grid on desktop */}
-              <div 
-                ref={scrollContainerRef}
-                className="flex gap-4 overflow-x-auto snap-x snap-mandatory pb-4 px-4 -mx-4 scrollbar-hide lg:grid lg:grid-cols-5 lg:gap-8 lg:overflow-visible lg:pb-0 lg:px-0 lg:mx-0"
-              >
-                {customerJourneySteps.map((step, stepIndex) => {
-                  // Middle step - show on both mobile and desktop
-                  if (step.isMiddleStep) {
-                    return (
-                      <div key={stepIndex} className="min-w-[280px] flex-shrink-0 snap-center lg:min-w-0 lg:flex-shrink relative flex flex-col items-center">
-                        {/* Stage Circle with enhanced styling - hidden on mobile */}
-                        <div 
-                          className={`hidden lg:flex relative z-10 h-14 w-14 items-center justify-center rounded-full border-4 border-background shadow-xl transition-all duration-500 bg-gradient-to-br from-slate-600 to-slate-700 ${isVisible ? 'scale-100 opacity-100' : 'scale-75 opacity-0'}`}
-                          style={{ transitionDelay: `${stepIndex * 100 + 200}ms` }}
-                        >
-                          <div className="absolute inset-0 rounded-full animate-glow-pulse bg-slate-500/30 blur-md" />
-                          <span className="relative text-lg font-bold text-white">{step.stage}</span>
-                        </div>
-                        
-                        {/* Stage Label - hidden on mobile */}
-                        <div 
-                          className={`hidden lg:block mt-3 text-center transition-all duration-500 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-2'}`}
-                          style={{ transitionDelay: `${stepIndex * 100 + 300}ms` }}
-                        >
-                          <span className="text-sm font-semibold text-foreground">{step.stageLabel}</span>
-                        </div>
-                        
-                        {/* Middle Step Card */}
-                        <div className="lg:mt-4 w-full">
-                          <div 
-                            className={`flex min-h-[160px] lg:min-h-[200px] flex-col items-center justify-center rounded-2xl border-2 border-dashed border-border bg-muted/30 p-4 text-center transition-all duration-500 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
-                            style={{ transitionDelay: `${stepIndex * 100 + 400}ms` }}
-                          >
-                            {/* Mobile stage badge */}
-                            <div className="lg:hidden absolute top-2 right-2 flex items-center gap-1.5 rounded-full px-2 py-0.5 bg-slate-600">
-                              <span className="text-[10px] font-semibold text-white">{step.stage}. {step.stageLabel}</span>
-                            </div>
-                            
-                            <div className="flex h-10 w-10 lg:h-12 lg:w-12 items-center justify-center rounded-xl bg-slate-200">
-                              <Briefcase className="h-5 w-5 lg:h-6 lg:w-6 text-muted-foreground" />
-                            </div>
-                            <p className="mt-3 text-sm font-medium text-muted-foreground">You complete the job</p>
-                            <p className="mt-1 text-xs text-muted-foreground/70">We handle everything else</p>
-                          </div>
-                        </div>
-                      </div>
-                    );
-                  }
-                  
-                  return (
-                    <div key={stepIndex} className="min-w-[280px] flex-shrink-0 snap-center lg:min-w-0 lg:flex-shrink relative flex flex-col items-center">
-                      
-                      {/* Stage Circle with enhanced styling - hidden on mobile */}
-                      <div 
-                        className={`hidden lg:flex relative z-10 h-14 w-14 items-center justify-center rounded-full border-4 border-background shadow-xl transition-all duration-500 ${
-                          stepIndex === 0 
-                            ? 'bg-gradient-to-br from-blue-500 to-blue-600'
-                            : stepIndex === 1
-                              ? 'bg-gradient-to-br from-red-500 to-red-600'
-                              : stepIndex === 3
-                                ? 'bg-gradient-to-br from-yellow-500 to-amber-600'
-                                : 'bg-gradient-to-br from-purple-500 to-pink-600'
-                        } ${isVisible ? 'scale-100 opacity-100' : 'scale-75 opacity-0'}`}
-                        style={{ transitionDelay: `${stepIndex * 100 + 200}ms` }}
-                      >
-                        {/* Glow ring */}
-                        <div className={`absolute inset-0 rounded-full animate-glow-pulse ${
-                          stepIndex === 0 
-                            ? 'bg-blue-500/30'
-                            : stepIndex === 1
-                              ? 'bg-red-500/30'
-                              : stepIndex === 3
-                                ? 'bg-yellow-500/30'
-                                : 'bg-purple-500/30'
-                        } blur-md`} />
-                        <span className="relative text-lg font-bold text-white">{step.stage}</span>
-                      </div>
-                      
-                      {/* Stage Label - hidden on mobile */}
-                      <div 
-                        className={`hidden lg:block mt-3 text-center transition-all duration-500 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-2'}`}
-                        style={{ transitionDelay: `${stepIndex * 100 + 300}ms` }}
-                      >
-                        <span className="text-sm font-semibold text-foreground">{step.stageLabel}</span>
-                      </div>
-                      
-                      {/* Employee Card or Widget */}
-                      <div className="lg:mt-4 w-full">
-                        {stepIndex === 0 ? (
-                          // Inline LeadConnector widget for Reception Specialist
-                          <div 
-                            ref={widgetContainerRef}
-                            className={`relative min-h-[400px] lg:min-h-[450px] rounded-2xl border border-border/50 bg-muted/50 overflow-hidden transition-[opacity,transform] duration-500 hover:border-primary/40 hover:shadow-lg ${
-                              isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-                            }`}
-                            style={{ transitionDelay: isVisible ? '0ms' : `${stepIndex * 100 + 400}ms` }}
-                          >
-                            {/* Mobile stage badge */}
-                            <div className="lg:hidden absolute top-2 right-2 z-10 flex items-center gap-1.5 rounded-full px-2 py-0.5 bg-gradient-to-br from-blue-500 to-blue-600">
-                              <span className="text-[10px] font-semibold text-white">{step.stage}. {step.stageLabel}</span>
-                            </div>
-                          </div>
-                        ) : step.employee && (
-                          <EmployeeCard 
-                            employee={step.employee}
-                            isVisible={isVisible}
-                            delay={stepIndex * 100 + 400}
-                            stageNumber={step.stage}
-                            stageLabel={step.stageLabel}
-                          />
-                        )}
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
-              
-              {/* Mobile scroll hint */}
-              <div className="flex flex-col items-center gap-1 mt-4 lg:hidden">
-                <div className="flex items-center gap-2 text-primary">
-                  <span className="text-sm font-medium">Swipe through the 5 steps</span>
-                  <span className="animate-bounce-x">→</span>
-                </div>
-                <p className="text-xs text-muted-foreground">See how we handle your customer journey</p>
-              </div>
-            </div>
+          {/* AI Employee Cards - Mobile-first stacked layout */}
+          <div className="mt-10 space-y-4 lg:space-y-6">
+            {aiEmployees.map((employee, index) => (
+              <AIEmployeeCard 
+                key={employee.title}
+                employee={employee}
+                index={index}
+                isVisible={isVisible}
+              />
+            ))}
           </div>
         </div>
 
         {/* Command Center Section */}
-        <div className="mt-28 lg:mt-36">
+        <div className="mt-20 lg:mt-28">
           <h2 className="text-center text-3xl font-bold text-foreground sm:text-4xl">
             Meet Your New CRM
           </h2>
