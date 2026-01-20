@@ -29,9 +29,7 @@ const Hero = () => {
           </h1>
 
           {/* Subheadline */}
-          <p className={`mx-auto mt-4 sm:mt-6 max-w-2xl text-base sm:text-lg md:text-xl lg:text-2xl text-muted-foreground transition-all duration-700 delay-100 px-2 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
-            One system that answers calls, books jobs, and follows up with every lead — 24/7.
-          </p>
+          <p className={`mx-auto mt-4 sm:mt-6 max-w-2xl text-base sm:text-lg md:text-xl lg:text-2xl text-muted-foreground transition-all duration-700 delay-100 px-2 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>One system that answers calls, books jobs, and follows up with every lead - 24/7.</p>
 
           {/* CTA Button */}
           <div className={`mt-8 sm:mt-10 transition-all duration-700 delay-200 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
