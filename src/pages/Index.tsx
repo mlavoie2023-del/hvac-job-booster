@@ -8,7 +8,7 @@ import WhoIsFor from "@/components/landing/WhoIsFor";
 import Testimonials from "@/components/landing/Testimonials";
 import FinalCTA from "@/components/landing/FinalCTA";
 import Footer from "@/components/landing/Footer";
-import FloatingCallButton from "@/components/FloatingCallButton";
+
 
 const Index = () => {
   return (
@@ -24,7 +24,7 @@ const Index = () => {
         <FinalCTA />
       </main>
       <Footer />
-      <FloatingCallButton />
+      
     </div>
   );
 };
