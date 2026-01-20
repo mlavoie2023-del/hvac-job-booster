@@ -32,19 +32,8 @@ const Book = () => {
       </header>
       <main className="py-8 lg:py-12">
         <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
-          {/* Calendar embed */}
-          <div className="rounded-2xl border border-border/50 bg-card p-2 shadow-lg mb-12">
-            <iframe
-              src="https://api.lavoiesystems.com/widget/booking/RbdszjGc8cqHsJVEqQDr"
-              style={{ width: "100%", minHeight: "700px", border: "none", overflow: "hidden" }}
-              scrolling="no"
-              id="RbdszjGc8cqHsJVEqQDr_1767744749114"
-              title="Book a Demo"
-            />
-          </div>
-
           {/* Benefits */}
-          <div className="mx-auto max-w-3xl">
+          <div className="mx-auto max-w-3xl mb-12">
             <div className="grid gap-4 sm:grid-cols-3">
               <div className="flex items-center gap-3 rounded-lg bg-secondary/50 p-4">
                 <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-primary/10">
@@ -74,6 +63,17 @@ const Book = () => {
                 </div>
               </div>
             </div>
+          </div>
+
+          {/* Calendar embed */}
+          <div className="rounded-2xl border border-border/50 bg-card p-2 shadow-lg">
+            <iframe
+              src="https://api.lavoiesystems.com/widget/booking/RbdszjGc8cqHsJVEqQDr"
+              style={{ width: "100%", minHeight: "700px", border: "none", overflow: "hidden" }}
+              scrolling="no"
+              id="RbdszjGc8cqHsJVEqQDr_1767744749114"
+              title="Book a Demo"
+            />
           </div>
         </div>
       </main>
