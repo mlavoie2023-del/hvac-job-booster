@@ -393,9 +393,25 @@ const AIEmployeeCard = ({
   const Icon = employee.icon;
   const isMobile = useIsMobile();
   const [isExpanded, setIsExpanded] = useState(false);
+  const widgetContainerRef = useRef<HTMLDivElement>(null);
   
   // On desktop, always show expanded content
   const showContent = !isMobile || isExpanded;
+  
+  // Load the chat widget for Reception Specialist (index 0)
+  useEffect(() => {
+    if (index === 0 && showContent && widgetContainerRef.current) {
+      // Check if script already exists
+      const existingScript = widgetContainerRef.current.querySelector('script');
+      if (!existingScript) {
+        const script = document.createElement('script');
+        script.src = 'https://beta.leadconnectorhq.com/loader.js';
+        script.setAttribute('data-resources-url', 'https://beta.leadconnectorhq.com/chat-widget/loader.js');
+        script.setAttribute('data-widget-id', '696fce2f24cb5a018aa31418');
+        widgetContainerRef.current.appendChild(script);
+      }
+    }
+  }, [index, showContent]);
   
   return (
     <div 
@@ -434,7 +450,7 @@ const AIEmployeeCard = ({
       </button>
       
       {/* Expandable content */}
-      <div className={`overflow-hidden transition-all duration-300 ${showContent ? 'max-h-96 opacity-100 mt-4' : 'max-h-0 opacity-0 mt-0'}`}>
+      <div className={`overflow-hidden transition-all duration-300 ${showContent ? 'max-h-[600px] opacity-100 mt-4' : 'max-h-0 opacity-0 mt-0'}`}>
         {/* Description */}
         <p className="text-muted-foreground leading-relaxed">
           {employee.description}
@@ -446,6 +462,14 @@ const AIEmployeeCard = ({
             {employee.example}
           </p>
         </div>
+        
+        {/* Inline chat widget for Reception Specialist */}
+        {index === 0 && (
+          <div 
+            ref={widgetContainerRef}
+            className="mt-4 min-h-[350px] rounded-xl overflow-hidden border border-border/50"
+          />
+        )}
       </div>
     </div>
   );
