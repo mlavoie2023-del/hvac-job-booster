@@ -1,9 +1,23 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Play } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
+import lavoieLogo from "@/assets/lavoie-logo-square.png";
+
 const VSL = () => {
-  return <div className="min-h-screen bg-background">
+  return (
+    <div className="min-h-screen bg-background">
+      {/* Header */}
+      <header className="sticky top-0 z-50 border-b border-border/50 bg-background/80 backdrop-blur-lg">
+        <div className="section-container">
+          <div className="flex h-16 items-center justify-center">
+            <Link to="/" className="flex items-center gap-2">
+              <img src={lavoieLogo} alt="Lavoie Systems" className="h-9 w-9" />
+              <span className="text-xl font-bold text-foreground">Lavoie Systems</span>
+            </Link>
+          </div>
+        </div>
+      </header>
       <main className="py-12 lg:py-20">
         <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
           {/* Video Section */}
@@ -36,6 +50,7 @@ const VSL = () => {
           </div>
         </div>
       </main>
-    </div>;
+    </div>
+  );
 };
 export default VSL;

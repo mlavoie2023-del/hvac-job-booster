@@ -19,16 +19,19 @@ const Pricing = () => {
   return (
     <div className="min-h-screen bg-background">
       {/* Header */}
-      <header className="border-b border-border/50 bg-background/95 backdrop-blur-lg">
+      <header className="sticky top-0 z-50 border-b border-border/50 bg-background/80 backdrop-blur-lg">
         <div className="section-container">
-          <div className="flex h-14 sm:h-16 items-center justify-between">
-            <Link to="/" className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors">
-              <ArrowLeft className="h-4 w-4" />
-              <span className="text-sm">Back to Home</span>
-            </Link>
+          <div className="flex h-16 items-center justify-between">
             <Link to="/" className="flex items-center gap-2">
-              <img src={lavoieLogo} alt="Lavoie Systems" className="h-8 w-8" />
-              <span className="text-lg font-bold text-foreground">Lavoie Systems</span>
+              <img src={lavoieLogo} alt="Lavoie Systems" className="h-9 w-9" />
+              <span className="text-xl font-bold text-foreground">Lavoie Systems</span>
+            </Link>
+            <Link
+              to="/"
+              className="flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-foreground"
+            >
+              <ArrowLeft className="h-4 w-4" />
+              Back to Home
             </Link>
           </div>
         </div>

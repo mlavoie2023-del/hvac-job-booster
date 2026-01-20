@@ -1,5 +1,7 @@
 import { useEffect } from "react";
+import { Link } from "react-router-dom";
 import { Eye, Lightbulb, Gift } from "lucide-react";
+import lavoieLogo from "@/assets/lavoie-logo-square.png";
 
 const Book = () => {
   useEffect(() => {
@@ -17,6 +19,17 @@ const Book = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      {/* Header */}
+      <header className="sticky top-0 z-50 border-b border-border/50 bg-background/80 backdrop-blur-lg">
+        <div className="section-container">
+          <div className="flex h-16 items-center justify-center">
+            <Link to="/" className="flex items-center gap-2">
+              <img src={lavoieLogo} alt="Lavoie Systems" className="h-9 w-9" />
+              <span className="text-xl font-bold text-foreground">Lavoie Systems</span>
+            </Link>
+          </div>
+        </div>
+      </header>
       <main className="py-8 lg:py-12">
         <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
           {/* Calendar embed */}
