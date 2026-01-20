@@ -36,7 +36,7 @@ const VSL = () => {
           <div className="text-center">
             <Button variant="hero" size="lg" className="w-full sm:w-auto" asChild>
               <Link to="/book">
-                Book Your Free Demo
+                Start Your Free Trial
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Link>
             </Button>
