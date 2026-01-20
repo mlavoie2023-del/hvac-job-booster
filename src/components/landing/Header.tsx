@@ -23,8 +23,7 @@ const Header = () => {
           {/* CTA */}
           <Button variant="hero" size="sm" className="text-xs sm:text-sm px-3 sm:px-4" asChild>
             <Link to="/vsl">
-              <span className="hidden sm:inline">See How It Works</span>
-              <span className="sm:hidden">Watch Demo</span>
+              Watch Demo
               <Play className="ml-1.5 sm:ml-2 h-3.5 w-3.5 sm:h-4 sm:w-4" />
             </Link>
           </Button>
