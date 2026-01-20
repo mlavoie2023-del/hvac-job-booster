@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Shield, Clock, Wrench } from "lucide-react";
+import { Play, Shield, Clock, Wrench } from "lucide-react";
 
 const FinalCTA = () => {
   return (
@@ -9,19 +9,18 @@ const FinalCTA = () => {
       <div className="section-container">
         <div className="mx-auto max-w-3xl text-center px-2">
           <h2 className="text-3xl font-bold text-foreground sm:text-4xl">
-            Get Your HVAC Software Installed — Risk Free
+            Ready to See It in Action?
           </h2>
           
           <p className="mx-auto mt-3 max-w-xl text-lg text-muted-foreground">
-            We build it in 7 days. You try it for 14.<br className="hidden sm:block" />
-            <span className="sm:hidden"> </span>If it doesn't help your business, cancel and pay nothing.
+            Watch a quick demo to see how HVAC companies are booking more jobs with AI.
           </p>
 
           <div className="mt-8 sm:mt-10 px-4 sm:px-0">
             <Button variant="hero" size="lg" className="w-full sm:w-auto" asChild>
-              <Link to="/book">
-                Start My Free Trial
-                <ArrowRight className="ml-2 h-5 w-5" />
+              <Link to="/vsl">
+                See How It Works
+                <Play className="ml-2 h-5 w-5" />
               </Link>
             </Button>
           </div>
