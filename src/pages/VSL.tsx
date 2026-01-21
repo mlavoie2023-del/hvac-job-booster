@@ -32,10 +32,15 @@ const VSL = () => {
 
           {/* Video Player */}
           <div className="rounded-2xl overflow-hidden border border-border/50 bg-card shadow-lg mb-10">
-            <AspectRatio ratio={16 / 9}>
-              {/* Replace the src with your actual video URL */}
-              <iframe src="https://www.youtube.com/embed/YOUR_VIDEO_ID" title="Product Demo Video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen className="w-full h-full" />
-            </AspectRatio>
+            <div style={{ position: "relative", paddingBottom: "64.63195691202873%", height: 0 }}>
+              <iframe
+                src="https://www.loom.com/embed/ec33b9642eab441792e9297774d4dfd6"
+                frameBorder="0"
+                allowFullScreen
+                style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%" }}
+                title="Product Demo Video"
+              />
+            </div>
           </div>
 
           {/* CTA Section */}
