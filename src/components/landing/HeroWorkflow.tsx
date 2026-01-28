@@ -1,5 +1,8 @@
 import { useEffect, useRef, useState } from "react";
-import { UserPlus, Mail, Calendar, UserCheck, User } from "lucide-react";
+import { UserPlus, Mail, Calendar, UserCheck } from "lucide-react";
+
+// Sarah's profile image - using a professional-looking placeholder
+const SARAH_AVATAR = "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop&crop=face";
 
 const stages = [
   {
@@ -203,23 +206,21 @@ const VerticalFlowLine = ({ delay, isVisible }: FlowLineProps) => {
 // Traveling contact avatar (desktop - horizontal)
 const TravelingContact = () => {
   return (
-    <div className="absolute top-1/2 left-0 right-0 -translate-y-1/2 pointer-events-none z-10">
-      <div className="relative w-full h-0">
-        {/* The contact avatar */}
+    <div className="absolute bottom-0 left-0 right-0 translate-y-full pointer-events-none z-10 pt-4">
+      <div className="relative w-full h-12">
+        {/* The contact card */}
         <div 
-          className="absolute w-10 h-10 rounded-full bg-gradient-to-br from-primary to-primary/70 border-2 border-primary-foreground shadow-lg flex items-center justify-center animate-travel-contact"
+          className="absolute flex items-center gap-2 bg-card border border-primary/40 rounded-full pl-1 pr-3 py-1 shadow-lg animate-travel-contact-bottom"
           style={{
-            boxShadow: "0 0 20px hsl(var(--primary) / 0.5), 0 4px 12px rgba(0,0,0,0.3)",
+            boxShadow: "0 0 20px hsl(var(--primary) / 0.3), 0 4px 12px rgba(0,0,0,0.2)",
           }}
         >
-          <User className="w-5 h-5 text-primary-foreground" />
-        </div>
-        
-        {/* Name tag */}
-        <div 
-          className="absolute top-12 whitespace-nowrap animate-travel-contact"
-        >
-          <span className="text-xs font-medium text-primary bg-card/90 px-2 py-1 rounded border border-primary/30">
+          <img 
+            src={SARAH_AVATAR} 
+            alt="Sarah M." 
+            className="w-8 h-8 rounded-full object-cover border-2 border-primary/50"
+          />
+          <span className="text-xs font-medium text-foreground whitespace-nowrap">
             Sarah M.
           </span>
         </div>
@@ -231,16 +232,23 @@ const TravelingContact = () => {
 // Traveling contact avatar (mobile - vertical)
 const TravelingContactMobile = () => {
   return (
-    <div className="absolute left-1/2 -translate-x-1/2 top-0 bottom-0 pointer-events-none z-10">
-      <div className="relative h-full w-0">
-        {/* The contact avatar */}
+    <div className="absolute right-0 translate-x-full top-0 bottom-0 pointer-events-none z-10 pl-3">
+      <div className="relative h-full w-12">
+        {/* The contact card */}
         <div 
-          className="absolute -translate-x-1/2 w-8 h-8 rounded-full bg-gradient-to-br from-primary to-primary/70 border-2 border-primary-foreground shadow-lg flex items-center justify-center animate-travel-contact-vertical"
+          className="absolute flex flex-col items-center gap-1 bg-card border border-primary/40 rounded-xl px-2 py-2 shadow-lg animate-travel-contact-vertical-side"
           style={{
-            boxShadow: "0 0 16px hsl(var(--primary) / 0.5), 0 4px 12px rgba(0,0,0,0.3)",
+            boxShadow: "0 0 16px hsl(var(--primary) / 0.3), 0 4px 12px rgba(0,0,0,0.2)",
           }}
         >
-          <User className="w-4 h-4 text-primary-foreground" />
+          <img 
+            src={SARAH_AVATAR} 
+            alt="Sarah M." 
+            className="w-7 h-7 rounded-full object-cover border-2 border-primary/50"
+          />
+          <span className="text-[10px] font-medium text-foreground whitespace-nowrap">
+            Sarah
+          </span>
         </div>
       </div>
     </div>
