@@ -71,15 +71,6 @@ const Hero = () => {
               Schedule a Strategy Call →
             </Link>
           </div>
-
-          {/* Trust indicator */}
-          <p
-            className={`mt-8 text-sm text-muted-foreground transition-all duration-700 delay-300 ${
-              isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-            }`}
-          >
-            For CFP® practitioners scaling from $100K to $300K+ · No staff required
-          </p>
         </div>
       </div>
     </section>
