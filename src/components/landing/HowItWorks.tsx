@@ -1,21 +1,21 @@
 const steps = [
   {
     number: "1",
-    title: "Week 1: Discovery & Build",
+    title: "Discovery",
     description:
-      "90-minute call to understand your practice, your niche, and exactly how you work. Then we build your custom system—not a template.",
+      "60-minute call to understand your practice, goals, and current tech stack. I'll map out exactly what we'll build for your unique needs.",
   },
   {
     number: "2",
-    title: "Week 2: Training & Refinement",
+    title: "Build (1-2 Weeks)",
     description:
-      "Two hands-on training sessions. You test everything in your real workflow. We adjust until it's perfect for your practice.",
+      "I build your complete custom system: CRM, workflows, campaigns, pages, and automation integrated with the tools you already use.",
   },
   {
     number: "3",
-    title: "Week 3: Launch & Support",
+    title: "Support (Ongoing)",
     description:
-      "We launch it live. Daily check-ins for the first week. Your prospects never fall through the cracks again.",
+      "Direct text access to me for updates, tweaks, and new workflows. I become your growth partner while your system evolves with your practice.",
   },
 ];
 
