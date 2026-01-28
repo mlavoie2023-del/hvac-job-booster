@@ -24,7 +24,7 @@ const Footer = () => {
               How It Works
             </a>
             <Link to="/book" className="link-accent text-sm">
-              Schedule a Strategy Call
+              Schedule a Discovery Call
             </Link>
             <Link to="/privacy" className="link-accent text-sm">
               Privacy

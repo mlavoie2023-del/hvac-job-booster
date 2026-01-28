@@ -64,7 +64,7 @@ const Hero = () => {
               See How It Works
             </button>
             <Link to="/book" className="link-accent text-lg font-medium">
-              Schedule a Strategy Call →
+              Schedule a Discovery Call →
             </Link>
           </div>
 
