@@ -1,18 +1,18 @@
 import { Check, X } from "lucide-react";
 
 const forList = [
-  "You're making $100-250K annually",
-  "You have 30-100 planning clients",
-  "You're drowning in manual follow-up",
+  "Solo fee-only planner (no partners, no staff)",
+  "Making $100-250K annually",
+  "30-100 planning clients",
+  "Drowning in manual follow-up",
   "Prospects fall through the cracks",
-  "You want to scale without hiring staff",
-  "You know you need systems but don't have time to build them",
+  "Want to scale without hiring",
 ];
 
 const notForList = [
-  "Large RIAs",
+  "Large RIAs with existing staff",
   "Broker-dealers",
-  "Planners happy staying small",
+  "Planners who enjoy staying small",
 ];
 
 const WhoIsFor = () => {
@@ -20,14 +20,22 @@ const WhoIsFor = () => {
     <section className="py-20 lg:py-28">
       <div className="section-container">
         <div className="mx-auto max-w-3xl text-center">
+          <p className="text-sm font-medium text-primary mb-3">Is this you?</p>
           <h2 className="text-3xl font-bold text-foreground sm:text-4xl lg:text-5xl">
             Built For Solo Fee-Only Planners
           </h2>
+          <p className="mx-auto mt-4 max-w-2xl text-lg text-body">
+            We specialize in one thing: helping one-person planning firms run like a well-oiled machine.
+          </p>
         </div>
 
         <div className="mx-auto mt-12 max-w-3xl">
           {/* For list */}
-          <div className="card-dark">
+          <div className="rounded-xl border border-primary/30 bg-primary/5 p-6 lg:p-8">
+            <h3 className="text-lg font-semibold text-foreground mb-6 flex items-center gap-2">
+              <Check className="h-5 w-5 text-primary" />
+              This is for you if...
+            </h3>
             <ul className="grid gap-4 sm:grid-cols-2">
               {forList.map((item, index) => (
                 <li key={index} className="flex items-start gap-3">
@@ -39,15 +47,18 @@ const WhoIsFor = () => {
           </div>
 
           {/* Not for */}
-          <div className="mt-8 rounded-xl border border-border/50 bg-card/50 p-6">
-            <p className="text-sm font-medium text-muted-foreground mb-4">
-              NOT for:
+          <div className="mt-6 rounded-xl border border-border/50 bg-card/50 p-6">
+            <p className="text-sm font-medium text-muted-foreground mb-4 flex items-center gap-2">
+              <X className="h-4 w-4" />
+              Not the right fit:
             </p>
             <div className="flex flex-wrap gap-4">
               {notForList.map((item, index) => (
                 <div key={index} className="flex items-center gap-2">
-                  <X className="h-4 w-4 text-muted-foreground" />
                   <span className="text-sm text-muted-foreground">{item}</span>
+                  {index < notForList.length - 1 && (
+                    <span className="text-muted-foreground/50">·</span>
+                  )}
                 </div>
               ))}
             </div>

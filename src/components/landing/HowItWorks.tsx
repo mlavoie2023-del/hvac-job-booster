@@ -3,19 +3,19 @@ const steps = [
     number: "1",
     title: "Week 1: Discovery & Build",
     description:
-      "90-minute strategy call to understand your practice, niche, and goals. Then we build your custom workflows, pages, and campaigns.",
+      "90-minute call to understand your practice, your niche, and exactly how you work. Then we build your custom system—not a template.",
   },
   {
     number: "2",
     title: "Week 2: Training & Refinement",
     description:
-      "We walk you through everything, you test it, we adjust. Two training sessions ensure you're confident.",
+      "Two hands-on training sessions. You test everything in your real workflow. We adjust until it's perfect for your practice.",
   },
   {
     number: "3",
     title: "Week 3: Launch & Support",
     description:
-      "We launch your system live. Daily check-ins for the first week. Your prospects never fall through the cracks again.",
+      "We launch it live. Daily check-ins for the first week. Your prospects never fall through the cracks again.",
   },
 ];
 
@@ -24,12 +24,12 @@ const HowItWorks = () => {
     <section id="how-it-works" className="bg-[#0f0f0f] py-20 lg:py-28">
       <div className="section-container">
         <div className="mx-auto max-w-3xl text-center">
+          <p className="text-sm font-medium text-primary mb-3">Done for you, not DIY</p>
           <h2 className="text-3xl font-bold text-foreground sm:text-4xl lg:text-5xl">
-            Custom-Built For Your Practice
+            Custom-Built For <span className="gradient-text">Your</span> Practice
           </h2>
           <p className="mx-auto mt-4 max-w-2xl text-lg text-body">
-            Not a template. Not DIY software. A completely custom system built
-            around how YOU work.
+            We don't hand you software and wish you luck. We build a complete system around how <em>you</em> work—then train you on it.
           </p>
         </div>
 
@@ -88,6 +88,11 @@ const HowItWorks = () => {
             ))}
           </div>
         </div>
+
+        {/* Solo planner callout */}
+        <p className="mx-auto mt-12 max-w-lg text-center text-muted-foreground">
+          No technical skills required. No staff needed. We handle the build—you just use it.
+        </p>
       </div>
     </section>
   );

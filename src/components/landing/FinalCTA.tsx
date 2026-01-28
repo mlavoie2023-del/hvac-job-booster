@@ -9,13 +9,18 @@ const FinalCTA = () => {
 
       <div className="section-container relative">
         <div className="mx-auto max-w-3xl text-center">
+          {/* Solo planner emphasis */}
+          <p className="text-sm font-medium text-primary mb-4">
+            For solo fee-only planners ready to scale
+          </p>
+          
           <h2 className="text-3xl font-bold text-foreground sm:text-4xl lg:text-5xl">
             Stop Losing Prospects.{" "}
             <span className="gradient-text">Start Closing More Clients.</span>
           </h2>
 
           <p className="mx-auto mt-4 max-w-xl text-lg text-body">
-            Let's build your custom automation system.
+            Let's build a system that runs your practice—so you can focus on planning.
           </p>
 
           <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
@@ -30,6 +35,10 @@ const FinalCTA = () => {
           >
             Or learn more about pricing →
           </Link>
+
+          <p className="mt-8 text-sm text-muted-foreground">
+            No staff required · No technical skills needed · Built in 3 weeks
+          </p>
         </div>
       </div>
     </section>
