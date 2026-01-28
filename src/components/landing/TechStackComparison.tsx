@@ -145,32 +145,20 @@ const TechStackComparison = () => {
             <div className="bg-card/50 rounded-2xl border border-primary/20 p-6 pt-10 min-h-[520px] sm:min-h-[480px] relative overflow-hidden shadow-[0_0_60px_-20px_hsl(217_91%_60%/0.2)] flex flex-col">
               {/* Diagram area */}
               <div className="relative flex-1 min-h-[320px]">
-                {/* Powerful connection line - positioned absolutely between the nodes */}
+                {/* Simple two-way connection line */}
                 <div 
-                  className="absolute top-1/2 left-[30%] right-[30%] -translate-y-1/2 h-2 z-0"
+                  className="absolute top-1/2 left-[30%] right-[30%] -translate-y-1/2 h-1.5 z-0"
                   style={{
-                    background: 'linear-gradient(90deg, hsl(217 91% 60%), hsl(172 66% 50%))',
+                    background: 'linear-gradient(90deg, hsl(217 91% 60%), hsl(195 80% 55%), hsl(172 66% 50%))',
                     borderRadius: '4px',
-                    boxShadow: '0 0 20px 4px hsl(217 91% 60% / 0.5), 0 0 40px 8px hsl(172 66% 50% / 0.3)',
+                    boxShadow: '0 0 16px 2px hsl(217 91% 60% / 0.4), 0 0 32px 4px hsl(172 66% 50% / 0.2)',
                   }}
                 >
-                  {/* Animated pulse */}
-                  <div 
-                    className="absolute top-1/2 -translate-y-1/2 w-4 h-4 rounded-full bg-white"
-                    style={{
-                      boxShadow: '0 0 12px 4px white, 0 0 24px 8px hsl(217 91% 60% / 0.8)',
-                      animation: 'pulse-travel 2s ease-in-out infinite',
-                    }}
-                  />
+                  {/* Left arrow indicator */}
+                  <div className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1 w-3 h-3 rotate-45 border-l-2 border-b-2 border-primary" />
+                  {/* Right arrow indicator */}
+                  <div className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1 w-3 h-3 rotate-45 border-r-2 border-t-2 border-success" />
                 </div>
-                
-                {/* CSS animation for the pulse */}
-                <style>{`
-                  @keyframes pulse-travel {
-                    0%, 100% { left: 0%; opacity: 0.8; }
-                    50% { left: calc(100% - 16px); opacity: 1; }
-                  }
-                `}</style>
                 
                 {/* Lavoie Systems Node */}
                 <div
