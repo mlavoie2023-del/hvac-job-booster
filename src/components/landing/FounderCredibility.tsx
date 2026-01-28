@@ -59,6 +59,7 @@ const FounderCredibility = () => {
                   src={mattLavoie} 
                   alt="Matt Lavoie" 
                   className="h-10 w-10 rounded-full object-cover border-2 border-primary/30"
+                  style={{ objectPosition: "center 25%" }}
                 />
                 <cite className="text-primary font-medium not-italic">
                   — Founder, Lavoie Systems
