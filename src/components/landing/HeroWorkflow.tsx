@@ -84,38 +84,38 @@ const NotificationCard = ({ notification, isVisible }: NotificationCardProps) =>
 
   return (
     <div
-      className={`flex items-center gap-3 bg-card/80 backdrop-blur-sm border border-primary/20 rounded-xl px-5 py-3.5 shadow-lg transition-all duration-500 ${
+      className={`flex items-center gap-4 bg-card/80 backdrop-blur-sm border border-primary/20 rounded-2xl px-6 py-5 shadow-lg transition-all duration-500 ${
         isVisible 
           ? "opacity-100 translate-y-0 scale-100" 
           : "opacity-0 -translate-y-6 scale-95"
       }`}
       style={{
-        boxShadow: "0 0 20px hsl(var(--primary) / 0.1), 0 8px 32px rgba(0,0,0,0.12)",
+        boxShadow: "0 0 30px hsl(var(--primary) / 0.12), 0 12px 40px rgba(0,0,0,0.15)",
       }}
     >
       {/* Icon or Avatar */}
       {notification.type === "avatar" ? (
-        <Avatar className="h-10 w-10 border-2 border-primary/30">
+        <Avatar className="h-12 w-12 border-2 border-primary/30">
           <AvatarImage src={notification.avatar} alt={notification.primary} />
-          <AvatarFallback className="bg-primary/20 text-primary text-sm font-medium">
+          <AvatarFallback className="bg-primary/20 text-primary text-base font-medium">
             {notification.initials}
           </AvatarFallback>
         </Avatar>
       ) : Icon ? (
         <div 
-          className="w-10 h-10 flex items-center justify-center rounded-full bg-primary/10 border border-primary/30"
-          style={{ boxShadow: "0 0 12px hsl(var(--primary) / 0.2)" }}
+          className="w-12 h-12 flex items-center justify-center rounded-full bg-primary/10 border border-primary/30"
+          style={{ boxShadow: "0 0 16px hsl(var(--primary) / 0.25)" }}
         >
-          <Icon className="w-5 h-5 text-primary" />
+          <Icon className="w-6 h-6 text-primary" />
         </div>
       ) : null}
 
       {/* Text content */}
       <div className="flex flex-col">
-        <span className="text-sm font-semibold text-foreground">
+        <span className="text-base font-semibold text-foreground">
           {notification.primary}
         </span>
-        <span className="text-xs text-muted-foreground">
+        <span className="text-sm text-muted-foreground">
           {notification.secondary}
         </span>
       </div>
@@ -144,8 +144,8 @@ const HeroWorkflow = () => {
   }, []);
 
   return (
-    <div className="w-full max-w-md mx-auto mt-12 px-4">
-      <div className="flex justify-center items-center h-[80px]">
+    <div className="w-full max-w-lg mx-auto mt-16 px-4">
+      <div className="flex justify-center items-center h-[100px]">
         <NotificationCard
           notification={notifications[currentIndex]}
           isVisible={isVisible}
