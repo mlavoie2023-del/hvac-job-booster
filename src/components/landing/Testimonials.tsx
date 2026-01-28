@@ -1,23 +1,23 @@
 const testimonials = [
   {
     quote:
-      "I was losing 5-7 prospects every month who said 'not now.' Three months in, I've closed 4 clients from automated follow-up alone. Already paid for itself.",
+      "As a solo planner, I was losing 5-7 prospects every month who said 'not now.' Three months in, I've closed 4 clients from automated follow-up alone. Already paid for itself.",
     name: "[Name]",
-    title: "CFP® - Fee-Only Planner",
+    title: "CFP® - Solo Fee-Only Planner",
     location: "Austin",
   },
   {
     quote:
-      "My onboarding used to take 10 hours of my time per client. Now it runs automatically and clients say it's the most professional experience they've had.",
+      "My onboarding used to take 10 hours of my time per client. Now it runs automatically and clients say it's the most professional experience they've had. Game-changer for a one-person firm.",
     name: "[Name]",
-    title: "CFP® - Hourly Planner",
+    title: "CFP® - Solo Hourly Planner",
     location: "Denver",
   },
   {
     quote:
-      "I finally have a systematic way to ask for referrals. Getting 2-3 per month now without feeling salesy.",
+      "I finally have a systematic way to ask for referrals without it feeling awkward. Getting 2-3 per month now. Perfect for solo planners who hate 'selling.'",
     name: "[Name]",
-    title: "CFP® - Virtual Planner",
+    title: "CFP® - Solo Virtual Planner",
     location: "Boston",
   },
 ];
@@ -27,6 +27,7 @@ const Testimonials = () => {
     <section className="py-20 lg:py-28">
       <div className="section-container">
         <div className="mx-auto max-w-3xl text-center">
+          <p className="text-sm font-medium text-primary mb-3">From solo planners like you</p>
           <h2 className="text-3xl font-bold text-foreground sm:text-4xl lg:text-5xl">
             Built For Planners Like You
           </h2>

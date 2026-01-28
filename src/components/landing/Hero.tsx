@@ -39,9 +39,22 @@ const Hero = () => {
 
       <div className="section-container relative py-20 sm:py-28 lg:py-36">
         <div className="mx-auto max-w-4xl text-center">
+          {/* Solo planner badge */}
+          <div
+            className={`inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-4 py-2 text-sm font-medium text-primary mb-6 transition-all duration-700 ${
+              isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+            }`}
+          >
+            <span className="relative flex h-2 w-2">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
+            </span>
+            Built exclusively for solo fee-only planners
+          </div>
+
           {/* Headline */}
           <h1
-            className={`text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-extrabold tracking-tight text-foreground transition-all duration-700 ${
+            className={`text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-extrabold tracking-tight text-foreground transition-all duration-700 delay-75 ${
               isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
             }`}
           >
@@ -55,9 +68,7 @@ const Hero = () => {
               isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
             }`}
           >
-            The fully-customized automation system built specifically for your
-            fee-only planning practice. No templates. No DIY setup. We build it,
-            you use it.
+            The done-for-you automation system that handles follow-up, onboarding, and referrals—so you can focus on planning, not admin work.
           </p>
 
           {/* CTAs */}
@@ -80,7 +91,7 @@ const Hero = () => {
               isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
             }`}
           >
-            Built for solo CFP® practitioners scaling to $300K+
+            For CFP® practitioners scaling from $100K to $300K+ · No staff required
           </p>
         </div>
       </div>

@@ -3,6 +3,7 @@ import { X, Check } from "lucide-react";
 const comparisons = [
   {
     title: "DIY Software",
+    subtitle: "Redtail, Wealthbox, etc.",
     items: [
       { text: "Spend weeks setting up", negative: true },
       { text: "Generic templates", negative: true },
@@ -11,22 +12,24 @@ const comparisons = [
     ],
   },
   {
-    title: "Agencies",
+    title: "Marketing Agencies",
+    subtitle: "$3K-5K/month",
     items: [
-      { text: "$3K-5K/month", negative: true },
       { text: "Don't understand planning", negative: true },
       { text: "Long-term contracts", negative: true },
       { text: "Built for enterprises", negative: true },
+      { text: "Cookie-cutter campaigns", negative: true },
     ],
   },
   {
     title: "Lavoie Systems",
+    subtitle: "Built for solo planners",
     highlight: true,
     items: [
       { text: "Done in 3 weeks", negative: false },
       { text: "Built for YOUR practice", negative: false },
       { text: "We implement everything", negative: false },
-      { text: "Designed for solo planners", negative: false },
+      { text: "Designed for one-person firms", negative: false },
     ],
   },
 ];
@@ -36,8 +39,10 @@ const Differentiation = () => {
     <section className="relative py-20 lg:py-28 spotlight-section">
       <div className="section-container">
         <div className="mx-auto max-w-3xl text-center">
+          <p className="text-sm font-medium text-primary mb-3">Why we're different</p>
           <h2 className="text-3xl font-bold text-foreground sm:text-4xl lg:text-5xl">
-            Why Not Just Use Software?
+            Built For Solo Planners.<br />
+            <span className="text-muted-foreground">Not Enterprises.</span>
           </h2>
         </div>
 
@@ -51,14 +56,19 @@ const Differentiation = () => {
                   : "border-border bg-card"
               }`}
             >
-              <h3
-                className={`text-lg font-bold text-center ${
-                  column.highlight ? "text-primary" : "text-foreground"
-                }`}
-              >
-                {column.title}
-              </h3>
-              <ul className="mt-6 space-y-4">
+              <div className="text-center mb-6">
+                <h3
+                  className={`text-lg font-bold ${
+                    column.highlight ? "text-primary" : "text-foreground"
+                  }`}
+                >
+                  {column.title}
+                </h3>
+                <p className="text-sm text-muted-foreground mt-1">
+                  {column.subtitle}
+                </p>
+              </div>
+              <ul className="space-y-4">
                 {column.items.map((item, itemIndex) => (
                   <li key={itemIndex} className="flex items-start gap-3">
                     {item.negative ? (
