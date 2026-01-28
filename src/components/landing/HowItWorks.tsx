@@ -9,7 +9,7 @@ const steps = [
     number: "2",
     title: "Build (1-2 Weeks)",
     description:
-      "I build your complete custom system: CRM, workflows, campaigns, pages, and automation integrated with the tools you already use.",
+      "I build you a new custom CRM with automations and connect it to the financial planning software you already use.",
   },
   {
     number: "3",
