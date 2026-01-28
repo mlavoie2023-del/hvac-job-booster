@@ -145,20 +145,70 @@ const TechStackComparison = () => {
             <div className="bg-card/50 rounded-2xl border border-primary/20 p-6 pt-10 min-h-[520px] sm:min-h-[480px] relative overflow-hidden shadow-[0_0_60px_-20px_hsl(217_91%_60%/0.2)] flex flex-col">
               {/* Diagram area */}
               <div className="relative flex-1 min-h-[320px]">
-                {/* Clean connection line */}
+                {/* Powerful connection line */}
                 <svg className="absolute inset-0 w-full h-full" viewBox="0 0 100 80" preserveAspectRatio="xMidYMid meet">
                   <defs>
-                    <linearGradient id="cleanGrad" x1="0%" y1="50%" x2="100%" y2="50%">
-                      <stop offset="0%" stopColor="hsl(217 91% 60%)" stopOpacity="0.8" />
-                      <stop offset="100%" stopColor="hsl(172 66% 50%)" stopOpacity="0.8" />
+                    <linearGradient id="powerGrad" x1="0%" y1="50%" x2="100%" y2="50%">
+                      <stop offset="0%" stopColor="hsl(217 91% 60%)" stopOpacity="1" />
+                      <stop offset="50%" stopColor="hsl(190 80% 55%)" stopOpacity="1" />
+                      <stop offset="100%" stopColor="hsl(172 66% 50%)" stopOpacity="1" />
+                    </linearGradient>
+                    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+                      <feGaussianBlur stdDeviation="1.5" result="coloredBlur"/>
+                      <feMerge>
+                        <feMergeNode in="coloredBlur"/>
+                        <feMergeNode in="SourceGraphic"/>
+                      </feMerge>
+                    </filter>
+                    <linearGradient id="flowGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                      <stop offset="0%" stopColor="white" stopOpacity="0">
+                        <animate attributeName="offset" values="-0.3;1" dur="1.5s" repeatCount="indefinite" />
+                      </stop>
+                      <stop offset="15%" stopColor="white" stopOpacity="0.8">
+                        <animate attributeName="offset" values="-0.15;1.15" dur="1.5s" repeatCount="indefinite" />
+                      </stop>
+                      <stop offset="30%" stopColor="white" stopOpacity="0">
+                        <animate attributeName="offset" values="0;1.3" dur="1.5s" repeatCount="indefinite" />
+                      </stop>
                     </linearGradient>
                   </defs>
+                  
+                  {/* Outer glow line */}
                   <line 
                     x1="30" y1="40" 
                     x2="70" y2="40" 
-                    stroke="url(#cleanGrad)" 
-                    strokeWidth="0.8"
+                    stroke="url(#powerGrad)" 
+                    strokeWidth="3"
+                    strokeOpacity="0.3"
+                    filter="url(#glow)"
                   />
+                  
+                  {/* Main connection line */}
+                  <line 
+                    x1="30" y1="40" 
+                    x2="70" y2="40" 
+                    stroke="url(#powerGrad)" 
+                    strokeWidth="1.2"
+                    strokeLinecap="round"
+                    filter="url(#glow)"
+                  />
+                  
+                  {/* Animated flow effect */}
+                  <line 
+                    x1="30" y1="40" 
+                    x2="70" y2="40" 
+                    stroke="url(#flowGrad)" 
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                  />
+                  
+                  {/* Connection endpoints - glowing dots */}
+                  <circle cx="30" cy="40" r="1.5" fill="hsl(217 91% 60%)" filter="url(#glow)">
+                    <animate attributeName="r" values="1.5;2;1.5" dur="2s" repeatCount="indefinite" />
+                  </circle>
+                  <circle cx="70" cy="40" r="1.5" fill="hsl(172 66% 50%)" filter="url(#glow)">
+                    <animate attributeName="r" values="1.5;2;1.5" dur="2s" repeatCount="indefinite" />
+                  </circle>
                 </svg>
                 
                 {/* Lavoie Systems Node */}
