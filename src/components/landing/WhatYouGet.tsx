@@ -95,9 +95,9 @@ const WhatYouGet = () => {
               <AccordionItem 
                 key={index} 
                 value={`item-${index}`}
-                className="card-dark border border-border data-[state=open]:border-primary/30 data-[state=open]:shadow-[0_0_40px_-10px_hsl(217_91%_60%/0.3)]"
+                className="bg-card rounded-xl border border-border transition-all duration-300 overflow-hidden data-[state=open]:border-primary/30 data-[state=open]:shadow-[0_0_40px_-10px_hsl(217_91%_60%/0.3)]"
               >
-                <AccordionTrigger className="px-6 py-5 hover:no-underline">
+                <AccordionTrigger className="px-6 py-5 hover:no-underline [&>svg]:text-primary">
                   <div className="flex items-center gap-4">
                     <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10 shrink-0">
                       <item.icon className="h-5 w-5 text-primary" />
