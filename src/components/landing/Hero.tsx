@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
-import DashboardVisualization from "./DashboardVisualization";
+import HeroWorkflow from "./HeroWorkflow";
 
 const Hero = () => {
   const sectionRef = useRef<HTMLElement>(null);
@@ -32,13 +32,8 @@ const Hero = () => {
     <section ref={sectionRef} className="relative overflow-hidden">
       {/* Background with subtle gradient */}
       <div className="absolute inset-0 bg-gradient-to-b from-primary/5 via-transparent to-transparent" />
-      
-      {/* Dashboard visualization */}
-      <div className="absolute inset-0 overflow-hidden">
-        <DashboardVisualization />
-      </div>
 
-      <div className="section-container relative py-20 sm:py-28 lg:py-36">
+      <div className="section-container relative py-20 sm:py-28 lg:py-32">
         <div className="mx-auto max-w-4xl text-center">
           {/* Headline */}
           <h1
@@ -72,6 +67,9 @@ const Hero = () => {
               Schedule a Strategy Call →
             </Link>
           </div>
+
+          {/* Workflow Diagram */}
+          <HeroWorkflow />
         </div>
       </div>
     </section>

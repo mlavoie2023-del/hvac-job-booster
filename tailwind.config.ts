@@ -108,6 +108,18 @@ export default {
           "50%": { opacity: "1" },
           "100%": { transform: "translateX(8px)", opacity: "0.3" },
         },
+        "flow-dot": {
+          "0%": { left: "0%", opacity: "0" },
+          "10%": { opacity: "1" },
+          "90%": { opacity: "1" },
+          "100%": { left: "100%", opacity: "0" },
+        },
+        "flow-dot-vertical": {
+          "0%": { top: "0%", opacity: "0" },
+          "10%": { opacity: "1" },
+          "90%": { opacity: "1" },
+          "100%": { top: "100%", opacity: "0" },
+        },
         "gradient-shift": {
           "0%": { backgroundPosition: "0% 50%" },
           "50%": { backgroundPosition: "100% 50%" },
@@ -171,6 +183,8 @@ export default {
         "task-complete": "task-complete 8s ease-in-out infinite",
         "check-draw": "check-draw 2s ease-out forwards",
         "pipeline-card": "pipeline-card 12s ease-in-out infinite",
+        "flow-dot": "flow-dot 1.8s ease-in-out infinite",
+        "flow-dot-vertical": "flow-dot-vertical 1.8s ease-in-out infinite",
       },
     },
   },
