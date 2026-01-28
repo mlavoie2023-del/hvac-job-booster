@@ -145,9 +145,9 @@ const TechStackComparison = () => {
             <div className="bg-card/50 rounded-2xl border border-primary/20 p-6 pt-10 min-h-[520px] sm:min-h-[480px] relative overflow-hidden shadow-[0_0_60px_-20px_hsl(217_91%_60%/0.2)] flex flex-col">
               {/* Diagram area */}
               <div className="relative flex-1 min-h-[320px]">
-                {/* Simple two-way connection line */}
+                {/* Simple pulsing connection line */}
                 <div 
-                  className="absolute -translate-y-1/2 h-1.5 z-0"
+                  className="absolute -translate-y-1/2 h-1.5 z-0 animate-pulse"
                   style={{
                     top: '42%',
                     left: '38%',
@@ -156,12 +156,7 @@ const TechStackComparison = () => {
                     borderRadius: '4px',
                     boxShadow: '0 0 16px 2px hsl(217 91% 60% / 0.4), 0 0 32px 4px hsl(172 66% 50% / 0.2)',
                   }}
-                >
-                  {/* Left arrow indicator */}
-                  <div className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1 w-2.5 h-2.5 rotate-45 border-l-2 border-b-2 border-primary" />
-                  {/* Right arrow indicator */}
-                  <div className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1 w-2.5 h-2.5 rotate-45 border-r-2 border-t-2 border-success" />
-                </div>
+                />
                 
                 {/* Lavoie Systems Node */}
                 <div
