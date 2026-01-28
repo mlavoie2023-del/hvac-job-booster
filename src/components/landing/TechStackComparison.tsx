@@ -147,7 +147,7 @@ const TechStackComparison = () => {
               <div className="relative flex-1 min-h-[320px]">
                 {/* Simple pulsing connection line */}
                 <div 
-                  className="absolute -translate-y-1/2 h-1.5 z-0 animate-pulse"
+                  className="absolute -translate-y-1/2 h-1.5 z-0 animate-pulse transition-all duration-300 hover:h-2 hover:shadow-[0_0_24px_4px_hsl(217_91%_60%/0.6),0_0_48px_8px_hsl(172_66%_50%/0.4)] cursor-pointer"
                   style={{
                     top: '42%',
                     left: '38%',
