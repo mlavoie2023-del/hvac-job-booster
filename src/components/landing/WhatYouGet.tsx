@@ -1,54 +1,75 @@
 import { 
-  Mail, 
-  UserCheck, 
-  Users, 
+  Workflow, 
+  FileText, 
+  ClipboardList, 
   Calendar, 
+  GitBranch, 
+  Inbox, 
   BarChart3, 
-  Palette 
+  Plug, 
+  Share2 
 } from "lucide-react";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 
 const deliverables = [
   {
-    icon: Mail,
-    title: "Prospect Nurture System",
+    icon: Workflow,
+    title: "Customized Workflows",
     description:
-      "Automatic follow-up for leads who aren't ready. Educational emails that keep you top-of-mind for months, without you lifting a finger.",
-    soloNote: "No more lost leads",
+      "Automated sequences for prospect nurturing, referral requests, and appointment confirmations. Set it once, and let the system handle follow-ups, reminders, and check-ins automatically.",
   },
   {
-    icon: UserCheck,
-    title: "Client Onboarding",
+    icon: FileText,
+    title: "Landing Pages",
     description:
-      "Automated welcome sequences, document collection, meeting prep. Your new clients feel taken care of from day one.",
-    soloNote: "Hours saved per client",
+      "Professional pages for consultation booking, lead magnets, and client resources. Designed to convert visitors into prospects with your branding and messaging throughout.",
   },
   {
-    icon: Users,
-    title: "Referral Engine",
+    icon: ClipboardList,
+    title: "Forms",
     description:
-      "Systematic referral requests at the perfect moment. Easy submission. Automatic thank-yous. Finally, a referral system that works.",
-    soloNote: "Referrals on autopilot",
+      "Client intake forms, satisfaction surveys, and referral submission forms. Collect the information you need with smart forms that integrate directly into your workflows.",
   },
   {
     icon: Calendar,
-    title: "Review Coordination",
+    title: "Calendars",
     description:
-      "Never chase clients for annual reviews again. Automated scheduling, reminders, and prep—90 days before their review date.",
-    soloNote: "No more chasing",
+      "Let prospects and clients book appointments directly. Syncs with your existing calendar to avoid double-booking and sends automatic reminders to reduce no-shows.",
+  },
+  {
+    icon: GitBranch,
+    title: "Pipelines",
+    description:
+      "Visual tracking for prospects and client journeys. See exactly where each relationship stands, what's next, and never let an opportunity slip through the cracks.",
+  },
+  {
+    icon: Inbox,
+    title: "Unified Inbox",
+    description:
+      "One place to manage all client communication—SMS, email, and social media. No more switching between apps or missing messages across platforms.",
   },
   {
     icon: BarChart3,
-    title: "Lead Tracking",
+    title: "Dashboard & Analytics",
     description:
-      "Know exactly which marketing channels bring in real clients. Stop wasting money on what doesn't work.",
-    soloNote: "Data-driven marketing",
+      "Track lead sources, conversion rates, and campaign performance. Know exactly what's working so you can double down on effective strategies.",
   },
   {
-    icon: Palette,
-    title: "Your Brand, Everywhere",
+    icon: Plug,
+    title: "Integrations",
     description:
-      "Your logo, colors, voice, and messaging throughout. Clients see you—not some generic software.",
-    soloNote: "100% white-labeled",
+      "Connect with your calendar, email, and financial planning software. Everything works together seamlessly, fitting into your existing tech stack.",
+  },
+  {
+    icon: Share2,
+    title: "Social Media Management",
+    description:
+      "Manage LinkedIn, Instagram, Facebook and more from one place. Schedule posts, track engagement, and interact with prospects without juggling multiple platforms.",
   },
 ];
 
@@ -64,29 +85,36 @@ const WhatYouGet = () => {
             Everything a Solo Planner Needs
           </h2>
           <p className="mx-auto mt-4 max-w-2xl text-lg text-body">
-            Six integrated systems that work together—built around <em>your</em> practice, not generic templates.
+            Nine integrated tools that work together—built around <em>your</em> practice, not generic templates.
           </p>
         </div>
 
-        <div className="mx-auto mt-12 grid max-w-5xl gap-6 sm:grid-cols-2">
-          {deliverables.map((item, index) => (
-            <div key={index} className="card-dark group">
-              <div className="flex items-start justify-between">
-                <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10">
-                  <item.icon className="h-5 w-5 text-primary" />
-                </div>
-                <span className="text-xs font-medium text-primary/80 bg-primary/10 px-2 py-1 rounded">
-                  {item.soloNote}
-                </span>
-              </div>
-              <h3 className="mt-4 text-lg font-semibold text-foreground">
-                {item.title}
-              </h3>
-              <p className="mt-2 text-body">
-                {item.description}
-              </p>
-            </div>
-          ))}
+        <div className="mx-auto mt-12 max-w-3xl">
+          <Accordion type="single" collapsible className="space-y-3">
+            {deliverables.map((item, index) => (
+              <AccordionItem 
+                key={index} 
+                value={`item-${index}`}
+                className="card-dark border border-border data-[state=open]:border-primary/30 data-[state=open]:shadow-[0_0_40px_-10px_hsl(217_91%_60%/0.3)]"
+              >
+                <AccordionTrigger className="px-6 py-5 hover:no-underline">
+                  <div className="flex items-center gap-4">
+                    <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10 shrink-0">
+                      <item.icon className="h-5 w-5 text-primary" />
+                    </div>
+                    <span className="text-lg font-semibold text-foreground text-left">
+                      {item.title}
+                    </span>
+                  </div>
+                </AccordionTrigger>
+                <AccordionContent className="px-6 pb-5">
+                  <p className="text-body pl-14">
+                    {item.description}
+                  </p>
+                </AccordionContent>
+              </AccordionItem>
+            ))}
+          </Accordion>
         </div>
       </div>
     </section>
