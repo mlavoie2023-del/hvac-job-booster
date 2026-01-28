@@ -29,7 +29,7 @@ const FounderCredibility = () => {
             
             <blockquote className="relative">
               <p className="text-lg sm:text-xl text-body leading-relaxed">
-                "I'm [Your Name], and I build every system myself. After watching planners struggle with generic software for years, I started Lavoie to offer something different: truly custom automation built around how you actually work."
+                "I'm Matt Lavoie, and I build every system myself. After watching planners struggle with generic software for years, I started Lavoie to offer something different: truly custom automation built around how you actually work."
               </p>
               <footer className="mt-6">
                 <cite className="text-primary font-medium not-italic">
