@@ -29,7 +29,7 @@ const HowItWorks = () => {
             Custom-Built For <span className="gradient-text">Your</span> Practice
           </h2>
           <p className="mx-auto mt-4 max-w-2xl text-lg text-body">
-            We don't hand you software and wish you luck. We build a complete system around how <em>you</em> work—then train you on it.
+            I don't hand you software and wish you luck. I build a complete system around how <em>you</em> work, then train you on it.
           </p>
         </div>
 
