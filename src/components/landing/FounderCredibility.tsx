@@ -1,3 +1,5 @@
+import mattLavoie from "@/assets/matt-lavoie.jpg";
+
 const steps = [
   {
     number: "1",
@@ -52,7 +54,12 @@ const FounderCredibility = () => {
               <p className="text-lg sm:text-xl text-body leading-relaxed">
                 "I'm Matt Lavoie, and I build every system myself. After watching planners struggle with generic software for years, I started Lavoie to offer something different: truly custom automation built around how you actually work."
               </p>
-              <footer className="mt-6">
+              <footer className="mt-6 flex items-center justify-center gap-3">
+                <img 
+                  src={mattLavoie} 
+                  alt="Matt Lavoie" 
+                  className="h-10 w-10 rounded-full object-cover border-2 border-primary/30"
+                />
                 <cite className="text-primary font-medium not-italic">
                   — Founder, Lavoie Systems
                 </cite>
