@@ -147,17 +147,20 @@ const TechStackComparison = () => {
               <div className="relative flex-1 min-h-[320px]">
                 {/* Simple two-way connection line */}
                 <div 
-                  className="absolute top-1/2 left-[30%] right-[30%] -translate-y-1/2 h-1.5 z-0"
+                  className="absolute -translate-y-1/2 h-1.5 z-0"
                   style={{
+                    top: '42%',
+                    left: '38%',
+                    right: '38%',
                     background: 'linear-gradient(90deg, hsl(217 91% 60%), hsl(195 80% 55%), hsl(172 66% 50%))',
                     borderRadius: '4px',
                     boxShadow: '0 0 16px 2px hsl(217 91% 60% / 0.4), 0 0 32px 4px hsl(172 66% 50% / 0.2)',
                   }}
                 >
                   {/* Left arrow indicator */}
-                  <div className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1 w-3 h-3 rotate-45 border-l-2 border-b-2 border-primary" />
+                  <div className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1 w-2.5 h-2.5 rotate-45 border-l-2 border-b-2 border-primary" />
                   {/* Right arrow indicator */}
-                  <div className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1 w-3 h-3 rotate-45 border-r-2 border-t-2 border-success" />
+                  <div className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1 w-2.5 h-2.5 rotate-45 border-r-2 border-t-2 border-success" />
                 </div>
                 
                 {/* Lavoie Systems Node */}
