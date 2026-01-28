@@ -3,15 +3,8 @@ import mattLavoie from "@/assets/matt-lavoie.jpg";
 const FounderCredibility = () => {
   return (
     <section className="relative py-20 sm:py-24">
-      {/* Subtle spotlight background */}
-      <div className="absolute inset-0 bg-gradient-to-b from-card/50 via-card/30 to-transparent" />
-      <div
-        className="absolute inset-0"
-        style={{
-          background:
-            "radial-gradient(ellipse 60% 40% at 50% 30%, hsl(217 91% 60% / 0.06), transparent)",
-        }}
-      />
+      {/* Subtle glow behind quote */}
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_40%_at_50%_50%,hsl(217_91%_60%/0.04),transparent)]" />
 
       <div className="section-container relative">
         <div className="mx-auto max-w-[800px] text-center">

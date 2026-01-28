@@ -30,8 +30,9 @@ const Hero = () => {
 
   return (
     <section ref={sectionRef} className="relative overflow-hidden">
-      {/* Background with subtle gradient */}
+      {/* Background with subtle gradient that flows into next section */}
       <div className="absolute inset-0 bg-gradient-to-b from-primary/5 via-transparent to-transparent" />
+      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-b from-transparent to-background" />
 
       <div className="section-container relative py-20 sm:py-28 lg:py-32">
         <div className="mx-auto max-w-4xl text-center">

@@ -21,7 +21,9 @@ const steps = [
 
 const HowItWorks = () => {
   return (
-    <section id="how-it-works" className="bg-[#0f0f0f] py-20 lg:py-28">
+    <section id="how-it-works" className="relative py-20 lg:py-28">
+      {/* Subtle darker zone that blends */}
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#0d0d0d]/50 to-transparent" />
       <div className="section-container">
         <div className="mx-auto max-w-3xl text-center">
           <p className="text-sm font-medium text-primary mb-3">Done for you, not DIY</p>

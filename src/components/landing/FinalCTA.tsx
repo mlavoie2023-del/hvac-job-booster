@@ -3,9 +3,8 @@ import { Link } from "react-router-dom";
 const FinalCTA = () => {
   return (
     <section className="relative py-24 lg:py-32">
-      {/* Brightest spotlight zone */}
-      <div className="absolute inset-0 bg-gradient-to-b from-primary/10 via-primary/5 to-transparent" />
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_50%_at_50%_50%,hsl(217_91%_60%/0.15),transparent)]" />
+      {/* Gradual spotlight that builds toward CTA */}
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_70%_50%_at_50%_60%,hsl(217_91%_60%/0.08),transparent)]" />
 
       <div className="section-container relative">
         <div className="mx-auto max-w-3xl text-center">
