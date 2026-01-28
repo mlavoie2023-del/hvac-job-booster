@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { UserPlus, Mail, Calendar, UserCheck } from "lucide-react";
+import { UserPlus, Mail, Calendar, UserCheck, User } from "lucide-react";
 
 const stages = [
   {
@@ -54,6 +54,9 @@ const HeroWorkflow = () => {
           ))}
         </div>
 
+        {/* Demo contact traveling through stages */}
+        {isVisible && <TravelingContact />}
+
         {/* Stage cards */}
         <div className="relative flex items-center justify-between">
           {stages.map((stage, index) => (
@@ -69,6 +72,9 @@ const HeroWorkflow = () => {
 
       {/* Mobile: Vertical layout */}
       <div className="sm:hidden relative flex flex-col items-center gap-2">
+        {/* Demo contact traveling through stages (mobile) */}
+        {isVisible && <TravelingContactMobile />}
+        
         {stages.map((stage, index) => (
           <div key={stage.label} className="flex flex-col items-center">
             <StageCard stage={stage} index={index} isVisible={isVisible} />
@@ -189,6 +195,53 @@ const VerticalFlowLine = ({ delay, isVisible }: FlowLineProps) => {
         style={{ transitionDelay: `${delay + 0.6}s` }}
       >
         <div className="absolute left-1/2 -translate-x-1/2 w-2 h-2 rounded-full bg-primary animate-flow-dot-vertical" />
+      </div>
+    </div>
+  );
+};
+
+// Traveling contact avatar (desktop - horizontal)
+const TravelingContact = () => {
+  return (
+    <div className="absolute top-1/2 left-0 right-0 -translate-y-1/2 pointer-events-none z-10">
+      <div className="relative w-full h-0">
+        {/* The contact avatar */}
+        <div 
+          className="absolute w-10 h-10 rounded-full bg-gradient-to-br from-primary to-primary/70 border-2 border-primary-foreground shadow-lg flex items-center justify-center animate-travel-contact"
+          style={{
+            boxShadow: "0 0 20px hsl(var(--primary) / 0.5), 0 4px 12px rgba(0,0,0,0.3)",
+          }}
+        >
+          <User className="w-5 h-5 text-primary-foreground" />
+        </div>
+        
+        {/* Name tag */}
+        <div 
+          className="absolute top-12 whitespace-nowrap animate-travel-contact"
+        >
+          <span className="text-xs font-medium text-primary bg-card/90 px-2 py-1 rounded border border-primary/30">
+            Sarah M.
+          </span>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+// Traveling contact avatar (mobile - vertical)
+const TravelingContactMobile = () => {
+  return (
+    <div className="absolute left-1/2 -translate-x-1/2 top-0 bottom-0 pointer-events-none z-10">
+      <div className="relative h-full w-0">
+        {/* The contact avatar */}
+        <div 
+          className="absolute -translate-x-1/2 w-8 h-8 rounded-full bg-gradient-to-br from-primary to-primary/70 border-2 border-primary-foreground shadow-lg flex items-center justify-center animate-travel-contact-vertical"
+          style={{
+            boxShadow: "0 0 16px hsl(var(--primary) / 0.5), 0 4px 12px rgba(0,0,0,0.3)",
+          }}
+        >
+          <User className="w-4 h-4 text-primary-foreground" />
+        </div>
       </div>
     </div>
   );
