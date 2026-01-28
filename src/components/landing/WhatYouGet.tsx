@@ -12,7 +12,7 @@ const deliverables = [
     icon: Mail,
     title: "Prospect Nurture System",
     description:
-      "Automatic follow-up for leads who aren't ready. Educational emails that keep you top-of-mind for months—without you lifting a finger.",
+      "Automatic follow-up for leads who aren't ready. Educational emails that keep you top-of-mind for months, without you lifting a finger.",
     soloNote: "No more lost leads",
   },
   {
