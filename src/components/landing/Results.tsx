@@ -30,8 +30,9 @@ const results = [
 const Results = () => {
   return (
     <section className="relative py-20 lg:py-28">
-      {/* Subtle background */}
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-primary/[0.02] to-transparent" />
+      {/* Gentle ambient glow */}
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_50%_at_50%_50%,hsl(217_91%_60%/0.03),transparent)]" />
+      
 
       <div className="section-container relative">
         <div className="mx-auto max-w-3xl text-center">
