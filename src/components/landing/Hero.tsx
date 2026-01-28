@@ -58,8 +58,8 @@ const Hero = () => {
               isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
             }`}
           >
-            Stop Losing Prospects.{" "}
-            <span className="gradient-text">Start Closing More Clients.</span>
+            Custom CRM & Marketing Automation{" "}
+            <span className="gradient-text">For Solo Financial Planners</span>
           </h1>
 
           {/* Subheadline */}
