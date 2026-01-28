@@ -74,44 +74,22 @@ const notifications: Notification[] = [
   },
 ];
 
-// Horizontal positions for desktop (left, center-left, center-right, right)
-const desktopPositions = [
-  { left: "5%", top: "0%" },
-  { left: "55%", top: "15%" },
-  { left: "25%", top: "35%" },
-  { left: "70%", top: "55%" },
-];
-
-// Mobile positions (stacked in center with offset)
-const mobilePositions = [
-  { left: "5%", top: "0%" },
-  { left: "15%", top: "35%" },
-  { left: "5%", top: "70%" },
-];
-
 interface NotificationCardProps {
   notification: Notification;
-  position: { left: string; top: string };
-  animationDelay: number;
-  animationDuration: number;
+  isVisible: boolean;
 }
 
-const NotificationCard = ({ 
-  notification, 
-  position, 
-  animationDelay,
-  animationDuration 
-}: NotificationCardProps) => {
+const NotificationCard = ({ notification, isVisible }: NotificationCardProps) => {
   const Icon = notification.icon;
 
   return (
     <div
-      className="absolute flex items-center gap-3 bg-card/80 backdrop-blur-sm border border-primary/20 rounded-xl px-4 py-3 shadow-lg"
+      className={`flex items-center gap-3 bg-card/80 backdrop-blur-sm border border-primary/20 rounded-xl px-5 py-3.5 shadow-lg transition-all duration-500 ${
+        isVisible 
+          ? "opacity-100 translate-y-0 scale-100" 
+          : "opacity-0 -translate-y-6 scale-95"
+      }`}
       style={{
-        left: position.left,
-        top: position.top,
-        animation: `notification-float ${animationDuration}s ease-in-out infinite`,
-        animationDelay: `${animationDelay}s`,
         boxShadow: "0 0 20px hsl(var(--primary) / 0.1), 0 8px 32px rgba(0,0,0,0.12)",
       }}
     >
@@ -146,47 +124,32 @@ const NotificationCard = ({
 };
 
 const HeroWorkflow = () => {
-  const [visibleNotifications, setVisibleNotifications] = useState<number[]>([0, 1, 2]);
-  const animationDuration = 6; // seconds per card cycle
-  const staggerDelay = 2; // seconds between each card start
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [isVisible, setIsVisible] = useState(true);
+  const cycleDuration = 3000; // ms per notification
 
   useEffect(() => {
-    // Rotate notifications every staggerDelay seconds
     const interval = setInterval(() => {
-      setVisibleNotifications((prev) => {
-        return prev.map((index) => (index + 1) % notifications.length);
-      });
-    }, staggerDelay * 1000);
+      // Fade out
+      setIsVisible(false);
+      
+      // After fade out, switch to next and fade in
+      setTimeout(() => {
+        setCurrentIndex((prev) => (prev + 1) % notifications.length);
+        setIsVisible(true);
+      }, 500);
+    }, cycleDuration);
 
     return () => clearInterval(interval);
   }, []);
 
   return (
-    <div className="w-full max-w-3xl mx-auto mt-12 px-4">
-      {/* Desktop view */}
-      <div className="hidden sm:block relative h-[180px]">
-        {visibleNotifications.map((notifIndex, posIndex) => (
-          <NotificationCard
-            key={`${notifIndex}-${posIndex}`}
-            notification={notifications[notifIndex]}
-            position={desktopPositions[posIndex % desktopPositions.length]}
-            animationDelay={posIndex * staggerDelay}
-            animationDuration={animationDuration}
-          />
-        ))}
-      </div>
-
-      {/* Mobile view */}
-      <div className="sm:hidden relative h-[220px]">
-        {visibleNotifications.slice(0, 3).map((notifIndex, posIndex) => (
-          <NotificationCard
-            key={`mobile-${notifIndex}-${posIndex}`}
-            notification={notifications[notifIndex]}
-            position={mobilePositions[posIndex]}
-            animationDelay={posIndex * staggerDelay}
-            animationDuration={animationDuration}
-          />
-        ))}
+    <div className="w-full max-w-md mx-auto mt-12 px-4">
+      <div className="flex justify-center items-center h-[80px]">
+        <NotificationCard
+          notification={notifications[currentIndex]}
+          isVisible={isVisible}
+        />
       </div>
     </div>
   );
