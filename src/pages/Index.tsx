@@ -1,11 +1,13 @@
 import Header from "@/components/landing/Header";
 import Hero from "@/components/landing/Hero";
-import FounderCredibility from "@/components/landing/FounderCredibility";
 import Problem from "@/components/landing/Problem";
-import HowItWorks from "@/components/landing/HowItWorks";
-import WhatYouGet from "@/components/landing/WhatYouGet";
-import Differentiation from "@/components/landing/Differentiation";
 import WhoIsFor from "@/components/landing/WhoIsFor";
+import WhatYouGet from "@/components/landing/WhatYouGet";
+import HowItWorks from "@/components/landing/HowItWorks";
+import Differentiation from "@/components/landing/Differentiation";
+import Results from "@/components/landing/Results";
+import FounderCredibility from "@/components/landing/FounderCredibility";
+import FAQ from "@/components/landing/FAQ";
 import FinalCTA from "@/components/landing/FinalCTA";
 import Footer from "@/components/landing/Footer";
 
@@ -15,12 +17,14 @@ const Index = () => {
       <Header />
       <main>
         <Hero />
-        <FounderCredibility />
         <Problem />
-        <HowItWorks />
-        <WhatYouGet />
-        <Differentiation />
         <WhoIsFor />
+        <WhatYouGet />
+        <HowItWorks />
+        <Differentiation />
+        <Results />
+        <FounderCredibility />
+        <FAQ />
         <FinalCTA />
       </main>
       <Footer />
