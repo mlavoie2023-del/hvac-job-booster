@@ -149,66 +149,46 @@ const TechStackComparison = () => {
                 <svg className="absolute inset-0 w-full h-full" viewBox="0 0 100 80" preserveAspectRatio="xMidYMid meet">
                   <defs>
                     <linearGradient id="powerGrad" x1="0%" y1="50%" x2="100%" y2="50%">
-                      <stop offset="0%" stopColor="hsl(217 91% 60%)" stopOpacity="1" />
-                      <stop offset="50%" stopColor="hsl(190 80% 55%)" stopOpacity="1" />
-                      <stop offset="100%" stopColor="hsl(172 66% 50%)" stopOpacity="1" />
+                      <stop offset="0%" stopColor="hsl(217 91% 60%)" />
+                      <stop offset="100%" stopColor="hsl(172 66% 50%)" />
                     </linearGradient>
-                    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
-                      <feGaussianBlur stdDeviation="1.5" result="coloredBlur"/>
+                    <filter id="glow">
+                      <feGaussianBlur stdDeviation="2" result="blur"/>
                       <feMerge>
-                        <feMergeNode in="coloredBlur"/>
+                        <feMergeNode in="blur"/>
+                        <feMergeNode in="blur"/>
                         <feMergeNode in="SourceGraphic"/>
                       </feMerge>
                     </filter>
-                    <linearGradient id="flowGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-                      <stop offset="0%" stopColor="white" stopOpacity="0">
-                        <animate attributeName="offset" values="-0.3;1" dur="1.5s" repeatCount="indefinite" />
-                      </stop>
-                      <stop offset="15%" stopColor="white" stopOpacity="0.8">
-                        <animate attributeName="offset" values="-0.15;1.15" dur="1.5s" repeatCount="indefinite" />
-                      </stop>
-                      <stop offset="30%" stopColor="white" stopOpacity="0">
-                        <animate attributeName="offset" values="0;1.3" dur="1.5s" repeatCount="indefinite" />
-                      </stop>
-                    </linearGradient>
                   </defs>
                   
-                  {/* Outer glow line */}
+                  {/* Glow layer */}
+                  <line 
+                    x1="30" y1="40" 
+                    x2="70" y2="40" 
+                    stroke="url(#powerGrad)" 
+                    strokeWidth="6"
+                    strokeOpacity="0.4"
+                    strokeLinecap="round"
+                  />
+                  
+                  {/* Main thick line */}
                   <line 
                     x1="30" y1="40" 
                     x2="70" y2="40" 
                     stroke="url(#powerGrad)" 
                     strokeWidth="3"
-                    strokeOpacity="0.3"
-                    filter="url(#glow)"
-                  />
-                  
-                  {/* Main connection line */}
-                  <line 
-                    x1="30" y1="40" 
-                    x2="70" y2="40" 
-                    stroke="url(#powerGrad)" 
-                    strokeWidth="1.2"
                     strokeLinecap="round"
                     filter="url(#glow)"
                   />
                   
-                  {/* Animated flow effect */}
-                  <line 
-                    x1="30" y1="40" 
-                    x2="70" y2="40" 
-                    stroke="url(#flowGrad)" 
-                    strokeWidth="1.5"
-                    strokeLinecap="round"
-                  />
-                  
-                  {/* Connection endpoints - glowing dots */}
-                  <circle cx="30" cy="40" r="1.5" fill="hsl(217 91% 60%)" filter="url(#glow)">
-                    <animate attributeName="r" values="1.5;2;1.5" dur="2s" repeatCount="indefinite" />
+                  {/* Animated pulse traveling along the line */}
+                  <circle r="2" fill="white" filter="url(#glow)">
+                    <animateMotion dur="2s" repeatCount="indefinite">
+                      <mpath href="#connectionPath" />
+                    </animateMotion>
                   </circle>
-                  <circle cx="70" cy="40" r="1.5" fill="hsl(172 66% 50%)" filter="url(#glow)">
-                    <animate attributeName="r" values="1.5;2;1.5" dur="2s" repeatCount="indefinite" />
-                  </circle>
+                  <path id="connectionPath" d="M30,40 L70,40" fill="none" stroke="none" />
                 </svg>
                 
                 {/* Lavoie Systems Node */}
@@ -218,15 +198,15 @@ const TechStackComparison = () => {
                 >
                   <div className="flex flex-col items-center gap-1.5">
                     <div className="relative">
-                      <div className="absolute -inset-2 bg-primary/20 rounded-xl blur-lg" />
-                      <div className="relative p-2.5 sm:p-3 rounded-xl bg-primary/20 border-2 border-primary/50 shadow-lg">
-                        <Inbox className="h-5 w-5 sm:h-6 sm:w-6 text-primary" />
+                      <div className="absolute -inset-2 bg-primary/30 rounded-xl blur-lg" />
+                      <div className="relative p-3 sm:p-4 rounded-xl bg-primary/20 border-2 border-primary shadow-lg shadow-primary/20">
+                        <Inbox className="h-6 w-6 sm:h-7 sm:w-7 text-primary" />
                       </div>
                     </div>
-                    <span className="text-[9px] sm:text-[10px] text-primary font-semibold bg-background/80 px-1.5 py-0.5 rounded whitespace-nowrap">
+                    <span className="text-[10px] sm:text-xs text-primary font-semibold bg-background/90 px-2 py-1 rounded whitespace-nowrap">
                       Lavoie Systems
                     </span>
-                    <span className="text-[8px] sm:text-[9px] text-muted-foreground">
+                    <span className="text-[9px] sm:text-[10px] text-muted-foreground">
                       CRM & Automation
                     </span>
                   </div>
@@ -238,13 +218,16 @@ const TechStackComparison = () => {
                   style={{ left: '70%', top: '50%' }}
                 >
                   <div className="flex flex-col items-center gap-1.5">
-                    <div className="p-2.5 sm:p-3 rounded-xl bg-success/20 border-2 border-success/50 shadow-lg">
-                      <BarChart3 className="h-5 w-5 sm:h-6 sm:w-6 text-success" />
+                    <div className="relative">
+                      <div className="absolute -inset-2 bg-success/30 rounded-xl blur-lg" />
+                      <div className="relative p-3 sm:p-4 rounded-xl bg-success/20 border-2 border-success shadow-lg shadow-success/20">
+                        <BarChart3 className="h-6 w-6 sm:h-7 sm:w-7 text-success" />
+                      </div>
                     </div>
-                    <span className="text-[9px] sm:text-[10px] text-success font-semibold bg-background/80 px-1.5 py-0.5 rounded whitespace-nowrap">
+                    <span className="text-[10px] sm:text-xs text-success font-semibold bg-background/90 px-2 py-1 rounded whitespace-nowrap">
                       Planning Software
                     </span>
-                    <span className="text-[8px] sm:text-[9px] text-muted-foreground">
+                    <span className="text-[9px] sm:text-[10px] text-muted-foreground">
                       eMoney, RightCapital
                     </span>
                   </div>
