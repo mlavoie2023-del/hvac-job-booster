@@ -79,7 +79,7 @@ const Pricing = () => {
 
             <div className="mt-8 text-center">
               <Link to="/book" className="btn-primary px-8 py-4 text-lg">
-                Schedule Your Strategy Call
+                Schedule Your Discovery Call
               </Link>
             </div>
           </div>

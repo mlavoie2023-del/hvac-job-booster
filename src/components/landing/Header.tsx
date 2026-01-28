@@ -25,7 +25,7 @@ const Header = () => {
             asChild
           >
             <Link to="/book">
-              Schedule a Strategy Call
+              Schedule a Discovery Call
             </Link>
           </Button>
         </div>

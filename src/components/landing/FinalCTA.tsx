@@ -25,7 +25,7 @@ const FinalCTA = () => {
 
           <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link to="/book" className="btn-primary px-8 py-4 text-lg">
-              Schedule Your Strategy Call
+              Schedule Your Discovery Call
             </Link>
           </div>
 

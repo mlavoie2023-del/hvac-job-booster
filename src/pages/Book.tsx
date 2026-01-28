@@ -26,7 +26,7 @@ const Book = () => {
         <div className="mx-auto max-w-4xl">
           <div className="text-center mb-10">
             <h1 className="text-3xl font-bold text-foreground sm:text-4xl">
-              Schedule Your Strategy Call
+              Schedule Your Discovery Call
             </h1>
             <p className="mt-4 text-lg text-body">
               Let's discuss your practice and see if we're a good fit.
