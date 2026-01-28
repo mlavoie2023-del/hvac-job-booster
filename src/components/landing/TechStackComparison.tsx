@@ -1,14 +1,11 @@
 import { 
   Mail, 
   Calendar, 
-  MessageSquare, 
   FileSpreadsheet, 
-  Users, 
   BarChart3,
-  Share2,
   FormInput,
-  Megaphone,
-  Phone,
+  CreditCard,
+  FileSignature,
   Inbox,
   Check,
   type LucideIcon
@@ -22,27 +19,31 @@ interface Tool {
 }
 
 const beforeTools: Tool[] = [
-  { icon: Mail, label: "Mailchimp", x: 15, y: 12 },
-  { icon: Calendar, label: "Calendly", x: 50, y: 8 },
-  { icon: MessageSquare, label: "Slack", x: 85, y: 12 },
-  { icon: FileSpreadsheet, label: "Excel", x: 8, y: 35 },
-  { icon: Users, label: "HubSpot", x: 50, y: 38 },
-  { icon: Phone, label: "Twilio", x: 92, y: 35 },
-  { icon: Share2, label: "Hootsuite", x: 12, y: 58 },
-  { icon: FormInput, label: "Typeform", x: 50, y: 62 },
-  { icon: Megaphone, label: "Constant Contact", x: 88, y: 58 },
+  { icon: BarChart3, label: "Planning Software", x: 50, y: 10 },
+  { icon: FileSpreadsheet, label: "CRM / Spreadsheets", x: 15, y: 30 },
+  { icon: Calendar, label: "Calendar", x: 85, y: 30 },
+  { icon: Mail, label: "Email", x: 50, y: 45 },
+  { icon: FileSignature, label: "DocuSign", x: 15, y: 62 },
+  { icon: CreditCard, label: "Payments", x: 85, y: 62 },
+  { icon: FormInput, label: "Website Forms", x: 50, y: 75 },
 ];
 
-// Connection pairs for the web (indices into beforeTools)
+// Realistic connection pairs (indices into beforeTools)
+// Planning Software(0) ↔ CRM(1)
+// CRM(1) ↔ Email(3), Calendar(2), DocuSign(4)
+// Calendar(2) ↔ Email(3)
+// Email(3) ↔ Website Forms(6)
+// Payments(5) ↔ CRM(1)
+// Website Forms(6) ↔ CRM(1)
 const connections: [number, number][] = [
-  [0, 1], [0, 3], [0, 4],
-  [1, 2], [1, 4], [1, 5],
-  [2, 5], [2, 4],
-  [3, 4], [3, 6], [3, 7],
-  [4, 5], [4, 6], [4, 7], [4, 8],
-  [5, 8],
-  [6, 7],
-  [7, 8],
+  [0, 1],           // Planning Software → CRM
+  [1, 2],           // CRM → Calendar
+  [1, 3],           // CRM → Email
+  [1, 4],           // CRM → DocuSign
+  [1, 5],           // CRM → Payments
+  [1, 6],           // CRM → Website Forms
+  [2, 3],           // Calendar → Email
+  [3, 6],           // Email → Website Forms
 ];
 
 const TechStackComparison = () => {
