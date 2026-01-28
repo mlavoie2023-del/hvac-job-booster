@@ -147,7 +147,7 @@ const TechStackComparison = () => {
               <div className="relative flex-1 min-h-[320px]">
                 {/* Simple pulsing connection line */}
                 <div 
-                  className="absolute -translate-y-1/2 h-1.5 z-0 animate-pulse transition-all duration-300 hover:h-2 hover:shadow-[0_0_24px_4px_hsl(217_91%_60%/0.6),0_0_48px_8px_hsl(172_66%_50%/0.4)] cursor-pointer"
+                  className="absolute -translate-y-1/2 h-1.5 z-0 animate-pulse"
                   style={{
                     top: '42%',
                     left: '38%',
@@ -166,7 +166,7 @@ const TechStackComparison = () => {
                   <div className="flex flex-col items-center gap-1.5">
                     <div className="relative">
                       <div className="absolute -inset-2 bg-primary/30 rounded-xl blur-lg" />
-                      <div className="relative p-3 sm:p-4 rounded-xl bg-primary/20 border-2 border-primary shadow-lg shadow-primary/20">
+                      <div className="relative p-3 sm:p-4 rounded-xl bg-primary/20 border-2 border-primary shadow-lg shadow-primary/20 transition-all duration-300 hover:scale-110 hover:shadow-xl hover:shadow-primary/30 cursor-pointer">
                         <Inbox className="h-6 w-6 sm:h-7 sm:w-7 text-primary" />
                       </div>
                     </div>
@@ -187,7 +187,7 @@ const TechStackComparison = () => {
                   <div className="flex flex-col items-center gap-1.5">
                     <div className="relative">
                       <div className="absolute -inset-2 bg-success/30 rounded-xl blur-lg" />
-                      <div className="relative p-3 sm:p-4 rounded-xl bg-success/20 border-2 border-success shadow-lg shadow-success/20">
+                      <div className="relative p-3 sm:p-4 rounded-xl bg-success/20 border-2 border-success shadow-lg shadow-success/20 transition-all duration-300 hover:scale-110 hover:shadow-xl hover:shadow-success/30 cursor-pointer">
                         <BarChart3 className="h-6 w-6 sm:h-7 sm:w-7 text-success" />
                       </div>
                     </div>
