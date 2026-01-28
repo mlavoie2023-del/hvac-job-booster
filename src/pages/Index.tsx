@@ -5,7 +5,6 @@ import HowItWorks from "@/components/landing/HowItWorks";
 import WhatYouGet from "@/components/landing/WhatYouGet";
 import Differentiation from "@/components/landing/Differentiation";
 import WhoIsFor from "@/components/landing/WhoIsFor";
-import Testimonials from "@/components/landing/Testimonials";
 import FinalCTA from "@/components/landing/FinalCTA";
 import Footer from "@/components/landing/Footer";
 
@@ -20,7 +19,6 @@ const Index = () => {
         <WhatYouGet />
         <Differentiation />
         <WhoIsFor />
-        <Testimonials />
         <FinalCTA />
       </main>
       <Footer />
