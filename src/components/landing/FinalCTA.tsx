@@ -29,13 +29,6 @@ const FinalCTA = () => {
             </Link>
           </div>
 
-          <Link
-            to="/pricing"
-            className="mt-6 inline-block link-accent text-base"
-          >
-            Or learn more about pricing →
-          </Link>
-
           <p className="mt-8 text-sm text-muted-foreground">
             No staff required · No technical skills needed · Built in 3 weeks
           </p>

@@ -20,14 +20,11 @@ const Footer = () => {
 
           {/* Links */}
           <div className="flex flex-wrap justify-center gap-6">
-            <Link to="/pricing" className="link-accent text-sm">
-              Pricing
-            </Link>
             <a href="#how-it-works" className="link-accent text-sm">
               How It Works
             </a>
             <Link to="/book" className="link-accent text-sm">
-              Schedule Demo
+              Schedule a Strategy Call
             </Link>
             <Link to="/privacy" className="link-accent text-sm">
               Privacy
