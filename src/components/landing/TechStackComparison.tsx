@@ -10,7 +10,6 @@ import {
   Megaphone,
   Phone,
   Inbox,
-  ArrowRight,
   Check,
   type LucideIcon
 } from "lucide-react";
@@ -144,74 +143,66 @@ const TechStackComparison = () => {
               </span>
             </div>
             <div className="bg-card/50 rounded-2xl border border-primary/20 p-6 pt-10 min-h-[520px] sm:min-h-[480px] relative overflow-hidden shadow-[0_0_60px_-20px_hsl(217_91%_60%/0.2)] flex flex-col">
-              {/* Clean connection line */}
-              <svg className="absolute inset-0 w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid meet">
-                <defs>
-                  <linearGradient id="cleanGrad" x1="50%" y1="0%" x2="50%" y2="100%">
-                    <stop offset="0%" stopColor="hsl(217 91% 60%)" stopOpacity="0.8" />
-                    <stop offset="100%" stopColor="hsl(172 66% 50%)" stopOpacity="0.8" />
-                  </linearGradient>
-                </defs>
-                <line 
-                  x1="50" y1="35" 
-                  x2="50" y2="65" 
-                  stroke="url(#cleanGrad)" 
-                  strokeWidth="0.8" 
-                  strokeDasharray="2,1"
-                />
-              </svg>
-              
-              {/* Simple stack */}
-              <div className="relative z-10 flex flex-col items-center justify-center h-full gap-4 py-8">
-                {/* Lavoie CRM */}
-                <div className="flex flex-col items-center">
-                  <div className="relative">
-                    <div className="absolute -inset-3 bg-primary/10 rounded-2xl blur-xl" />
-                    <div className="relative bg-gradient-to-br from-primary/20 to-primary/5 border-2 border-primary/40 rounded-2xl p-4 sm:p-5">
-                      <div className="flex items-center justify-center gap-3">
-                        <div className="p-2 bg-primary/20 rounded-xl">
-                          <Inbox className="h-5 w-5 sm:h-6 sm:w-6 text-primary" />
-                        </div>
-                        <div>
-                          <p className="font-bold text-foreground text-sm sm:text-base">Lavoie Systems</p>
-                          <p className="text-[10px] sm:text-xs text-primary">CRM & Automation</p>
-                        </div>
+              {/* Diagram area */}
+              <div className="relative flex-1 min-h-[320px]">
+                {/* Clean connection line */}
+                <svg className="absolute inset-0 w-full h-full" viewBox="0 0 100 80" preserveAspectRatio="xMidYMid meet">
+                  <defs>
+                    <linearGradient id="cleanGrad" x1="0%" y1="50%" x2="100%" y2="50%">
+                      <stop offset="0%" stopColor="hsl(217 91% 60%)" stopOpacity="0.8" />
+                      <stop offset="100%" stopColor="hsl(172 66% 50%)" stopOpacity="0.8" />
+                    </linearGradient>
+                  </defs>
+                  <line 
+                    x1="30" y1="40" 
+                    x2="70" y2="40" 
+                    stroke="url(#cleanGrad)" 
+                    strokeWidth="0.8"
+                  />
+                </svg>
+                
+                {/* Lavoie Systems Node */}
+                <div
+                  className="absolute transform -translate-x-1/2 -translate-y-1/2 z-10"
+                  style={{ left: '30%', top: '50%' }}
+                >
+                  <div className="flex flex-col items-center gap-1.5">
+                    <div className="relative">
+                      <div className="absolute -inset-2 bg-primary/20 rounded-xl blur-lg" />
+                      <div className="relative p-2.5 sm:p-3 rounded-xl bg-primary/20 border-2 border-primary/50 shadow-lg">
+                        <Inbox className="h-5 w-5 sm:h-6 sm:w-6 text-primary" />
                       </div>
                     </div>
+                    <span className="text-[9px] sm:text-[10px] text-primary font-semibold bg-background/80 px-1.5 py-0.5 rounded whitespace-nowrap">
+                      Lavoie Systems
+                    </span>
+                    <span className="text-[8px] sm:text-[9px] text-muted-foreground">
+                      CRM & Automation
+                    </span>
                   </div>
-                  <p className="text-[10px] sm:text-xs text-muted-foreground mt-2 text-center max-w-[160px]">
-                    All client communication & marketing
-                  </p>
                 </div>
 
-                {/* Integration indicator */}
-                <div className="flex items-center gap-2 text-muted-foreground py-2">
-                  <ArrowRight className="h-4 w-4 text-primary animate-pulse" />
-                  <span className="text-[10px] sm:text-xs font-medium">Seamless Integration</span>
-                  <ArrowRight className="h-4 w-4 text-primary animate-pulse" />
-                </div>
-
-                {/* Financial Planning Software */}
-                <div className="flex flex-col items-center">
-                  <div className="bg-muted/50 border border-border rounded-2xl p-4 sm:p-5">
-                    <div className="flex items-center justify-center gap-3">
-                      <div className="p-2 bg-success/20 rounded-xl">
-                        <BarChart3 className="h-5 w-5 sm:h-6 sm:w-6 text-success" />
-                      </div>
-                      <div>
-                        <p className="font-bold text-foreground text-sm sm:text-base">Planning Software</p>
-                        <p className="text-[10px] sm:text-xs text-muted-foreground">eMoney, RightCapital, etc.</p>
-                      </div>
+                {/* Planning Software Node */}
+                <div
+                  className="absolute transform -translate-x-1/2 -translate-y-1/2 z-10"
+                  style={{ left: '70%', top: '50%' }}
+                >
+                  <div className="flex flex-col items-center gap-1.5">
+                    <div className="p-2.5 sm:p-3 rounded-xl bg-success/20 border-2 border-success/50 shadow-lg">
+                      <BarChart3 className="h-5 w-5 sm:h-6 sm:w-6 text-success" />
                     </div>
+                    <span className="text-[9px] sm:text-[10px] text-success font-semibold bg-background/80 px-1.5 py-0.5 rounded whitespace-nowrap">
+                      Planning Software
+                    </span>
+                    <span className="text-[8px] sm:text-[9px] text-muted-foreground">
+                      eMoney, RightCapital
+                    </span>
                   </div>
-                  <p className="text-[10px] sm:text-xs text-muted-foreground mt-2 text-center max-w-[160px]">
-                    Financial planning & analysis
-                  </p>
                 </div>
               </div>
               
               {/* Benefits */}
-              <div className="space-y-1.5 bg-background/60 backdrop-blur-sm rounded-lg p-3 mt-auto">
+              <div className="space-y-1.5 bg-background/60 backdrop-blur-sm rounded-lg p-3 mt-4">
                 <p className="text-xs sm:text-sm text-muted-foreground flex items-center gap-2">
                   <Check className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-success" /> Everything in one place
                 </p>
