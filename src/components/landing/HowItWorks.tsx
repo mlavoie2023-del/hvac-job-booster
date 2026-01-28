@@ -91,7 +91,7 @@ const HowItWorks = () => {
 
         {/* Solo planner callout */}
         <p className="mx-auto mt-12 max-w-lg text-center text-muted-foreground">
-          No technical skills required. No staff needed. We handle the build—you just use it.
+          No technical skills required. No staff needed. I handle everything so you can just use it.
         </p>
       </div>
     </section>

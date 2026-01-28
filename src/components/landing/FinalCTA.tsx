@@ -20,7 +20,7 @@ const FinalCTA = () => {
           </h2>
 
           <p className="mx-auto mt-4 max-w-xl text-lg text-body">
-            Let's build a system that runs your practice—so you can focus on planning.
+            Let's build a system that runs your practice so you can focus on planning.
           </p>
 
           <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
