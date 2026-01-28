@@ -1,30 +1,19 @@
 import Header from "@/components/landing/Header";
-import Hero from "@/components/landing/Hero";
-import Problem from "@/components/landing/Problem";
-
-import Features from "@/components/landing/Features";
-import HowItWorks from "@/components/landing/HowItWorks";
-import WhoIsFor from "@/components/landing/WhoIsFor";
-import Testimonials from "@/components/landing/Testimonials";
-import FinalCTA from "@/components/landing/FinalCTA";
-import Footer from "@/components/landing/Footer";
-
 
 const Index = () => {
   return (
     <div className="min-h-screen">
       <Header />
-      <main>
-        <Hero />
-        <Problem />
-        <Features />
-        <HowItWorks />
-        <WhoIsFor />
-        <Testimonials />
-        <FinalCTA />
+      <main className="section-container py-20">
+        <div className="text-center">
+          <h1 className="text-4xl font-bold text-foreground">
+            Welcome
+          </h1>
+          <p className="mt-4 text-muted-foreground">
+            Ready for your new project. What would you like to build?
+          </p>
+        </div>
       </main>
-      <Footer />
-      
     </div>
   );
 };
