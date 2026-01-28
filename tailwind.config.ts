@@ -128,6 +128,30 @@ export default {
           "0%": { opacity: "0", transform: "translateY(10px) scale(0.95)" },
           "100%": { opacity: "1", transform: "translateY(0) scale(1)" },
         },
+        // Dashboard visualization animations
+        "slide-in-contact": {
+          "0%": { opacity: "0", transform: "translateX(-20px)" },
+          "15%": { opacity: "1", transform: "translateX(0)" },
+          "85%": { opacity: "1", transform: "translateX(0)" },
+          "100%": { opacity: "0", transform: "translateX(0)" },
+        },
+        "task-complete": {
+          "0%": { opacity: "0.3" },
+          "10%": { opacity: "1" },
+          "90%": { opacity: "1" },
+          "100%": { opacity: "0.3" },
+        },
+        "check-draw": {
+          "0%": { opacity: "0", strokeDashoffset: "20" },
+          "50%": { opacity: "1", strokeDashoffset: "0" },
+          "100%": { opacity: "1", strokeDashoffset: "0" },
+        },
+        "pipeline-card": {
+          "0%": { opacity: "0", transform: "translateY(-10px)" },
+          "20%": { opacity: "1", transform: "translateY(0)" },
+          "80%": { opacity: "1", transform: "translateY(0)" },
+          "100%": { opacity: "0", transform: "translateY(10px)" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -142,6 +166,11 @@ export default {
         "typing-dot": "typing-dot 1.4s ease-in-out infinite",
         "float": "float 6s ease-in-out infinite",
         "message-in": "message-in 0.4s ease-out forwards",
+        // Dashboard visualization animations
+        "slide-in-contact": "slide-in-contact 6s ease-in-out infinite",
+        "task-complete": "task-complete 8s ease-in-out infinite",
+        "check-draw": "check-draw 2s ease-out forwards",
+        "pipeline-card": "pipeline-card 12s ease-in-out infinite",
       },
     },
   },
