@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 import { UserPlus, Mail, Calendar, UserCheck } from "lucide-react";
 
-// Sarah's profile image - using a professional-looking placeholder
-const SARAH_AVATAR = "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop&crop=face";
+// Sarah's profile image - cropped to center on face
+const SARAH_AVATAR = "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop&crop=faces&facepad=2";
 
 const stages = [
   {
