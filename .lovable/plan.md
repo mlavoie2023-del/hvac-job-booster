@@ -1,61 +1,80 @@
 
 
-## Ghosted CRM Dashboard Animation
+## Animated Workflow Diagram Below Hero
 
-Replace the current abstract network visualization with a subtle, ghosted CRM dashboard that shows automation in action. The animation will be positioned behind the headlines with very low opacity to add visual interest without distracting from the text.
+Replace the ghosted background with a **prominent, foreground workflow visualization** positioned directly below the headline and CTAs. This will be a clear, visually appealing diagram showing the automation flow for a solo financial planner.
 
-### Visual Design
+### Visual Layout
 
-The dashboard will feature:
-- **Contact cards** sliding in from the left (representing new leads entering the system)
-- **Task items** that auto-complete with checkmarks animating in
-- **Email/notification indicators** that pulse subtly
-- **Pipeline columns** showing cards moving through stages
-
-All elements will be:
-- Very low opacity (15-20%) to stay in the background
-- Rendered with the electric blue accent color scheme
-- Smooth, slow animations (3-6 second cycles) to avoid being distracting
-- Blurred slightly to create depth and keep focus on the headlines
+```text
++---------------------------------------------------------------+
+|                                                               |
+|    Custom CRM & Marketing Automation (Headline)               |
+|    For Solo Financial Planners                                |
+|                                                               |
+|    The done-for-you automation system... (Subheadline)        |
+|                                                               |
+|    [See How It Works]  [Schedule a Strategy Call ->]          |
+|                                                               |
+|                           |                                   |
+|                           v                                   |
+|                                                               |
+|   +--------+     +--------+     +--------+     +--------+     |
+|   |  Lead  | --> | Email  | --> |Meeting | --> | Client |     |
+|   |  icon  |     | icon   |     | icon   |     | icon   |     |
+|   |        |     |        |     |        |     |        |     |
+|   | "New   |     |"Auto   |     |"Booked"|     |"Ongoing|     |
+|   |  Lead" |     | Nurture|     |        |     | Care"  |     |
+|   +--------+     +--------+     +--------+     +--------+     |
+|        |              |              |              |         |
+|        +--- animated flow lines / data packets ---+          |
+|                                                               |
++---------------------------------------------------------------+
+```
 
 ### Animation Elements
 
-1. **Sliding Contact Cards** (left side)
-   - Small rounded rectangles representing client cards
-   - Slide in from left, pause briefly, then fade
-   - Staggered timing for natural flow
+1. **Flow Line Animation**
+   - Dashed or gradient lines connecting the 4 stages
+   - Animated "data packets" (small dots or pulses) flowing left to right
+   - Continuous, smooth loop
 
-2. **Auto-Completing Tasks** (center-left)
-   - Task list items with checkboxes
-   - Checkmarks animate in sequentially
-   - Subtle success pulse on completion
+2. **Stage Cards**
+   - Each card has an icon + label + brief descriptor
+   - Subtle glow effect on the electric blue theme
+   - Cards fade in sequentially on page load
 
-3. **Pipeline/Kanban Columns** (right side)
-   - 3-4 vertical columns representing stages
-   - Cards float between columns
-   - Shows automation moving leads through funnel
-
-4. **Pulsing Notification Dots** (scattered)
-   - Small dots that pulse with the primary blue glow
-   - Represent emails sent, reminders triggered
+3. **Stages (Financial Planner Specific)**
+   - **New Lead**: User icon - "Someone reaches out"
+   - **Auto Nurture**: Mail icon - "Automated follow-up"
+   - **Booked**: Calendar icon - "Meeting scheduled"
+   - **Client**: UserCheck icon - "Onboarded & happy"
 
 ### Technical Implementation
 
-**File**: `src/components/landing/Hero.tsx`
+**Files to modify:**
+- `src/components/landing/Hero.tsx` - Restructure layout, remove background visualization, add foreground component
+- `src/components/landing/DashboardVisualization.tsx` - Replace entirely with new `HeroWorkflow.tsx` component
 
-**Changes**:
-1. Replace the `WorkflowVisualization` component entirely with a new `DashboardVisualization` component
-2. Use CSS animations defined in tailwind.config.ts (already has `message-in`, `float`, `pulse-soft`, `glow-pulse`)
-3. Keep the radial glow backdrop for depth
-4. Use absolute positioning with flexbox to arrange dashboard elements
-5. Apply `opacity-15 sm:opacity-20` to keep it subtle
-6. Add slight blur (`blur-[1px]`) for depth effect
+**New component**: `src/components/landing/HeroWorkflow.tsx`
+- Four stage cards in a horizontal row (stacks vertically on mobile)
+- Animated connecting lines with flowing dots
+- Uses Lucide icons: `UserPlus`, `Mail`, `Calendar`, `UserCheck`
+- Full opacity, prominent positioning
+- Animated on scroll-into-view
 
-### Keeping Headlines Prominent
+**Hero.tsx Changes:**
+- Remove the absolute-positioned background `DashboardVisualization`
+- Add `HeroWorkflow` component **inside** the content container, below the CTAs
+- Add appropriate spacing (`mt-16` or similar)
 
-- Dashboard positioned with `z-0`, content with `z-10` (relative positioning already in place)
-- Very low opacity (15-20%)
-- Slow animation speeds (nothing jarring)
-- No bright flashes or sudden movements
-- Elements fade in/out rather than pop
+**Styling:**
+- Cards with `bg-card border border-primary/30` for visibility
+- Electric blue accent for icons and glow
+- Smooth fade-in animations staggered by 150ms per card
+- Flowing dot animation along the connector lines
+
+**Cleanup:**
+- Delete `DashboardVisualization.tsx` (no longer needed)
+- Remove unused animations from `tailwind.config.ts` if desired (optional)
 
