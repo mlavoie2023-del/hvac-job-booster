@@ -77,34 +77,148 @@ const Hero = () => {
   );
 };
 
-// Abstract workflow visualization component
+// Enhanced workflow visualization with animated particles
 const WorkflowVisualization = () => {
   return (
-    <div className="absolute inset-0 flex items-center justify-center opacity-20">
+    <div className="absolute inset-0 flex items-center justify-center opacity-25 sm:opacity-30">
+      {/* Radial glow backdrop */}
+      <div 
+        className="absolute w-[600px] h-[400px] rounded-full blur-3xl"
+        style={{
+          background: "radial-gradient(ellipse at center, hsl(217 91% 60% / 0.15), transparent 70%)"
+        }}
+      />
+      
       <svg
-        className="w-full h-full max-w-6xl"
+        className="w-full h-full max-w-5xl"
         viewBox="0 0 800 400"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
       >
-        {/* Nodes */}
-        <circle cx="150" cy="200" r="8" fill="hsl(217 91% 60%)" className="animate-pulse" />
-        <circle cx="300" cy="120" r="6" fill="hsl(0 0% 40%)" />
-        <circle cx="300" cy="280" r="6" fill="hsl(0 0% 40%)" />
-        <circle cx="450" cy="200" r="10" fill="hsl(217 91% 60%)" className="animate-pulse" style={{ animationDelay: "0.5s" }} />
-        <circle cx="550" cy="100" r="5" fill="hsl(0 0% 40%)" />
-        <circle cx="550" cy="300" r="5" fill="hsl(0 0% 40%)" />
-        <circle cx="650" cy="200" r="8" fill="hsl(217 91% 60%)" className="animate-pulse" style={{ animationDelay: "1s" }} />
+        <defs>
+          {/* Glow filter for primary nodes */}
+          <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+            <feGaussianBlur stdDeviation="4" result="coloredBlur" />
+            <feMerge>
+              <feMergeNode in="coloredBlur" />
+              <feMergeNode in="SourceGraphic" />
+            </feMerge>
+          </filter>
+          
+          {/* Gradient for primary connections */}
+          <linearGradient id="lineGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stopColor="hsl(217 91% 60% / 0.2)" />
+            <stop offset="50%" stopColor="hsl(217 91% 60% / 0.6)" />
+            <stop offset="100%" stopColor="hsl(217 91% 60% / 0.2)" />
+          </linearGradient>
+          
+          {/* Particle gradient */}
+          <radialGradient id="particleGlow">
+            <stop offset="0%" stopColor="hsl(217 91% 70%)" />
+            <stop offset="100%" stopColor="hsl(217 91% 60% / 0)" />
+          </radialGradient>
+        </defs>
 
-        {/* Connections */}
-        <line x1="150" y1="200" x2="300" y2="120" stroke="hsl(0 0% 30%)" strokeWidth="1" />
-        <line x1="150" y1="200" x2="300" y2="280" stroke="hsl(0 0% 30%)" strokeWidth="1" />
-        <line x1="300" y1="120" x2="450" y2="200" stroke="hsl(217 91% 60% / 0.5)" strokeWidth="1.5" />
-        <line x1="300" y1="280" x2="450" y2="200" stroke="hsl(217 91% 60% / 0.5)" strokeWidth="1.5" />
-        <line x1="450" y1="200" x2="550" y2="100" stroke="hsl(0 0% 30%)" strokeWidth="1" />
-        <line x1="450" y1="200" x2="550" y2="300" stroke="hsl(0 0% 30%)" strokeWidth="1" />
-        <line x1="550" y1="100" x2="650" y2="200" stroke="hsl(217 91% 60% / 0.5)" strokeWidth="1.5" />
-        <line x1="550" y1="300" x2="650" y2="200" stroke="hsl(217 91% 60% / 0.5)" strokeWidth="1.5" />
+        {/* Secondary connections (subtle) */}
+        <line x1="120" y1="200" x2="220" y2="140" stroke="hsl(0 0% 25%)" strokeWidth="1" />
+        <line x1="120" y1="200" x2="220" y2="260" stroke="hsl(0 0% 25%)" strokeWidth="1" />
+        <line x1="580" y1="140" x2="680" y2="200" stroke="hsl(0 0% 25%)" strokeWidth="1" />
+        <line x1="580" y1="260" x2="680" y2="200" stroke="hsl(0 0% 25%)" strokeWidth="1" />
+
+        {/* Primary connections (glowing paths) */}
+        <path 
+          d="M 120 200 Q 270 120 400 200" 
+          stroke="url(#lineGradient)" 
+          strokeWidth="2" 
+          fill="none"
+          className="animate-pulse-soft"
+        />
+        <path 
+          d="M 120 200 Q 270 280 400 200" 
+          stroke="url(#lineGradient)" 
+          strokeWidth="2" 
+          fill="none"
+          className="animate-pulse-soft"
+          style={{ animationDelay: "0.5s" }}
+        />
+        <path 
+          d="M 400 200 Q 530 120 680 200" 
+          stroke="url(#lineGradient)" 
+          strokeWidth="2" 
+          fill="none"
+          className="animate-pulse-soft"
+          style={{ animationDelay: "1s" }}
+        />
+        <path 
+          d="M 400 200 Q 530 280 680 200" 
+          stroke="url(#lineGradient)" 
+          strokeWidth="2" 
+          fill="none"
+          className="animate-pulse-soft"
+          style={{ animationDelay: "1.5s" }}
+        />
+
+        {/* Animated particles along paths */}
+        <circle r="3" fill="hsl(217 91% 70%)" filter="url(#glow)">
+          <animateMotion dur="3s" repeatCount="indefinite">
+            <mpath href="#path1" />
+          </animateMotion>
+        </circle>
+        <path id="path1" d="M 120 200 Q 270 120 400 200" fill="none" stroke="none" />
+        
+        <circle r="3" fill="hsl(217 91% 70%)" filter="url(#glow)">
+          <animateMotion dur="3s" repeatCount="indefinite" begin="0.75s">
+            <mpath href="#path2" />
+          </animateMotion>
+        </circle>
+        <path id="path2" d="M 120 200 Q 270 280 400 200" fill="none" stroke="none" />
+        
+        <circle r="3" fill="hsl(217 91% 70%)" filter="url(#glow)">
+          <animateMotion dur="3s" repeatCount="indefinite" begin="1.5s">
+            <mpath href="#path3" />
+          </animateMotion>
+        </circle>
+        <path id="path3" d="M 400 200 Q 530 120 680 200" fill="none" stroke="none" />
+        
+        <circle r="3" fill="hsl(217 91% 70%)" filter="url(#glow)">
+          <animateMotion dur="3s" repeatCount="indefinite" begin="2.25s">
+            <mpath href="#path4" />
+          </animateMotion>
+        </circle>
+        <path id="path4" d="M 400 200 Q 530 280 680 200" fill="none" stroke="none" />
+
+        {/* Secondary nodes */}
+        <circle cx="220" cy="140" r="4" fill="hsl(0 0% 35%)" />
+        <circle cx="220" cy="260" r="4" fill="hsl(0 0% 35%)" />
+        <circle cx="580" cy="140" r="4" fill="hsl(0 0% 35%)" />
+        <circle cx="580" cy="260" r="4" fill="hsl(0 0% 35%)" />
+
+        {/* Primary hub nodes with glow */}
+        <circle 
+          cx="120" cy="200" r="10" 
+          fill="hsl(217 91% 60%)" 
+          filter="url(#glow)"
+          className="animate-glow-pulse"
+        />
+        <circle 
+          cx="400" cy="200" r="14" 
+          fill="hsl(217 91% 60%)" 
+          filter="url(#glow)"
+          className="animate-glow-pulse"
+          style={{ animationDelay: "0.7s" }}
+        />
+        <circle 
+          cx="680" cy="200" r="10" 
+          fill="hsl(217 91% 60%)" 
+          filter="url(#glow)"
+          className="animate-glow-pulse"
+          style={{ animationDelay: "1.4s" }}
+        />
+
+        {/* Inner glow rings on primary nodes */}
+        <circle cx="120" cy="200" r="6" fill="hsl(217 91% 70%)" />
+        <circle cx="400" cy="200" r="9" fill="hsl(217 91% 70%)" />
+        <circle cx="680" cy="200" r="6" fill="hsl(217 91% 70%)" />
       </svg>
     </div>
   );
