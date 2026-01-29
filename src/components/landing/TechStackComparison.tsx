@@ -74,12 +74,7 @@ const TechStackComparison = () => {
               <div className="relative flex-1 min-h-[320px]">
                 {/* Connection lines SVG */}
                 <svg className="absolute inset-0 w-full h-full" viewBox="0 0 100 80" preserveAspectRatio="xMidYMid meet">
-                  <defs>
-                    <linearGradient id="lineGradRed" x1="0%" y1="0%" x2="100%" y2="100%">
-                      <stop offset="0%" stopColor="hsl(0 72% 50%)" stopOpacity="0.7" />
-                      <stop offset="100%" stopColor="hsl(0 72% 50%)" stopOpacity="0.4" />
-                    </linearGradient>
-                  </defs>
+                  {/* Connection lines */}
                   {connections.map(([from, to], index) => (
                     <line
                       key={index}
@@ -88,9 +83,22 @@ const TechStackComparison = () => {
                       x2={beforeTools[to].x}
                       y2={beforeTools[to].y}
                       stroke="hsl(0 72% 50%)"
-                      strokeWidth="0.6"
+                      strokeWidth="0.5"
+                      strokeOpacity="0.4"
+                    />
+                  ))}
+                  {/* Connection nodes at each tool */}
+                  {beforeTools.map((tool, index) => (
+                    <circle
+                      key={index}
+                      cx={tool.x}
+                      cy={tool.y}
+                      r="2.5"
+                      fill="hsl(0 72% 50%)"
+                      fillOpacity="0.3"
+                      stroke="hsl(0 72% 50%)"
+                      strokeWidth="0.4"
                       strokeOpacity="0.5"
-                      strokeDasharray="1.5 1"
                     />
                   ))}
                 </svg>
@@ -108,8 +116,8 @@ const TechStackComparison = () => {
                       }}
                     >
                       <div className="flex flex-col items-center gap-1.5">
-                        <div className="p-2.5 sm:p-3 rounded-xl bg-muted/80 border border-border shadow-lg group-hover:border-destructive/50 transition-colors">
-                          <IconComponent className="h-4 w-4 sm:h-5 sm:w-5 text-muted-foreground" />
+                        <div className="p-2.5 sm:p-3 rounded-xl bg-muted border border-border shadow-lg group-hover:border-destructive/50 transition-colors">
+                          <IconComponent className="h-4 w-4 sm:h-5 sm:w-5 text-foreground/70" />
                         </div>
                         <span className="text-[9px] sm:text-[10px] text-muted-foreground font-medium bg-background/80 px-1.5 py-0.5 rounded whitespace-nowrap">
                           {tool.label}
