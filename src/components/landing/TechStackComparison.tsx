@@ -78,7 +78,8 @@ const TechStackComparison = () => {
                       y2={beforeTools[to].y}
                       stroke="hsl(0 72% 50%)"
                       strokeWidth="0.5"
-                      strokeOpacity="0.5"
+                      strokeOpacity="0.6"
+                      strokeDasharray="1.5 1"
                     />
                   ))}
                 </svg>
