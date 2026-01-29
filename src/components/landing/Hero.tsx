@@ -42,8 +42,8 @@ const Hero = () => {
               isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
             }`}
           >
-            Custom CRM & Marketing Automation{" "}
-            <span className="gradient-text">For Solo Financial Planners</span>
+            A simplified tech stack{" "}
+            <span className="gradient-text">for solo financial planners</span>
           </h1>
 
           {/* Subheadline */}
