@@ -71,9 +71,9 @@ const TechStackComparison = () => {
             </div>
             <div className="bg-card/50 rounded-2xl border border-border p-6 pt-10 min-h-[520px] sm:min-h-[480px] relative overflow-hidden flex flex-col">
               {/* Web diagram area */}
-              <div className="relative flex-1 min-h-[320px]">
-                {/* Connection lines SVG */}
-                <svg className="absolute inset-0 w-full h-full z-0" viewBox="0 0 100 80" preserveAspectRatio="xMidYMid meet">
+              <div className="relative flex-1 min-h-[320px] isolate">
+                {/* Connection lines SVG - rendered first, sits behind */}
+                <svg className="absolute inset-0 w-full h-full" style={{ zIndex: 1 }} viewBox="0 0 100 80" preserveAspectRatio="xMidYMid meet">
                   {connections.map(([from, to], index) => (
                     <line
                       key={index}
@@ -88,23 +88,24 @@ const TechStackComparison = () => {
                   ))}
                 </svg>
                 
-                {/* Tool nodes */}
+                {/* Tool nodes - rendered after, sits on top */}
                 {beforeTools.map((tool, index) => {
                   const IconComponent = tool.icon;
                   return (
                     <div
                       key={index}
-                      className="absolute transform -translate-x-1/2 -translate-y-1/2 group z-20"
+                      className="absolute transform -translate-x-1/2 -translate-y-1/2 group"
                       style={{
                         left: `${tool.x}%`,
                         top: `${(tool.y / 80) * 100}%`,
+                        zIndex: 10,
                       }}
                     >
                       <div className="flex flex-col items-center gap-1.5">
-                        <div className="p-2.5 sm:p-3 rounded-xl bg-card border border-border shadow-lg group-hover:border-destructive/50 transition-colors">
+                        <div className="p-2.5 sm:p-3 rounded-xl bg-[hsl(240_10%_10%)] border border-border shadow-lg group-hover:border-destructive/50 transition-colors">
                           <IconComponent className="h-4 w-4 sm:h-5 sm:w-5 text-foreground/80" />
                         </div>
-                        <span className="text-[9px] sm:text-[10px] text-muted-foreground font-medium bg-background/80 px-1.5 py-0.5 rounded whitespace-nowrap">
+                        <span className="text-[9px] sm:text-[10px] text-muted-foreground font-medium bg-background px-1.5 py-0.5 rounded whitespace-nowrap">
                           {tool.label}
                         </span>
                       </div>
