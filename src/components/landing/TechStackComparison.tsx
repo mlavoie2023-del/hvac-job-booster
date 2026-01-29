@@ -74,7 +74,6 @@ const TechStackComparison = () => {
               <div className="relative flex-1 min-h-[320px]">
                 {/* Connection lines SVG */}
                 <svg className="absolute inset-0 w-full h-full" viewBox="0 0 100 80" preserveAspectRatio="xMidYMid meet">
-                  {/* Connection lines */}
                   {connections.map(([from, to], index) => (
                     <line
                       key={index}
@@ -84,20 +83,6 @@ const TechStackComparison = () => {
                       y2={beforeTools[to].y}
                       stroke="hsl(0 72% 50%)"
                       strokeWidth="0.5"
-                      strokeOpacity="0.4"
-                    />
-                  ))}
-                  {/* Connection nodes at each tool */}
-                  {beforeTools.map((tool, index) => (
-                    <circle
-                      key={index}
-                      cx={tool.x}
-                      cy={tool.y}
-                      r="2.5"
-                      fill="hsl(0 72% 50%)"
-                      fillOpacity="0.3"
-                      stroke="hsl(0 72% 50%)"
-                      strokeWidth="0.4"
                       strokeOpacity="0.5"
                     />
                   ))}
