@@ -18,32 +18,30 @@ interface Tool {
   y: number;
 }
 
+// CRM is at center (index 0), other tools radiate outward
 const beforeTools: Tool[] = [
-  { icon: BarChart3, label: "Planning Software", x: 50, y: 10 },
-  { icon: FileSpreadsheet, label: "CRM / Spreadsheets", x: 15, y: 30 },
-  { icon: Calendar, label: "Calendar", x: 85, y: 30 },
-  { icon: Mail, label: "Email", x: 50, y: 45 },
-  { icon: FileSignature, label: "DocuSign", x: 15, y: 62 },
-  { icon: CreditCard, label: "Payments", x: 85, y: 62 },
-  { icon: FormInput, label: "Website Forms", x: 50, y: 75 },
+  { icon: FileSpreadsheet, label: "CRM / Spreadsheets", x: 50, y: 42 }, // CENTER
+  { icon: BarChart3, label: "Planning Software", x: 50, y: 12 },        // Top
+  { icon: Calendar, label: "Calendar", x: 82, y: 24 },                  // Top-right
+  { icon: Mail, label: "Email", x: 82, y: 58 },                         // Bottom-right
+  { icon: FormInput, label: "Website Forms", x: 50, y: 72 },            // Bottom
+  { icon: CreditCard, label: "Payments", x: 18, y: 58 },                // Bottom-left
+  { icon: FileSignature, label: "DocuSign", x: 18, y: 24 },             // Top-left
 ];
 
-// Realistic connection pairs (indices into beforeTools)
-// Planning Software(0) ↔ CRM(1)
-// CRM(1) ↔ Email(3), Calendar(2), DocuSign(4)
-// Calendar(2) ↔ Email(3)
-// Email(3) ↔ Website Forms(6)
-// Payments(5) ↔ CRM(1)
-// Website Forms(6) ↔ CRM(1)
+// CRM (0) is the hub - connects to all surrounding tools
+// Some outer tools also connect to each other
 const connections: [number, number][] = [
-  [0, 1],           // Planning Software → CRM
-  [1, 2],           // CRM → Calendar
-  [1, 3],           // CRM → Email
-  [1, 4],           // CRM → DocuSign
-  [1, 5],           // CRM → Payments
-  [1, 6],           // CRM → Website Forms
+  [0, 1],           // CRM → Planning Software
+  [0, 2],           // CRM → Calendar
+  [0, 3],           // CRM → Email
+  [0, 4],           // CRM → Website Forms
+  [0, 5],           // CRM → Payments
+  [0, 6],           // CRM → DocuSign
+  [1, 2],           // Planning Software → Calendar
   [2, 3],           // Calendar → Email
-  [3, 6],           // Email → Website Forms
+  [3, 4],           // Email → Website Forms
+  [5, 6],           // Payments → DocuSign
 ];
 
 const TechStackComparison = () => {
@@ -78,8 +76,8 @@ const TechStackComparison = () => {
                 <svg className="absolute inset-0 w-full h-full" viewBox="0 0 100 80" preserveAspectRatio="xMidYMid meet">
                   <defs>
                     <linearGradient id="lineGradRed" x1="0%" y1="0%" x2="100%" y2="100%">
-                      <stop offset="0%" stopColor="hsl(0 84% 60%)" stopOpacity="0.4" />
-                      <stop offset="100%" stopColor="hsl(0 84% 60%)" stopOpacity="0.1" />
+                      <stop offset="0%" stopColor="hsl(0 72% 50%)" stopOpacity="0.7" />
+                      <stop offset="100%" stopColor="hsl(0 72% 50%)" stopOpacity="0.4" />
                     </linearGradient>
                   </defs>
                   {connections.map(([from, to], index) => (
@@ -89,9 +87,10 @@ const TechStackComparison = () => {
                       y1={beforeTools[from].y}
                       x2={beforeTools[to].x}
                       y2={beforeTools[to].y}
-                      stroke="url(#lineGradRed)"
-                      strokeWidth="0.4"
-                      className="opacity-60"
+                      stroke="hsl(0 72% 50%)"
+                      strokeWidth="0.6"
+                      strokeOpacity="0.5"
+                      strokeDasharray="1.5 1"
                     />
                   ))}
                 </svg>
