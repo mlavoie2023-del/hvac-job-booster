@@ -18,12 +18,12 @@ const Index = () => {
       <main>
         <Hero />
         <TechStackComparison />
-        <Problem />
-        <WhoIsFor />
         <WhatYouGet />
         <HowItWorks />
-        <Differentiation />
         <FounderCredibility />
+        <Problem />
+        <WhoIsFor />
+        <Differentiation />
         <FAQ />
         <FinalCTA />
       </main>
