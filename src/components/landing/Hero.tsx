@@ -42,8 +42,8 @@ const Hero = () => {
               isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
             }`}
           >
-            A simplified tech stack{" "}
-            <span className="gradient-text">for solo financial planners</span>
+            A Simplified Tech Stack{" "}
+            <span className="gradient-text">For Solo Financial Planners</span>
           </h1>
 
           {/* Subheadline */}
