@@ -29,8 +29,7 @@ const beforeTools: Tool[] = [
   { icon: FileSignature, label: "DocuSign", x: 18, y: 24 },             // Top-left
 ];
 
-// CRM (0) is the hub - connects to all surrounding tools
-// Some outer tools also connect to each other
+// All tools connect only to CRM (index 0) - hub and spoke pattern
 const connections: [number, number][] = [
   [0, 1],           // CRM → Planning Software
   [0, 2],           // CRM → Calendar
@@ -38,10 +37,6 @@ const connections: [number, number][] = [
   [0, 4],           // CRM → Website Forms
   [0, 5],           // CRM → Payments
   [0, 6],           // CRM → DocuSign
-  [1, 2],           // Planning Software → Calendar
-  [2, 3],           // Calendar → Email
-  [3, 4],           // Email → Website Forms
-  [5, 6],           // Payments → DocuSign
 ];
 
 const TechStackComparison = () => {
