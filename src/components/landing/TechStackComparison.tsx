@@ -73,7 +73,7 @@ const TechStackComparison = () => {
               {/* Web diagram area */}
               <div className="relative flex-1 min-h-[320px]">
                 {/* Connection lines SVG */}
-                <svg className="absolute inset-0 w-full h-full" viewBox="0 0 100 80" preserveAspectRatio="xMidYMid meet">
+                <svg className="absolute inset-0 w-full h-full z-0" viewBox="0 0 100 80" preserveAspectRatio="xMidYMid meet">
                   {connections.map(([from, to], index) => (
                     <line
                       key={index}
@@ -94,15 +94,15 @@ const TechStackComparison = () => {
                   return (
                     <div
                       key={index}
-                      className="absolute transform -translate-x-1/2 -translate-y-1/2 group z-10"
+                      className="absolute transform -translate-x-1/2 -translate-y-1/2 group z-20"
                       style={{
                         left: `${tool.x}%`,
                         top: `${(tool.y / 80) * 100}%`,
                       }}
                     >
                       <div className="flex flex-col items-center gap-1.5">
-                        <div className="p-2.5 sm:p-3 rounded-xl bg-muted border border-border shadow-lg group-hover:border-destructive/50 transition-colors">
-                          <IconComponent className="h-4 w-4 sm:h-5 sm:w-5 text-foreground/70" />
+                        <div className="p-2.5 sm:p-3 rounded-xl bg-card border border-border shadow-lg group-hover:border-destructive/50 transition-colors">
+                          <IconComponent className="h-4 w-4 sm:h-5 sm:w-5 text-foreground/80" />
                         </div>
                         <span className="text-[9px] sm:text-[10px] text-muted-foreground font-medium bg-background/80 px-1.5 py-0.5 rounded whitespace-nowrap">
                           {tool.label}
