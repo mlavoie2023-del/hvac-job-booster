@@ -17,10 +17,10 @@ const Index = () => {
       <Header />
       <main>
         <Hero />
+        <TechStackComparison />
         <Problem />
         <WhoIsFor />
         <WhatYouGet />
-        <TechStackComparison />
         <HowItWorks />
         <Differentiation />
         <FounderCredibility />
