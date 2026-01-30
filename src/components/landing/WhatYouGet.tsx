@@ -482,61 +482,109 @@ const TriggerAnimation = () => (
 
 // Marketing Animations
 const EmailCampaignAnimation = () => (
-  <div className="relative h-24 flex items-center justify-center">
-    <div className="relative">
-      <div className="w-12 h-10 bg-card/50 rounded border border-border/50 flex items-center justify-center">
-        <Mail className="w-5 h-5 text-primary" />
+  <div className="relative h-40 flex items-center justify-center p-3">
+    <div className="w-full bg-card/30 rounded-lg border border-border/30 p-4">
+      {/* Email campaign preview */}
+      <div className="flex items-start gap-4">
+        {/* Email template */}
+        <div className="flex-1 bg-card/50 rounded-lg border border-border/50 p-2">
+          <div className="flex items-center gap-2 mb-2 pb-2 border-b border-border/30">
+            <div className="w-6 h-6 rounded bg-orange-500/20 border border-orange-500/30 flex items-center justify-center">
+              <Mail className="w-3 h-3 text-orange-400" />
+            </div>
+            <div>
+              <div className="text-[7px] font-medium text-foreground">March Newsletter</div>
+              <div className="text-[5px] text-muted-foreground">To: 1,247 subscribers</div>
+            </div>
+          </div>
+          <div className="space-y-1">
+            <div className="h-1.5 w-full bg-muted/30 rounded" />
+            <div className="h-1.5 w-3/4 bg-muted/30 rounded" />
+            <div className="h-1.5 w-5/6 bg-muted/30 rounded" />
+          </div>
+        </div>
+        
+        {/* Stats */}
+        <div className="w-20 space-y-2">
+          <div className="bg-emerald-500/10 rounded-lg border border-emerald-500/30 p-2 animate-[statPop_3s_ease-in-out_infinite]">
+            <div className="text-[6px] text-emerald-400 mb-0.5">Sent</div>
+            <div className="text-[10px] font-bold text-emerald-400">1,247</div>
+          </div>
+          <div className="bg-primary/10 rounded-lg border border-primary/30 p-2 animate-[statPop_3s_ease-in-out_infinite]" style={{ animationDelay: '0.5s' }}>
+            <div className="text-[6px] text-primary mb-0.5">Opened</div>
+            <div className="text-[10px] font-bold text-primary">42%</div>
+          </div>
+        </div>
       </div>
-      <div className="absolute -top-2 -right-2 w-4 h-4 bg-emerald-500 rounded-full flex items-center justify-center animate-[sendPulse_2s_ease-in-out_infinite]">
-        <span className="text-[8px] text-white">✓</span>
-      </div>
-      {[0, 1, 2].map((i) => (
-        <div 
-          key={i}
-          className="absolute w-2 h-2 rounded-full bg-primary/60 animate-[flyOut_2s_ease-out_infinite]"
-          style={{ 
-            top: '50%', 
-            right: '-4px',
-            animationDelay: `${i * 0.3}s`
-          }}
-        />
-      ))}
     </div>
   </div>
 );
 
 const SMSAnimation = () => (
-  <div className="relative h-24 flex items-center justify-center">
-    <div className="w-14 h-20 bg-card/50 rounded-xl border border-border/50 p-1.5">
-      <div className="h-1 w-4 mx-auto bg-muted/40 rounded mb-1" />
-      <div className="space-y-1.5">
-        <div className="ml-auto w-8 h-2 bg-primary/30 rounded-l-lg rounded-tr-lg animate-[messageIn_3s_ease-in-out_infinite]" />
-        <div className="w-6 h-2 bg-muted/30 rounded-r-lg rounded-tl-lg animate-[messageIn_3s_ease-in-out_infinite_0.5s]" />
-        <div className="ml-auto w-7 h-2 bg-primary/30 rounded-l-lg rounded-tr-lg animate-[messageIn_3s_ease-in-out_infinite_1s]" />
+  <div className="relative h-40 flex items-center justify-center p-3">
+    <div className="w-full bg-card/30 rounded-lg border border-border/30 p-4">
+      <div className="flex items-start gap-4">
+        {/* Phone mockup */}
+        <div className="w-24 bg-card/80 rounded-xl border border-border/50 p-2">
+          <div className="h-1 w-8 mx-auto bg-muted/40 rounded mb-2" />
+          <div className="space-y-1.5">
+            <div className="ml-auto max-w-[80%] px-2 py-1 bg-orange-500/20 rounded-l-lg rounded-tr-lg animate-[smsSlide_4s_ease-out_infinite]">
+              <div className="text-[6px] text-foreground/80">Your retirement review is tomorrow at 2pm!</div>
+            </div>
+            <div className="max-w-[60%] px-2 py-1 bg-muted/30 rounded-r-lg rounded-tl-lg animate-[smsSlide_4s_ease-out_infinite]" style={{ animationDelay: '1s' }}>
+              <div className="text-[6px] text-foreground/60">Thanks! See you then</div>
+            </div>
+          </div>
+        </div>
+        
+        {/* Campaign info */}
+        <div className="flex-1">
+          <div className="text-[8px] font-medium text-foreground mb-2">Appointment Reminder</div>
+          <div className="space-y-1.5">
+            <div className="flex items-center gap-2">
+              <div className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
+              <span className="text-[6px] text-muted-foreground">98% delivery rate</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <div className="w-1.5 h-1.5 rounded-full bg-primary" />
+              <span className="text-[6px] text-muted-foreground">A2P compliant</span>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 );
 
 const SocialAnimation = () => (
-  <div className="relative h-24 flex items-center justify-center">
-    <div className="relative">
-      <div className="w-10 h-10 rounded-full bg-primary/20 border border-primary/40 flex items-center justify-center">
-        <Share2 className="w-4 h-4 text-primary" />
-      </div>
-      {[0, 120, 240].map((deg, i) => (
-        <div 
-          key={deg}
-          className="absolute w-6 h-6 rounded-full bg-card border border-border/50 flex items-center justify-center animate-[orbit_4s_linear_infinite]"
-          style={{ 
-            transformOrigin: "center",
-            transform: `rotate(${deg}deg) translateX(24px)`,
-            animationDelay: `${i * -1.3}s`
-          }}
-        >
-          <div className="w-2 h-2 rounded-full bg-primary/60" />
+  <div className="relative h-40 flex items-center justify-center p-3">
+    <div className="w-full bg-card/30 rounded-lg border border-border/30 p-4">
+      <div className="flex items-center gap-4">
+        {/* Central hub */}
+        <div className="relative">
+          <div className="w-14 h-14 rounded-xl bg-primary/10 border border-primary/30 flex items-center justify-center animate-[hubGlow_3s_ease-in-out_infinite]">
+            <Share2 className="w-6 h-6 text-primary" />
+          </div>
         </div>
-      ))}
+        
+        {/* Platform icons */}
+        <div className="flex-1 grid grid-cols-3 gap-2">
+          {[
+            { name: "LinkedIn", color: "bg-blue-500/20 border-blue-500/30 text-blue-400", delay: "0s" },
+            { name: "Facebook", color: "bg-indigo-500/20 border-indigo-500/30 text-indigo-400", delay: "0.3s" },
+            { name: "Instagram", color: "bg-pink-500/20 border-pink-500/30 text-pink-400", delay: "0.6s" }
+          ].map((platform) => (
+            <div 
+              key={platform.name}
+              className={`p-2 rounded-lg border ${platform.color} animate-[platformPulse_3s_ease-in-out_infinite]`}
+              style={{ animationDelay: platform.delay }}
+            >
+              <div className="text-[7px] font-medium mb-1">{platform.name}</div>
+              <div className="text-[5px] opacity-70">Scheduled</div>
+            </div>
+          ))}
+        </div>
+      </div>
     </div>
   </div>
 );
