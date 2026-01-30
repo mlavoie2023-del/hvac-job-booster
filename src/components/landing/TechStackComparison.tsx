@@ -47,7 +47,6 @@ const TechStackComparison = () => {
       
       <div className="section-container">
         <div className="mx-auto max-w-3xl text-center mb-16">
-          <p className="text-sm font-medium text-primary mb-3">Simplify your stack</p>
           <h2 className="text-3xl font-bold text-foreground sm:text-4xl lg:text-5xl">
             From Chaos to Clarity
           </h2>

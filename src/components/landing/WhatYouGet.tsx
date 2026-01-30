@@ -650,9 +650,8 @@ const WhatYouGet = () => {
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_40%_at_50%_30%,hsl(217_91%_60%/0.04),transparent)] pointer-events-none" />
       
       <div className="section-container">
-        {/* Enhanced Header with ONE PLATFORM badge */}
+        {/* Section Header */}
         <div className="mx-auto max-w-3xl text-center mb-8">
-          <p className="text-sm font-medium text-primary mb-3">Your complete system</p>
           <h2 className="text-3xl font-bold text-foreground sm:text-4xl lg:text-5xl">
             Everything a Solo Planner Needs
           </h2>

@@ -45,9 +45,6 @@ const FAQ = () => {
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-primary/[0.015] to-transparent" />
       <div className="section-container">
         <div className="mx-auto max-w-3xl text-center">
-          <p className="text-sm font-medium text-primary mb-3">
-            Common questions
-          </p>
           <h2 className="text-3xl font-bold text-foreground sm:text-4xl lg:text-5xl">
             Frequently Asked Questions
           </h2>

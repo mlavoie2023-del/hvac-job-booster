@@ -8,10 +8,6 @@ const FinalCTA = () => {
 
       <div className="section-container relative">
         <div className="mx-auto max-w-3xl text-center">
-          {/* Solo planner emphasis */}
-          <p className="text-sm font-medium text-primary mb-4">
-            For solo fee-only planners ready to scale
-          </p>
           
           <h2 className="text-3xl font-bold text-foreground sm:text-4xl lg:text-5xl">
             Stop Losing Prospects.{" "}

@@ -22,7 +22,6 @@ const WhoIsFor = () => {
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-primary/[0.02] to-transparent" />
       <div className="section-container">
         <div className="mx-auto max-w-3xl text-center">
-          <p className="text-sm font-medium text-primary mb-3">Is this you?</p>
           <h2 className="text-3xl font-bold text-foreground sm:text-4xl lg:text-5xl">
             Built For Solo Fee-Only Planners
           </h2>

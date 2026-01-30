@@ -26,7 +26,6 @@ const Problem = () => {
       
       <div className="section-container relative">
         <div className="mx-auto max-w-3xl text-center">
-          <p className="text-sm font-medium text-primary mb-3">The solo planner struggle</p>
           <h2 className="text-3xl font-bold text-foreground sm:text-4xl lg:text-5xl">
             You're the Planner, Admin, <em className="not-italic text-muted-foreground">and</em> Follow-Up Machine
           </h2>
