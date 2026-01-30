@@ -1,103 +1,110 @@
 
+# Features Section Redesign: Visual Feature Showcase
 
-## Floating Notification Cards - Hero Visual
+## Overview
+Replace the current accordion-based features section with a highly visual, mobile-first design that clearly communicates what each of the 9 features does at a glance.
 
-Replace the current workflow diagram with elegant, animated notification cards that float up and fade in/out, simulating real-time CRM automation events. This creates a more dynamic, modern feel that showcases the automation in action.
+## Design Approach: Feature Cards with Visual Preview
 
-### Visual Layout
+I'll create a responsive card grid where each feature has:
+- A large, prominent icon with a colored glow effect
+- Feature title
+- A short one-liner description (the "what it does")
+- A visual mini-mockup/illustration showing the feature in action
 
-```text
-+---------------------------------------------------------------+
-|                                                               |
-|    Custom CRM & Marketing Automation (Headline)               |
-|    For Solo Financial Planners                                |
-|                                                               |
-|    The done-for-you automation system... (Subheadline)        |
-|                                                               |
-|    [See How It Works]  [Schedule a Strategy Call ->]          |
-|                                                               |
-|         +---------------------------+                         |
-|         |  [avatar] Sarah M.        |  <-- floats up, fades   |
-|         |  Meeting booked for 2pm   |                         |
-|         +---------------------------+                         |
-|                                                               |
-|              +---------------------------+                    |
-|              |  [mail icon]             |  <-- staggered      |
-|              |  Follow-up sent to James |                     |
-|              +---------------------------+                    |
-|                                                               |
-|    +---------------------------+                              |
-|    |  [check icon]             |  <-- different positions    |
-|    |  Client onboarded: Mike T |                              |
-|    +---------------------------+                              |
-|                                                               |
-+---------------------------------------------------------------+
-```
+### Layout
+- **Mobile**: Single column, stacked cards that are easy to scroll
+- **Tablet**: 2-column grid
+- **Desktop**: 3x3 grid with balanced sizing
 
-### Notification Cards Design
-
+### Visual Style
 Each card will feature:
-- Left icon or avatar
-- Primary text (action)
-- Secondary text (details)
-- Subtle glow and shadow
-- Glass-morphism effect (semi-transparent background with blur)
+1. **Icon Area**: Large icon (40-48px) centered at top with a soft radial glow in primary blue
+2. **Title**: Bold, white text beneath the icon
+3. **One-Liner**: Short description in grey that answers "what does this do?"
+4. **Visual Preview**: A small illustrative element showing the feature concept (e.g., a mini calendar UI for Calendars, a simple form mockup for Forms, etc.)
 
-### Sample Notifications (Financial Planner Themed)
+### Hover/Tap Interactions
+- Cards will have subtle lift and glow effects on hover
+- Border color transitions to primary blue
+- Smooth scale animation on mobile tap
 
-1. **New Lead**: Avatar + "Sarah M. submitted inquiry form"
-2. **Follow-up Sent**: Mail icon + "Follow-up #3 sent to James"
-3. **Meeting Booked**: Calendar icon + "Discovery call scheduled for Thursday"
-4. **Review Request**: Star icon + "Review request sent to Mike T."
-5. **Client Onboarded**: CheckCircle icon + "Welcome sequence started for Lisa"
-6. **Referral Received**: UserPlus icon + "New referral from David K."
+---
 
-### Animation Behavior
+## Technical Implementation
 
-- Cards appear in a continuous loop
-- Each card fades in, floats up slightly, holds for ~3 seconds, then fades out
-- 3 cards visible at any time, staggered at different positions
-- Cards spawn at varied horizontal positions for organic feel
-- Subtle scale animation on entry (0.95 -> 1)
+### Files to Modify
+- `src/components/landing/WhatYouGet.tsx` - Complete rewrite of the component
 
-### Technical Implementation
-
-**Files to modify:**
-- `src/components/landing/HeroWorkflow.tsx` - Complete rewrite with new notification cards component
-- `tailwind.config.ts` - Add new keyframes for notification float animation, remove unused travel-contact animations
-
-**Component Structure (HeroWorkflow.tsx):**
-```typescript
-// Notification data array with type, icon, avatar, text
-const notifications = [
-  { type: 'lead', avatar: '...', primary: 'Sarah M.', secondary: 'Submitted inquiry form' },
-  { type: 'email', icon: Mail, primary: 'Follow-up #3', secondary: 'Sent to James' },
-  // ... more notifications
-];
-
-// NotificationCard component - renders a single card
-// HeroNotifications component - manages the animation loop, displays 3 cards at staggered intervals
+### Feature Data Structure
+```text
+Each feature will have:
+- icon: Lucide icon component
+- title: string
+- oneLiner: string (10-15 words max)
+- visualType: string (to determine which mini-illustration to show)
 ```
 
-**New Keyframes (tailwind.config.ts):**
-```typescript
-"notification-float": {
-  "0%": { opacity: "0", transform: "translateY(20px) scale(0.95)" },
-  "10%": { opacity: "1", transform: "translateY(0) scale(1)" },
-  "80%": { opacity: "1", transform: "translateY(-5px) scale(1)" },
-  "100%": { opacity: "0", transform: "translateY(-15px) scale(0.95)" },
-}
+### Card Component Design
+```text
++----------------------------------+
+|           [Icon Glow]            |
+|              🔧                  |
+|                                  |
+|     Customized Workflows         |
+|                                  |
+|   Automate follow-ups and        |
+|   reminders automatically        |
+|                                  |
+|  +----------------------------+  |
+|  |   [Visual Mini-Mockup]    |  |
+|  |   showing automation      |  |
+|  |   sequence diagram        |  |
+|  +----------------------------+  |
++----------------------------------+
 ```
 
-**Styling:**
-- Cards: `bg-card/80 backdrop-blur-sm border border-primary/20 rounded-xl shadow-lg`
-- Icons: Electric blue (`text-primary`) with subtle glow
-- Avatars: Circular with primary border
-- Positions: 3 fixed horizontal lanes (left, center, right) with slight vertical offset
-- Mobile: Cards stack in center, narrower width
+### Responsive Grid
+```text
+Mobile (< 640px):   1 column, full-width cards
+Tablet (640-1024):  2 columns
+Desktop (> 1024):   3 columns (3x3 grid)
+```
 
-**Cleanup:**
-- Remove `travel-contact-bottom`, `travel-contact-vertical-side` keyframes
-- Remove `flow-dot`, `flow-dot-vertical` if no longer used
-- Remove stage card and flow line code entirely
+### Animations
+- Fade-in on scroll using intersection observer or staggered delay classes
+- Hover: translateY(-4px) with glow shadow
+- Cards will use the existing `card-dark` utility class as a base
+
+### Visual Mini-Mockups
+For each feature, I'll create simple SVG/CSS illustrations:
+1. **Workflows**: Animated flow diagram with connected nodes
+2. **Landing Pages**: Mini browser frame with layout blocks
+3. **Forms**: Simple form fields with checkboxes
+4. **Calendars**: Mini calendar grid with highlighted dates
+5. **Pipelines**: Horizontal funnel/stages visualization
+6. **Unified Inbox**: Stacked message cards
+7. **Dashboard**: Bar chart with metrics
+8. **Integrations**: Connected app icons
+9. **Social Media**: Social platform icons with post preview
+
+---
+
+## Mobile-First Considerations
+- Touch-friendly card sizes (minimum 44px tap targets)
+- Comfortable spacing between cards for easy scrolling
+- Cards stack vertically with consistent gap
+- No hover-only content (everything visible by default)
+- Swipe-friendly without carousel complexity
+
+---
+
+## Benefits Over Current Design
+| Current (Accordion) | New Design (Visual Cards) |
+|---------------------|---------------------------|
+| Must click to see details | All info visible at glance |
+| Text-heavy | Visual-first with mini mockups |
+| Narrow single column | Responsive grid fills space |
+| Requires interaction | Scannable without clicks |
+| Features feel hidden | Features feel prominent |
 
