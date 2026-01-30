@@ -799,27 +799,26 @@ const WhatYouGet = () => {
           </p>
         </div>
 
-        {/* Desktop: Sidebar Left + Features Right */}
+        {/* Desktop: Narrow Sidebar Left + Large Features Right */}
         <div className="hidden md:block">
           <div className="flex gap-6 lg:gap-8">
-            {/* Left Sidebar - Category Icons */}
-            <div className="w-48 lg:w-56 flex-shrink-0">
-              {/* Central Hub - Smaller */}
-              <div className="flex justify-center mb-6">
+            {/* Left Sidebar - Compact Category Icons */}
+            <div className="w-20 lg:w-24 flex-shrink-0">
+              {/* Mini Hub */}
+              <div className="flex justify-center mb-4">
                 <div className="relative">
-                  <div className="absolute -inset-2 rounded-full bg-gradient-to-r from-primary/20 via-primary/10 to-primary/20 blur-lg animate-[hubPulse_3s_ease-in-out_infinite]" />
-                  <div className="absolute -inset-0.5 rounded-full bg-gradient-to-r from-primary via-cyan-400 to-primary animate-[spin_8s_linear_infinite] opacity-50" />
-                  <div className="relative w-14 h-14 rounded-full bg-card border-2 border-primary/50 flex items-center justify-center shadow-[0_0_30px_-8px_hsl(217_91%_60%/0.5)]">
+                  <div className="absolute -inset-1.5 rounded-full bg-gradient-to-r from-primary/20 via-primary/10 to-primary/20 blur-md animate-[hubPulse_3s_ease-in-out_infinite]" />
+                  <div className="relative w-10 h-10 rounded-full bg-card border border-primary/50 flex items-center justify-center shadow-[0_0_20px_-6px_hsl(217_91%_60%/0.5)]">
                     <img 
                       src={lavoieLogo} 
                       alt="Lavoie Systems" 
-                      className="w-8 h-8 object-contain"
+                      className="w-6 h-6 object-contain"
                     />
                   </div>
                 </div>
               </div>
               
-              {/* Category List */}
+              {/* Category Icons - Vertical Stack */}
               <div className="space-y-2">
                 {categories.map((category) => {
                   const isActive = activeCategory === category.id;
@@ -828,103 +827,96 @@ const WhatYouGet = () => {
                       key={category.id}
                       onClick={() => setActiveCategory(category.id)}
                       className={cn(
-                        "w-full group relative flex items-center gap-3 px-3 py-3 rounded-xl transition-all duration-300",
+                        "w-full group relative flex flex-col items-center gap-1 py-3 px-2 rounded-xl transition-all duration-300",
                         isActive 
                           ? "bg-card border border-primary/30 shadow-[0_0_20px_-8px_hsl(217_91%_60%/0.4)]" 
-                          : "bg-card/30 border border-transparent hover:border-border hover:bg-card/50"
+                          : "bg-transparent border border-transparent hover:bg-card/50"
                       )}
+                      title={category.title}
                     >
                       {/* Glow effect */}
                       <div className={cn(
-                        "absolute inset-0 rounded-xl bg-gradient-to-r opacity-0 transition-opacity duration-300",
+                        "absolute inset-0 rounded-xl bg-gradient-to-br opacity-0 transition-opacity duration-300",
                         category.color,
-                        isActive ? "opacity-10" : "group-hover:opacity-5"
+                        isActive ? "opacity-15" : "group-hover:opacity-5"
                       )} />
                       
                       {/* Icon */}
                       <div className={cn(
-                        "relative w-9 h-9 rounded-lg flex items-center justify-center transition-all duration-300 flex-shrink-0",
+                        "relative w-10 h-10 rounded-lg flex items-center justify-center transition-all duration-300",
                         isActive 
                           ? `bg-gradient-to-br ${category.color} shadow-md` 
-                          : "bg-primary/10 group-hover:bg-primary/20"
+                          : "bg-muted/50 group-hover:bg-primary/20"
                       )}>
                         <category.icon className={cn(
-                          "w-4 h-4 transition-all duration-300",
-                          isActive ? "text-white" : "text-primary"
+                          "w-5 h-5 transition-all duration-300",
+                          isActive ? "text-white" : "text-muted-foreground group-hover:text-primary"
                         )} />
                       </div>
                       
-                      {/* Title */}
+                      {/* Title - Small */}
                       <span className={cn(
-                        "font-medium text-sm transition-colors text-left",
+                        "text-[10px] font-medium transition-colors text-center leading-tight",
                         isActive ? "text-foreground" : "text-muted-foreground group-hover:text-foreground"
                       )}>
                         {category.title}
                       </span>
-                      
-                      {/* Active indicator */}
-                      {isActive && (
-                        <div className="absolute right-2 w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
-                      )}
                     </button>
                   );
                 })}
               </div>
             </div>
             
-            {/* Right Side - Features Display */}
+            {/* Right Side - Large Features Display */}
             <div className="flex-1 min-w-0">
-              {activeData ? (
+              {activeData && (
                 <div className="bg-card/50 backdrop-blur-sm rounded-2xl border border-border p-6 lg:p-8 animate-fade-in">
                   {/* Category Header */}
                   <div className="flex items-center gap-3 mb-6">
                     <div className={cn(
-                      "w-10 h-10 rounded-xl flex items-center justify-center bg-gradient-to-br",
+                      "w-12 h-12 rounded-xl flex items-center justify-center bg-gradient-to-br shadow-lg",
                       activeData.color
                     )}>
-                      <activeData.icon className="w-5 h-5 text-white" />
+                      <activeData.icon className="w-6 h-6 text-white" />
                     </div>
-                    <h3 className="text-xl lg:text-2xl font-bold text-foreground">{activeData.title}</h3>
+                    <div>
+                      <h3 className="text-2xl lg:text-3xl font-bold text-foreground">{activeData.title}</h3>
+                      <p className="text-sm text-muted-foreground">3 powerful tools</p>
+                    </div>
                   </div>
                   
-                  {/* Features Grid */}
-                  <div className="grid grid-cols-3 gap-4 lg:gap-6">
+                  {/* Features - Vertical Stack */}
+                  <div className="space-y-4">
                     {activeData.features.map((feature, index) => (
                       <div 
                         key={feature.title}
-                        className="group relative bg-background/50 rounded-xl border border-border/50 p-5 transition-all duration-300 hover:border-primary/30 hover:shadow-[0_0_30px_-10px_hsl(217_91%_60%/0.2)]"
+                        className="group relative bg-background/50 rounded-xl border border-border/50 p-5 lg:p-6 transition-all duration-300 hover:border-primary/30 hover:shadow-[0_0_30px_-10px_hsl(217_91%_60%/0.2)]"
                         style={{ animationDelay: `${index * 100}ms` }}
                       >
-                        {/* Animation area */}
-                        <div className="mb-4 bg-muted/20 rounded-lg overflow-hidden">
-                          {feature.animation}
-                        </div>
-                        
-                        {/* Content */}
-                        <div className="flex items-center gap-2 mb-2">
-                          <div className={cn(
-                            "w-7 h-7 rounded-lg flex items-center justify-center bg-gradient-to-br",
-                            activeData.color
-                          )}>
-                            <feature.icon className="w-3.5 h-3.5 text-white" />
+                        <div className="flex gap-6 items-start">
+                          {/* Large Animation area */}
+                          <div className="w-56 lg:w-72 flex-shrink-0 bg-muted/30 rounded-xl overflow-hidden border border-border/30">
+                            <div className="transform scale-110 origin-center">
+                              {feature.animation}
+                            </div>
                           </div>
-                          <h4 className="font-semibold text-foreground text-sm lg:text-base">{feature.title}</h4>
+                          
+                          {/* Content */}
+                          <div className="flex-1 py-2">
+                            <div className="flex items-center gap-3 mb-3">
+                              <div className={cn(
+                                "w-9 h-9 rounded-lg flex items-center justify-center bg-gradient-to-br",
+                                activeData.color
+                              )}>
+                                <feature.icon className="w-4 h-4 text-white" />
+                              </div>
+                              <h4 className="font-bold text-foreground text-lg lg:text-xl">{feature.title}</h4>
+                            </div>
+                            <p className="text-body leading-relaxed text-base">{feature.description}</p>
+                          </div>
                         </div>
-                        <p className="text-sm text-body leading-relaxed">{feature.description}</p>
                       </div>
                     ))}
-                  </div>
-                </div>
-              ) : (
-                /* Empty state - prompt to select */
-                <div className="h-full min-h-[400px] flex items-center justify-center bg-card/30 rounded-2xl border border-dashed border-border">
-                  <div className="text-center">
-                    <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-primary/10 flex items-center justify-center">
-                      <MousePointer className="w-6 h-6 text-primary animate-bounce" />
-                    </div>
-                    <p className="text-muted-foreground">
-                      Select a category to explore features
-                    </p>
                   </div>
                 </div>
               )}
