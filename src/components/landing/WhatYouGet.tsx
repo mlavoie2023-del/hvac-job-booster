@@ -521,7 +521,7 @@ const categories: Category[] = [
     id: "analytics",
     icon: BarChart3,
     title: "Analytics",
-    color: "from-cyan-500 to-blue-500",
+    color: "from-amber-500 to-yellow-500",
     features: [
       {
         icon: BarChart3,
