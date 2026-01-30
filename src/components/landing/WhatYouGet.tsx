@@ -101,8 +101,8 @@ const FeatureCard = ({
         {feature.oneLiner}
       </p>
       
-      {/* Visual mockup with border glow on hover */}
-      <div className="bg-background/50 rounded-lg border border-border/50 p-3 min-h-[80px] flex items-center justify-center transition-all duration-300 group-hover:border-primary/30 group-hover:shadow-[0_0_20px_-5px_hsl(var(--primary)/0.3)]">
+      {/* Visual mockup with border glow on hover - animations only run on group hover */}
+      <div className="mockup-container bg-background/50 rounded-lg border border-border/50 p-3 min-h-[80px] flex items-center justify-center transition-all duration-300 group-hover:border-primary/30 group-hover:shadow-[0_0_20px_-5px_hsl(var(--primary)/0.3)]">
         {MockupComponent && <MockupComponent />}
       </div>
       
