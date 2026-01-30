@@ -393,7 +393,82 @@
     }
   }
 
-  /* Automation animations */
+  /* Automation animations - Sequential workflow */
+  @keyframes workflowNode1 {
+    0%, 5% {
+      box-shadow: 0 0 0 0 transparent;
+      border-color: hsl(330 81% 60% / 0.3);
+    }
+    10%, 25% {
+      box-shadow: 0 0 15px 3px hsl(330 81% 60% / 0.5);
+      border-color: hsl(330 81% 60% / 0.8);
+    }
+    30%, 100% {
+      box-shadow: 0 0 0 0 transparent;
+      border-color: hsl(330 81% 60% / 0.3);
+    }
+  }
+
+  @keyframes workflowLine1 {
+    0%, 20% {
+      transform: scaleX(0);
+      transform-origin: left;
+    }
+    25%, 35% {
+      transform: scaleX(1);
+      transform-origin: left;
+    }
+    40%, 100% {
+      transform: scaleX(0);
+      transform-origin: right;
+    }
+  }
+
+  @keyframes workflowNode2 {
+    0%, 30% {
+      box-shadow: 0 0 0 0 transparent;
+      border-color: hsl(217 91% 60% / 0.3);
+    }
+    35%, 50% {
+      box-shadow: 0 0 15px 3px hsl(217 91% 60% / 0.5);
+      border-color: hsl(217 91% 60% / 0.8);
+    }
+    55%, 100% {
+      box-shadow: 0 0 0 0 transparent;
+      border-color: hsl(217 91% 60% / 0.3);
+    }
+  }
+
+  @keyframes workflowLine2 {
+    0%, 45% {
+      transform: scaleX(0);
+      transform-origin: left;
+    }
+    50%, 60% {
+      transform: scaleX(1);
+      transform-origin: left;
+    }
+    65%, 100% {
+      transform: scaleX(0);
+      transform-origin: right;
+    }
+  }
+
+  @keyframes workflowNode3 {
+    0%, 55% {
+      box-shadow: 0 0 0 0 transparent;
+      border-color: hsl(160 84% 39% / 0.3);
+    }
+    60%, 80% {
+      box-shadow: 0 0 15px 3px hsl(160 84% 39% / 0.5);
+      border-color: hsl(160 84% 39% / 0.8);
+    }
+    85%, 100% {
+      box-shadow: 0 0 0 0 transparent;
+      border-color: hsl(160 84% 39% / 0.3);
+    }
+  }
+
   @keyframes flowPulse {
     0%, 100% {
       opacity: 0;

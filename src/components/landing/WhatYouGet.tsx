@@ -367,33 +367,33 @@ const WorkflowAnimation = () => (
       <div className="flex items-center justify-center gap-2">
         {/* Trigger node */}
         <div className="flex flex-col items-center">
-          <div className="w-12 h-12 rounded-xl bg-pink-500/10 border border-pink-500/30 flex items-center justify-center">
+          <div className="w-12 h-12 rounded-xl bg-pink-500/10 border border-pink-500/30 flex items-center justify-center animate-[workflowNode1_4s_ease-in-out_infinite]">
             <Inbox className="w-5 h-5 text-pink-400" />
           </div>
           <span className="text-[6px] text-muted-foreground mt-1">New Lead</span>
         </div>
         
-        {/* Connector line with animation */}
-        <div className="w-8 h-0.5 bg-gradient-to-r from-pink-500/40 to-primary/40 relative">
-          <div className="absolute inset-0 bg-primary/60 animate-[flowPulse_2s_ease-in-out_infinite]" />
+        {/* Connector line 1 */}
+        <div className="w-8 h-0.5 bg-muted/30 relative overflow-hidden rounded-full">
+          <div className="absolute inset-y-0 left-0 w-full bg-gradient-to-r from-pink-500 to-primary animate-[workflowLine1_4s_ease-in-out_infinite]" />
         </div>
         
         {/* Wait node */}
-        <div className="flex flex-col items-center animate-[nodeActivate_3s_ease-in-out_infinite]" style={{ animationDelay: '0.5s' }}>
-          <div className="w-12 h-12 rounded-xl bg-primary/10 border border-primary/30 flex items-center justify-center">
+        <div className="flex flex-col items-center">
+          <div className="w-12 h-12 rounded-xl bg-primary/10 border border-primary/30 flex items-center justify-center animate-[workflowNode2_4s_ease-in-out_infinite]">
             <Clock className="w-5 h-5 text-primary" />
           </div>
           <span className="text-[6px] text-muted-foreground mt-1">Wait 1 day</span>
         </div>
         
-        {/* Connector line */}
-        <div className="w-8 h-0.5 bg-gradient-to-r from-primary/40 to-emerald-500/40 relative">
-          <div className="absolute inset-0 bg-emerald-500/60 animate-[flowPulse_2s_ease-in-out_infinite]" style={{ animationDelay: '1s' }} />
+        {/* Connector line 2 */}
+        <div className="w-8 h-0.5 bg-muted/30 relative overflow-hidden rounded-full">
+          <div className="absolute inset-y-0 left-0 w-full bg-gradient-to-r from-primary to-emerald-500 animate-[workflowLine2_4s_ease-in-out_infinite]" />
         </div>
         
         {/* Email node */}
-        <div className="flex flex-col items-center animate-[nodeActivate_3s_ease-in-out_infinite]" style={{ animationDelay: '1.5s' }}>
-          <div className="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center">
+        <div className="flex flex-col items-center">
+          <div className="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center animate-[workflowNode3_4s_ease-in-out_infinite]">
             <Mail className="w-5 h-5 text-emerald-400" />
           </div>
           <span className="text-[6px] text-muted-foreground mt-1">Send Email</span>
