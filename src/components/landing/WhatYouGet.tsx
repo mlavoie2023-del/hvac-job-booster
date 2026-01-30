@@ -363,7 +363,7 @@ const WhatYouGet = () => {
                   key={category.id}
                   onClick={() => setActiveCategory(isActive ? null : category.id)}
                   className={cn(
-                    "group relative flex flex-col items-center gap-3 p-6 rounded-2xl transition-all duration-500",
+                    "group relative flex flex-col items-center gap-3 p-6 rounded-2xl transition-all duration-500 w-44 lg:w-52",
                     isActive 
                       ? "bg-card border border-primary/30 shadow-[0_0_40px_-10px_hsl(217_91%_60%/0.4)] scale-105" 
                       : "bg-card/50 border border-border hover:border-primary/20 hover:bg-card"
