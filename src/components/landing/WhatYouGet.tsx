@@ -305,18 +305,18 @@ const FormsAnimation = () => (
 );
 
 const CalendarAnimation = () => (
-  <div className="relative h-32 flex items-center justify-center">
-    <div className="flex gap-2">
+  <div className="relative h-40 flex items-center justify-center p-2">
+    <div className="flex gap-3 w-full">
       {/* Calendar */}
-      <div className="w-28 bg-card/50 rounded-lg border border-border/50 p-1.5">
-        <div className="text-[6px] font-semibold text-foreground mb-1 text-center">February 2026</div>
-        <div className="grid grid-cols-7 gap-0.5 text-center mb-1">
+      <div className="flex-1 bg-card/50 rounded-lg border border-border/50 p-3">
+        <div className="text-[9px] font-semibold text-foreground mb-2 text-center">February 2026</div>
+        <div className="grid grid-cols-7 gap-1 text-center mb-2">
           {["S", "M", "T", "W", "T", "F", "S"].map((d, i) => (
-            <div key={i} className="text-[4px] text-muted-foreground">{d}</div>
+            <div key={i} className="text-[6px] text-muted-foreground font-medium">{d}</div>
           ))}
         </div>
-        <div className="grid grid-cols-7 gap-0.5">
-          {[...Array(31)].map((_, i) => {
+        <div className="grid grid-cols-7 gap-1">
+          {[...Array(28)].map((_, i) => {
             const day = i + 1;
             const isSelected = day === 14;
             const hasAppointment = [8, 12, 20].includes(day);
@@ -324,15 +324,15 @@ const CalendarAnimation = () => (
               <div 
                 key={i}
                 className={cn(
-                  "w-3 h-3 rounded-sm flex items-center justify-center text-[5px] transition-all",
+                  "w-5 h-5 rounded flex items-center justify-center text-[7px] transition-all",
                   isSelected 
                     ? "bg-emerald-500 text-white animate-[calendarSelect_4s_ease-in-out_infinite]" 
                     : hasAppointment 
-                      ? "bg-primary/30 text-primary" 
-                      : "text-foreground/60 hover:bg-muted/30"
+                      ? "bg-primary/40 text-primary-foreground" 
+                      : "text-foreground/60"
                 )}
               >
-                {day <= 28 ? day : ""}
+                {day}
               </div>
             );
           })}
@@ -340,13 +340,13 @@ const CalendarAnimation = () => (
       </div>
       
       {/* Confirmation message */}
-      <div className="w-20 flex flex-col justify-center">
-        <div className="bg-card/50 rounded-lg border border-emerald-500/30 p-1.5 animate-[confirmSlideIn_4s_ease-out_infinite]" style={{ animationDelay: '2s' }}>
-          <div className="flex items-center gap-1 mb-1">
-            <Smartphone className="w-2.5 h-2.5 text-emerald-500" />
-            <span className="text-[5px] text-emerald-400 font-medium">Confirmed!</span>
+      <div className="w-28 flex flex-col justify-center">
+        <div className="bg-card/50 rounded-lg border border-emerald-500/30 p-2.5 animate-[confirmSlideIn_4s_ease-out_infinite]" style={{ animationDelay: '2s' }}>
+          <div className="flex items-center gap-1.5 mb-1.5">
+            <Smartphone className="w-3.5 h-3.5 text-emerald-500" />
+            <span className="text-[8px] text-emerald-400 font-medium">Confirmed!</span>
           </div>
-          <div className="text-[4px] text-muted-foreground leading-relaxed">
+          <div className="text-[6px] text-muted-foreground leading-relaxed">
             Your call is booked for Feb 14 at 2:00 PM
           </div>
         </div>
