@@ -357,15 +357,30 @@
   @keyframes typewriter {
     0% {
       width: 0;
-      opacity: 1;
     }
-    50%, 90% {
+    5% {
+      width: 0;
+    }
+    50% {
       width: 100%;
-      opacity: 1;
+    }
+    95% {
+      width: 100%;
     }
     100% {
       width: 0;
-      opacity: 1;
+    }
+  }
+
+  @keyframes typing {
+    0%, 5% {
+      max-width: 0;
+    }
+    50%, 95% {
+      max-width: 200px;
+    }
+    100% {
+      max-width: 0;
     }
   }
 
