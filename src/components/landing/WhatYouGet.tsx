@@ -658,7 +658,7 @@ const WhatYouGet = () => {
           
           
           <p className="mx-auto mt-4 max-w-2xl text-lg text-body">
-            All 18 tools work together seamlessly. One login. Zero app-switching.
+            One Platform. One Login. Zero App Switching.
           </p>
         </div>
 
