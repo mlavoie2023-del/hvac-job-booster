@@ -357,48 +357,130 @@ const CalendarAnimation = () => (
 
 // Automation Animations
 const WorkflowAnimation = () => (
-  <div className="relative h-24 flex items-center justify-center">
-    <div className="flex items-center gap-2">
-      {[0, 1, 2].map((i) => (
-        <div key={i} className="relative">
-          <div className="w-8 h-8 rounded-lg bg-primary/20 border border-primary/40 flex items-center justify-center">
-            <div className="w-2 h-2 rounded-full bg-primary animate-pulse" style={{ animationDelay: `${i * 0.3}s` }} />
-          </div>
-          {i < 2 && (
-            <div className="absolute top-1/2 -right-2 w-2 h-0.5 bg-primary/60">
-              <div className="absolute inset-0 bg-primary animate-[pulse_1s_ease-in-out_infinite]" style={{ animationDelay: `${i * 0.4}s` }} />
+  <div className="relative h-40 flex items-center justify-center p-3">
+    <div className="w-full bg-card/30 rounded-lg border border-border/30 p-4">
+      {/* Workflow title */}
+      <div className="text-[8px] text-muted-foreground mb-3">New Lead Nurture Sequence</div>
+      
+      {/* Workflow nodes */}
+      <div className="flex items-center justify-center gap-2">
+        {/* Trigger node */}
+        <div className="flex flex-col items-center">
+          <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-pink-500/20 to-purple-500/20 border border-pink-500/40 flex items-center justify-center">
+            <div className="w-6 h-6 rounded-lg bg-gradient-to-br from-pink-500 to-purple-500 flex items-center justify-center">
+              <span className="text-[8px] text-white">📥</span>
             </div>
-          )}
+          </div>
+          <span className="text-[6px] text-muted-foreground mt-1">New Lead</span>
         </div>
-      ))}
+        
+        {/* Connector line with animation */}
+        <div className="w-8 h-0.5 bg-gradient-to-r from-pink-500/60 to-primary/60 relative">
+          <div className="absolute inset-0 bg-primary animate-[flowPulse_2s_ease-in-out_infinite]" />
+        </div>
+        
+        {/* Wait node */}
+        <div className="flex flex-col items-center animate-[nodeActivate_3s_ease-in-out_infinite]" style={{ animationDelay: '0.5s' }}>
+          <div className="w-12 h-12 rounded-xl bg-primary/10 border border-primary/30 flex items-center justify-center">
+            <div className="w-6 h-6 rounded-lg bg-primary/80 flex items-center justify-center">
+              <span className="text-[8px] text-white">⏱️</span>
+            </div>
+          </div>
+          <span className="text-[6px] text-muted-foreground mt-1">Wait 1 day</span>
+        </div>
+        
+        {/* Connector line */}
+        <div className="w-8 h-0.5 bg-gradient-to-r from-primary/60 to-emerald-500/60 relative">
+          <div className="absolute inset-0 bg-emerald-500/60 animate-[flowPulse_2s_ease-in-out_infinite]" style={{ animationDelay: '1s' }} />
+        </div>
+        
+        {/* Email node */}
+        <div className="flex flex-col items-center animate-[nodeActivate_3s_ease-in-out_infinite]" style={{ animationDelay: '1.5s' }}>
+          <div className="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center">
+            <div className="w-6 h-6 rounded-lg bg-emerald-500 flex items-center justify-center">
+              <Mail className="w-3 h-3 text-white" />
+            </div>
+          </div>
+          <span className="text-[6px] text-muted-foreground mt-1">Send Email</span>
+        </div>
+      </div>
     </div>
   </div>
 );
 
 const FollowUpAnimation = () => (
-  <div className="relative h-24 flex items-center justify-center">
-    <div className="relative">
-      <div className="w-10 h-10 rounded-full bg-primary/20 border border-primary/40 flex items-center justify-center">
-        <Bell className="w-4 h-4 text-primary animate-[ring_2s_ease-in-out_infinite]" />
+  <div className="relative h-40 flex items-center justify-center p-3">
+    <div className="w-full bg-card/50 rounded-lg border border-border/50 p-3">
+      {/* Reminder card */}
+      <div className="flex items-start gap-3">
+        {/* Bell icon with badge */}
+        <div className="relative flex-shrink-0">
+          <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-pink-500/20 to-rose-500/20 border border-pink-500/30 flex items-center justify-center">
+            <Bell className="w-5 h-5 text-pink-400" />
+          </div>
+          <div className="absolute -top-1 -right-1 w-5 h-5 bg-emerald-500 rounded-full flex items-center justify-center animate-[bounce_2s_ease-in-out_infinite]">
+            <span className="text-[8px] font-bold text-white">!</span>
+          </div>
+        </div>
+        
+        {/* Reminder content */}
+        <div className="flex-1">
+          <div className="text-[9px] font-semibold text-foreground mb-1">Follow-up Reminder</div>
+          <div className="text-[7px] text-muted-foreground mb-2">Call John Davidson - Retirement consultation</div>
+          <div className="flex gap-2">
+            <div className="px-2 py-1 bg-emerald-500/20 rounded text-[6px] text-emerald-400 border border-emerald-500/30">
+              Call Now
+            </div>
+            <div className="px-2 py-1 bg-muted/30 rounded text-[6px] text-muted-foreground border border-border/30">
+              Snooze 1hr
+            </div>
+          </div>
+        </div>
       </div>
-      <div className="absolute -top-1 -right-1 w-4 h-4 bg-emerald-500 rounded-full flex items-center justify-center animate-pulse">
-        <span className="text-[8px] font-bold text-white">!</span>
+      
+      {/* Time indicator */}
+      <div className="mt-3 pt-2 border-t border-border/30 flex items-center gap-2">
+        <div className="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse" />
+        <span className="text-[6px] text-amber-400">Due in 30 minutes</span>
       </div>
     </div>
   </div>
 );
 
 const TriggerAnimation = () => (
-  <div className="relative h-24 flex items-center justify-center">
-    <div className="flex items-center gap-3">
-      <div className="w-8 h-8 rounded-lg bg-yellow-500/20 border border-yellow-500/40 flex items-center justify-center">
-        <Zap className="w-4 h-4 text-yellow-500 animate-pulse" />
+  <div className="relative h-40 flex items-center justify-center p-3">
+    <div className="w-full bg-card/30 rounded-lg border border-border/30 p-3">
+      <div className="text-[8px] text-muted-foreground mb-3">Automation Rule</div>
+      
+      {/* If-Then display */}
+      <div className="space-y-2">
+        {/* IF condition */}
+        <div className="flex items-center gap-2 p-2 bg-amber-500/10 rounded-lg border border-amber-500/30 animate-[triggerPulse_4s_ease-in-out_infinite]">
+          <div className="w-8 h-8 rounded-lg bg-amber-500/20 flex items-center justify-center">
+            <Zap className="w-4 h-4 text-amber-400" />
+          </div>
+          <div>
+            <div className="text-[7px] text-amber-400 font-medium">IF</div>
+            <div className="text-[7px] text-foreground/80">Meeting is booked</div>
+          </div>
+        </div>
+        
+        {/* Arrow */}
+        <div className="flex justify-center">
+          <div className="w-0.5 h-3 bg-gradient-to-b from-amber-500/40 to-emerald-500/40" />
+        </div>
+        
+        {/* THEN actions */}
+        <div className="flex items-center gap-2 p-2 bg-emerald-500/10 rounded-lg border border-emerald-500/30 animate-[triggerPulse_4s_ease-in-out_infinite]" style={{ animationDelay: '1s' }}>
+          <div className="w-8 h-8 rounded-lg bg-emerald-500/20 flex items-center justify-center">
+            <span className="text-[10px]">✓</span>
+          </div>
+          <div>
+            <div className="text-[7px] text-emerald-400 font-medium">THEN</div>
+            <div className="text-[7px] text-foreground/80">Send confirmation + Create task</div>
+          </div>
+        </div>
       </div>
-      <div className="flex flex-col gap-1">
-        <div className="w-6 h-1 bg-primary/40 rounded animate-[slideRight_1s_ease-in-out_infinite]" />
-        <div className="w-6 h-1 bg-emerald-500/40 rounded animate-[slideRight_1s_ease-in-out_infinite_0.2s]" />
-      </div>
-      <div className="w-6 h-6 rounded bg-primary/20 border border-primary/40 animate-[fadeIn_1s_ease-in-out_infinite]" />
     </div>
   </div>
 );
