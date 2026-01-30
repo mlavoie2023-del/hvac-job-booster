@@ -879,10 +879,7 @@ const WhatYouGet = () => {
                     )}>
                       <activeData.icon className="w-6 h-6 text-white" />
                     </div>
-                    <div>
-                      <h3 className="text-2xl lg:text-3xl font-bold text-foreground">{activeData.title}</h3>
-                      <p className="text-sm text-muted-foreground">3 powerful tools</p>
-                    </div>
+                    <h3 className="text-2xl lg:text-3xl font-bold text-foreground">{activeData.title}</h3>
                   </div>
                   
                   {/* Features - Vertical Stack */}
