@@ -10,7 +10,6 @@ import FounderCredibility from "@/components/landing/FounderCredibility";
 import FAQ from "@/components/landing/FAQ";
 import FinalCTA from "@/components/landing/FinalCTA";
 import Footer from "@/components/landing/Footer";
-import CompetitorComparison from "@/components/landing/CompetitorComparison";
 
 const Index = () => {
   return (
@@ -25,7 +24,6 @@ const Index = () => {
         <Problem />
         <WhoIsFor />
         <Differentiation />
-        <CompetitorComparison />
         <FAQ />
         <FinalCTA />
       </main>
