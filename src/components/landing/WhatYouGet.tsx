@@ -24,6 +24,7 @@ import {
   MousePointer
 } from "lucide-react";
 import { cn } from "@/lib/utils";
+import lavoieLogo from "@/assets/lavoie-logo-square.png";
 
 interface Feature {
   icon: LucideIcon;
@@ -576,6 +577,103 @@ const allFeatures = categories.flatMap(cat =>
   cat.features.map(f => ({ ...f, categoryColor: cat.color, categoryTitle: cat.title }))
 );
 
+// ============= HUB COMPONENT =============
+
+const CentralHub = ({ activeCategory }: { activeCategory: string | null }) => {
+  return (
+    <div className="relative flex flex-col items-center mb-12">
+      {/* Hub element */}
+      <div className="relative">
+        {/* Outer glow ring */}
+        <div className="absolute -inset-4 rounded-full bg-gradient-to-r from-primary/20 via-primary/10 to-primary/20 blur-xl animate-[hubPulse_3s_ease-in-out_infinite]" />
+        
+        {/* Animated border ring */}
+        <div className="absolute -inset-1 rounded-full bg-gradient-to-r from-primary via-cyan-400 to-primary animate-[spin_8s_linear_infinite] opacity-60" />
+        
+        {/* Hub core */}
+        <div className="relative w-20 h-20 lg:w-24 lg:h-24 rounded-full bg-card border-2 border-primary/50 flex items-center justify-center shadow-[0_0_40px_-10px_hsl(217_91%_60%/0.5)]">
+          <img 
+            src={lavoieLogo} 
+            alt="Lavoie Systems" 
+            className="w-12 h-12 lg:w-14 lg:h-14 object-contain"
+          />
+        </div>
+        
+        {/* Pulsing ring effect */}
+        <div className="absolute inset-0 rounded-full border-2 border-primary/40 animate-ping-slow" />
+      </div>
+      
+      {/* "One Platform" label */}
+      <div className="mt-4 flex items-center gap-2">
+        <div className="h-px w-8 bg-gradient-to-r from-transparent to-primary/50" />
+        <span className="text-sm font-semibold text-primary tracking-wider uppercase">
+          One Platform
+        </span>
+        <div className="h-px w-8 bg-gradient-to-l from-transparent to-primary/50" />
+      </div>
+    </div>
+  );
+};
+
+// ============= SVG CONNECTION LINES =============
+
+const ConnectionLines = ({ activeCategory }: { activeCategory: string | null }) => {
+  // Calculate positions for 3x2 grid
+  const positions = [
+    { x: 16.66, y: 25 },  // CRM
+    { x: 50, y: 25 },     // Lead Capture  
+    { x: 83.33, y: 25 },  // Automation
+    { x: 16.66, y: 75 },  // Marketing
+    { x: 50, y: 75 },     // Analytics
+    { x: 83.33, y: 75 },  // Payments
+  ];
+
+  return (
+    <svg 
+      className="absolute inset-0 w-full h-full pointer-events-none"
+      style={{ zIndex: 0 }}
+      preserveAspectRatio="none"
+    >
+      <defs>
+        <linearGradient id="lineGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stopColor="hsl(217 91% 60%)" stopOpacity="0.1" />
+          <stop offset="50%" stopColor="hsl(217 91% 60%)" stopOpacity="0.4" />
+          <stop offset="100%" stopColor="hsl(217 91% 60%)" stopOpacity="0.1" />
+        </linearGradient>
+        <linearGradient id="activeLineGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stopColor="hsl(217 91% 60%)" stopOpacity="0.3" />
+          <stop offset="50%" stopColor="hsl(217 91% 60%)" stopOpacity="0.8" />
+          <stop offset="100%" stopColor="hsl(217 91% 60%)" stopOpacity="0.3" />
+        </linearGradient>
+      </defs>
+      
+      {positions.map((pos, i) => {
+        const categoryId = categories[i]?.id;
+        const isActive = activeCategory === categoryId;
+        
+        return (
+          <line
+            key={i}
+            x1="50%"
+            y1="-20"
+            x2={`${pos.x}%`}
+            y2={`${pos.y}%`}
+            stroke={`url(#${isActive ? 'activeLineGradient' : 'lineGradient'})`}
+            strokeWidth={isActive ? "3" : "2"}
+            strokeDasharray={isActive ? "none" : "8 4"}
+            className={cn(
+              "transition-all duration-500",
+              isActive && "animate-[pulseConnection_2s_ease-in-out_infinite]"
+            )}
+          />
+        );
+      })}
+    </svg>
+  );
+};
+
+// ============= MAIN COMPONENT =============
+
 const WhatYouGet = () => {
   const [activeCategory, setActiveCategory] = useState<string | null>(null);
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -609,78 +707,107 @@ const WhatYouGet = () => {
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_40%_at_50%_30%,hsl(217_91%_60%/0.04),transparent)] pointer-events-none" />
       
       <div className="section-container">
-        <div className="mx-auto max-w-3xl text-center mb-12">
+        {/* Enhanced Header with ONE PLATFORM badge */}
+        <div className="mx-auto max-w-3xl text-center mb-8">
           <p className="text-sm font-medium text-primary mb-3">Your complete system</p>
           <h2 className="text-3xl font-bold text-foreground sm:text-4xl lg:text-5xl">
             Everything a Solo Planner Needs
           </h2>
+          
+          {/* ONE PLATFORM Badge */}
+          <div className="flex justify-center mt-6">
+            <div className="relative inline-flex items-center gap-2 px-6 py-2 rounded-full border border-primary/30 bg-primary/5">
+              {/* Animated glow border */}
+              <div className="absolute inset-0 rounded-full bg-gradient-to-r from-primary/0 via-primary/20 to-primary/0 animate-[glowBadge_3s_ease-in-out_infinite]" />
+              
+              <div className="relative flex items-center gap-3">
+                <div className="w-2 h-2 rounded-full bg-primary animate-pulse" />
+                <span className="text-sm font-bold tracking-widest text-primary uppercase">
+                  One Platform
+                </span>
+                <span className="text-sm text-muted-foreground">•</span>
+                <span className="text-sm font-semibold text-foreground">18 Tools</span>
+                <div className="w-2 h-2 rounded-full bg-primary animate-pulse" />
+              </div>
+            </div>
+          </div>
+          
           <p className="mx-auto mt-4 max-w-2xl text-lg text-body">
-            18 integrated tools across six core areas—built around <em>your</em> practice.
+            All 18 tools work together seamlessly. One login. Zero app-switching.
           </p>
         </div>
 
-        {/* Desktop: Category Icons with Expandable Panels */}
+        {/* Desktop: Hub + Category Grid */}
         <div className="hidden md:block">
-          {/* Category Icons Grid - 3x2 */}
-          <div className="grid grid-cols-3 gap-4 lg:gap-6 max-w-4xl mx-auto mb-8">
-            {categories.map((category) => {
-              const isActive = activeCategory === category.id;
-              return (
-                <button
-                  key={category.id}
-                  onClick={() => setActiveCategory(isActive ? null : category.id)}
-                  className={cn(
-                    "group relative flex flex-col items-center gap-3 p-5 lg:p-6 rounded-2xl transition-all duration-500",
-                    isActive 
-                      ? "bg-card border border-primary/30 shadow-[0_0_40px_-10px_hsl(217_91%_60%/0.4)] scale-105" 
-                      : "bg-card/50 border border-border hover:border-primary/20 hover:bg-card"
-                  )}
-                >
-                  {/* Glow effect */}
-                  <div className={cn(
-                    "absolute inset-0 rounded-2xl bg-gradient-to-br opacity-0 transition-opacity duration-500",
-                    category.color,
-                    isActive ? "opacity-10" : "group-hover:opacity-5"
-                  )} />
-                  
-                  {/* Icon */}
-                  <div className={cn(
-                    "relative w-14 h-14 lg:w-16 lg:h-16 rounded-xl flex items-center justify-center transition-all duration-500",
-                    isActive 
-                      ? `bg-gradient-to-br ${category.color} shadow-lg` 
-                      : "bg-primary/10 group-hover:bg-primary/20"
-                  )}>
-                    <category.icon className={cn(
-                      "w-7 h-7 lg:w-8 lg:h-8 transition-all duration-500",
-                      isActive ? "text-white" : "text-primary"
+          {/* Central Hub */}
+          <CentralHub activeCategory={activeCategory} />
+          
+          {/* Category Grid Container with Connection Lines */}
+          <div className="relative">
+            {/* SVG Connection Lines Layer */}
+            <ConnectionLines activeCategory={activeCategory} />
+            
+            {/* Category Icons Grid - 3x2 */}
+            <div className="relative z-10 grid grid-cols-3 gap-4 lg:gap-6 max-w-4xl mx-auto mb-8">
+              {categories.map((category) => {
+                const isActive = activeCategory === category.id;
+                return (
+                  <button
+                    key={category.id}
+                    onClick={() => setActiveCategory(isActive ? null : category.id)}
+                    className={cn(
+                      "group relative flex flex-col items-center gap-3 p-5 lg:p-6 rounded-2xl transition-all duration-500",
+                      isActive 
+                        ? "bg-card border border-primary/30 shadow-[0_0_40px_-10px_hsl(217_91%_60%/0.4)] scale-105" 
+                        : "bg-card/50 border border-border hover:border-primary/20 hover:bg-card"
+                    )}
+                  >
+                    {/* Glow effect */}
+                    <div className={cn(
+                      "absolute inset-0 rounded-2xl bg-gradient-to-br opacity-0 transition-opacity duration-500",
+                      category.color,
+                      isActive ? "opacity-10" : "group-hover:opacity-5"
                     )} />
                     
-                    {/* Pulse ring when active */}
-                    {isActive && (
-                      <div className="absolute inset-0 rounded-xl animate-ping-slow bg-gradient-to-br from-primary/30 to-transparent" />
-                    )}
-                  </div>
-                  
-                  {/* Title */}
-                  <span className={cn(
-                    "font-semibold text-sm lg:text-base transition-colors text-center",
-                    isActive ? "text-foreground" : "text-muted-foreground group-hover:text-foreground"
-                  )}>
-                    {category.title}
-                  </span>
-                  
-                  {/* Feature count badge */}
-                  <span className={cn(
-                    "absolute -top-2 -right-2 w-6 h-6 rounded-full text-xs font-bold flex items-center justify-center transition-all duration-300",
-                    isActive 
-                      ? `bg-gradient-to-br ${category.color} text-white` 
-                      : "bg-muted text-muted-foreground"
-                  )}>
-                    3
-                  </span>
-                </button>
-              );
-            })}
+                    {/* Icon */}
+                    <div className={cn(
+                      "relative w-14 h-14 lg:w-16 lg:h-16 rounded-xl flex items-center justify-center transition-all duration-500",
+                      isActive 
+                        ? `bg-gradient-to-br ${category.color} shadow-lg` 
+                        : "bg-primary/10 group-hover:bg-primary/20"
+                    )}>
+                      <category.icon className={cn(
+                        "w-7 h-7 lg:w-8 lg:h-8 transition-all duration-500",
+                        isActive ? "text-white" : "text-primary"
+                      )} />
+                      
+                      {/* Pulse ring when active */}
+                      {isActive && (
+                        <div className="absolute inset-0 rounded-xl animate-ping-slow bg-gradient-to-br from-primary/30 to-transparent" />
+                      )}
+                    </div>
+                    
+                    {/* Title */}
+                    <span className={cn(
+                      "font-semibold text-sm lg:text-base transition-colors text-center",
+                      isActive ? "text-foreground" : "text-muted-foreground group-hover:text-foreground"
+                    )}>
+                      {category.title}
+                    </span>
+                    
+                    {/* Feature count badge */}
+                    <span className={cn(
+                      "absolute -top-2 -right-2 w-6 h-6 rounded-full text-xs font-bold flex items-center justify-center transition-all duration-300",
+                      isActive 
+                        ? `bg-gradient-to-br ${category.color} text-white` 
+                        : "bg-muted text-muted-foreground"
+                    )}>
+                      3
+                    </span>
+                  </button>
+                );
+              })}
+            </div>
           </div>
 
           {/* Expandable Panel */}
@@ -690,6 +817,15 @@ const WhatYouGet = () => {
           )}>
             {activeData && (
               <div className="bg-card/80 backdrop-blur-sm rounded-2xl border border-border p-8 mt-4">
+                {/* "Part of unified system" indicator */}
+                <div className="flex items-center justify-center gap-2 mb-4">
+                  <div className="h-px w-12 bg-gradient-to-r from-transparent to-primary/30" />
+                  <span className="text-xs text-muted-foreground font-medium tracking-wide">
+                    Connected to your Lavoie platform
+                  </span>
+                  <div className="h-px w-12 bg-gradient-to-l from-transparent to-primary/30" />
+                </div>
+                
                 {activeData.subtitle && (
                   <p className="text-center text-muted-foreground mb-6">{activeData.subtitle}</p>
                 )}
@@ -731,8 +867,20 @@ const WhatYouGet = () => {
           )}
         </div>
 
-        {/* Mobile: Horizontal Carousel */}
+        {/* Mobile: Horizontal Carousel with Platform Indicator */}
         <div className="md:hidden">
+          {/* Sticky "1 Platform | 18 Tools" indicator */}
+          <div className="flex justify-center mb-6">
+            <div className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-card/80 border border-border">
+              <div className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
+              <span className="text-xs font-bold text-primary uppercase tracking-wider">1 Platform</span>
+              <div className="w-px h-4 bg-border" />
+              <span className="text-xs font-semibold text-foreground">
+                Tool {currentSlide + 1} of {allFeatures.length}
+              </span>
+            </div>
+          </div>
+          
           <div className="relative" ref={carouselRef}>
             {/* Carousel Container */}
             <div className="overflow-hidden rounded-2xl">
@@ -880,6 +1028,18 @@ const WhatYouGet = () => {
         @keyframes drawSignature {
           0% { stroke-dashoffset: 40; }
           50%, 100% { stroke-dashoffset: 0; }
+        }
+        @keyframes hubPulse {
+          0%, 100% { opacity: 0.3; transform: scale(1); }
+          50% { opacity: 0.6; transform: scale(1.1); }
+        }
+        @keyframes glowBadge {
+          0%, 100% { opacity: 0; transform: translateX(-100%); }
+          50% { opacity: 1; transform: translateX(100%); }
+        }
+        @keyframes pulseConnection {
+          0%, 100% { opacity: 0.4; }
+          50% { opacity: 1; }
         }
       `}</style>
     </section>
