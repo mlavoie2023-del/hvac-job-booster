@@ -755,7 +755,7 @@ const CentralHub = ({ activeCategory }: { activeCategory: string | null }) => {
 // ============= MAIN COMPONENT =============
 
 const WhatYouGet = () => {
-  const [activeCategory, setActiveCategory] = useState<string | null>(null);
+  const [activeCategory, setActiveCategory] = useState<string>("crm");
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
   const carouselRef = useRef<HTMLDivElement>(null);
@@ -799,113 +799,137 @@ const WhatYouGet = () => {
           </p>
         </div>
 
-        {/* Desktop: Hub + Category Grid */}
+        {/* Desktop: Sidebar Left + Features Right */}
         <div className="hidden md:block">
-          {/* Central Hub */}
-          <CentralHub activeCategory={activeCategory} />
-          
-          {/* Category Grid Container */}
-          <div className="relative">
-            {/* Category Icons Grid - 3x2 */}
-            <div className="grid grid-cols-3 gap-4 lg:gap-6 max-w-4xl mx-auto mb-8">
-              {categories.map((category) => {
-                const isActive = activeCategory === category.id;
-                return (
-                  <button
-                    key={category.id}
-                    onClick={() => setActiveCategory(isActive ? null : category.id)}
-                    className={cn(
-                      "group relative flex flex-col items-center gap-3 p-5 lg:p-6 rounded-2xl transition-all duration-500",
-                      isActive 
-                        ? "bg-card border border-primary/30 shadow-[0_0_40px_-10px_hsl(217_91%_60%/0.4)] scale-105" 
-                        : "bg-card/50 border border-border hover:border-primary/20 hover:bg-card"
-                    )}
-                  >
-                    {/* Glow effect */}
-                    <div className={cn(
-                      "absolute inset-0 rounded-2xl bg-gradient-to-br opacity-0 transition-opacity duration-500",
-                      category.color,
-                      isActive ? "opacity-10" : "group-hover:opacity-5"
-                    )} />
-                    
-                    {/* Icon */}
-                    <div className={cn(
-                      "relative w-14 h-14 lg:w-16 lg:h-16 rounded-xl flex items-center justify-center transition-all duration-500",
-                      isActive 
-                        ? `bg-gradient-to-br ${category.color} shadow-lg` 
-                        : "bg-primary/10 group-hover:bg-primary/20"
-                    )}>
-                      <category.icon className={cn(
-                        "w-7 h-7 lg:w-8 lg:h-8 transition-all duration-500",
-                        isActive ? "text-white" : "text-primary"
-                      )} />
-                      
-                      {/* Pulse ring when active */}
-                      {isActive && (
-                        <div className="absolute inset-0 rounded-xl animate-ping-slow bg-gradient-to-br from-primary/30 to-transparent" />
-                      )}
-                    </div>
-                    
-                    {/* Title */}
-                    <span className={cn(
-                      "font-semibold text-sm lg:text-base transition-colors text-center",
-                      isActive ? "text-foreground" : "text-muted-foreground group-hover:text-foreground"
-                    )}>
-                      {category.title}
-                    </span>
-                    
-                  </button>
-                );
-              })}
-            </div>
-          </div>
-
-          {/* Expandable Panel */}
-          <div className={cn(
-            "overflow-hidden transition-all duration-500 ease-out",
-            activeCategory ? "max-h-[500px] opacity-100" : "max-h-0 opacity-0"
-          )}>
-            {activeData && (
-              <div className="bg-card/80 backdrop-blur-sm rounded-2xl border border-border p-8 mt-4">
-                {activeData.subtitle && (
-                  <p className="text-center text-muted-foreground mb-6">{activeData.subtitle}</p>
-                )}
-                <div className="grid grid-cols-3 gap-6">
-                  {activeData.features.map((feature, index) => (
-                    <div 
-                      key={feature.title}
-                      className="group relative bg-background/50 rounded-xl border border-border/50 p-6 transition-all duration-300 hover:border-primary/30 hover:shadow-[0_0_30px_-10px_hsl(217_91%_60%/0.2)]"
-                      style={{ animationDelay: `${index * 100}ms` }}
-                    >
-                      {/* Animation area */}
-                      <div className="mb-4 bg-muted/20 rounded-lg overflow-hidden">
-                        {feature.animation}
-                      </div>
-                      
-                      {/* Content */}
-                      <div className="flex items-center gap-3 mb-2">
-                        <div className={cn(
-                          "w-8 h-8 rounded-lg flex items-center justify-center bg-gradient-to-br",
-                          activeData.color
-                        )}>
-                          <feature.icon className="w-4 h-4 text-white" />
-                        </div>
-                        <h3 className="font-semibold text-foreground">{feature.title}</h3>
-                      </div>
-                      <p className="text-sm text-body leading-relaxed">{feature.description}</p>
-                    </div>
-                  ))}
+          <div className="flex gap-6 lg:gap-8">
+            {/* Left Sidebar - Category Icons */}
+            <div className="w-48 lg:w-56 flex-shrink-0">
+              {/* Central Hub - Smaller */}
+              <div className="flex justify-center mb-6">
+                <div className="relative">
+                  <div className="absolute -inset-2 rounded-full bg-gradient-to-r from-primary/20 via-primary/10 to-primary/20 blur-lg animate-[hubPulse_3s_ease-in-out_infinite]" />
+                  <div className="absolute -inset-0.5 rounded-full bg-gradient-to-r from-primary via-cyan-400 to-primary animate-[spin_8s_linear_infinite] opacity-50" />
+                  <div className="relative w-14 h-14 rounded-full bg-card border-2 border-primary/50 flex items-center justify-center shadow-[0_0_30px_-8px_hsl(217_91%_60%/0.5)]">
+                    <img 
+                      src={lavoieLogo} 
+                      alt="Lavoie Systems" 
+                      className="w-8 h-8 object-contain"
+                    />
+                  </div>
                 </div>
               </div>
-            )}
+              
+              {/* Category List */}
+              <div className="space-y-2">
+                {categories.map((category) => {
+                  const isActive = activeCategory === category.id;
+                  return (
+                    <button
+                      key={category.id}
+                      onClick={() => setActiveCategory(category.id)}
+                      className={cn(
+                        "w-full group relative flex items-center gap-3 px-3 py-3 rounded-xl transition-all duration-300",
+                        isActive 
+                          ? "bg-card border border-primary/30 shadow-[0_0_20px_-8px_hsl(217_91%_60%/0.4)]" 
+                          : "bg-card/30 border border-transparent hover:border-border hover:bg-card/50"
+                      )}
+                    >
+                      {/* Glow effect */}
+                      <div className={cn(
+                        "absolute inset-0 rounded-xl bg-gradient-to-r opacity-0 transition-opacity duration-300",
+                        category.color,
+                        isActive ? "opacity-10" : "group-hover:opacity-5"
+                      )} />
+                      
+                      {/* Icon */}
+                      <div className={cn(
+                        "relative w-9 h-9 rounded-lg flex items-center justify-center transition-all duration-300 flex-shrink-0",
+                        isActive 
+                          ? `bg-gradient-to-br ${category.color} shadow-md` 
+                          : "bg-primary/10 group-hover:bg-primary/20"
+                      )}>
+                        <category.icon className={cn(
+                          "w-4 h-4 transition-all duration-300",
+                          isActive ? "text-white" : "text-primary"
+                        )} />
+                      </div>
+                      
+                      {/* Title */}
+                      <span className={cn(
+                        "font-medium text-sm transition-colors text-left",
+                        isActive ? "text-foreground" : "text-muted-foreground group-hover:text-foreground"
+                      )}>
+                        {category.title}
+                      </span>
+                      
+                      {/* Active indicator */}
+                      {isActive && (
+                        <div className="absolute right-2 w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
+                      )}
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+            
+            {/* Right Side - Features Display */}
+            <div className="flex-1 min-w-0">
+              {activeData ? (
+                <div className="bg-card/50 backdrop-blur-sm rounded-2xl border border-border p-6 lg:p-8 animate-fade-in">
+                  {/* Category Header */}
+                  <div className="flex items-center gap-3 mb-6">
+                    <div className={cn(
+                      "w-10 h-10 rounded-xl flex items-center justify-center bg-gradient-to-br",
+                      activeData.color
+                    )}>
+                      <activeData.icon className="w-5 h-5 text-white" />
+                    </div>
+                    <h3 className="text-xl lg:text-2xl font-bold text-foreground">{activeData.title}</h3>
+                  </div>
+                  
+                  {/* Features Grid */}
+                  <div className="grid grid-cols-3 gap-4 lg:gap-6">
+                    {activeData.features.map((feature, index) => (
+                      <div 
+                        key={feature.title}
+                        className="group relative bg-background/50 rounded-xl border border-border/50 p-5 transition-all duration-300 hover:border-primary/30 hover:shadow-[0_0_30px_-10px_hsl(217_91%_60%/0.2)]"
+                        style={{ animationDelay: `${index * 100}ms` }}
+                      >
+                        {/* Animation area */}
+                        <div className="mb-4 bg-muted/20 rounded-lg overflow-hidden">
+                          {feature.animation}
+                        </div>
+                        
+                        {/* Content */}
+                        <div className="flex items-center gap-2 mb-2">
+                          <div className={cn(
+                            "w-7 h-7 rounded-lg flex items-center justify-center bg-gradient-to-br",
+                            activeData.color
+                          )}>
+                            <feature.icon className="w-3.5 h-3.5 text-white" />
+                          </div>
+                          <h4 className="font-semibold text-foreground text-sm lg:text-base">{feature.title}</h4>
+                        </div>
+                        <p className="text-sm text-body leading-relaxed">{feature.description}</p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              ) : (
+                /* Empty state - prompt to select */
+                <div className="h-full min-h-[400px] flex items-center justify-center bg-card/30 rounded-2xl border border-dashed border-border">
+                  <div className="text-center">
+                    <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-primary/10 flex items-center justify-center">
+                      <MousePointer className="w-6 h-6 text-primary animate-bounce" />
+                    </div>
+                    <p className="text-muted-foreground">
+                      Select a category to explore features
+                    </p>
+                  </div>
+                </div>
+              )}
+            </div>
           </div>
-
-          {/* Prompt to click if nothing selected */}
-          {!activeCategory && (
-            <p className="text-center text-muted-foreground mt-4 animate-pulse">
-              Click a category above to explore features
-            </p>
-          )}
         </div>
 
         {/* Mobile: Horizontal Carousel with Platform Indicator */}
