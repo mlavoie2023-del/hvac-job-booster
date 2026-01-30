@@ -210,4 +210,65 @@
   .animate-float-delayed {
     animation: float 6s ease-in-out 2s infinite;
   }
+
+  /* Pipeline animations */
+  @keyframes pipelineCardMove {
+    0%, 100% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+    45% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+    50% {
+      transform: translateY(-8px);
+      opacity: 0;
+    }
+    55% {
+      transform: translateY(8px);
+      opacity: 0;
+    }
+    60%, 100% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  @keyframes pipelineCardPulse {
+    0%, 100% {
+      box-shadow: 0 0 0 0 hsl(217 91% 60% / 0);
+    }
+    50% {
+      box-shadow: 0 0 8px 2px hsl(217 91% 60% / 0.3);
+    }
+  }
+
+  @keyframes pipelineCardEnter {
+    0%, 40% {
+      transform: translateX(-100%);
+      opacity: 0;
+    }
+    50%, 100% {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+
+  @keyframes pipelineSlide {
+    0% {
+      left: 8px;
+      opacity: 0;
+    }
+    10% {
+      opacity: 0.8;
+    }
+    90% {
+      opacity: 0.8;
+    }
+    100% {
+      left: calc(100% - 40px);
+      opacity: 0;
+    }
+  }
 }

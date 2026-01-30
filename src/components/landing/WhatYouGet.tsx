@@ -118,27 +118,97 @@ const ContactAnimation = () => (
   </div>
 );
 
-const PipelineAnimation = () => (
-  <div className="relative h-24 flex items-center justify-center">
-    <div className="flex gap-1">
-      {["Lead", "Call", "Close"].map((stage, i) => (
-        <div key={stage} className="flex flex-col items-center gap-1">
-          <div className={cn(
-            "w-8 h-12 rounded bg-gradient-to-b border transition-all",
-            i === 1 ? "from-primary/40 to-primary/20 border-primary/50" : "from-muted/30 to-muted/10 border-border/30"
-          )}>
-            {i === 1 && (
-              <div className="w-full h-full flex items-end justify-center pb-1">
-                <div className="w-1.5 h-1.5 rounded-full bg-primary animate-bounce" />
+const PipelineAnimation = () => {
+  const stages = [
+    { name: "Lead", count: 12, color: "bg-blue-500" },
+    { name: "Contacted", count: 5, color: "bg-cyan-500" },
+    { name: "Booked", count: 3, color: "bg-emerald-500" },
+    { name: "Won", count: 8, color: "bg-primary" }
+  ];
+  
+  return (
+    <div className="relative h-28 flex items-center justify-center">
+      <div className="w-48 bg-card/30 rounded-lg border border-border/30 p-2 overflow-hidden">
+        {/* Stage Headers */}
+        <div className="flex gap-1 mb-1.5">
+          {stages.map((stage) => (
+            <div key={stage.name} className="flex-1 min-w-0">
+              <div className={cn("h-0.5 rounded-full mb-1", stage.color)} />
+              <div className="flex items-center justify-between px-0.5">
+                <span className="text-[6px] font-medium text-foreground/80 truncate">{stage.name}</span>
+                <span className="text-[5px] text-muted-foreground">{stage.count}</span>
               </div>
-            )}
-          </div>
-          <span className="text-[8px] text-muted-foreground">{stage}</span>
+            </div>
+          ))}
         </div>
-      ))}
+        
+        {/* Pipeline Columns with Cards */}
+        <div className="flex gap-1 h-14">
+          {/* Lead Column */}
+          <div className="flex-1 bg-muted/20 rounded p-0.5 space-y-0.5 overflow-hidden">
+            <div className="bg-card/80 rounded p-1 border border-border/40 animate-[pipelineCardMove_4s_ease-in-out_infinite]">
+              <div className="flex items-center gap-1">
+                <div className="w-2.5 h-2.5 rounded-full bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center">
+                  <span className="text-[4px] font-bold text-white">JD</span>
+                </div>
+                <div className="h-1 w-6 bg-foreground/20 rounded" />
+              </div>
+            </div>
+            <div className="bg-card/60 rounded p-1 border border-border/30">
+              <div className="flex items-center gap-1">
+                <div className="w-2.5 h-2.5 rounded-full bg-gradient-to-br from-emerald-400 to-emerald-600 flex items-center justify-center">
+                  <span className="text-[4px] font-bold text-white">AS</span>
+                </div>
+                <div className="h-1 w-5 bg-foreground/15 rounded" />
+              </div>
+            </div>
+          </div>
+          
+          {/* Contacted Column */}
+          <div className="flex-1 bg-muted/20 rounded p-0.5 space-y-0.5 overflow-hidden">
+            <div className="bg-card/80 rounded p-1 border border-primary/30 animate-[pipelineCardPulse_2s_ease-in-out_infinite]">
+              <div className="flex items-center gap-1">
+                <div className="w-2.5 h-2.5 rounded-full bg-gradient-to-br from-purple-400 to-purple-600 flex items-center justify-center">
+                  <span className="text-[4px] font-bold text-white">MK</span>
+                </div>
+                <div className="h-1 w-5 bg-foreground/20 rounded" />
+              </div>
+            </div>
+          </div>
+          
+          {/* Booked Column */}
+          <div className="flex-1 bg-muted/20 rounded p-0.5 space-y-0.5 overflow-hidden">
+            <div className="bg-card/80 rounded p-1 border border-emerald-500/40 animate-[pipelineCardEnter_4s_ease-out_infinite]" style={{ animationDelay: '2s' }}>
+              <div className="flex items-center gap-1">
+                <div className="w-2.5 h-2.5 rounded-full bg-gradient-to-br from-orange-400 to-orange-600 flex items-center justify-center">
+                  <span className="text-[4px] font-bold text-white">RB</span>
+                </div>
+                <div className="h-1 w-4 bg-foreground/20 rounded" />
+              </div>
+            </div>
+          </div>
+          
+          {/* Won Column */}
+          <div className="flex-1 bg-emerald-500/10 rounded p-0.5 space-y-0.5 overflow-hidden border border-emerald-500/20">
+            <div className="bg-card/80 rounded p-1 border border-emerald-500/30">
+              <div className="flex items-center gap-1">
+                <div className="w-2.5 h-2.5 rounded-full bg-gradient-to-br from-primary to-cyan-500 flex items-center justify-center">
+                  <span className="text-[4px] font-bold text-white">✓</span>
+                </div>
+                <div className="h-1 w-5 bg-emerald-500/30 rounded" />
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        {/* Animated card moving across */}
+        <div className="absolute top-1/2 left-4 w-8 h-5 bg-primary/20 rounded border border-primary/40 animate-[pipelineSlide_4s_ease-in-out_infinite] opacity-0 flex items-center justify-center">
+          <div className="w-2 h-2 rounded-full bg-primary/60" />
+        </div>
+      </div>
     </div>
-  </div>
-);
+  );
+};
 
 // Lead Capture Animations
 const LandingPageAnimation = () => (
