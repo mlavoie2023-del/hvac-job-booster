@@ -47,89 +47,92 @@ interface Category {
 
 // CRM Animations
 const InboxAnimation = () => (
-  <div className="relative h-28 flex items-center justify-center">
-    <div className="relative w-44 h-24 bg-card/50 rounded-lg border border-border/50 overflow-hidden">
-      <div className="h-4 bg-primary/10 border-b border-border/30 flex items-center px-2 gap-1">
+  <div className="relative h-40 flex items-center justify-center p-3">
+    <div className="relative w-full h-32 bg-card/50 rounded-lg border border-border/50 overflow-hidden">
+      <div className="h-5 bg-primary/10 border-b border-border/30 flex items-center px-2 gap-1">
         <div className="w-1.5 h-1.5 rounded-full bg-red-400/60" />
         <div className="w-1.5 h-1.5 rounded-full bg-yellow-400/60" />
         <div className="w-1.5 h-1.5 rounded-full bg-green-400/60" />
-        <span className="ml-2 text-[7px] text-muted-foreground font-medium">Inbox</span>
+        <span className="ml-2 text-[7px] text-muted-foreground font-medium">Unified Inbox</span>
       </div>
       
-      <div className="absolute left-2 right-2 animate-[inboxSlide_6s_ease-in-out_infinite]" style={{ top: '20px', animationDelay: '0s' }}>
-        <div className="flex items-center gap-2 h-5 bg-emerald-500/15 rounded border-l-2 border-emerald-500 px-2">
-          <div className="w-3 h-3 rounded bg-emerald-500/30 flex items-center justify-center">
-            <span className="text-[6px]">💬</span>
+      <div className="absolute left-2 right-2 animate-[inboxSlide_6s_ease-in-out_infinite]" style={{ top: '28px', animationDelay: '0s' }}>
+        <div className="flex items-center gap-2 h-6 bg-emerald-500/15 rounded border-l-2 border-emerald-500 px-2">
+          <div className="w-4 h-4 rounded bg-emerald-500/30 flex items-center justify-center">
+            <span className="text-[7px]">💬</span>
           </div>
           <div className="flex-1">
-            <div className="h-1 w-10 bg-emerald-500/30 rounded mb-0.5" />
-            <div className="h-1 w-16 bg-emerald-500/20 rounded" />
+            <div className="h-1.5 w-12 bg-emerald-500/30 rounded mb-0.5" />
+            <div className="h-1 w-20 bg-emerald-500/20 rounded" />
           </div>
+          <span className="text-[6px] text-emerald-400">SMS</span>
         </div>
       </div>
       
-      <div className="absolute left-2 right-2 animate-[inboxSlide_6s_ease-in-out_infinite]" style={{ top: '46px', animationDelay: '2s' }}>
-        <div className="flex items-center gap-2 h-5 bg-primary/15 rounded border-l-2 border-primary px-2">
-          <div className="w-3 h-3 rounded bg-primary/30 flex items-center justify-center">
-            <span className="text-[6px]">✉️</span>
+      <div className="absolute left-2 right-2 animate-[inboxSlide_6s_ease-in-out_infinite]" style={{ top: '58px', animationDelay: '2s' }}>
+        <div className="flex items-center gap-2 h-6 bg-primary/15 rounded border-l-2 border-primary px-2">
+          <div className="w-4 h-4 rounded bg-primary/30 flex items-center justify-center">
+            <span className="text-[7px]">✉️</span>
           </div>
           <div className="flex-1">
-            <div className="h-1 w-12 bg-primary/30 rounded mb-0.5" />
-            <div className="h-1 w-14 bg-primary/20 rounded" />
+            <div className="h-1.5 w-14 bg-primary/30 rounded mb-0.5" />
+            <div className="h-1 w-16 bg-primary/20 rounded" />
           </div>
+          <span className="text-[6px] text-primary">Email</span>
         </div>
       </div>
       
-      <div className="absolute left-2 right-2 animate-[inboxSlide_6s_ease-in-out_infinite]" style={{ top: '72px', animationDelay: '4s' }}>
-        <div className="flex items-center gap-2 h-5 bg-blue-500/15 rounded border-l-2 border-blue-500 px-2">
-          <div className="w-3 h-3 rounded bg-blue-600/40 flex items-center justify-center">
-            <span className="text-[6px] font-bold text-blue-300">in</span>
+      <div className="absolute left-2 right-2 animate-[inboxSlide_6s_ease-in-out_infinite]" style={{ top: '88px', animationDelay: '4s' }}>
+        <div className="flex items-center gap-2 h-6 bg-blue-500/15 rounded border-l-2 border-blue-500 px-2">
+          <div className="w-4 h-4 rounded bg-blue-600/40 flex items-center justify-center">
+            <span className="text-[7px] font-bold text-blue-300">in</span>
           </div>
           <div className="flex-1">
-            <div className="h-1 w-8 bg-blue-500/30 rounded mb-0.5" />
-            <div className="h-1 w-12 bg-blue-500/20 rounded" />
+            <div className="h-1.5 w-10 bg-blue-500/30 rounded mb-0.5" />
+            <div className="h-1 w-14 bg-blue-500/20 rounded" />
           </div>
+          <span className="text-[6px] text-blue-400">LinkedIn</span>
         </div>
       </div>
       
-      <div className="absolute -top-1 -right-1 w-5 h-5 bg-primary rounded-full flex items-center justify-center animate-[notificationPop_6s_ease-in-out_infinite] shadow-lg shadow-primary/30">
-        <span className="text-[9px] font-bold text-primary-foreground">3</span>
+      <div className="absolute -top-1 -right-1 w-6 h-6 bg-primary rounded-full flex items-center justify-center animate-[notificationPop_6s_ease-in-out_infinite] shadow-lg shadow-primary/30">
+        <span className="text-[10px] font-bold text-primary-foreground">3</span>
       </div>
     </div>
   </div>
 );
 
 const ContactAnimation = () => (
-  <div className="relative h-32 flex items-center justify-center">
-    <div className="w-44 bg-card/50 rounded-lg border border-border/50 p-2.5 animate-[fadeSlideIn_3s_ease-in-out_infinite]">
+  <div className="relative h-40 flex items-center justify-center p-3">
+    <div className="w-full bg-card/50 rounded-lg border border-border/50 p-3 animate-[fadeSlideIn_3s_ease-in-out_infinite]">
       {/* Header with avatar */}
-      <div className="flex items-center gap-2 mb-2">
-        <div className="w-8 h-8 rounded-full bg-gradient-to-br from-primary/40 to-primary/20 flex items-center justify-center">
-          <span className="text-xs font-bold text-primary">JD</span>
+      <div className="flex items-center gap-3 mb-3">
+        <div className="w-10 h-10 rounded-full bg-gradient-to-br from-primary/40 to-primary/20 flex items-center justify-center">
+          <span className="text-sm font-bold text-primary">JD</span>
         </div>
         <div>
-          <div className="text-[9px] font-medium text-foreground">John Davidson</div>
-          <div className="text-[7px] text-muted-foreground">Pre-Retiree • Age 58</div>
+          <div className="text-[10px] font-medium text-foreground">John Davidson</div>
+          <div className="text-[8px] text-muted-foreground">Pre-Retiree • Age 58</div>
         </div>
       </div>
       
       {/* Tags */}
-      <div className="flex gap-1 mb-2">
-        <div className="px-1.5 py-0.5 bg-emerald-500/20 rounded text-[6px] text-emerald-400">Active</div>
-        <div className="px-1.5 py-0.5 bg-primary/20 rounded text-[6px] text-primary">$1.2M AUM</div>
+      <div className="flex gap-1.5 mb-3">
+        <div className="px-2 py-0.5 bg-emerald-500/20 rounded text-[7px] text-emerald-400">Active Client</div>
+        <div className="px-2 py-0.5 bg-primary/20 rounded text-[7px] text-primary">$1.2M AUM</div>
       </div>
       
       {/* Notes section */}
-      <div className="bg-muted/30 rounded p-1.5 border border-border/30">
-        <div className="text-[6px] text-muted-foreground mb-1 font-medium">Goals</div>
-        <div className="space-y-0.5">
-          <div className="flex items-center gap-1">
-            <div className="w-1 h-1 rounded-full bg-emerald-500" />
-            <span className="text-[6px] text-foreground/70">Retire at 62</span>
+      <div className="bg-muted/30 rounded p-2 border border-border/30">
+        <div className="text-[7px] text-muted-foreground mb-1.5 font-medium">Financial Goals</div>
+        <div className="space-y-1">
+          <div className="flex items-center gap-1.5">
+            <div className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
+            <span className="text-[7px] text-foreground/70">Retire at 62 with $80K/year</span>
           </div>
-          <div className="flex items-center gap-1">
-            <div className="w-1 h-1 rounded-full bg-primary" />
-            <span className="text-[6px] text-foreground/70">Estate planning</span>
+          <div className="flex items-center gap-1.5">
+            <div className="w-1.5 h-1.5 rounded-full bg-primary" />
+            <span className="text-[7px] text-foreground/70">Estate planning for 2 children</span>
           </div>
         </div>
       </div>
@@ -145,43 +148,52 @@ const PipelineAnimation = () => {
   ];
   
   return (
-    <div className="relative h-28 flex items-center justify-center">
-      <div className="w-44 bg-card/30 rounded-lg border border-border/30 p-2">
+    <div className="relative h-40 flex items-center justify-center p-3">
+      <div className="w-full bg-card/30 rounded-lg border border-border/30 p-3">
         {/* Stage Headers */}
-        <div className="flex gap-2 mb-2">
+        <div className="flex gap-3 mb-3">
           {stages.map((stage) => (
             <div key={stage.name} className="flex-1">
-              <div className={cn("h-1 rounded-full mb-1", stage.color)} />
-              <span className="text-[7px] font-medium text-foreground/80">{stage.name}</span>
+              <div className={cn("h-1.5 rounded-full mb-1.5", stage.color)} />
+              <span className="text-[8px] font-medium text-foreground/80">{stage.name}</span>
             </div>
           ))}
         </div>
         
         {/* Pipeline Columns */}
-        <div className="flex gap-2 h-12">
+        <div className="flex gap-3 h-20">
           {/* Lead */}
-          <div className="flex-1 bg-muted/20 rounded p-1 space-y-1">
-            <div className="bg-card/80 rounded px-1.5 py-1 border border-border/40 animate-[pipelineCardMove_4s_ease-in-out_infinite]">
-              <div className="w-3 h-3 rounded-full bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center">
-                <span className="text-[5px] font-bold text-white">JD</span>
+          <div className="flex-1 bg-muted/20 rounded-lg p-1.5 space-y-1.5">
+            <div className="bg-card/80 rounded-lg px-2 py-1.5 border border-border/40 animate-[pipelineCardMove_4s_ease-in-out_infinite]">
+              <div className="flex items-center gap-2">
+                <div className="w-5 h-5 rounded-full bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center">
+                  <span className="text-[6px] font-bold text-white">JD</span>
+                </div>
+                <div className="text-[6px] text-foreground/70">New inquiry</div>
               </div>
             </div>
           </div>
           
           {/* Meeting */}
-          <div className="flex-1 bg-muted/20 rounded p-1">
-            <div className="bg-card/80 rounded px-1.5 py-1 border border-primary/30 animate-[pipelineCardPulse_2s_ease-in-out_infinite]">
-              <div className="w-3 h-3 rounded-full bg-gradient-to-br from-purple-400 to-purple-600 flex items-center justify-center">
-                <span className="text-[5px] font-bold text-white">MK</span>
+          <div className="flex-1 bg-muted/20 rounded-lg p-1.5">
+            <div className="bg-card/80 rounded-lg px-2 py-1.5 border border-primary/30 animate-[pipelineCardPulse_2s_ease-in-out_infinite]">
+              <div className="flex items-center gap-2">
+                <div className="w-5 h-5 rounded-full bg-gradient-to-br from-purple-400 to-purple-600 flex items-center justify-center">
+                  <span className="text-[6px] font-bold text-white">MK</span>
+                </div>
+                <div className="text-[6px] text-foreground/70">Discovery call</div>
               </div>
             </div>
           </div>
           
           {/* Won */}
-          <div className="flex-1 bg-emerald-500/10 rounded p-1 border border-emerald-500/20">
-            <div className="bg-card/80 rounded px-1.5 py-1 border border-emerald-500/30">
-              <div className="w-3 h-3 rounded-full bg-emerald-500 flex items-center justify-center">
-                <span className="text-[6px] text-white">✓</span>
+          <div className="flex-1 bg-emerald-500/10 rounded-lg p-1.5 border border-emerald-500/20">
+            <div className="bg-card/80 rounded-lg px-2 py-1.5 border border-emerald-500/30">
+              <div className="flex items-center gap-2">
+                <div className="w-5 h-5 rounded-full bg-emerald-500 flex items-center justify-center">
+                  <span className="text-[7px] text-white">✓</span>
+                </div>
+                <div className="text-[6px] text-emerald-400">Signed!</div>
               </div>
             </div>
           </div>
