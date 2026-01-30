@@ -1,103 +1,143 @@
 
 
-## Floating Notification Cards - Hero Visual
+# Features Section Redesign: 6 Category System
 
-Replace the current workflow diagram with elegant, animated notification cards that float up and fade in/out, simulating real-time CRM automation events. This creates a more dynamic, modern feel that showcases the automation in action.
+## Overview
 
-### Visual Layout
+Redesigning the "Everything a Solo Planner Needs" section with a new 6-category structure that showcases the full GoHighLevel feature set tailored for solo financial planners.
 
+---
+
+## New Category Structure
+
+### 1. CRM - One Platform to run your entire business
+| Feature | Description |
+|---------|-------------|
+| Unified Inbox | SMS, Email, LinkedIn, and calls in one place |
+| Contact Management | Client profiles with full history and notes |
+| Pipelines | Move clients through structured pipelines that trigger automations and manual tasks |
+
+### 2. Lead Capture
+| Feature | Description |
+|---------|-------------|
+| Landing Pages | Professional pages that convert visitors to leads |
+| Smart Forms | Intake forms, surveys, and referral capture |
+| Calendars | Clients can book themselves and receive automatic reminders  |
+
+### 3. Automation
+| Feature | Description |
+|---------|-------------|
+| Workflows | Automated nurture sequences and follow-ups |
+| Follow Up | fill in a description here|
+| Triggers & Actions | If-this-then-that logic for any event |
+
+### 4. Marketing
+| Feature | Description |
+|---------|-------------|
+| Email Campaigns | Newsletters, drip sequences,  |
+| SMS Marketing | boost open rates with A2P compliant SMS Marketing |
+| Social Media Hub | Schedule and manage posts across platforms |
+
+### 5. Analytics
+| Feature | Description |
+|---------|-------------|
+| Dashboard | Real-time KPIs and performance metrics |
+| Reports | description here |
+| Campaign Attribution | See which marketing efforts drive results |
+
+### 6. Payments & Documents
+| Feature | Description |
+|---------|-------------|
+| Invoicing & Subscriptions| One-time and recurring billing |
+| Documents | custom documents templated and sent over sms or email |
+| E-Signatures | Contracts, proposals, and digital signing |
+
+---
+
+## Visual & Interaction Design
+
+### Desktop Experience
+- **6 category icons** displayed in a horizontal row (2 rows of 3 on smaller screens)
+- Each icon is a clickable tile with gradient background and animated icon
+- Clicking expands a panel below showing the 3 features within that category
+- Each feature card includes:
+  - Mini animated visualization
+  - Icon and title
+  - Brief description
+- Only one category open at a time (accordion behavior)
+
+### Mobile Experience (Carousel)
+- All 18 features in a swipeable horizontal carousel
+- Each slide shows:
+  - Category badge (colored pill)
+  - Feature animation
+  - Title and description
+- Navigation arrows on sides
+- Dot indicators at bottom
+- Auto-play with pause on interaction
+
+
+
+---
+
+## Technical Implementation
+
+### File Changes
+- **`src/components/landing/WhatYouGet.tsx`** - Complete refactor with new category structure
+
+### New Imports Needed
 ```text
-+---------------------------------------------------------------+
-|                                                               |
-|    Custom CRM & Marketing Automation (Headline)               |
-|    For Solo Financial Planners                                |
-|                                                               |
-|    The done-for-you automation system... (Subheadline)        |
-|                                                               |
-|    [See How It Works]  [Schedule a Strategy Call ->]          |
-|                                                               |
-|         +---------------------------+                         |
-|         |  [avatar] Sarah M.        |  <-- floats up, fades   |
-|         |  Meeting booked for 2pm   |                         |
-|         +---------------------------+                         |
-|                                                               |
-|              +---------------------------+                    |
-|              |  [mail icon]             |  <-- staggered      |
-|              |  Follow-up sent to James |                     |
-|              +---------------------------+                    |
-|                                                               |
-|    +---------------------------+                              |
-|    |  [check icon]             |  <-- different positions    |
-|    |  Client onboarded: Mike T |                              |
-|    +---------------------------+                              |
-|                                                               |
-+---------------------------------------------------------------+
+CreditCard, FileSignature, Receipt, Users, Target, 
+Filter, Mail, Smartphone, MousePointer, PieChart
 ```
 
-### Notification Cards Design
-
-Each card will feature:
-- Left icon or avatar
-- Primary text (action)
-- Secondary text (details)
-- Subtle glow and shadow
-- Glass-morphism effect (semi-transparent background with blur)
-
-### Sample Notifications (Financial Planner Themed)
-
-1. **New Lead**: Avatar + "Sarah M. submitted inquiry form"
-2. **Follow-up Sent**: Mail icon + "Follow-up #3 sent to James"
-3. **Meeting Booked**: Calendar icon + "Discovery call scheduled for Thursday"
-4. **Review Request**: Star icon + "Review request sent to Mike T."
-5. **Client Onboarded**: CheckCircle icon + "Welcome sequence started for Lisa"
-6. **Referral Received**: UserPlus icon + "New referral from David K."
-
-### Animation Behavior
-
-- Cards appear in a continuous loop
-- Each card fades in, floats up slightly, holds for ~3 seconds, then fades out
-- 3 cards visible at any time, staggered at different positions
-- Cards spawn at varied horizontal positions for organic feel
-- Subtle scale animation on entry (0.95 -> 1)
-
-### Technical Implementation
-
-**Files to modify:**
-- `src/components/landing/HeroWorkflow.tsx` - Complete rewrite with new notification cards component
-- `tailwind.config.ts` - Add new keyframes for notification float animation, remove unused travel-contact animations
-
-**Component Structure (HeroWorkflow.tsx):**
-```typescript
-// Notification data array with type, icon, avatar, text
-const notifications = [
-  { type: 'lead', avatar: '...', primary: 'Sarah M.', secondary: 'Submitted inquiry form' },
-  { type: 'email', icon: Mail, primary: 'Follow-up #3', secondary: 'Sent to James' },
-  // ... more notifications
-];
-
-// NotificationCard component - renders a single card
-// HeroNotifications component - manages the animation loop, displays 3 cards at staggered intervals
+### Data Structure Update
+```text
+categories = [
+  { id: "crm", icon: Users, title: "CRM", features: [...] },
+  { id: "lead-capture", icon: Target, title: "Lead Capture", features: [...] },
+  { id: "automation", icon: Zap, title: "Automation", features: [...] },
+  { id: "marketing", icon: Mail, title: "Marketing", features: [...] },
+  { id: "analytics", icon: BarChart3, title: "Analytics", features: [...] },
+  { id: "payments-docs", icon: CreditCard, title: "Payments & Documents", features: [...] }
+]
 ```
 
-**New Keyframes (tailwind.config.ts):**
-```typescript
-"notification-float": {
-  "0%": { opacity: "0", transform: "translateY(20px) scale(0.95)" },
-  "10%": { opacity: "1", transform: "translateY(0) scale(1)" },
-  "80%": { opacity: "1", transform: "translateY(-5px) scale(1)" },
-  "100%": { opacity: "0", transform: "translateY(-15px) scale(0.95)" },
-}
-```
+### Layout Adjustments
+- Category icons: Grid of 3x2 on desktop, 2x3 on tablet
+- Each tile sized consistently (w-36 lg:w-44)
+- Expanded panel shows 3 feature cards in a row
+- Mobile carousel unchanged (just more slides)
 
-**Styling:**
-- Cards: `bg-card/80 backdrop-blur-sm border border-primary/20 rounded-xl shadow-lg`
-- Icons: Electric blue (`text-primary`) with subtle glow
-- Avatars: Circular with primary border
-- Positions: 3 fixed horizontal lanes (left, center, right) with slight vertical offset
-- Mobile: Cards stack in center, narrower width
+### New Animation Components
+8 new animation components will be created:
+- ContactAnimation
+- TagsAnimation  
+- FunnelAnimation
+- TriggerAnimation
+- EmailCampaignAnimation
+- SMSAnimation
+- AttributionAnimation
+- InvoiceAnimation
+- SubscriptionAnimation
+- DocumentSignAnimation
 
-**Cleanup:**
-- Remove `travel-contact-bottom`, `travel-contact-vertical-side` keyframes
-- Remove `flow-dot`, `flow-dot-vertical` if no longer used
-- Remove stage card and flow line code entirely
+---
+
+## Section Header Update
+
+Change subtitle from:
+> "Nine integrated tools across three core areas"
+
+To:
+> "18 integrated tools across six core areas—built around your practice."
+
+---
+
+## Mobile Optimization
+
+- Category dots grouped by category color for easier navigation
+- Swipe gestures maintained
+- Auto-play continues between categories
+- Category badge visible on each slide for context
 
