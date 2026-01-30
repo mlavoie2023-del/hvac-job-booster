@@ -129,62 +129,6 @@ export default {
           "80%": { opacity: "1", transform: "translateY(-5px) scale(1)" },
           "100%": { opacity: "0", transform: "translateY(-15px) scale(0.95)" },
         },
-        // Feature mockup animations
-        "node-pulse": {
-          "0%, 100%": { opacity: "0.4", boxShadow: "0 0 0 0 hsl(var(--primary) / 0)" },
-          "50%": { opacity: "1", boxShadow: "0 0 12px 4px hsl(var(--primary) / 0.4)" },
-        },
-        "line-flow": {
-          "0%": { backgroundPosition: "200% 0" },
-          "100%": { backgroundPosition: "-200% 0" },
-        },
-        "check-bounce": {
-          "0%": { transform: "scale(0)", opacity: "0" },
-          "50%": { transform: "scale(1.2)" },
-          "100%": { transform: "scale(1)", opacity: "1" },
-        },
-        "bar-grow": {
-          "0%": { transform: "scaleY(0)" },
-          "100%": { transform: "scaleY(1)" },
-        },
-        "orbit": {
-          "0%": { transform: "rotate(0deg) translateX(28px) rotate(0deg)" },
-          "100%": { transform: "rotate(360deg) translateX(28px) rotate(-360deg)" },
-        },
-        "slide-stage": {
-          "0%, 15%": { left: "0%" },
-          "35%, 50%": { left: "50%" },
-          "70%, 85%": { left: "100%" },
-          "100%": { left: "0%" },
-        },
-        "message-slide-in": {
-          "0%": { opacity: "0", transform: "translateY(-100%)" },
-          "100%": { opacity: "1", transform: "translateY(0)" },
-        },
-        "cursor-move": {
-          "0%, 20%": { transform: "translate(0, 0)" },
-          "40%, 50%": { transform: "translate(20px, 8px)" },
-          "55%": { transform: "translate(20px, 8px) scale(0.9)" },
-          "60%, 100%": { transform: "translate(20px, 8px) scale(1)" },
-        },
-        "button-click": {
-          "0%, 50%": { transform: "scale(1)" },
-          "55%": { transform: "scale(0.95)" },
-          "60%, 100%": { transform: "scale(1)" },
-        },
-        "date-pulse": {
-          "0%, 100%": { boxShadow: "0 0 0 0 hsl(var(--primary) / 0.4)" },
-          "50%": { boxShadow: "0 0 8px 2px hsl(var(--primary) / 0.6)" },
-        },
-        "post-send": {
-          "0%, 70%": { opacity: "1", transform: "translateX(0)" },
-          "90%": { opacity: "0", transform: "translateX(20px)" },
-          "100%": { opacity: "1", transform: "translateX(0)" },
-        },
-        "stagger-fade-in": {
-          "0%": { opacity: "0", transform: "translateY(20px)" },
-          "100%": { opacity: "1", transform: "translateY(0)" },
-        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -199,19 +143,6 @@ export default {
         "float": "float 6s ease-in-out infinite",
         "message-in": "message-in 0.4s ease-out forwards",
         "notification-float": "notification-float 6s ease-in-out infinite",
-        // Feature mockup animations
-        "node-pulse": "node-pulse 2s ease-in-out infinite",
-        "line-flow": "line-flow 2s linear infinite",
-        "check-bounce": "check-bounce 0.4s ease-out forwards",
-        "bar-grow": "bar-grow 1s ease-out forwards",
-        "orbit": "orbit 12s linear infinite",
-        "slide-stage": "slide-stage 4s ease-in-out infinite",
-        "message-slide-in": "message-slide-in 0.5s ease-out forwards",
-        "cursor-move": "cursor-move 3s ease-in-out infinite",
-        "button-click": "button-click 3s ease-in-out infinite",
-        "date-pulse": "date-pulse 2s ease-in-out infinite",
-        "post-send": "post-send 3s ease-in-out infinite",
-        "stagger-fade-in": "stagger-fade-in 0.6s ease-out forwards",
       },
     },
   },

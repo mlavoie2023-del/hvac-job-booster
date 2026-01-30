@@ -1,133 +1,103 @@
 
 
-# Enhanced Features Section: More Interactive & Visual
+## Floating Notification Cards - Hero Visual
 
-## Overview
-Transform the current static feature cards into an engaging, animated experience with live micro-interactions that bring each feature to life.
+Replace the current workflow diagram with elegant, animated notification cards that float up and fade in/out, simulating real-time CRM automation events. This creates a more dynamic, modern feel that showcases the automation in action.
 
----
-
-## Enhancement Strategy
-
-### 1. Animated Mini-Mockups (The Big Win)
-Instead of static mockups, each feature will have **continuously animating visualizations**:
-
-| Feature | Animation |
-|---------|-----------|
-| **Workflows** | Nodes pulse in sequence (email → reminder → checkmark) with glowing connection lines |
-| **Landing Pages** | Cursor moves and "clicks" the CTA button, button pulses |
-| **Forms** | Checkboxes check themselves one by one with satisfying ticks |
-| **Calendars** | Selected date pulses, a new meeting slides in |
-| **Pipelines** | Lead card slides from "Lead" → "Call" → "Won" stages |
-| **Unified Inbox** | New messages slide in from top, notification dot pulses |
-| **Dashboard** | Bars grow up on load, numbers count up |
-| **Integrations** | Orbiting icons rotate slowly around center hub |
-| **Social Media** | Posts queue and "send" with a swoosh animation |
-
-### 2. Enhanced Hover Interactions
-- Cards tilt slightly toward cursor (3D perspective)
-- Icon scales up and glows brighter
-- Mockup area border glows with primary color
-- Subtle particle/sparkle effect around icon
-
-### 3. Scroll-Triggered Stagger Animation
-- Cards fade in one-by-one as user scrolls into view
-- Use Intersection Observer for performance
-- Each row staggers: left → center → right
-
-### 4. Interactive Click State (Optional)
-- Clicking a card could expand it slightly with more detail
-- Or highlight that card while dimming others
-
----
-
-## Technical Implementation
-
-### Files to Modify
-- `src/components/landing/WhatYouGet.tsx` - Add animations to mockups, hover effects, scroll animations
-- `tailwind.config.ts` - Add new keyframes for feature-specific animations
-
-### New Animations to Add
+### Visual Layout
 
 ```text
-Keyframes needed:
-- workflow-pulse: Sequential glow through 3 nodes
-- check-appear: Checkbox check-in with scale bounce
-- bar-grow: Bar chart bars growing from 0
-- slide-through: Element sliding horizontally through stages
-- orbit: Slow rotation for integration icons
-- message-slide: Message cards sliding in from top
-- cursor-click: Fake cursor moving and clicking
-- count-up: Number incrementing effect
++---------------------------------------------------------------+
+|                                                               |
+|    Custom CRM & Marketing Automation (Headline)               |
+|    For Solo Financial Planners                                |
+|                                                               |
+|    The done-for-you automation system... (Subheadline)        |
+|                                                               |
+|    [See How It Works]  [Schedule a Strategy Call ->]          |
+|                                                               |
+|         +---------------------------+                         |
+|         |  [avatar] Sarah M.        |  <-- floats up, fades   |
+|         |  Meeting booked for 2pm   |                         |
+|         +---------------------------+                         |
+|                                                               |
+|              +---------------------------+                    |
+|              |  [mail icon]             |  <-- staggered      |
+|              |  Follow-up sent to James |                     |
+|              +---------------------------+                    |
+|                                                               |
+|    +---------------------------+                              |
+|    |  [check icon]             |  <-- different positions    |
+|    |  Client onboarded: Mike T |                              |
+|    +---------------------------+                              |
+|                                                               |
++---------------------------------------------------------------+
 ```
 
-### Mockup Component Updates
+### Notification Cards Design
 
-Each mockup becomes a self-contained animated component:
+Each card will feature:
+- Left icon or avatar
+- Primary text (action)
+- Secondary text (details)
+- Subtle glow and shadow
+- Glass-morphism effect (semi-transparent background with blur)
 
-**WorkflowMockup (Animated)**
-- 3 nodes connected by lines
-- Each node pulses in sequence (0s → 0.5s → 1s delay)
-- Connecting lines glow as "data flows" between them
-- Loop every 3 seconds
+### Sample Notifications (Financial Planner Themed)
 
-**FormsMockup (Animated)**
-- 3 checkboxes that check themselves
-- Staggered timing: 0s, 0.4s, 0.8s
-- Check appears with scale bounce
-- Resets and loops
+1. **New Lead**: Avatar + "Sarah M. submitted inquiry form"
+2. **Follow-up Sent**: Mail icon + "Follow-up #3 sent to James"
+3. **Meeting Booked**: Calendar icon + "Discovery call scheduled for Thursday"
+4. **Review Request**: Star icon + "Review request sent to Mike T."
+5. **Client Onboarded**: CheckCircle icon + "Welcome sequence started for Lisa"
+6. **Referral Received**: UserPlus icon + "New referral from David K."
 
-**CalendarMockup (Animated)**
-- Selected date has gentle pulse
-- A small "meeting" dot slides in
-- Subtle hover highlight on dates
+### Animation Behavior
 
-**PipelineMockup (Animated)**
-- A small "lead" icon/dot moves from Lead → Call → Won
-- Each stage lights up as the dot passes
-- Smooth 4-second loop
+- Cards appear in a continuous loop
+- Each card fades in, floats up slightly, holds for ~3 seconds, then fades out
+- 3 cards visible at any time, staggered at different positions
+- Cards spawn at varied horizontal positions for organic feel
+- Subtle scale animation on entry (0.95 -> 1)
 
-**DashboardMockup (Animated)**
-- Bars grow from 0% to their final height on initial view
-- Uses CSS animation with staggered delays
-- Optional: numbers count up
+### Technical Implementation
 
-**IntegrationsMockup (Animated)**
-- Orbiting icons slowly rotate around center
-- Center hub pulses softly
-- 12-second full rotation loop
+**Files to modify:**
+- `src/components/landing/HeroWorkflow.tsx` - Complete rewrite with new notification cards component
+- `tailwind.config.ts` - Add new keyframes for notification float animation, remove unused travel-contact animations
 
-**InboxMockup (Animated)**
-- New message slides in from top every 2 seconds
-- Older messages slide down
-- Notification badge pulses
+**Component Structure (HeroWorkflow.tsx):**
+```typescript
+// Notification data array with type, icon, avatar, text
+const notifications = [
+  { type: 'lead', avatar: '...', primary: 'Sarah M.', secondary: 'Submitted inquiry form' },
+  { type: 'email', icon: Mail, primary: 'Follow-up #3', secondary: 'Sent to James' },
+  // ... more notifications
+];
 
----
+// NotificationCard component - renders a single card
+// HeroNotifications component - manages the animation loop, displays 3 cards at staggered intervals
+```
 
-## Performance Considerations
-- All animations use CSS transforms and opacity (GPU-accelerated)
-- Animations pause when not in viewport (Intersection Observer)
-- No JavaScript-heavy animation libraries needed
-- Mobile: Simpler animations, respects reduced-motion preference
+**New Keyframes (tailwind.config.ts):**
+```typescript
+"notification-float": {
+  "0%": { opacity: "0", transform: "translateY(20px) scale(0.95)" },
+  "10%": { opacity: "1", transform: "translateY(0) scale(1)" },
+  "80%": { opacity: "1", transform: "translateY(-5px) scale(1)" },
+  "100%": { opacity: "0", transform: "translateY(-15px) scale(0.95)" },
+}
+```
 
----
+**Styling:**
+- Cards: `bg-card/80 backdrop-blur-sm border border-primary/20 rounded-xl shadow-lg`
+- Icons: Electric blue (`text-primary`) with subtle glow
+- Avatars: Circular with primary border
+- Positions: 3 fixed horizontal lanes (left, center, right) with slight vertical offset
+- Mobile: Cards stack in center, narrower width
 
-## Mobile Enhancements
-- Tap on card triggers a brief "active" state with glow
-- Animations still run but at slightly reduced complexity
-- Touch-friendly spacing maintained
-- Respects `prefers-reduced-motion` for accessibility
-
----
-
-## Visual Impact Summary
-
-| Before | After |
-|--------|-------|
-| Static mockup illustrations | Living, breathing animations |
-| Hover only lifts card | Hover reveals glow + icon scale + tilt |
-| All cards visible at once | Staggered reveal on scroll |
-| Generic visual style | Each feature has unique micro-animation |
-
-This transforms the features section from a "list of capabilities" into an **interactive showcase** that demonstrates what each feature actually does.
+**Cleanup:**
+- Remove `travel-contact-bottom`, `travel-contact-vertical-side` keyframes
+- Remove `flow-dot`, `flow-dot-vertical` if no longer used
+- Remove stage card and flow line code entirely
 
