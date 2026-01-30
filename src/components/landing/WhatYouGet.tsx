@@ -615,62 +615,6 @@ const CentralHub = ({ activeCategory }: { activeCategory: string | null }) => {
   );
 };
 
-// ============= SVG CONNECTION LINES =============
-
-const ConnectionLines = ({ activeCategory }: { activeCategory: string | null }) => {
-  // Calculate positions for 3x2 grid
-  const positions = [
-    { x: 16.66, y: 25 },  // CRM
-    { x: 50, y: 25 },     // Lead Capture  
-    { x: 83.33, y: 25 },  // Automation
-    { x: 16.66, y: 75 },  // Marketing
-    { x: 50, y: 75 },     // Analytics
-    { x: 83.33, y: 75 },  // Payments
-  ];
-
-  return (
-    <svg 
-      className="absolute inset-0 w-full h-full pointer-events-none"
-      style={{ zIndex: 0 }}
-      preserveAspectRatio="none"
-    >
-      <defs>
-        <linearGradient id="lineGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor="hsl(217 91% 60%)" stopOpacity="0.1" />
-          <stop offset="50%" stopColor="hsl(217 91% 60%)" stopOpacity="0.4" />
-          <stop offset="100%" stopColor="hsl(217 91% 60%)" stopOpacity="0.1" />
-        </linearGradient>
-        <linearGradient id="activeLineGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor="hsl(217 91% 60%)" stopOpacity="0.3" />
-          <stop offset="50%" stopColor="hsl(217 91% 60%)" stopOpacity="0.8" />
-          <stop offset="100%" stopColor="hsl(217 91% 60%)" stopOpacity="0.3" />
-        </linearGradient>
-      </defs>
-      
-      {positions.map((pos, i) => {
-        const categoryId = categories[i]?.id;
-        const isActive = activeCategory === categoryId;
-        
-        return (
-          <line
-            key={i}
-            x1="50%"
-            y1="-20"
-            x2={`${pos.x}%`}
-            y2={`${pos.y}%`}
-            stroke={`url(#${isActive ? 'activeLineGradient' : 'lineGradient'})`}
-            strokeWidth={isActive ? "3" : "2"}
-            strokeDasharray={isActive ? "none" : "8 4"}
-            className={cn(
-              "transition-all duration-500",
-              isActive && "animate-[pulseConnection_2s_ease-in-out_infinite]"
-            )}
-          />
-        );
-      })}
-    </svg>
-  );
-};
 
 // ============= MAIN COMPONENT =============
 
@@ -742,13 +686,10 @@ const WhatYouGet = () => {
           {/* Central Hub */}
           <CentralHub activeCategory={activeCategory} />
           
-          {/* Category Grid Container with Connection Lines */}
+          {/* Category Grid Container */}
           <div className="relative">
-            {/* SVG Connection Lines Layer */}
-            <ConnectionLines activeCategory={activeCategory} />
-            
             {/* Category Icons Grid - 3x2 */}
-            <div className="relative z-10 grid grid-cols-3 gap-4 lg:gap-6 max-w-4xl mx-auto mb-8">
+            <div className="grid grid-cols-3 gap-4 lg:gap-6 max-w-4xl mx-auto mb-8">
               {categories.map((category) => {
                 const isActive = activeCategory === category.id;
                 return (
