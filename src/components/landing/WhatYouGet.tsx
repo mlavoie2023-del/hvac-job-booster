@@ -57,43 +57,68 @@ const WorkflowAnimation = () => (
 );
 
 const InboxAnimation = () => {
-  const messageTypes = [
-    { icon: "📧", label: "Email", delay: 0 },
-    { icon: "💬", label: "SMS", delay: 1.5 },
-    { icon: "📱", label: "Social", delay: 3 },
-  ];
-  
   return (
-    <div className="relative h-24 flex items-center justify-center">
-      <div className="relative w-36 h-20 bg-card/50 rounded-lg border border-border/50 overflow-hidden">
+    <div className="relative h-28 flex items-center justify-center">
+      <div className="relative w-44 h-24 bg-card/50 rounded-lg border border-border/50 overflow-hidden">
         {/* Header bar */}
-        <div className="h-3 bg-primary/10 border-b border-border/30 flex items-center px-1.5 gap-0.5">
-          <div className="w-1 h-1 rounded-full bg-primary/40" />
-          <div className="w-1 h-1 rounded-full bg-primary/30" />
-          <div className="w-1 h-1 rounded-full bg-primary/20" />
+        <div className="h-4 bg-primary/10 border-b border-border/30 flex items-center px-2 gap-1">
+          <div className="w-1.5 h-1.5 rounded-full bg-red-400/60" />
+          <div className="w-1.5 h-1.5 rounded-full bg-yellow-400/60" />
+          <div className="w-1.5 h-1.5 rounded-full bg-green-400/60" />
+          <span className="ml-2 text-[7px] text-muted-foreground font-medium">Inbox</span>
         </div>
         
-        {/* Messages sliding in */}
-        {messageTypes.map((msg, i) => (
-          <div 
-            key={i}
-            className="absolute left-0 right-0 px-2 animate-[inboxSlide_4.5s_ease-in-out_infinite]"
-            style={{ 
-              top: `${14 + i * 5}px`,
-              animationDelay: `${msg.delay}s`,
-            }}
-          >
-            <div className="flex items-center gap-1.5 h-4 bg-primary/15 rounded border-l-2 border-primary px-1.5">
-              <span className="text-[8px]">{msg.icon}</span>
-              <div className="flex-1 h-1.5 bg-primary/20 rounded" />
-              <div className="w-3 h-1.5 bg-primary/30 rounded animate-pulse" />
+        {/* SMS Message */}
+        <div 
+          className="absolute left-2 right-2 animate-[inboxSlide_6s_ease-in-out_infinite]"
+          style={{ top: '20px', animationDelay: '0s' }}
+        >
+          <div className="flex items-center gap-2 h-5 bg-emerald-500/15 rounded border-l-2 border-emerald-500 px-2">
+            <div className="w-3 h-3 rounded bg-emerald-500/30 flex items-center justify-center">
+              <span className="text-[6px]">💬</span>
+            </div>
+            <div className="flex-1">
+              <div className="h-1 w-10 bg-emerald-500/30 rounded mb-0.5" />
+              <div className="h-1 w-16 bg-emerald-500/20 rounded" />
             </div>
           </div>
-        ))}
+        </div>
+        
+        {/* Email Message */}
+        <div 
+          className="absolute left-2 right-2 animate-[inboxSlide_6s_ease-in-out_infinite]"
+          style={{ top: '46px', animationDelay: '2s' }}
+        >
+          <div className="flex items-center gap-2 h-5 bg-primary/15 rounded border-l-2 border-primary px-2">
+            <div className="w-3 h-3 rounded bg-primary/30 flex items-center justify-center">
+              <span className="text-[6px]">✉️</span>
+            </div>
+            <div className="flex-1">
+              <div className="h-1 w-12 bg-primary/30 rounded mb-0.5" />
+              <div className="h-1 w-14 bg-primary/20 rounded" />
+            </div>
+          </div>
+        </div>
+        
+        {/* LinkedIn Message */}
+        <div 
+          className="absolute left-2 right-2 animate-[inboxSlide_6s_ease-in-out_infinite]"
+          style={{ top: '72px', animationDelay: '4s' }}
+        >
+          <div className="flex items-center gap-2 h-5 bg-blue-500/15 rounded border-l-2 border-blue-500 px-2">
+            <div className="w-3 h-3 rounded bg-blue-600/40 flex items-center justify-center">
+              <span className="text-[6px] font-bold text-blue-300">in</span>
+            </div>
+            <div className="flex-1">
+              <div className="h-1 w-8 bg-blue-500/30 rounded mb-0.5" />
+              <div className="h-1 w-12 bg-blue-500/20 rounded" />
+            </div>
+          </div>
+        </div>
         
         {/* New message notification badge */}
-        <div className="absolute -top-1 -right-1 w-4 h-4 bg-primary rounded-full flex items-center justify-center animate-[notificationPop_4.5s_ease-in-out_infinite]">
-          <span className="text-[8px] font-bold text-primary-foreground">3</span>
+        <div className="absolute -top-1 -right-1 w-5 h-5 bg-primary rounded-full flex items-center justify-center animate-[notificationPop_6s_ease-in-out_infinite] shadow-lg shadow-primary/30">
+          <span className="text-[9px] font-bold text-primary-foreground">3</span>
         </div>
       </div>
     </div>
@@ -573,9 +598,9 @@ const WhatYouGet = () => {
 
       <style>{`
         @keyframes inboxSlide {
-          0%, 100% { transform: translateX(-100%); opacity: 0; }
-          15%, 85% { transform: translateX(0); opacity: 1; }
-          100% { transform: translateX(0); opacity: 0; }
+          0% { transform: translateX(-120%); opacity: 0; }
+          10%, 90% { transform: translateX(0); opacity: 1; }
+          100% { transform: translateX(0); opacity: 1; }
         }
         @keyframes notificationPop {
           0%, 10% { transform: scale(0); }
