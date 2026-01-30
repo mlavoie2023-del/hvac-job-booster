@@ -41,7 +41,6 @@ const Differentiation = () => {
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_70%_40%_at_50%_0%,hsl(217_91%_60%/0.05),transparent)]" />
       <div className="section-container">
         <div className="mx-auto max-w-3xl text-center">
-          <p className="text-sm font-medium text-primary mb-3">Why we're different</p>
           <h2 className="text-3xl font-bold text-foreground sm:text-4xl lg:text-5xl">
             Built For Solo Planners.<br />
             <span className="text-muted-foreground">Not Enterprises.</span>

@@ -26,7 +26,6 @@ const HowItWorks = () => {
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#0d0d0d]/50 to-transparent" />
       <div className="section-container">
         <div className="mx-auto max-w-3xl text-center">
-          <p className="text-sm font-medium text-primary mb-3">Done for you, not DIY</p>
           <h2 className="text-3xl font-bold text-foreground sm:text-4xl lg:text-5xl">
             Custom-Built For <span className="gradient-text">Your</span> Practice
           </h2>
