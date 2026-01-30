@@ -251,51 +251,54 @@ const LandingPageAnimation = () => (
 );
 
 const FormsAnimation = () => (
-  <div className="relative h-40 flex items-center justify-center p-2">
-    <div className="w-56 bg-card/50 rounded-lg border border-border/50 p-3">
-      <div className="text-[9px] font-semibold text-foreground mb-3">Financial Goals Intake</div>
+  <div className="relative h-40 flex items-center justify-center">
+    <div className="w-52 bg-card/50 rounded-lg border border-border/50 p-2.5">
+      <div className="text-[8px] font-semibold text-foreground mb-2">Financial Goals Intake</div>
       
       {/* Form fields */}
-      <div className="space-y-2.5">
+      <div className="space-y-1.5">
         {/* Name field */}
         <div>
-          <div className="text-[7px] text-muted-foreground mb-1">Name</div>
-          <div className="h-5 bg-muted/30 rounded px-2 flex items-center border border-border/30">
-            <span className="text-[8px] text-foreground/60">John Davidson</span>
+          <div className="text-[6px] text-muted-foreground mb-0.5">Name</div>
+          <div className="h-4 bg-muted/30 rounded px-1.5 flex items-center border border-border/30">
+            <span className="text-[7px] text-foreground/60">John Davidson</span>
           </div>
         </div>
         
         {/* Goals text area */}
         <div>
-          <div className="text-[7px] text-muted-foreground mb-1">What are your financial goals?</div>
-          <div className="h-7 bg-muted/30 rounded px-2 py-1.5 border border-primary/30 overflow-hidden">
-            <div className="text-[7px] text-foreground/80 leading-relaxed whitespace-nowrap overflow-hidden">
-              <span className="inline-block animate-[typewriter_4s_steps(35)_infinite]">I want to start investing for retirement</span>
-              <span className="inline-block w-0.5 h-2.5 bg-primary ml-0.5 animate-[blink_1s_infinite]" />
-            </div>
+          <div className="text-[6px] text-muted-foreground mb-0.5">What are your financial goals?</div>
+          <div className="h-5 bg-muted/30 rounded px-1.5 flex items-center border border-primary/30">
+            <span 
+              className="text-[6px] text-foreground/80 whitespace-nowrap overflow-hidden animate-[typing_4s_steps(35)_infinite]"
+              style={{ maxWidth: 0 }}
+            >
+              I want to start investing for retirement
+            </span>
+            <span className="inline-block w-0.5 h-2 bg-primary animate-[blink_1s_infinite] flex-shrink-0" />
           </div>
         </div>
         
         {/* Checkboxes */}
-        <div className="flex gap-4">
-          <div className="flex items-center gap-1.5">
-            <div className="w-3 h-3 rounded-sm border border-emerald-500 bg-emerald-500/30 flex items-center justify-center">
-              <span className="text-[8px] text-emerald-400">✓</span>
+        <div className="flex gap-3">
+          <div className="flex items-center gap-1">
+            <div className="w-2.5 h-2.5 rounded-sm border border-emerald-500 bg-emerald-500/30 flex items-center justify-center">
+              <span className="text-[6px] text-emerald-400">✓</span>
             </div>
-            <span className="text-[7px] text-foreground/70">Retirement</span>
+            <span className="text-[6px] text-foreground/70">Retirement</span>
           </div>
-          <div className="flex items-center gap-1.5">
-            <div className="w-3 h-3 rounded-sm border border-primary bg-primary/30 flex items-center justify-center">
-              <span className="text-[8px] text-primary">✓</span>
+          <div className="flex items-center gap-1">
+            <div className="w-2.5 h-2.5 rounded-sm border border-primary bg-primary/30 flex items-center justify-center">
+              <span className="text-[6px] text-primary">✓</span>
             </div>
-            <span className="text-[7px] text-foreground/70">Tax Strategy</span>
+            <span className="text-[6px] text-foreground/70">Tax Strategy</span>
           </div>
         </div>
       </div>
       
       {/* Submit button */}
-      <div className="mt-3 h-5 bg-emerald-500/80 rounded flex items-center justify-center">
-        <span className="text-[7px] font-medium text-white">Submit</span>
+      <div className="mt-2 h-4 bg-emerald-500/80 rounded flex items-center justify-center">
+        <span className="text-[6px] font-medium text-white">Submit</span>
       </div>
     </div>
   </div>
