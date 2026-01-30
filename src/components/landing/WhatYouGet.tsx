@@ -99,20 +99,38 @@ const InboxAnimation = () => (
 );
 
 const ContactAnimation = () => (
-  <div className="relative h-24 flex items-center justify-center">
-    <div className="w-36 bg-card/50 rounded-lg border border-border/50 p-3 animate-[fadeSlideIn_3s_ease-in-out_infinite]">
+  <div className="relative h-32 flex items-center justify-center">
+    <div className="w-44 bg-card/50 rounded-lg border border-border/50 p-2.5 animate-[fadeSlideIn_3s_ease-in-out_infinite]">
+      {/* Header with avatar */}
       <div className="flex items-center gap-2 mb-2">
         <div className="w-8 h-8 rounded-full bg-gradient-to-br from-primary/40 to-primary/20 flex items-center justify-center">
           <span className="text-xs font-bold text-primary">JD</span>
         </div>
         <div>
-          <div className="h-2 w-16 bg-foreground/20 rounded mb-1" />
-          <div className="h-1.5 w-12 bg-muted-foreground/20 rounded" />
+          <div className="text-[9px] font-medium text-foreground">John Davidson</div>
+          <div className="text-[7px] text-muted-foreground">Pre-Retiree • Age 58</div>
         </div>
       </div>
-      <div className="flex gap-1">
+      
+      {/* Tags */}
+      <div className="flex gap-1 mb-2">
         <div className="px-1.5 py-0.5 bg-emerald-500/20 rounded text-[6px] text-emerald-400">Active</div>
-        <div className="px-1.5 py-0.5 bg-primary/20 rounded text-[6px] text-primary">Prospect</div>
+        <div className="px-1.5 py-0.5 bg-primary/20 rounded text-[6px] text-primary">$1.2M AUM</div>
+      </div>
+      
+      {/* Notes section */}
+      <div className="bg-muted/30 rounded p-1.5 border border-border/30">
+        <div className="text-[6px] text-muted-foreground mb-1 font-medium">Goals</div>
+        <div className="space-y-0.5">
+          <div className="flex items-center gap-1">
+            <div className="w-1 h-1 rounded-full bg-emerald-500" />
+            <span className="text-[6px] text-foreground/70">Retire at 62</span>
+          </div>
+          <div className="flex items-center gap-1">
+            <div className="w-1 h-1 rounded-full bg-primary" />
+            <span className="text-[6px] text-foreground/70">Estate planning</span>
+          </div>
+        </div>
       </div>
     </div>
   </div>
