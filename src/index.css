@@ -353,4 +353,28 @@
       opacity: 1;
     }
   }
+
+  @keyframes typewriter {
+    0% {
+      width: 0;
+      opacity: 1;
+    }
+    50%, 90% {
+      width: 100%;
+      opacity: 1;
+    }
+    100% {
+      width: 0;
+      opacity: 1;
+    }
+  }
+
+  @keyframes blink {
+    0%, 50% {
+      opacity: 1;
+    }
+    51%, 100% {
+      opacity: 0;
+    }
+  }
 }
