@@ -21,7 +21,8 @@ import {
   FileSignature,
   Receipt,
   ClipboardList,
-  MousePointer
+  MousePointer,
+  Clock
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import lavoieLogo from "@/assets/lavoie-logo-square.png";
@@ -366,40 +367,34 @@ const WorkflowAnimation = () => (
       <div className="flex items-center justify-center gap-2">
         {/* Trigger node */}
         <div className="flex flex-col items-center">
-          <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-pink-500/20 to-purple-500/20 border border-pink-500/40 flex items-center justify-center">
-            <div className="w-6 h-6 rounded-lg bg-gradient-to-br from-pink-500 to-purple-500 flex items-center justify-center">
-              <span className="text-[8px] text-white">📥</span>
-            </div>
+          <div className="w-12 h-12 rounded-xl bg-pink-500/10 border border-pink-500/30 flex items-center justify-center">
+            <Inbox className="w-5 h-5 text-pink-400" />
           </div>
           <span className="text-[6px] text-muted-foreground mt-1">New Lead</span>
         </div>
         
         {/* Connector line with animation */}
-        <div className="w-8 h-0.5 bg-gradient-to-r from-pink-500/60 to-primary/60 relative">
-          <div className="absolute inset-0 bg-primary animate-[flowPulse_2s_ease-in-out_infinite]" />
+        <div className="w-8 h-0.5 bg-gradient-to-r from-pink-500/40 to-primary/40 relative">
+          <div className="absolute inset-0 bg-primary/60 animate-[flowPulse_2s_ease-in-out_infinite]" />
         </div>
         
         {/* Wait node */}
         <div className="flex flex-col items-center animate-[nodeActivate_3s_ease-in-out_infinite]" style={{ animationDelay: '0.5s' }}>
           <div className="w-12 h-12 rounded-xl bg-primary/10 border border-primary/30 flex items-center justify-center">
-            <div className="w-6 h-6 rounded-lg bg-primary/80 flex items-center justify-center">
-              <span className="text-[8px] text-white">⏱️</span>
-            </div>
+            <Clock className="w-5 h-5 text-primary" />
           </div>
           <span className="text-[6px] text-muted-foreground mt-1">Wait 1 day</span>
         </div>
         
         {/* Connector line */}
-        <div className="w-8 h-0.5 bg-gradient-to-r from-primary/60 to-emerald-500/60 relative">
+        <div className="w-8 h-0.5 bg-gradient-to-r from-primary/40 to-emerald-500/40 relative">
           <div className="absolute inset-0 bg-emerald-500/60 animate-[flowPulse_2s_ease-in-out_infinite]" style={{ animationDelay: '1s' }} />
         </div>
         
         {/* Email node */}
         <div className="flex flex-col items-center animate-[nodeActivate_3s_ease-in-out_infinite]" style={{ animationDelay: '1.5s' }}>
           <div className="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center">
-            <div className="w-6 h-6 rounded-lg bg-emerald-500 flex items-center justify-center">
-              <Mail className="w-3 h-3 text-white" />
-            </div>
+            <Mail className="w-5 h-5 text-emerald-400" />
           </div>
           <span className="text-[6px] text-muted-foreground mt-1">Send Email</span>
         </div>
