@@ -56,23 +56,49 @@ const WorkflowAnimation = () => (
   </div>
 );
 
-const InboxAnimation = () => (
-  <div className="relative h-24 flex items-center justify-center">
-    <div className="relative w-32 h-20 bg-card/50 rounded-lg border border-border/50 overflow-hidden">
-      {[0, 1, 2].map((i) => (
-        <div 
-          key={i}
-          className="absolute left-2 right-2 h-4 bg-primary/10 rounded border-l-2 border-primary animate-[messageSlide_3s_ease-in-out_infinite]"
-          style={{ 
-            top: `${8 + i * 18}px`,
-            animationDelay: `${i * 0.5}s`,
-            opacity: 1 - i * 0.2
-          }}
-        />
-      ))}
+const InboxAnimation = () => {
+  const messageTypes = [
+    { icon: "📧", label: "Email", delay: 0 },
+    { icon: "💬", label: "SMS", delay: 1.5 },
+    { icon: "📱", label: "Social", delay: 3 },
+  ];
+  
+  return (
+    <div className="relative h-24 flex items-center justify-center">
+      <div className="relative w-36 h-20 bg-card/50 rounded-lg border border-border/50 overflow-hidden">
+        {/* Header bar */}
+        <div className="h-3 bg-primary/10 border-b border-border/30 flex items-center px-1.5 gap-0.5">
+          <div className="w-1 h-1 rounded-full bg-primary/40" />
+          <div className="w-1 h-1 rounded-full bg-primary/30" />
+          <div className="w-1 h-1 rounded-full bg-primary/20" />
+        </div>
+        
+        {/* Messages sliding in */}
+        {messageTypes.map((msg, i) => (
+          <div 
+            key={i}
+            className="absolute left-0 right-0 px-2 animate-[inboxSlide_4.5s_ease-in-out_infinite]"
+            style={{ 
+              top: `${14 + i * 5}px`,
+              animationDelay: `${msg.delay}s`,
+            }}
+          >
+            <div className="flex items-center gap-1.5 h-4 bg-primary/15 rounded border-l-2 border-primary px-1.5">
+              <span className="text-[8px]">{msg.icon}</span>
+              <div className="flex-1 h-1.5 bg-primary/20 rounded" />
+              <div className="w-3 h-1.5 bg-primary/30 rounded animate-pulse" />
+            </div>
+          </div>
+        ))}
+        
+        {/* New message notification badge */}
+        <div className="absolute -top-1 -right-1 w-4 h-4 bg-primary rounded-full flex items-center justify-center animate-[notificationPop_4.5s_ease-in-out_infinite]">
+          <span className="text-[8px] font-bold text-primary-foreground">3</span>
+        </div>
+      </div>
     </div>
-  </div>
-);
+  );
+};
 
 const CalendarAnimation = () => (
   <div className="relative h-24 flex items-center justify-center">
@@ -546,9 +572,15 @@ const WhatYouGet = () => {
       </div>
 
       <style>{`
-        @keyframes messageSlide {
-          0%, 100% { transform: translateX(0); opacity: 1; }
-          50% { transform: translateX(-4px); opacity: 0.7; }
+        @keyframes inboxSlide {
+          0%, 100% { transform: translateX(-100%); opacity: 0; }
+          15%, 85% { transform: translateX(0); opacity: 1; }
+          100% { transform: translateX(0); opacity: 0; }
+        }
+        @keyframes notificationPop {
+          0%, 10% { transform: scale(0); }
+          20%, 80% { transform: scale(1); }
+          90%, 100% { transform: scale(0); }
         }
         @keyframes orbit {
           from { transform: rotate(0deg) translateX(24px) rotate(0deg); }
