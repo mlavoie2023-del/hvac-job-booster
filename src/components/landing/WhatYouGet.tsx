@@ -192,37 +192,41 @@ const PipelineAnimation = () => {
 
 // Lead Capture Animations
 const LandingPageAnimation = () => (
-  <div className="relative h-32 flex items-center justify-center">
-    <div className="w-44 h-28 bg-card/50 rounded-lg border border-border/50 overflow-hidden">
+  <div className="relative h-36 flex items-center justify-center">
+    <div className="w-52 h-32 bg-card/50 rounded-lg border border-border/50 overflow-hidden">
       {/* Browser chrome */}
-      <div className="h-3 bg-muted/40 border-b border-border/30 flex items-center px-1.5 gap-1">
-        <div className="w-1.5 h-1.5 rounded-full bg-red-400/60" />
-        <div className="w-1.5 h-1.5 rounded-full bg-yellow-400/60" />
-        <div className="w-1.5 h-1.5 rounded-full bg-green-400/60" />
+      <div className="h-4 bg-muted/40 border-b border-border/30 flex items-center px-2 gap-1.5">
+        <div className="w-2 h-2 rounded-full bg-red-400/60" />
+        <div className="w-2 h-2 rounded-full bg-yellow-400/60" />
+        <div className="w-2 h-2 rounded-full bg-green-400/60" />
       </div>
       
-      {/* Hero section */}
-      <div className="p-2">
-        <div className="text-[6px] font-bold text-foreground mb-1">Secure Your Retirement</div>
-        <div className="text-[5px] text-muted-foreground mb-2 leading-relaxed">
+      {/* Hero section - centered */}
+      <div className="p-3 text-center">
+        {/* Small decorative graphic */}
+        <div className="w-8 h-8 mx-auto mb-2 rounded-lg bg-gradient-to-br from-emerald-500/20 to-primary/20 border border-emerald-500/30 flex items-center justify-center">
+          <div className="w-4 h-4 rounded bg-gradient-to-br from-emerald-500 to-emerald-600 flex items-center justify-center">
+            <span className="text-[6px] text-white font-bold">$</span>
+          </div>
+        </div>
+        
+        <div className="text-[8px] font-bold text-foreground mb-1">Secure Your Retirement</div>
+        <div className="text-[6px] text-muted-foreground mb-3">
           Expert financial planning for your future
         </div>
         
         {/* CTA Button */}
         <div className="relative inline-block">
-          <div className="px-2 py-1 bg-emerald-500 rounded text-[5px] font-medium text-white animate-[ctaPulse_3s_ease-in-out_infinite]">
+          <div className="px-3 py-1.5 bg-emerald-500 rounded text-[6px] font-medium text-white animate-[ctaPulse_3s_ease-in-out_infinite]">
             Book Discovery Call
           </div>
           
           {/* Animated cursor */}
-          <div className="absolute -right-2 -bottom-2 animate-[cursorClick_3s_ease-in-out_infinite]">
-            <MousePointer className="w-3 h-3 text-foreground fill-foreground/20" />
+          <div className="absolute -right-3 -bottom-2 animate-[cursorClick_3s_ease-in-out_infinite]">
+            <MousePointer className="w-3.5 h-3.5 text-foreground fill-foreground/20" />
           </div>
         </div>
       </div>
-      
-      {/* Decorative elements */}
-      <div className="absolute bottom-1 right-1 w-8 h-6 bg-muted/20 rounded" />
     </div>
   </div>
 );
