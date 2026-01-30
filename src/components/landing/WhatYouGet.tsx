@@ -717,15 +717,6 @@ const WhatYouGet = () => {
                       {category.title}
                     </span>
                     
-                    {/* Feature count badge */}
-                    <span className={cn(
-                      "absolute -top-2 -right-2 w-6 h-6 rounded-full text-xs font-bold flex items-center justify-center transition-all duration-300",
-                      isActive 
-                        ? `bg-gradient-to-br ${category.color} text-white` 
-                        : "bg-muted text-muted-foreground"
-                    )}>
-                      3
-                    </span>
                   </button>
                 );
               })}
