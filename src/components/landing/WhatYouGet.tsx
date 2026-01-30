@@ -417,7 +417,6 @@ const categories: Category[] = [
     id: "crm",
     icon: Users,
     title: "CRM",
-    subtitle: "One platform to run your entire business",
     color: "from-blue-500 to-cyan-500",
     features: [
       {
@@ -658,23 +657,6 @@ const WhatYouGet = () => {
             Everything a Solo Planner Needs
           </h2>
           
-          {/* ONE PLATFORM Badge */}
-          <div className="flex justify-center mt-6">
-            <div className="relative inline-flex items-center gap-2 px-6 py-2 rounded-full border border-primary/30 bg-primary/5">
-              {/* Animated glow border */}
-              <div className="absolute inset-0 rounded-full bg-gradient-to-r from-primary/0 via-primary/20 to-primary/0 animate-[glowBadge_3s_ease-in-out_infinite]" />
-              
-              <div className="relative flex items-center gap-3">
-                <div className="w-2 h-2 rounded-full bg-primary animate-pulse" />
-                <span className="text-sm font-bold tracking-widest text-primary uppercase">
-                  One Platform
-                </span>
-                <span className="text-sm text-muted-foreground">•</span>
-                <span className="text-sm font-semibold text-foreground">18 Tools</span>
-                <div className="w-2 h-2 rounded-full bg-primary animate-pulse" />
-              </div>
-            </div>
-          </div>
           
           <p className="mx-auto mt-4 max-w-2xl text-lg text-body">
             All 18 tools work together seamlessly. One login. Zero app-switching.
@@ -758,15 +740,6 @@ const WhatYouGet = () => {
           )}>
             {activeData && (
               <div className="bg-card/80 backdrop-blur-sm rounded-2xl border border-border p-8 mt-4">
-                {/* "Part of unified system" indicator */}
-                <div className="flex items-center justify-center gap-2 mb-4">
-                  <div className="h-px w-12 bg-gradient-to-r from-transparent to-primary/30" />
-                  <span className="text-xs text-muted-foreground font-medium tracking-wide">
-                    Connected to your Lavoie platform
-                  </span>
-                  <div className="h-px w-12 bg-gradient-to-l from-transparent to-primary/30" />
-                </div>
-                
                 {activeData.subtitle && (
                   <p className="text-center text-muted-foreground mb-6">{activeData.subtitle}</p>
                 )}
