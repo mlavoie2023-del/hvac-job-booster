@@ -192,47 +192,134 @@ const PipelineAnimation = () => {
 
 // Lead Capture Animations
 const LandingPageAnimation = () => (
-  <div className="relative h-24 flex items-center justify-center">
-    <div className="w-20 h-16 bg-card/50 rounded-lg border border-border/50 overflow-hidden">
-      <div className="h-3 bg-primary/20 border-b border-border/30" />
-      <div className="p-1.5 space-y-1">
-        <div className="h-1.5 w-full bg-muted/40 rounded" />
-        <div className="h-1.5 w-2/3 bg-muted/30 rounded" />
-        <div className="h-3 w-8 mx-auto bg-primary/40 rounded animate-pulse mt-1" />
+  <div className="relative h-32 flex items-center justify-center">
+    <div className="w-44 h-28 bg-card/50 rounded-lg border border-border/50 overflow-hidden">
+      {/* Browser chrome */}
+      <div className="h-3 bg-muted/40 border-b border-border/30 flex items-center px-1.5 gap-1">
+        <div className="w-1.5 h-1.5 rounded-full bg-red-400/60" />
+        <div className="w-1.5 h-1.5 rounded-full bg-yellow-400/60" />
+        <div className="w-1.5 h-1.5 rounded-full bg-green-400/60" />
       </div>
+      
+      {/* Hero section */}
+      <div className="p-2">
+        <div className="text-[6px] font-bold text-foreground mb-1">Secure Your Retirement</div>
+        <div className="text-[5px] text-muted-foreground mb-2 leading-relaxed">
+          Expert financial planning for your future
+        </div>
+        
+        {/* CTA Button */}
+        <div className="relative inline-block">
+          <div className="px-2 py-1 bg-emerald-500 rounded text-[5px] font-medium text-white animate-[ctaPulse_3s_ease-in-out_infinite]">
+            Book Discovery Call
+          </div>
+          
+          {/* Animated cursor */}
+          <div className="absolute -right-2 -bottom-2 animate-[cursorClick_3s_ease-in-out_infinite]">
+            <MousePointer className="w-3 h-3 text-foreground fill-foreground/20" />
+          </div>
+        </div>
+      </div>
+      
+      {/* Decorative elements */}
+      <div className="absolute bottom-1 right-1 w-8 h-6 bg-muted/20 rounded" />
     </div>
   </div>
 );
 
 const FormsAnimation = () => (
-  <div className="relative h-24 flex items-center justify-center">
-    <div className="w-24 space-y-2 p-2 bg-card/50 rounded-lg border border-border/50">
-      <div className="h-2 w-full bg-muted/30 rounded" />
-      <div className="h-2 w-3/4 bg-muted/30 rounded" />
-      <div className="flex items-center gap-1">
-        <div className="w-3 h-3 rounded border-2 border-primary bg-primary/20 flex items-center justify-center">
-          <div className="w-1.5 h-1.5 bg-primary rounded-sm animate-[scaleIn_0.5s_ease-out_infinite_alternate]" />
+  <div className="relative h-32 flex items-center justify-center">
+    <div className="w-44 bg-card/50 rounded-lg border border-border/50 p-2">
+      <div className="text-[7px] font-semibold text-foreground mb-2">Financial Goals Intake</div>
+      
+      {/* Form fields */}
+      <div className="space-y-1.5">
+        {/* Name field - pre-filled */}
+        <div>
+          <div className="text-[5px] text-muted-foreground mb-0.5">Name</div>
+          <div className="h-3 bg-muted/30 rounded px-1 flex items-center border border-border/30">
+            <span className="text-[5px] text-foreground/80 animate-[typeText_4s_steps(12)_infinite]">John Davidson</span>
+          </div>
         </div>
-        <div className="h-2 w-8 bg-muted/30 rounded" />
+        
+        {/* Goal checkboxes */}
+        <div>
+          <div className="text-[5px] text-muted-foreground mb-0.5">Goals</div>
+          <div className="space-y-0.5">
+            <div className="flex items-center gap-1">
+              <div className="w-2 h-2 rounded-sm border border-emerald-500 bg-emerald-500/30 flex items-center justify-center">
+                <span className="text-[6px] text-emerald-400">✓</span>
+              </div>
+              <span className="text-[5px] text-foreground/70">Retirement Planning</span>
+            </div>
+            <div className="flex items-center gap-1 animate-[checkboxFill_4s_ease-in-out_infinite]">
+              <div className="w-2 h-2 rounded-sm border border-primary bg-primary/30 flex items-center justify-center">
+                <span className="text-[6px] text-primary">✓</span>
+              </div>
+              <span className="text-[5px] text-foreground/70">Tax Strategy</span>
+            </div>
+            <div className="flex items-center gap-1">
+              <div className="w-2 h-2 rounded-sm border border-border/50 bg-muted/20" />
+              <span className="text-[5px] text-foreground/50">Estate Planning</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      {/* Submit button */}
+      <div className="mt-2 h-3 bg-emerald-500/80 rounded flex items-center justify-center">
+        <span className="text-[5px] font-medium text-white">Submit</span>
       </div>
     </div>
   </div>
 );
 
 const CalendarAnimation = () => (
-  <div className="relative h-24 flex items-center justify-center">
-    <div className="w-24 h-20 bg-card/50 rounded-lg border border-border/50 p-1.5">
-      <div className="grid grid-cols-5 gap-0.5">
-        {Array.from({ length: 15 }).map((_, i) => (
-          <div 
-            key={i} 
-            className={cn(
-              "w-3 h-3 rounded-sm transition-all duration-300",
-              i === 7 ? "bg-primary animate-pulse" : 
-              [3, 11, 13].includes(i) ? "bg-primary/30" : "bg-muted/30"
-            )}
-          />
-        ))}
+  <div className="relative h-32 flex items-center justify-center">
+    <div className="flex gap-2">
+      {/* Calendar */}
+      <div className="w-28 bg-card/50 rounded-lg border border-border/50 p-1.5">
+        <div className="text-[6px] font-semibold text-foreground mb-1 text-center">February 2026</div>
+        <div className="grid grid-cols-7 gap-0.5 text-center mb-1">
+          {["S", "M", "T", "W", "T", "F", "S"].map((d, i) => (
+            <div key={i} className="text-[4px] text-muted-foreground">{d}</div>
+          ))}
+        </div>
+        <div className="grid grid-cols-7 gap-0.5">
+          {[...Array(31)].map((_, i) => {
+            const day = i + 1;
+            const isSelected = day === 14;
+            const hasAppointment = [8, 12, 20].includes(day);
+            return (
+              <div 
+                key={i}
+                className={cn(
+                  "w-3 h-3 rounded-sm flex items-center justify-center text-[5px] transition-all",
+                  isSelected 
+                    ? "bg-emerald-500 text-white animate-[calendarSelect_4s_ease-in-out_infinite]" 
+                    : hasAppointment 
+                      ? "bg-primary/30 text-primary" 
+                      : "text-foreground/60 hover:bg-muted/30"
+                )}
+              >
+                {day <= 28 ? day : ""}
+              </div>
+            );
+          })}
+        </div>
+      </div>
+      
+      {/* Confirmation message */}
+      <div className="w-20 flex flex-col justify-center">
+        <div className="bg-card/50 rounded-lg border border-emerald-500/30 p-1.5 animate-[confirmSlideIn_4s_ease-out_infinite]" style={{ animationDelay: '2s' }}>
+          <div className="flex items-center gap-1 mb-1">
+            <Smartphone className="w-2.5 h-2.5 text-emerald-500" />
+            <span className="text-[5px] text-emerald-400 font-medium">Confirmed!</span>
+          </div>
+          <div className="text-[4px] text-muted-foreground leading-relaxed">
+            Your call is booked for Feb 14 at 2:00 PM
+          </div>
+        </div>
       </div>
     </div>
   </div>
