@@ -2,19 +2,26 @@ import { useState, useEffect, useRef } from "react";
 import { 
   Workflow, 
   FileText, 
-  ClipboardList, 
   Calendar, 
-  GitBranch, 
   Inbox, 
   BarChart3, 
-  Plug, 
   Share2,
-  MessageSquare,
   Zap,
-  TrendingUp,
   ChevronLeft,
   ChevronRight,
-  LucideIcon
+  LucideIcon,
+  Users,
+  Target,
+  Mail,
+  CreditCard,
+  GitBranch,
+  Bell,
+  Smartphone,
+  PieChart,
+  FileSignature,
+  Receipt,
+  ClipboardList,
+  MousePointer
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -29,101 +36,137 @@ interface Category {
   id: string;
   icon: LucideIcon;
   title: string;
+  subtitle?: string;
   color: string;
   features: Feature[];
 }
 
-// Mini animation components for each feature
-const WorkflowAnimation = () => (
-  <div className="relative h-24 flex items-center justify-center">
-    <div className="flex items-center gap-2">
-      {[0, 1, 2].map((i) => (
-        <div key={i} className="relative">
-          <div 
-            className="w-8 h-8 rounded-lg bg-primary/20 border border-primary/40 flex items-center justify-center"
-            style={{ animationDelay: `${i * 0.2}s` }}
-          >
-            <div className="w-2 h-2 rounded-full bg-primary animate-pulse" style={{ animationDelay: `${i * 0.3}s` }} />
+// ============= ANIMATION COMPONENTS =============
+
+// CRM Animations
+const InboxAnimation = () => (
+  <div className="relative h-28 flex items-center justify-center">
+    <div className="relative w-44 h-24 bg-card/50 rounded-lg border border-border/50 overflow-hidden">
+      <div className="h-4 bg-primary/10 border-b border-border/30 flex items-center px-2 gap-1">
+        <div className="w-1.5 h-1.5 rounded-full bg-red-400/60" />
+        <div className="w-1.5 h-1.5 rounded-full bg-yellow-400/60" />
+        <div className="w-1.5 h-1.5 rounded-full bg-green-400/60" />
+        <span className="ml-2 text-[7px] text-muted-foreground font-medium">Inbox</span>
+      </div>
+      
+      <div className="absolute left-2 right-2 animate-[inboxSlide_6s_ease-in-out_infinite]" style={{ top: '20px', animationDelay: '0s' }}>
+        <div className="flex items-center gap-2 h-5 bg-emerald-500/15 rounded border-l-2 border-emerald-500 px-2">
+          <div className="w-3 h-3 rounded bg-emerald-500/30 flex items-center justify-center">
+            <span className="text-[6px]">💬</span>
           </div>
-          {i < 2 && (
-            <div className="absolute top-1/2 -right-2 w-2 h-0.5 bg-primary/60">
-              <div className="absolute inset-0 bg-primary animate-[pulse_1s_ease-in-out_infinite]" style={{ animationDelay: `${i * 0.4}s` }} />
-            </div>
-          )}
+          <div className="flex-1">
+            <div className="h-1 w-10 bg-emerald-500/30 rounded mb-0.5" />
+            <div className="h-1 w-16 bg-emerald-500/20 rounded" />
+          </div>
+        </div>
+      </div>
+      
+      <div className="absolute left-2 right-2 animate-[inboxSlide_6s_ease-in-out_infinite]" style={{ top: '46px', animationDelay: '2s' }}>
+        <div className="flex items-center gap-2 h-5 bg-primary/15 rounded border-l-2 border-primary px-2">
+          <div className="w-3 h-3 rounded bg-primary/30 flex items-center justify-center">
+            <span className="text-[6px]">✉️</span>
+          </div>
+          <div className="flex-1">
+            <div className="h-1 w-12 bg-primary/30 rounded mb-0.5" />
+            <div className="h-1 w-14 bg-primary/20 rounded" />
+          </div>
+        </div>
+      </div>
+      
+      <div className="absolute left-2 right-2 animate-[inboxSlide_6s_ease-in-out_infinite]" style={{ top: '72px', animationDelay: '4s' }}>
+        <div className="flex items-center gap-2 h-5 bg-blue-500/15 rounded border-l-2 border-blue-500 px-2">
+          <div className="w-3 h-3 rounded bg-blue-600/40 flex items-center justify-center">
+            <span className="text-[6px] font-bold text-blue-300">in</span>
+          </div>
+          <div className="flex-1">
+            <div className="h-1 w-8 bg-blue-500/30 rounded mb-0.5" />
+            <div className="h-1 w-12 bg-blue-500/20 rounded" />
+          </div>
+        </div>
+      </div>
+      
+      <div className="absolute -top-1 -right-1 w-5 h-5 bg-primary rounded-full flex items-center justify-center animate-[notificationPop_6s_ease-in-out_infinite] shadow-lg shadow-primary/30">
+        <span className="text-[9px] font-bold text-primary-foreground">3</span>
+      </div>
+    </div>
+  </div>
+);
+
+const ContactAnimation = () => (
+  <div className="relative h-24 flex items-center justify-center">
+    <div className="w-36 bg-card/50 rounded-lg border border-border/50 p-3 animate-[fadeSlideIn_3s_ease-in-out_infinite]">
+      <div className="flex items-center gap-2 mb-2">
+        <div className="w-8 h-8 rounded-full bg-gradient-to-br from-primary/40 to-primary/20 flex items-center justify-center">
+          <span className="text-xs font-bold text-primary">JD</span>
+        </div>
+        <div>
+          <div className="h-2 w-16 bg-foreground/20 rounded mb-1" />
+          <div className="h-1.5 w-12 bg-muted-foreground/20 rounded" />
+        </div>
+      </div>
+      <div className="flex gap-1">
+        <div className="px-1.5 py-0.5 bg-emerald-500/20 rounded text-[6px] text-emerald-400">Active</div>
+        <div className="px-1.5 py-0.5 bg-primary/20 rounded text-[6px] text-primary">Prospect</div>
+      </div>
+    </div>
+  </div>
+);
+
+const PipelineAnimation = () => (
+  <div className="relative h-24 flex items-center justify-center">
+    <div className="flex gap-1">
+      {["Lead", "Call", "Close"].map((stage, i) => (
+        <div key={stage} className="flex flex-col items-center gap-1">
+          <div className={cn(
+            "w-8 h-12 rounded bg-gradient-to-b border transition-all",
+            i === 1 ? "from-primary/40 to-primary/20 border-primary/50" : "from-muted/30 to-muted/10 border-border/30"
+          )}>
+            {i === 1 && (
+              <div className="w-full h-full flex items-end justify-center pb-1">
+                <div className="w-1.5 h-1.5 rounded-full bg-primary animate-bounce" />
+              </div>
+            )}
+          </div>
+          <span className="text-[8px] text-muted-foreground">{stage}</span>
         </div>
       ))}
     </div>
   </div>
 );
 
-const InboxAnimation = () => {
-  return (
-    <div className="relative h-28 flex items-center justify-center">
-      <div className="relative w-44 h-24 bg-card/50 rounded-lg border border-border/50 overflow-hidden">
-        {/* Header bar */}
-        <div className="h-4 bg-primary/10 border-b border-border/30 flex items-center px-2 gap-1">
-          <div className="w-1.5 h-1.5 rounded-full bg-red-400/60" />
-          <div className="w-1.5 h-1.5 rounded-full bg-yellow-400/60" />
-          <div className="w-1.5 h-1.5 rounded-full bg-green-400/60" />
-          <span className="ml-2 text-[7px] text-muted-foreground font-medium">Inbox</span>
-        </div>
-        
-        {/* SMS Message */}
-        <div 
-          className="absolute left-2 right-2 animate-[inboxSlide_6s_ease-in-out_infinite]"
-          style={{ top: '20px', animationDelay: '0s' }}
-        >
-          <div className="flex items-center gap-2 h-5 bg-emerald-500/15 rounded border-l-2 border-emerald-500 px-2">
-            <div className="w-3 h-3 rounded bg-emerald-500/30 flex items-center justify-center">
-              <span className="text-[6px]">💬</span>
-            </div>
-            <div className="flex-1">
-              <div className="h-1 w-10 bg-emerald-500/30 rounded mb-0.5" />
-              <div className="h-1 w-16 bg-emerald-500/20 rounded" />
-            </div>
-          </div>
-        </div>
-        
-        {/* Email Message */}
-        <div 
-          className="absolute left-2 right-2 animate-[inboxSlide_6s_ease-in-out_infinite]"
-          style={{ top: '46px', animationDelay: '2s' }}
-        >
-          <div className="flex items-center gap-2 h-5 bg-primary/15 rounded border-l-2 border-primary px-2">
-            <div className="w-3 h-3 rounded bg-primary/30 flex items-center justify-center">
-              <span className="text-[6px]">✉️</span>
-            </div>
-            <div className="flex-1">
-              <div className="h-1 w-12 bg-primary/30 rounded mb-0.5" />
-              <div className="h-1 w-14 bg-primary/20 rounded" />
-            </div>
-          </div>
-        </div>
-        
-        {/* LinkedIn Message */}
-        <div 
-          className="absolute left-2 right-2 animate-[inboxSlide_6s_ease-in-out_infinite]"
-          style={{ top: '72px', animationDelay: '4s' }}
-        >
-          <div className="flex items-center gap-2 h-5 bg-blue-500/15 rounded border-l-2 border-blue-500 px-2">
-            <div className="w-3 h-3 rounded bg-blue-600/40 flex items-center justify-center">
-              <span className="text-[6px] font-bold text-blue-300">in</span>
-            </div>
-            <div className="flex-1">
-              <div className="h-1 w-8 bg-blue-500/30 rounded mb-0.5" />
-              <div className="h-1 w-12 bg-blue-500/20 rounded" />
-            </div>
-          </div>
-        </div>
-        
-        {/* New message notification badge */}
-        <div className="absolute -top-1 -right-1 w-5 h-5 bg-primary rounded-full flex items-center justify-center animate-[notificationPop_6s_ease-in-out_infinite] shadow-lg shadow-primary/30">
-          <span className="text-[9px] font-bold text-primary-foreground">3</span>
-        </div>
+// Lead Capture Animations
+const LandingPageAnimation = () => (
+  <div className="relative h-24 flex items-center justify-center">
+    <div className="w-20 h-16 bg-card/50 rounded-lg border border-border/50 overflow-hidden">
+      <div className="h-3 bg-primary/20 border-b border-border/30" />
+      <div className="p-1.5 space-y-1">
+        <div className="h-1.5 w-full bg-muted/40 rounded" />
+        <div className="h-1.5 w-2/3 bg-muted/30 rounded" />
+        <div className="h-3 w-8 mx-auto bg-primary/40 rounded animate-pulse mt-1" />
       </div>
     </div>
-  );
-};
+  </div>
+);
+
+const FormsAnimation = () => (
+  <div className="relative h-24 flex items-center justify-center">
+    <div className="w-24 space-y-2 p-2 bg-card/50 rounded-lg border border-border/50">
+      <div className="h-2 w-full bg-muted/30 rounded" />
+      <div className="h-2 w-3/4 bg-muted/30 rounded" />
+      <div className="flex items-center gap-1">
+        <div className="w-3 h-3 rounded border-2 border-primary bg-primary/20 flex items-center justify-center">
+          <div className="w-1.5 h-1.5 bg-primary rounded-sm animate-[scaleIn_0.5s_ease-out_infinite_alternate]" />
+        </div>
+        <div className="h-2 w-8 bg-muted/30 rounded" />
+      </div>
+    </div>
+  </div>
+);
 
 const CalendarAnimation = () => (
   <div className="relative h-24 flex items-center justify-center">
@@ -144,40 +187,87 @@ const CalendarAnimation = () => (
   </div>
 );
 
-const PipelineAnimation = () => (
+// Automation Animations
+const WorkflowAnimation = () => (
   <div className="relative h-24 flex items-center justify-center">
-    <div className="flex gap-1">
-      {["Lead", "Call", "Close"].map((stage, i) => (
-        <div key={stage} className="flex flex-col items-center gap-1">
-          <div 
-            className={cn(
-              "w-8 h-12 rounded bg-gradient-to-b border transition-all",
-              i === 1 ? "from-primary/40 to-primary/20 border-primary/50" : "from-muted/30 to-muted/10 border-border/30"
-            )}
-          >
-            {i === 1 && (
-              <div className="w-full h-full flex items-end justify-center pb-1">
-                <div className="w-1.5 h-1.5 rounded-full bg-primary animate-bounce" />
-              </div>
-            )}
+    <div className="flex items-center gap-2">
+      {[0, 1, 2].map((i) => (
+        <div key={i} className="relative">
+          <div className="w-8 h-8 rounded-lg bg-primary/20 border border-primary/40 flex items-center justify-center">
+            <div className="w-2 h-2 rounded-full bg-primary animate-pulse" style={{ animationDelay: `${i * 0.3}s` }} />
           </div>
-          <span className="text-[8px] text-muted-foreground">{stage}</span>
+          {i < 2 && (
+            <div className="absolute top-1/2 -right-2 w-2 h-0.5 bg-primary/60">
+              <div className="absolute inset-0 bg-primary animate-[pulse_1s_ease-in-out_infinite]" style={{ animationDelay: `${i * 0.4}s` }} />
+            </div>
+          )}
         </div>
       ))}
     </div>
   </div>
 );
 
-const FormsAnimation = () => (
+const FollowUpAnimation = () => (
   <div className="relative h-24 flex items-center justify-center">
-    <div className="w-24 space-y-2 p-2 bg-card/50 rounded-lg border border-border/50">
-      <div className="h-2 w-full bg-muted/30 rounded" />
-      <div className="h-2 w-3/4 bg-muted/30 rounded" />
-      <div className="flex items-center gap-1">
-        <div className="w-3 h-3 rounded border-2 border-primary bg-primary/20 flex items-center justify-center">
-          <div className="w-1.5 h-1.5 bg-primary rounded-sm animate-[scaleIn_0.5s_ease-out_infinite_alternate]" />
-        </div>
-        <div className="h-2 w-8 bg-muted/30 rounded" />
+    <div className="relative">
+      <div className="w-10 h-10 rounded-full bg-primary/20 border border-primary/40 flex items-center justify-center">
+        <Bell className="w-4 h-4 text-primary animate-[ring_2s_ease-in-out_infinite]" />
+      </div>
+      <div className="absolute -top-1 -right-1 w-4 h-4 bg-emerald-500 rounded-full flex items-center justify-center animate-pulse">
+        <span className="text-[8px] font-bold text-white">!</span>
+      </div>
+    </div>
+  </div>
+);
+
+const TriggerAnimation = () => (
+  <div className="relative h-24 flex items-center justify-center">
+    <div className="flex items-center gap-3">
+      <div className="w-8 h-8 rounded-lg bg-yellow-500/20 border border-yellow-500/40 flex items-center justify-center">
+        <Zap className="w-4 h-4 text-yellow-500 animate-pulse" />
+      </div>
+      <div className="flex flex-col gap-1">
+        <div className="w-6 h-1 bg-primary/40 rounded animate-[slideRight_1s_ease-in-out_infinite]" />
+        <div className="w-6 h-1 bg-emerald-500/40 rounded animate-[slideRight_1s_ease-in-out_infinite_0.2s]" />
+      </div>
+      <div className="w-6 h-6 rounded bg-primary/20 border border-primary/40 animate-[fadeIn_1s_ease-in-out_infinite]" />
+    </div>
+  </div>
+);
+
+// Marketing Animations
+const EmailCampaignAnimation = () => (
+  <div className="relative h-24 flex items-center justify-center">
+    <div className="relative">
+      <div className="w-12 h-10 bg-card/50 rounded border border-border/50 flex items-center justify-center">
+        <Mail className="w-5 h-5 text-primary" />
+      </div>
+      <div className="absolute -top-2 -right-2 w-4 h-4 bg-emerald-500 rounded-full flex items-center justify-center animate-[sendPulse_2s_ease-in-out_infinite]">
+        <span className="text-[8px] text-white">✓</span>
+      </div>
+      {[0, 1, 2].map((i) => (
+        <div 
+          key={i}
+          className="absolute w-2 h-2 rounded-full bg-primary/60 animate-[flyOut_2s_ease-out_infinite]"
+          style={{ 
+            top: '50%', 
+            right: '-4px',
+            animationDelay: `${i * 0.3}s`
+          }}
+        />
+      ))}
+    </div>
+  </div>
+);
+
+const SMSAnimation = () => (
+  <div className="relative h-24 flex items-center justify-center">
+    <div className="w-14 h-20 bg-card/50 rounded-xl border border-border/50 p-1.5">
+      <div className="h-1 w-4 mx-auto bg-muted/40 rounded mb-1" />
+      <div className="space-y-1.5">
+        <div className="ml-auto w-8 h-2 bg-primary/30 rounded-l-lg rounded-tr-lg animate-[messageIn_3s_ease-in-out_infinite]" />
+        <div className="w-6 h-2 bg-muted/30 rounded-r-lg rounded-tl-lg animate-[messageIn_3s_ease-in-out_infinite_0.5s]" />
+        <div className="ml-auto w-7 h-2 bg-primary/30 rounded-l-lg rounded-tr-lg animate-[messageIn_3s_ease-in-out_infinite_1s]" />
       </div>
     </div>
   </div>
@@ -206,37 +296,19 @@ const SocialAnimation = () => (
   </div>
 );
 
-const LandingPageAnimation = () => (
-  <div className="relative h-24 flex items-center justify-center">
-    <div className="w-20 h-16 bg-card/50 rounded-lg border border-border/50 overflow-hidden">
-      <div className="h-3 bg-primary/20 border-b border-border/30" />
-      <div className="p-1.5 space-y-1">
-        <div className="h-1.5 w-full bg-muted/40 rounded" />
-        <div className="h-1.5 w-2/3 bg-muted/30 rounded" />
-        <div className="h-3 w-8 mx-auto bg-primary/40 rounded animate-pulse mt-1" />
-      </div>
-    </div>
-  </div>
-);
-
-const AnalyticsAnimation = () => (
+// Analytics Animations
+const DashboardAnimation = () => (
   <div className="relative h-24 flex items-center justify-center">
     <div className="flex items-end gap-1 h-16">
       {[40, 65, 45, 80, 55].map((h, i) => (
         <div 
           key={i}
           className="w-4 bg-gradient-to-t from-primary/60 to-primary/20 rounded-t transition-all"
-          style={{ 
-            height: `${h}%`,
-            animationDelay: `${i * 0.1}s`
-          }}
+          style={{ height: `${h}%` }}
         >
           <div 
             className="w-full bg-primary/40 rounded-t animate-[grow_2s_ease-in-out_infinite]"
-            style={{ 
-              height: '0%',
-              animationDelay: `${i * 0.2}s`
-            }}
+            style={{ height: '0%', animationDelay: `${i * 0.2}s` }}
           />
         </div>
       ))}
@@ -244,60 +316,152 @@ const AnalyticsAnimation = () => (
   </div>
 );
 
-const IntegrationsAnimation = () => (
+const ReportsAnimation = () => (
   <div className="relative h-24 flex items-center justify-center">
-    <div className="relative">
-      <div className="w-8 h-8 rounded-lg bg-primary/20 border border-primary/40 flex items-center justify-center">
-        <Plug className="w-4 h-4 text-primary" />
+    <div className="w-20 bg-card/50 rounded-lg border border-border/50 p-2">
+      <div className="flex items-center gap-1 mb-2">
+        <PieChart className="w-3 h-3 text-primary" />
+        <div className="h-1.5 w-8 bg-muted/40 rounded" />
       </div>
-      {[{ x: -20, y: -16 }, { x: 20, y: -16 }, { x: -20, y: 16 }, { x: 20, y: 16 }].map((pos, i) => (
-        <div key={i}>
-          <div 
-            className="absolute w-5 h-5 rounded bg-card border border-border/50"
-            style={{ left: `calc(50% + ${pos.x}px - 10px)`, top: `calc(50% + ${pos.y}px - 10px)` }}
-          />
-          <svg className="absolute inset-0 w-full h-full" style={{ overflow: 'visible' }}>
-            <line 
-              x1="50%" y1="50%" 
-              x2={`calc(50% + ${pos.x}px)`} 
-              y2={`calc(50% + ${pos.y}px)`}
-              className="stroke-primary/30"
-              strokeWidth="1"
-              strokeDasharray="2 2"
-            >
-              <animate attributeName="stroke-dashoffset" from="4" to="0" dur="1s" repeatCount="indefinite" />
-            </line>
-          </svg>
+      <div className="space-y-1">
+        <div className="h-1.5 w-full bg-primary/30 rounded" />
+        <div className="h-1.5 w-3/4 bg-emerald-500/30 rounded" />
+        <div className="h-1.5 w-1/2 bg-yellow-500/30 rounded" />
+      </div>
+    </div>
+  </div>
+);
+
+const AttributionAnimation = () => (
+  <div className="relative h-24 flex items-center justify-center">
+    <div className="flex flex-col gap-1">
+      {[
+        { label: "Email", width: "w-16", color: "bg-primary/40" },
+        { label: "Social", width: "w-10", color: "bg-emerald-500/40" },
+        { label: "Referral", width: "w-8", color: "bg-yellow-500/40" }
+      ].map((item, i) => (
+        <div key={item.label} className="flex items-center gap-1">
+          <span className="text-[6px] text-muted-foreground w-8">{item.label}</span>
+          <div className={cn("h-2 rounded animate-[growWidth_2s_ease-out_infinite]", item.width, item.color)} style={{ animationDelay: `${i * 0.2}s` }} />
         </div>
       ))}
     </div>
   </div>
 );
+
+// Payments & Documents Animations
+const InvoiceAnimation = () => (
+  <div className="relative h-24 flex items-center justify-center">
+    <div className="w-16 bg-card/50 rounded-lg border border-border/50 p-2">
+      <div className="flex items-center justify-between mb-2">
+        <Receipt className="w-3 h-3 text-primary" />
+        <div className="w-4 h-4 rounded-full bg-emerald-500/20 flex items-center justify-center animate-[checkIn_2s_ease-out_infinite]">
+          <span className="text-[8px] text-emerald-500">✓</span>
+        </div>
+      </div>
+      <div className="space-y-1">
+        <div className="h-1 w-full bg-muted/30 rounded" />
+        <div className="h-1 w-2/3 bg-muted/30 rounded" />
+        <div className="h-2 w-8 bg-primary/30 rounded mt-1" />
+      </div>
+    </div>
+  </div>
+);
+
+const DocumentAnimation = () => (
+  <div className="relative h-24 flex items-center justify-center">
+    <div className="relative">
+      <div className="w-14 h-18 bg-card/50 rounded border border-border/50 p-1.5">
+        <div className="space-y-1">
+          <div className="h-1 w-full bg-muted/30 rounded" />
+          <div className="h-1 w-3/4 bg-muted/30 rounded" />
+          <div className="h-1 w-full bg-muted/30 rounded" />
+          <div className="h-1 w-1/2 bg-muted/30 rounded" />
+        </div>
+      </div>
+      <div className="absolute -bottom-1 -right-1 w-6 h-6 bg-primary/20 rounded-full flex items-center justify-center animate-pulse">
+        <Smartphone className="w-3 h-3 text-primary" />
+      </div>
+    </div>
+  </div>
+);
+
+const ESignatureAnimation = () => (
+  <div className="relative h-24 flex items-center justify-center">
+    <div className="w-20 bg-card/50 rounded-lg border border-border/50 p-2">
+      <div className="h-1 w-full bg-muted/30 rounded mb-2" />
+      <div className="h-1 w-3/4 bg-muted/30 rounded mb-3" />
+      <div className="relative h-4 border-b border-dashed border-primary/40">
+        <svg className="absolute inset-0 w-full h-full overflow-visible">
+          <path
+            d="M2,12 Q6,4 12,10 T22,8 T32,12"
+            fill="none"
+            stroke="hsl(217 91% 60%)"
+            strokeWidth="1.5"
+            strokeLinecap="round"
+            className="animate-[drawSignature_3s_ease-in-out_infinite]"
+            strokeDasharray="40"
+            strokeDashoffset="40"
+          />
+        </svg>
+      </div>
+    </div>
+  </div>
+);
+
+// ============= CATEGORY DATA =============
 
 const categories: Category[] = [
   {
-    id: "communication",
-    icon: MessageSquare,
-    title: "Client Communication",
+    id: "crm",
+    icon: Users,
+    title: "CRM",
+    subtitle: "One platform to run your entire business",
     color: "from-blue-500 to-cyan-500",
     features: [
       {
         icon: Inbox,
         title: "Unified Inbox",
-        description: "One place for SMS, email, and social messages. Never miss a client communication.",
+        description: "SMS, Email, LinkedIn, and calls in one place",
         animation: <InboxAnimation />
+      },
+      {
+        icon: Users,
+        title: "Contact Management",
+        description: "Client profiles with full history and notes",
+        animation: <ContactAnimation />
+      },
+      {
+        icon: GitBranch,
+        title: "Pipelines",
+        description: "Move clients through structured pipelines that trigger automations and tasks",
+        animation: <PipelineAnimation />
+      }
+    ]
+  },
+  {
+    id: "lead-capture",
+    icon: Target,
+    title: "Lead Capture",
+    color: "from-emerald-500 to-teal-500",
+    features: [
+      {
+        icon: FileText,
+        title: "Landing Pages",
+        description: "Professional pages that convert visitors to leads",
+        animation: <LandingPageAnimation />
       },
       {
         icon: ClipboardList,
         title: "Smart Forms",
-        description: "Client intake, surveys, and referrals that integrate directly into your workflows.",
+        description: "Intake forms, surveys, and referral capture",
         animation: <FormsAnimation />
       },
       {
-        icon: Share2,
-        title: "Social Media Hub",
-        description: "Schedule posts and engage across LinkedIn, Instagram, and Facebook from one dashboard.",
-        animation: <SocialAnimation />
+        icon: Calendar,
+        title: "Calendars",
+        description: "Clients book themselves and receive automatic reminders",
+        animation: <CalendarAnimation />
       }
     ]
   },
@@ -309,47 +473,99 @@ const categories: Category[] = [
     features: [
       {
         icon: Workflow,
-        title: "Customized Workflows",
-        description: "Automated sequences for nurturing, follow-ups, and appointment confirmations.",
+        title: "Workflows",
+        description: "Automated nurture sequences and follow-ups",
         animation: <WorkflowAnimation />
       },
       {
-        icon: Calendar,
-        title: "Smart Calendars",
-        description: "Let clients book directly. Syncs with your calendar and sends automatic reminders.",
-        animation: <CalendarAnimation />
+        icon: Bell,
+        title: "Follow Up",
+        description: "Never miss a touchpoint with smart reminders",
+        animation: <FollowUpAnimation />
       },
       {
-        icon: GitBranch,
-        title: "Visual Pipelines",
-        description: "Track every prospect and client journey. See exactly what's next for each relationship.",
-        animation: <PipelineAnimation />
+        icon: MousePointer,
+        title: "Triggers & Actions",
+        description: "If-this-then-that logic for any event",
+        animation: <TriggerAnimation />
       }
     ]
   },
   {
-    id: "growth",
-    icon: TrendingUp,
-    title: "Growth & Insights",
-    color: "from-emerald-500 to-teal-500",
+    id: "marketing",
+    icon: Mail,
+    title: "Marketing",
+    color: "from-orange-500 to-red-500",
     features: [
       {
-        icon: FileText,
-        title: "Landing Pages",
-        description: "Professional pages for booking, lead magnets, and resources—designed to convert.",
-        animation: <LandingPageAnimation />
+        icon: Mail,
+        title: "Email Campaigns",
+        description: "Newsletters, drip sequences, and broadcasts",
+        animation: <EmailCampaignAnimation />
       },
+      {
+        icon: Smartphone,
+        title: "SMS Marketing",
+        description: "Boost open rates with A2P compliant SMS marketing",
+        animation: <SMSAnimation />
+      },
+      {
+        icon: Share2,
+        title: "Social Media Hub",
+        description: "Schedule and manage posts across platforms",
+        animation: <SocialAnimation />
+      }
+    ]
+  },
+  {
+    id: "analytics",
+    icon: BarChart3,
+    title: "Analytics",
+    color: "from-cyan-500 to-blue-500",
+    features: [
       {
         icon: BarChart3,
-        title: "Analytics Dashboard",
-        description: "Track lead sources, conversions, and campaign performance. Know what's working.",
-        animation: <AnalyticsAnimation />
+        title: "Dashboard",
+        description: "Real-time KPIs and performance metrics",
+        animation: <DashboardAnimation />
       },
       {
-        icon: Plug,
-        title: "Integrations",
-        description: "Connect your calendar, email, and planning software seamlessly.",
-        animation: <IntegrationsAnimation />
+        icon: PieChart,
+        title: "Reports",
+        description: "Detailed insights on leads, conversions, and revenue",
+        animation: <ReportsAnimation />
+      },
+      {
+        icon: Target,
+        title: "Campaign Attribution",
+        description: "See which marketing efforts drive results",
+        animation: <AttributionAnimation />
+      }
+    ]
+  },
+  {
+    id: "payments-docs",
+    icon: CreditCard,
+    title: "Payments & Documents",
+    color: "from-violet-500 to-purple-500",
+    features: [
+      {
+        icon: Receipt,
+        title: "Invoicing & Subscriptions",
+        description: "One-time and recurring billing",
+        animation: <InvoiceAnimation />
+      },
+      {
+        icon: FileText,
+        title: "Documents",
+        description: "Custom documents templated and sent over SMS or email",
+        animation: <DocumentAnimation />
+      },
+      {
+        icon: FileSignature,
+        title: "E-Signatures",
+        description: "Contracts, proposals, and digital signing",
+        animation: <ESignatureAnimation />
       }
     ]
   }
@@ -399,14 +615,14 @@ const WhatYouGet = () => {
             Everything a Solo Planner Needs
           </h2>
           <p className="mx-auto mt-4 max-w-2xl text-lg text-body">
-            Nine integrated tools across three core areas—built around <em>your</em> practice.
+            18 integrated tools across six core areas—built around <em>your</em> practice.
           </p>
         </div>
 
         {/* Desktop: Category Icons with Expandable Panels */}
         <div className="hidden md:block">
-          {/* Category Icons Row */}
-          <div className="flex justify-center gap-6 lg:gap-12 mb-8">
+          {/* Category Icons Grid - 3x2 */}
+          <div className="grid grid-cols-3 gap-4 lg:gap-6 max-w-4xl mx-auto mb-8">
             {categories.map((category) => {
               const isActive = activeCategory === category.id;
               return (
@@ -414,7 +630,7 @@ const WhatYouGet = () => {
                   key={category.id}
                   onClick={() => setActiveCategory(isActive ? null : category.id)}
                   className={cn(
-                    "group relative flex flex-col items-center gap-3 p-6 rounded-2xl transition-all duration-500 w-44 lg:w-52",
+                    "group relative flex flex-col items-center gap-3 p-5 lg:p-6 rounded-2xl transition-all duration-500",
                     isActive 
                       ? "bg-card border border-primary/30 shadow-[0_0_40px_-10px_hsl(217_91%_60%/0.4)] scale-105" 
                       : "bg-card/50 border border-border hover:border-primary/20 hover:bg-card"
@@ -429,13 +645,13 @@ const WhatYouGet = () => {
                   
                   {/* Icon */}
                   <div className={cn(
-                    "relative w-16 h-16 rounded-xl flex items-center justify-center transition-all duration-500",
+                    "relative w-14 h-14 lg:w-16 lg:h-16 rounded-xl flex items-center justify-center transition-all duration-500",
                     isActive 
                       ? `bg-gradient-to-br ${category.color} shadow-lg` 
                       : "bg-primary/10 group-hover:bg-primary/20"
                   )}>
                     <category.icon className={cn(
-                      "w-8 h-8 transition-all duration-500",
+                      "w-7 h-7 lg:w-8 lg:h-8 transition-all duration-500",
                       isActive ? "text-white" : "text-primary"
                     )} />
                     
@@ -447,7 +663,7 @@ const WhatYouGet = () => {
                   
                   {/* Title */}
                   <span className={cn(
-                    "font-semibold text-sm lg:text-base transition-colors",
+                    "font-semibold text-sm lg:text-base transition-colors text-center",
                     isActive ? "text-foreground" : "text-muted-foreground group-hover:text-foreground"
                   )}>
                     {category.title}
@@ -474,6 +690,9 @@ const WhatYouGet = () => {
           )}>
             {activeData && (
               <div className="bg-card/80 backdrop-blur-sm rounded-2xl border border-border p-8 mt-4">
+                {activeData.subtitle && (
+                  <p className="text-center text-muted-foreground mb-6">{activeData.subtitle}</p>
+                )}
                 <div className="grid grid-cols-3 gap-6">
                   {activeData.features.map((feature, index) => (
                     <div 
@@ -574,9 +793,9 @@ const WhatYouGet = () => {
             </button>
           </div>
 
-          {/* Dots indicator */}
-          <div className="flex justify-center gap-2 mt-6">
-            {allFeatures.map((_, index) => (
+          {/* Dots indicator with category grouping */}
+          <div className="flex justify-center gap-1.5 mt-6 flex-wrap px-4">
+            {allFeatures.map((feature, index) => (
               <button
                 key={index}
                 onClick={() => {
@@ -589,7 +808,7 @@ const WhatYouGet = () => {
                     ? "w-6 bg-primary" 
                     : "bg-muted hover:bg-muted-foreground/50"
                 )}
-                aria-label={`Go to slide ${index + 1}`}
+                aria-label={`Go to ${feature.title}`}
               />
             ))}
           </div>
@@ -618,6 +837,49 @@ const WhatYouGet = () => {
         @keyframes grow {
           0%, 100% { height: 0%; }
           50% { height: 30%; }
+        }
+        @keyframes fadeSlideIn {
+          0%, 100% { opacity: 0.5; transform: translateY(5px); }
+          50% { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes ring {
+          0%, 100% { transform: rotate(0); }
+          10%, 30% { transform: rotate(-10deg); }
+          20%, 40% { transform: rotate(10deg); }
+          50% { transform: rotate(0); }
+        }
+        @keyframes slideRight {
+          0% { width: 0; opacity: 0; }
+          50%, 100% { width: 100%; opacity: 1; }
+        }
+        @keyframes fadeIn {
+          0%, 50% { opacity: 0; }
+          100% { opacity: 1; }
+        }
+        @keyframes sendPulse {
+          0%, 100% { transform: scale(1); opacity: 1; }
+          50% { transform: scale(1.2); opacity: 0.8; }
+        }
+        @keyframes flyOut {
+          0% { transform: translate(0, 0) scale(1); opacity: 1; }
+          100% { transform: translate(20px, -10px) scale(0); opacity: 0; }
+        }
+        @keyframes messageIn {
+          0% { opacity: 0; transform: translateX(-5px); }
+          20%, 80% { opacity: 1; transform: translateX(0); }
+          100% { opacity: 0; transform: translateX(5px); }
+        }
+        @keyframes growWidth {
+          0% { width: 0; }
+          50%, 100% { width: 100%; }
+        }
+        @keyframes checkIn {
+          0%, 100% { transform: scale(0); }
+          30%, 70% { transform: scale(1); }
+        }
+        @keyframes drawSignature {
+          0% { stroke-dashoffset: 40; }
+          50%, 100% { stroke-dashoffset: 0; }
         }
       `}</style>
     </section>
