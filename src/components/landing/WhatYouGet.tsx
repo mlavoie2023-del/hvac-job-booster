@@ -591,112 +591,282 @@ const SocialAnimation = () => (
 
 // Analytics Animations
 const DashboardAnimation = () => (
-  <div className="relative h-24 flex items-center justify-center">
-    <div className="flex items-end gap-1 h-16">
-      {[40, 65, 45, 80, 55].map((h, i) => (
-        <div 
-          key={i}
-          className="w-4 bg-gradient-to-t from-primary/60 to-primary/20 rounded-t transition-all"
-          style={{ height: `${h}%` }}
-        >
-          <div 
-            className="w-full bg-primary/40 rounded-t animate-[grow_2s_ease-in-out_infinite]"
-            style={{ height: '0%', animationDelay: `${i * 0.2}s` }}
-          />
+  <div className="relative h-40 flex items-center justify-center p-3">
+    <div className="w-full bg-card/30 rounded-lg border border-border/30 p-4">
+      <div className="flex items-center justify-between mb-3">
+        <div className="text-[8px] font-medium text-foreground">Performance Overview</div>
+        <div className="flex gap-1">
+          <div className="px-1.5 py-0.5 bg-amber-500/20 rounded text-[6px] text-amber-400">This Month</div>
         </div>
-      ))}
+      </div>
+      
+      {/* Chart area */}
+      <div className="flex items-end gap-1.5 h-16 mb-2">
+        {[
+          { h: 40, label: "Jan" },
+          { h: 55, label: "Feb" },
+          { h: 35, label: "Mar" },
+          { h: 70, label: "Apr" },
+          { h: 85, label: "May" },
+          { h: 65, label: "Jun" }
+        ].map((bar, i) => (
+          <div key={i} className="flex-1 flex flex-col items-center gap-1">
+            <div 
+              className="w-full bg-gradient-to-t from-amber-500 to-amber-400/60 rounded-t animate-[barGrow_3s_ease-out_infinite]"
+              style={{ 
+                height: `${bar.h}%`,
+                animationDelay: `${i * 0.15}s`
+              }}
+            />
+            <span className="text-[5px] text-muted-foreground">{bar.label}</span>
+          </div>
+        ))}
+      </div>
+      
+      {/* Stats row */}
+      <div className="flex gap-2">
+        <div className="flex-1 bg-amber-500/10 rounded px-2 py-1 border border-amber-500/20 animate-[statPop_3s_ease-in-out_infinite]">
+          <div className="text-[5px] text-amber-400/70">Revenue</div>
+          <div className="text-[9px] font-bold text-amber-400">$47,200</div>
+        </div>
+        <div className="flex-1 bg-emerald-500/10 rounded px-2 py-1 border border-emerald-500/20 animate-[statPop_3s_ease-in-out_infinite]" style={{ animationDelay: '0.3s' }}>
+          <div className="text-[5px] text-emerald-400/70">New Clients</div>
+          <div className="text-[9px] font-bold text-emerald-400">+12</div>
+        </div>
+      </div>
     </div>
   </div>
 );
 
 const ReportsAnimation = () => (
-  <div className="relative h-24 flex items-center justify-center">
-    <div className="w-20 bg-card/50 rounded-lg border border-border/50 p-2">
-      <div className="flex items-center gap-1 mb-2">
-        <PieChart className="w-3 h-3 text-primary" />
-        <div className="h-1.5 w-8 bg-muted/40 rounded" />
-      </div>
-      <div className="space-y-1">
-        <div className="h-1.5 w-full bg-primary/30 rounded" />
-        <div className="h-1.5 w-3/4 bg-emerald-500/30 rounded" />
-        <div className="h-1.5 w-1/2 bg-yellow-500/30 rounded" />
+  <div className="relative h-40 flex items-center justify-center p-3">
+    <div className="w-full bg-card/30 rounded-lg border border-border/30 p-4">
+      <div className="flex gap-4">
+        {/* Pie chart */}
+        <div className="relative w-20 h-20 flex-shrink-0">
+          <svg viewBox="0 0 36 36" className="w-full h-full -rotate-90">
+            <circle cx="18" cy="18" r="15.9" fill="none" stroke="hsl(var(--muted))" strokeWidth="3" opacity="0.2" />
+            <circle 
+              cx="18" cy="18" r="15.9" fill="none" 
+              stroke="hsl(45 93% 47%)" strokeWidth="3"
+              strokeDasharray="45 55" strokeDashoffset="0"
+              className="animate-[pieSlice1_4s_ease-out_infinite]"
+            />
+            <circle 
+              cx="18" cy="18" r="15.9" fill="none" 
+              stroke="hsl(160 84% 39%)" strokeWidth="3"
+              strokeDasharray="30 70" strokeDashoffset="-45"
+              className="animate-[pieSlice2_4s_ease-out_infinite]"
+            />
+            <circle 
+              cx="18" cy="18" r="15.9" fill="none" 
+              stroke="hsl(217 91% 60%)" strokeWidth="3"
+              strokeDasharray="25 75" strokeDashoffset="-75"
+              className="animate-[pieSlice3_4s_ease-out_infinite]"
+            />
+          </svg>
+          <div className="absolute inset-0 flex items-center justify-center">
+            <div className="text-center">
+              <div className="text-[10px] font-bold text-foreground">$125K</div>
+              <div className="text-[5px] text-muted-foreground">Total</div>
+            </div>
+          </div>
+        </div>
+        
+        {/* Legend */}
+        <div className="flex-1 flex flex-col justify-center gap-2">
+          <div className="text-[8px] font-medium text-foreground mb-1">Revenue by Source</div>
+          {[
+            { label: "Retainer Clients", value: "45%", color: "bg-amber-500" },
+            { label: "New Clients", value: "30%", color: "bg-emerald-500" },
+            { label: "One-time", value: "25%", color: "bg-primary" }
+          ].map((item, i) => (
+            <div key={item.label} className="flex items-center gap-2 animate-[legendSlide_4s_ease-out_infinite]" style={{ animationDelay: `${i * 0.2}s` }}>
+              <div className={`w-2 h-2 rounded-sm ${item.color}`} />
+              <span className="text-[6px] text-foreground/70 flex-1">{item.label}</span>
+              <span className="text-[7px] font-medium text-foreground">{item.value}</span>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   </div>
 );
 
 const AttributionAnimation = () => (
-  <div className="relative h-24 flex items-center justify-center">
-    <div className="flex flex-col gap-1">
-      {[
-        { label: "Email", width: "w-16", color: "bg-primary/40" },
-        { label: "Social", width: "w-10", color: "bg-emerald-500/40" },
-        { label: "Referral", width: "w-8", color: "bg-yellow-500/40" }
-      ].map((item, i) => (
-        <div key={item.label} className="flex items-center gap-1">
-          <span className="text-[6px] text-muted-foreground w-8">{item.label}</span>
-          <div className={cn("h-2 rounded animate-[growWidth_2s_ease-out_infinite]", item.width, item.color)} style={{ animationDelay: `${i * 0.2}s` }} />
-        </div>
-      ))}
+  <div className="relative h-40 flex items-center justify-center p-3">
+    <div className="w-full bg-card/30 rounded-lg border border-border/30 p-4">
+      <div className="text-[8px] font-medium text-foreground mb-3">Lead Source Attribution</div>
+      
+      <div className="space-y-2.5">
+        {[
+          { label: "Email Campaigns", value: 42, count: "156 leads", color: "from-primary to-cyan-400" },
+          { label: "Social Media", value: 28, count: "104 leads", color: "from-pink-500 to-rose-400" },
+          { label: "Client Referrals", value: 18, count: "67 leads", color: "from-emerald-500 to-teal-400" },
+          { label: "Website Forms", value: 12, count: "45 leads", color: "from-amber-500 to-yellow-400" }
+        ].map((item, i) => (
+          <div key={item.label} className="space-y-1">
+            <div className="flex items-center justify-between">
+              <span className="text-[6px] text-foreground/70">{item.label}</span>
+              <span className="text-[6px] text-muted-foreground">{item.count}</span>
+            </div>
+            <div className="h-2 bg-muted/20 rounded-full overflow-hidden">
+              <div 
+                className={`h-full bg-gradient-to-r ${item.color} rounded-full animate-[attrBar_3s_ease-out_infinite]`}
+                style={{ 
+                  width: `${item.value}%`,
+                  animationDelay: `${i * 0.2}s`
+                }}
+              />
+            </div>
+          </div>
+        ))}
+      </div>
     </div>
   </div>
 );
 
 // Payments & Documents Animations
 const InvoiceAnimation = () => (
-  <div className="relative h-24 flex items-center justify-center">
-    <div className="w-16 bg-card/50 rounded-lg border border-border/50 p-2">
-      <div className="flex items-center justify-between mb-2">
-        <Receipt className="w-3 h-3 text-primary" />
-        <div className="w-4 h-4 rounded-full bg-emerald-500/20 flex items-center justify-center animate-[checkIn_2s_ease-out_infinite]">
-          <span className="text-[8px] text-emerald-500">✓</span>
+  <div className="relative h-40 flex items-center justify-center p-3">
+    <div className="w-full bg-card/30 rounded-lg border border-border/30 p-4">
+      <div className="flex gap-4">
+        {/* Invoice preview */}
+        <div className="flex-1 bg-card/50 rounded-lg border border-border/50 p-3">
+          <div className="flex items-center justify-between mb-2">
+            <div className="flex items-center gap-1.5">
+              <div className="w-5 h-5 rounded bg-violet-500/20 flex items-center justify-center">
+                <Receipt className="w-3 h-3 text-violet-400" />
+              </div>
+              <div>
+                <div className="text-[7px] font-medium text-foreground">Invoice #1247</div>
+                <div className="text-[5px] text-muted-foreground">Feb 15, 2026</div>
+              </div>
+            </div>
+            <div className="px-1.5 py-0.5 bg-emerald-500/20 rounded text-[6px] text-emerald-400 animate-[statusPulse_2s_ease-in-out_infinite]">
+              Paid
+            </div>
+          </div>
+          
+          <div className="space-y-1 mb-2">
+            <div className="flex justify-between text-[6px]">
+              <span className="text-muted-foreground">Financial Planning</span>
+              <span className="text-foreground">$2,500</span>
+            </div>
+            <div className="flex justify-between text-[6px]">
+              <span className="text-muted-foreground">Tax Consultation</span>
+              <span className="text-foreground">$500</span>
+            </div>
+          </div>
+          
+          <div className="border-t border-border/30 pt-1 flex justify-between">
+            <span className="text-[7px] font-medium text-foreground">Total</span>
+            <span className="text-[8px] font-bold text-violet-400">$3,000</span>
+          </div>
         </div>
-      </div>
-      <div className="space-y-1">
-        <div className="h-1 w-full bg-muted/30 rounded" />
-        <div className="h-1 w-2/3 bg-muted/30 rounded" />
-        <div className="h-2 w-8 bg-primary/30 rounded mt-1" />
+        
+        {/* Stats */}
+        <div className="w-20 space-y-2">
+          <div className="bg-violet-500/10 rounded-lg border border-violet-500/30 p-2 animate-[statPop_3s_ease-in-out_infinite]">
+            <div className="text-[5px] text-violet-400/70">Monthly</div>
+            <div className="text-[9px] font-bold text-violet-400">$12.4K</div>
+          </div>
+          <div className="bg-emerald-500/10 rounded-lg border border-emerald-500/30 p-2 animate-[statPop_3s_ease-in-out_infinite]" style={{ animationDelay: '0.5s' }}>
+            <div className="text-[5px] text-emerald-400/70">Paid</div>
+            <div className="text-[9px] font-bold text-emerald-400">98%</div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 );
 
 const DocumentAnimation = () => (
-  <div className="relative h-24 flex items-center justify-center">
-    <div className="relative">
-      <div className="w-14 h-18 bg-card/50 rounded border border-border/50 p-1.5">
-        <div className="space-y-1">
-          <div className="h-1 w-full bg-muted/30 rounded" />
-          <div className="h-1 w-3/4 bg-muted/30 rounded" />
-          <div className="h-1 w-full bg-muted/30 rounded" />
-          <div className="h-1 w-1/2 bg-muted/30 rounded" />
-        </div>
-      </div>
-      <div className="absolute -bottom-1 -right-1 w-6 h-6 bg-primary/20 rounded-full flex items-center justify-center animate-pulse">
-        <Smartphone className="w-3 h-3 text-primary" />
+  <div className="relative h-40 flex items-center justify-center p-3">
+    <div className="w-full bg-card/30 rounded-lg border border-border/30 p-4">
+      <div className="text-[8px] font-medium text-foreground mb-3">Document Templates</div>
+      
+      <div className="flex gap-3">
+        {/* Template cards */}
+        {[
+          { name: "Onboarding Packet", icon: FileText, status: "Sent", color: "violet" },
+          { name: "Quarterly Review", icon: PieChart, status: "Draft", color: "amber" },
+          { name: "Planning Agreement", icon: FileSignature, status: "Signed", color: "emerald" }
+        ].map((doc, i) => (
+          <div 
+            key={doc.name}
+            className={`flex-1 bg-card/50 rounded-lg border p-2 animate-[docSlide_4s_ease-out_infinite] ${
+              doc.color === 'violet' ? 'border-violet-500/30' :
+              doc.color === 'amber' ? 'border-amber-500/30' : 'border-emerald-500/30'
+            }`}
+            style={{ animationDelay: `${i * 0.2}s` }}
+          >
+            <div className={`w-6 h-6 rounded mb-1.5 flex items-center justify-center ${
+              doc.color === 'violet' ? 'bg-violet-500/20' :
+              doc.color === 'amber' ? 'bg-amber-500/20' : 'bg-emerald-500/20'
+            }`}>
+              <doc.icon className={`w-3 h-3 ${
+                doc.color === 'violet' ? 'text-violet-400' :
+                doc.color === 'amber' ? 'text-amber-400' : 'text-emerald-400'
+              }`} />
+            </div>
+            <div className="text-[6px] font-medium text-foreground mb-0.5 leading-tight">{doc.name}</div>
+            <div className={`text-[5px] ${
+              doc.color === 'violet' ? 'text-violet-400' :
+              doc.color === 'amber' ? 'text-amber-400' : 'text-emerald-400'
+            }`}>{doc.status}</div>
+          </div>
+        ))}
       </div>
     </div>
   </div>
 );
 
 const ESignatureAnimation = () => (
-  <div className="relative h-24 flex items-center justify-center">
-    <div className="w-20 bg-card/50 rounded-lg border border-border/50 p-2">
-      <div className="h-1 w-full bg-muted/30 rounded mb-2" />
-      <div className="h-1 w-3/4 bg-muted/30 rounded mb-3" />
-      <div className="relative h-4 border-b border-dashed border-primary/40">
-        <svg className="absolute inset-0 w-full h-full overflow-visible">
-          <path
-            d="M2,12 Q6,4 12,10 T22,8 T32,12"
-            fill="none"
-            stroke="hsl(217 91% 60%)"
-            strokeWidth="1.5"
-            strokeLinecap="round"
-            className="animate-[drawSignature_3s_ease-in-out_infinite]"
-            strokeDasharray="40"
-            strokeDashoffset="40"
-          />
-        </svg>
+  <div className="relative h-40 flex items-center justify-center p-3">
+    <div className="w-full bg-card/30 rounded-lg border border-border/30 p-4">
+      <div className="flex gap-4">
+        {/* Contract preview */}
+        <div className="flex-1 bg-card/50 rounded-lg border border-border/50 p-3">
+          <div className="text-[8px] font-medium text-foreground mb-2">Financial Planning Agreement</div>
+          
+          <div className="space-y-1 mb-3">
+            <div className="h-1 w-full bg-muted/30 rounded" />
+            <div className="h-1 w-3/4 bg-muted/30 rounded" />
+            <div className="h-1 w-5/6 bg-muted/30 rounded" />
+            <div className="h-1 w-2/3 bg-muted/30 rounded" />
+          </div>
+          
+          {/* Signature area */}
+          <div className="border-t border-dashed border-violet-500/40 pt-2">
+            <div className="text-[5px] text-muted-foreground mb-1">Client Signature</div>
+            <div className="h-6 relative overflow-hidden">
+              <svg className="w-full h-full" viewBox="0 0 100 24">
+                <path
+                  d="M5,18 C15,8 25,20 35,12 S55,8 65,14 S85,10 95,16"
+                  fill="none"
+                  stroke="hsl(263 70% 60%)"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  className="animate-[signatureDraw_3s_ease-out_infinite]"
+                  strokeDasharray="120"
+                  strokeDashoffset="120"
+                />
+              </svg>
+            </div>
+          </div>
+        </div>
+        
+        {/* Status */}
+        <div className="w-20 flex flex-col justify-center gap-2">
+          <div className="bg-violet-500/10 rounded-lg border border-violet-500/30 p-2 animate-[signStatus_3s_ease-out_infinite]">
+            <FileSignature className="w-4 h-4 text-violet-400 mb-1" />
+            <div className="text-[6px] text-violet-400 font-medium">Signed!</div>
+          </div>
+          <div className="text-[5px] text-muted-foreground text-center">
+            Legally binding • Timestamped
+          </div>
+        </div>
       </div>
     </div>
   </div>

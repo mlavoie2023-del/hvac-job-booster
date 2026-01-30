@@ -541,4 +541,104 @@
       transform: scale(1);
     }
   }
+
+  /* Analytics animations */
+  @keyframes barGrow {
+    0% {
+      transform: scaleY(0);
+      transform-origin: bottom;
+    }
+    20%, 100% {
+      transform: scaleY(1);
+      transform-origin: bottom;
+    }
+  }
+
+  @keyframes pieSlice1 {
+    0% {
+      stroke-dasharray: 0 100;
+    }
+    25%, 100% {
+      stroke-dasharray: 45 55;
+    }
+  }
+
+  @keyframes pieSlice2 {
+    0%, 15% {
+      stroke-dasharray: 0 100;
+    }
+    40%, 100% {
+      stroke-dasharray: 30 70;
+    }
+  }
+
+  @keyframes pieSlice3 {
+    0%, 30% {
+      stroke-dasharray: 0 100;
+    }
+    55%, 100% {
+      stroke-dasharray: 25 75;
+    }
+  }
+
+  @keyframes legendSlide {
+    0% {
+      opacity: 0;
+      transform: translateX(-10px);
+    }
+    30%, 100% {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes attrBar {
+    0% {
+      width: 0;
+    }
+    30%, 100% {
+      width: var(--bar-width, 100%);
+    }
+  }
+
+  /* Payments & Documents animations */
+  @keyframes statusPulse {
+    0%, 100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.7;
+    }
+  }
+
+  @keyframes docSlide {
+    0% {
+      opacity: 0;
+      transform: translateY(8px);
+    }
+    25%, 100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes signatureDraw {
+    0%, 20% {
+      stroke-dashoffset: 120;
+    }
+    60%, 100% {
+      stroke-dashoffset: 0;
+    }
+  }
+
+  @keyframes signStatus {
+    0%, 50% {
+      opacity: 0;
+      transform: scale(0.9);
+    }
+    60%, 100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
 }
