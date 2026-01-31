@@ -1920,55 +1920,59 @@ const WhatYouGet = () => {
                   
                   {/* Features - Vertical Stack OR Mobile App Special View */}
                   {activeData.id === 'mobile-app' ? (
-                    // Special full-width phone mockup for Mobile App
-                    <div className="flex items-center justify-center py-6">
-                      <div className="flex flex-col lg:flex-row items-center gap-8 lg:gap-12">
-                        {/* Phone mockup - larger version */}
-                        <div className="relative">
-                          <div className="transform scale-[1.8] origin-center">
-                            <MobileAppAnimation />
-                          </div>
-                        </div>
-                        
-                        {/* Feature highlights */}
-                        <div className="flex-1 space-y-4 max-w-md">
-                          <div className="flex items-start gap-3">
-                            <div className="w-8 h-8 rounded-lg bg-cyan-500/20 flex items-center justify-center flex-shrink-0">
-                              <Bell className="w-4 h-4 text-cyan-400" />
-                            </div>
-                            <div>
-                              <div className="font-semibold text-foreground mb-1">Push Notifications</div>
-                              <div className="text-sm text-body">Never miss a lead or message with instant alerts</div>
+                    // Mobile App - Same card layout as other categories
+                    <div className="space-y-4">
+                      {/* Single feature card with phone mockup */}
+                      <div className="group relative bg-background/50 rounded-xl border border-border/50 p-5 lg:p-6 transition-all duration-300 hover:border-primary/30 hover:shadow-[0_0_30px_-10px_hsl(217_91%_60%/0.2)]">
+                        <div className="flex gap-6 items-start">
+                          {/* Phone mockup as animation area */}
+                          <div className="w-56 lg:w-72 flex-shrink-0 bg-muted/30 rounded-xl overflow-hidden border border-border/30">
+                            <div className="transform scale-100 origin-center">
+                              <MobileAppAnimation />
                             </div>
                           </div>
                           
-                          <div className="flex items-start gap-3">
-                            <div className="w-8 h-8 rounded-lg bg-primary/20 flex items-center justify-center flex-shrink-0">
-                              <MessageSquare className="w-4 h-4 text-primary" />
+                          {/* Content - Feature highlights */}
+                          <div className="flex-1 py-2">
+                            <div className="flex items-center gap-3 mb-4">
+                              <div className="w-9 h-9 rounded-lg flex items-center justify-center bg-gradient-to-br from-cyan-500 to-blue-500">
+                                <Smartphone className="w-4 h-4 text-white" />
+                              </div>
+                              <h4 className="font-bold text-foreground text-lg lg:text-xl">Your CRM in Your Pocket</h4>
                             </div>
-                            <div>
-                              <div className="font-semibold text-foreground mb-1">Quick Reply</div>
-                              <div className="text-sm text-body">Respond to clients on-the-go via SMS or email</div>
-                            </div>
-                          </div>
-                          
-                          <div className="flex items-start gap-3">
-                            <div className="w-8 h-8 rounded-lg bg-emerald-500/20 flex items-center justify-center flex-shrink-0">
-                              <Users className="w-4 h-4 text-emerald-400" />
-                            </div>
-                            <div>
-                              <div className="font-semibold text-foreground mb-1">Pipeline at a Glance</div>
-                              <div className="text-sm text-body">Check your deals and contacts anywhere</div>
-                            </div>
-                          </div>
-                          
-                          <div className="flex items-start gap-3">
-                            <div className="w-8 h-8 rounded-lg bg-violet-500/20 flex items-center justify-center flex-shrink-0">
-                              <Calendar className="w-4 h-4 text-violet-400" />
-                            </div>
-                            <div>
-                              <div className="font-semibold text-foreground mb-1">Calendar Sync</div>
-                              <div className="text-sm text-body">Your schedule synced across all devices</div>
+                            
+                            <div className="space-y-3">
+                              <div className="flex items-start gap-2">
+                                <Bell className="w-4 h-4 text-cyan-400 mt-0.5 flex-shrink-0" />
+                                <div>
+                                  <span className="font-medium text-foreground">Push Notifications</span>
+                                  <span className="text-body"> - Never miss a lead or message</span>
+                                </div>
+                              </div>
+                              
+                              <div className="flex items-start gap-2">
+                                <MessageSquare className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
+                                <div>
+                                  <span className="font-medium text-foreground">Quick Reply</span>
+                                  <span className="text-body"> - Respond on-the-go via SMS or email</span>
+                                </div>
+                              </div>
+                              
+                              <div className="flex items-start gap-2">
+                                <Users className="w-4 h-4 text-emerald-400 mt-0.5 flex-shrink-0" />
+                                <div>
+                                  <span className="font-medium text-foreground">Pipeline at a Glance</span>
+                                  <span className="text-body"> - Check deals anywhere</span>
+                                </div>
+                              </div>
+                              
+                              <div className="flex items-start gap-2">
+                                <Calendar className="w-4 h-4 text-violet-400 mt-0.5 flex-shrink-0" />
+                                <div>
+                                  <span className="font-medium text-foreground">Calendar Sync</span>
+                                  <span className="text-body"> - Schedule synced across devices</span>
+                                </div>
+                              </div>
                             </div>
                           </div>
                         </div>
