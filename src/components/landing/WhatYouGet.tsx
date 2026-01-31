@@ -142,12 +142,12 @@ const ContactAnimation = () => (
 
 const PipelineAnimation = () => {
   return (
-    <div className="relative h-40 flex items-center justify-center p-2">
+    <div className="relative h-44 flex items-center justify-center p-2">
       <style>{`
         /* J. Davidson: Meeting -> Won (stacks below M. Chen at position 1) */
         @keyframes jdMove {
           0%, 25% { left: calc(33.33% + 4px); top: 0; }
-          35%, 100% { left: calc(66.66% + 8px); top: 28px; }
+          35%, 100% { left: calc(66.66% + 8px); top: 32px; }
         }
         @keyframes jdToGreen {
           0%, 30% { background: linear-gradient(135deg, #3b82f6, #2563eb); }
@@ -178,7 +178,7 @@ const PipelineAnimation = () => {
         @keyframes skMove {
           0%, 40% { left: 0; top: 0; }
           50%, 70% { left: calc(33.33% + 4px); top: 0; }
-          80%, 100% { left: calc(66.66% + 8px); top: 56px; }
+          80%, 100% { left: calc(66.66% + 8px); top: 64px; }
         }
         @keyframes skToGreen {
           0%, 75% { background: linear-gradient(135deg, #94a3b8, #64748b); }
