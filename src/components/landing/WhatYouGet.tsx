@@ -68,10 +68,10 @@ const InboxAnimation = () => (
       
       {/* SMS Row - slides in first */}
       <div 
-        className="absolute left-2 right-2" 
+        className="absolute left-2 right-2 opacity-0" 
         style={{ 
           top: '28px', 
-          animation: 'inboxRowSlideIn 6s ease-out infinite',
+          animation: 'inboxRowSlideIn 8s ease-out infinite backwards',
           animationDelay: '0.5s'
         }}
       >
@@ -89,10 +89,10 @@ const InboxAnimation = () => (
       
       {/* Email Row - slides in second */}
       <div 
-        className="absolute left-2 right-2" 
+        className="absolute left-2 right-2 opacity-0" 
         style={{ 
           top: '58px', 
-          animation: 'inboxRowSlideIn 6s ease-out infinite',
+          animation: 'inboxRowSlideIn 8s ease-out infinite backwards',
           animationDelay: '1.3s'
         }}
       >
@@ -110,10 +110,10 @@ const InboxAnimation = () => (
       
       {/* LinkedIn Row - slides in third */}
       <div 
-        className="absolute left-2 right-2" 
+        className="absolute left-2 right-2 opacity-0" 
         style={{ 
           top: '88px', 
-          animation: 'inboxRowSlideIn 6s ease-out infinite',
+          animation: 'inboxRowSlideIn 8s ease-out infinite backwards',
           animationDelay: '2.1s'
         }}
       >
@@ -132,9 +132,9 @@ const InboxAnimation = () => (
       <style>{`
         @keyframes inboxRowSlideIn {
           0% { opacity: 0; transform: translateX(-20px); }
-          8% { opacity: 1; transform: translateX(0); }
-          75% { opacity: 1; transform: translateX(0); }
-          85%, 100% { opacity: 0; transform: translateX(-20px); }
+          6% { opacity: 1; transform: translateX(0); }
+          80% { opacity: 1; transform: translateX(0); }
+          90%, 100% { opacity: 0; transform: translateX(-20px); }
         }
       `}</style>
     </div>
