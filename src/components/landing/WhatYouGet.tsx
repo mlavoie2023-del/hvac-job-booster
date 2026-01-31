@@ -1145,28 +1145,6 @@ const DashboardAnimation = () => (
             strokeDasharray="200"
             style={{ animation: 'lineReveal 6s ease-in-out 0.3s infinite', strokeDashoffset: 200 }}
           />
-          {/* Data points - Revenue */}
-          {[[0, 40], [20, 35], [40, 38], [60, 28], [80, 20], [100, 15]].map(([x, y], i) => (
-            <circle
-              key={`rev-${i}`}
-              cx={x}
-              cy={y}
-              r="1.5"
-              fill="hsl(45 93% 47%)"
-              style={{ animation: `dotPop 6s ease-in-out ${0.15 + i * 0.08}s infinite` }}
-            />
-          ))}
-          {/* Data points - Clients */}
-          {[[0, 45], [20, 42], [40, 40], [60, 35], [80, 30], [100, 25]].map(([x, y], i) => (
-            <circle
-              key={`cli-${i}`}
-              cx={x}
-              cy={y}
-              r="1.5"
-              fill="hsl(160 84% 39%)"
-              style={{ animation: `dotPop 6s ease-in-out ${0.3 + i * 0.08}s infinite` }}
-            />
-          ))}
         </svg>
         
         {/* X-axis labels */}
