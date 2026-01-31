@@ -998,12 +998,14 @@ const DashboardAnimation = () => (
   <div className="relative h-40 flex items-center justify-center p-3">
     <style>{`
       @keyframes lineReveal {
-        0% { stroke-dashoffset: 200; }
-        100% { stroke-dashoffset: 0; }
+        0%, 5% { stroke-dashoffset: 200; }
+        40%, 95% { stroke-dashoffset: 0; }
+        100% { stroke-dashoffset: 200; }
       }
       @keyframes dotPop {
-        0%, 50% { opacity: 0; transform: scale(0); }
-        60%, 100% { opacity: 1; transform: scale(1); }
+        0%, 20% { opacity: 0; transform: scale(0); }
+        30%, 90% { opacity: 1; transform: scale(1); }
+        100% { opacity: 0; transform: scale(0); }
       }
     `}</style>
     <div className="w-full bg-card/30 rounded-lg border border-border/30 p-3">
@@ -1028,22 +1030,22 @@ const DashboardAnimation = () => (
             d="M 0 40 L 20 35 L 40 38 L 60 28 L 80 20 L 100 15"
             fill="none"
             stroke="hsl(45 93% 47%)"
-            strokeWidth="2"
+            strokeWidth="1"
             strokeLinecap="round"
             strokeLinejoin="round"
             strokeDasharray="200"
-            style={{ animation: 'lineReveal 2s ease-out forwards' }}
+            style={{ animation: 'lineReveal 6s ease-in-out infinite' }}
           />
           {/* New Clients line (emerald) */}
           <path
             d="M 0 45 L 20 42 L 40 40 L 60 35 L 80 30 L 100 25"
             fill="none"
             stroke="hsl(160 84% 39%)"
-            strokeWidth="2"
+            strokeWidth="1"
             strokeLinecap="round"
             strokeLinejoin="round"
             strokeDasharray="200"
-            style={{ animation: 'lineReveal 2s ease-out 0.3s forwards', strokeDashoffset: 200 }}
+            style={{ animation: 'lineReveal 6s ease-in-out 0.3s infinite', strokeDashoffset: 200 }}
           />
           {/* Data points - Revenue */}
           {[[0, 40], [20, 35], [40, 38], [60, 28], [80, 20], [100, 15]].map(([x, y], i) => (
@@ -1051,9 +1053,9 @@ const DashboardAnimation = () => (
               key={`rev-${i}`}
               cx={x}
               cy={y}
-              r="2"
+              r="1.5"
               fill="hsl(45 93% 47%)"
-              style={{ animation: `dotPop 2s ease-out ${0.3 + i * 0.1}s forwards`, opacity: 0 }}
+              style={{ animation: `dotPop 6s ease-in-out ${0.15 + i * 0.08}s infinite` }}
             />
           ))}
           {/* Data points - Clients */}
@@ -1062,9 +1064,9 @@ const DashboardAnimation = () => (
               key={`cli-${i}`}
               cx={x}
               cy={y}
-              r="2"
+              r="1.5"
               fill="hsl(160 84% 39%)"
-              style={{ animation: `dotPop 2s ease-out ${0.5 + i * 0.1}s forwards`, opacity: 0 }}
+              style={{ animation: `dotPop 6s ease-in-out ${0.3 + i * 0.08}s infinite` }}
             />
           ))}
         </svg>
