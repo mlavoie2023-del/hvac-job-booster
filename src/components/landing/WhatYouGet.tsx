@@ -1448,35 +1448,35 @@ const ESignatureAnimation = () => (
 
 // Shared phone frame component for consistency
 const PhoneFrame = ({ children, activeTab = 'inbox' }: { children: React.ReactNode; activeTab?: 'inbox' | 'contacts' | 'calendar' | 'notifications' }) => (
-  <div className="relative w-32 h-[140px] bg-[#1a1a1a] rounded-[20px] border-[3px] border-[#2a2a2a] shadow-2xl overflow-hidden">
+  <div className="relative w-[72px] h-[148px] bg-[#1a1a1a] rounded-[14px] border-2 border-[#2a2a2a] shadow-2xl overflow-hidden">
     {/* Dynamic Island */}
-    <div className="absolute top-1.5 left-1/2 -translate-x-1/2 w-14 h-4 bg-black rounded-full z-20" />
+    <div className="absolute top-1 left-1/2 -translate-x-1/2 w-8 h-2.5 bg-black rounded-full z-20" />
     
     {/* Status bar */}
-    <div className="h-6 bg-[#0a0a0a] flex items-end justify-between px-4 pb-0.5">
-      <span className="text-[5px] text-white/60">9:41</span>
-      <div className="flex items-center gap-1">
-        <div className="w-2.5 h-1.5 border border-white/60 rounded-sm">
-          <div className="w-1.5 h-full bg-emerald-400 rounded-sm" />
+    <div className="h-5 bg-[#0a0a0a] flex items-end justify-between px-2 pb-0.5">
+      <span className="text-[4px] text-white/60">9:41</span>
+      <div className="flex items-center gap-0.5">
+        <div className="w-2 h-1 border border-white/60 rounded-[1px]">
+          <div className="w-1 h-full bg-emerald-400 rounded-[1px]" />
         </div>
       </div>
     </div>
     
     {/* App content */}
-    <div className="h-[calc(100%-24px)] bg-[#0f0f0f] overflow-hidden relative">
+    <div className="h-[calc(100%-20px)] bg-[#0f0f0f] overflow-hidden relative">
       {children}
       
       {/* Bottom nav bar */}
-      <div className="absolute bottom-0 left-0 right-0 h-6 bg-[#1a1a1a] border-t border-white/10 flex items-center justify-around px-2">
-        <Inbox className={`w-3 h-3 ${activeTab === 'inbox' ? 'text-primary' : 'text-white/40'}`} />
-        <Users className={`w-3 h-3 ${activeTab === 'contacts' ? 'text-primary' : 'text-white/40'}`} />
-        <Calendar className={`w-3 h-3 ${activeTab === 'calendar' ? 'text-primary' : 'text-white/40'}`} />
-        <Bell className={`w-3 h-3 ${activeTab === 'notifications' ? 'text-primary' : 'text-white/40'}`} />
+      <div className="absolute bottom-0 left-0 right-0 h-5 bg-[#1a1a1a] border-t border-white/10 flex items-center justify-around px-1.5">
+        <Inbox className={`w-2.5 h-2.5 ${activeTab === 'inbox' ? 'text-primary' : 'text-white/40'}`} />
+        <Users className={`w-2.5 h-2.5 ${activeTab === 'contacts' ? 'text-primary' : 'text-white/40'}`} />
+        <Calendar className={`w-2.5 h-2.5 ${activeTab === 'calendar' ? 'text-primary' : 'text-white/40'}`} />
+        <Bell className={`w-2.5 h-2.5 ${activeTab === 'notifications' ? 'text-primary' : 'text-white/40'}`} />
       </div>
     </div>
     
     {/* Home indicator */}
-    <div className="absolute bottom-1 left-1/2 -translate-x-1/2 w-10 h-1 bg-white/30 rounded-full" />
+    <div className="absolute bottom-0.5 left-1/2 -translate-x-1/2 w-6 h-0.5 bg-white/30 rounded-full" />
   </div>
 );
 
@@ -1484,56 +1484,53 @@ const PhoneFrame = ({ children, activeTab = 'inbox' }: { children: React.ReactNo
 const MobileNotificationsAnimation = () => (
   <div className="relative h-40 flex items-center justify-center p-2">
     <PhoneFrame activeTab="notifications">
-      <div className="px-2 py-1.5 pb-8">
-        <div className="text-[7px] font-bold text-white mb-2">Notifications</div>
+      <div className="px-1 py-1 pb-6">
+        <div className="text-[5px] font-bold text-white mb-1.5">Notifications</div>
         
         {/* Notification stack */}
-        <div className="space-y-1.5">
+        <div className="space-y-1">
           <div 
-            className="bg-primary/20 rounded-lg p-1.5 border border-primary/30"
+            className="bg-primary/20 rounded p-1 border border-primary/30"
             style={{ animation: 'notifSlideDown 5s ease-out infinite' }}
           >
-            <div className="flex items-start gap-1.5">
-              <div className="w-4 h-4 rounded-full bg-primary flex items-center justify-center flex-shrink-0">
-                <MessageSquare className="w-2 h-2 text-white" />
+            <div className="flex items-start gap-1">
+              <div className="w-3 h-3 rounded-full bg-primary flex items-center justify-center flex-shrink-0">
+                <MessageSquare className="w-1.5 h-1.5 text-white" />
               </div>
               <div className="min-w-0 flex-1">
-                <div className="text-[5px] font-medium text-white">New SMS from Sarah</div>
-                <div className="text-[4px] text-primary truncate">Thanks for the call!</div>
+                <div className="text-[4px] font-medium text-white truncate">New SMS</div>
+                <div className="text-[3px] text-primary truncate">Thanks!</div>
               </div>
-              <div className="text-[4px] text-white/40">2m</div>
             </div>
           </div>
           
           <div 
-            className="bg-emerald-500/20 rounded-lg p-1.5 border border-emerald-500/30"
+            className="bg-emerald-500/20 rounded p-1 border border-emerald-500/30"
             style={{ animation: 'notifSlideDown 5s ease-out infinite', animationDelay: '0.5s' }}
           >
-            <div className="flex items-start gap-1.5">
-              <div className="w-4 h-4 rounded-full bg-emerald-500 flex items-center justify-center flex-shrink-0">
-                <Calendar className="w-2 h-2 text-white" />
+            <div className="flex items-start gap-1">
+              <div className="w-3 h-3 rounded-full bg-emerald-500 flex items-center justify-center flex-shrink-0">
+                <Calendar className="w-1.5 h-1.5 text-white" />
               </div>
               <div className="min-w-0 flex-1">
-                <div className="text-[5px] font-medium text-white">Meeting Confirmed</div>
-                <div className="text-[4px] text-emerald-400 truncate">Mike Chen - Tomorrow 2pm</div>
+                <div className="text-[4px] font-medium text-white truncate">Meeting</div>
+                <div className="text-[3px] text-emerald-400 truncate">Tomorrow</div>
               </div>
-              <div className="text-[4px] text-white/40">5m</div>
             </div>
           </div>
           
           <div 
-            className="bg-amber-500/20 rounded-lg p-1.5 border border-amber-500/30"
+            className="bg-amber-500/20 rounded p-1 border border-amber-500/30"
             style={{ animation: 'notifSlideDown 5s ease-out infinite', animationDelay: '1s' }}
           >
-            <div className="flex items-start gap-1.5">
-              <div className="w-4 h-4 rounded-full bg-amber-500 flex items-center justify-center flex-shrink-0">
-                <Users className="w-2 h-2 text-white" />
+            <div className="flex items-start gap-1">
+              <div className="w-3 h-3 rounded-full bg-amber-500 flex items-center justify-center flex-shrink-0">
+                <Users className="w-1.5 h-1.5 text-white" />
               </div>
               <div className="min-w-0 flex-1">
-                <div className="text-[5px] font-medium text-white">New Lead</div>
-                <div className="text-[4px] text-amber-400 truncate">James Kim via website</div>
+                <div className="text-[4px] font-medium text-white truncate">New Lead</div>
+                <div className="text-[3px] text-amber-400 truncate">James K.</div>
               </div>
-              <div className="text-[4px] text-white/40">12m</div>
             </div>
           </div>
         </div>
@@ -1542,17 +1539,17 @@ const MobileNotificationsAnimation = () => (
     
     {/* Badge indicator */}
     <div 
-      className="absolute top-2 right-4 w-5 h-5 bg-red-500 rounded-full flex items-center justify-center shadow-lg"
+      className="absolute top-3 right-6 w-4 h-4 bg-red-500 rounded-full flex items-center justify-center shadow-lg"
       style={{ animation: 'badgePop 5s ease-out infinite' }}
     >
-      <span className="text-[8px] font-bold text-white">3</span>
+      <span className="text-[6px] font-bold text-white">3</span>
     </div>
     
     <style>{`
       @keyframes notifSlideDown {
-        0%, 5% { opacity: 0; transform: translateY(-8px); }
+        0%, 5% { opacity: 0; transform: translateY(-6px); }
         15%, 70% { opacity: 1; transform: translateY(0); }
-        85%, 100% { opacity: 0; transform: translateY(-8px); }
+        85%, 100% { opacity: 0; transform: translateY(-6px); }
       }
       @keyframes badgePop {
         0%, 10% { opacity: 0; transform: scale(0); }
@@ -1567,60 +1564,60 @@ const MobileNotificationsAnimation = () => (
 const MobileConversationsAnimation = () => (
   <div className="relative h-40 flex items-center justify-center p-2">
     <PhoneFrame activeTab="inbox">
-      <div className="px-2 py-1.5 pb-8 flex flex-col h-full">
+      <div className="px-1 py-1 pb-6 flex flex-col h-full">
         {/* Chat header */}
-        <div className="flex items-center gap-1.5 mb-2 pb-1 border-b border-white/10">
-          <div className="w-5 h-5 rounded-full bg-primary flex items-center justify-center">
-            <span className="text-[5px] font-bold text-white">SK</span>
+        <div className="flex items-center gap-1 mb-1.5 pb-1 border-b border-white/10">
+          <div className="w-3.5 h-3.5 rounded-full bg-primary flex items-center justify-center">
+            <span className="text-[4px] font-bold text-white">SK</span>
           </div>
           <div>
-            <div className="text-[6px] font-medium text-white">Sarah Kim</div>
-            <div className="text-[4px] text-emerald-400">Online</div>
+            <div className="text-[4px] font-medium text-white">Sarah Kim</div>
+            <div className="text-[3px] text-emerald-400">Online</div>
           </div>
         </div>
         
         {/* Messages */}
-        <div className="flex-1 space-y-1 overflow-hidden">
+        <div className="flex-1 space-y-0.5 overflow-hidden">
           <div 
-            className="bg-muted/30 rounded-lg px-2 py-1 max-w-[80%]"
+            className="bg-muted/30 rounded px-1 py-0.5 max-w-[85%]"
             style={{ animation: 'msgSlide 6s ease-out infinite' }}
           >
-            <div className="text-[5px] text-white/80">Hi! When can we meet?</div>
+            <div className="text-[4px] text-white/80">When can we meet?</div>
           </div>
           
           <div 
-            className="bg-primary/30 rounded-lg px-2 py-1 max-w-[80%] ml-auto"
+            className="bg-primary/30 rounded px-1 py-0.5 max-w-[85%] ml-auto"
             style={{ animation: 'msgSlide 6s ease-out infinite', animationDelay: '0.8s' }}
           >
-            <div className="text-[5px] text-white/80">How about tomorrow at 2pm?</div>
+            <div className="text-[4px] text-white/80">Tomorrow at 2pm?</div>
           </div>
           
           <div 
-            className="bg-muted/30 rounded-lg px-2 py-1 max-w-[80%]"
+            className="bg-muted/30 rounded px-1 py-0.5 max-w-[85%]"
             style={{ animation: 'msgSlide 6s ease-out infinite', animationDelay: '1.6s' }}
           >
-            <div className="text-[5px] text-white/80">Perfect! See you then</div>
+            <div className="text-[4px] text-white/80">Perfect!</div>
           </div>
         </div>
         
         {/* Reply input */}
         <div 
-          className="mt-1 flex items-center gap-1 bg-muted/20 rounded-full px-2 py-1"
+          className="mt-0.5 flex items-center gap-0.5 bg-muted/20 rounded-full px-1 py-0.5"
           style={{ animation: 'replyType 6s ease-out infinite', animationDelay: '2.4s' }}
         >
-          <div className="flex-1 text-[5px] text-white/40 overflow-hidden">
-            <span style={{ animation: 'typeText 6s steps(20) infinite', animationDelay: '2.4s' }}>Sounds great! I'll send a...</span>
+          <div className="flex-1 text-[3px] text-white/40 overflow-hidden truncate">
+            Sounds great!...
           </div>
-          <Send className="w-2.5 h-2.5 text-primary" />
+          <Send className="w-2 h-2 text-primary" />
         </div>
       </div>
     </PhoneFrame>
     
     <style>{`
       @keyframes msgSlide {
-        0%, 5% { opacity: 0; transform: translateY(5px); }
+        0%, 5% { opacity: 0; transform: translateY(4px); }
         12%, 75% { opacity: 1; transform: translateY(0); }
-        85%, 100% { opacity: 0; transform: translateY(5px); }
+        85%, 100% { opacity: 0; transform: translateY(4px); }
       }
       @keyframes replyType {
         0%, 35% { opacity: 0; }
@@ -1635,54 +1632,52 @@ const MobileConversationsAnimation = () => (
 const MobilePipelineAnimation = () => (
   <div className="relative h-40 flex items-center justify-center p-2">
     <PhoneFrame activeTab="contacts">
-      <div className="px-2 py-1.5 pb-8">
-        <div className="text-[7px] font-bold text-white mb-2">Pipeline</div>
+      <div className="px-1 py-1 pb-6">
+        <div className="text-[5px] font-bold text-white mb-1.5">Pipeline</div>
         
         {/* Pipeline cards */}
-        <div className="space-y-1.5">
+        <div className="space-y-1">
           <div 
-            className="bg-slate-800/60 rounded-lg p-1.5 border border-slate-700/50"
+            className="bg-slate-800/60 rounded p-1 border border-slate-700/50"
             style={{ animation: 'pipeSlide 5s ease-out infinite' }}
           >
-            <div className="flex items-center gap-1.5">
-              <div className="w-4 h-4 rounded-full bg-slate-600 flex items-center justify-center">
-                <span className="text-[5px] font-bold text-white">JK</span>
+            <div className="flex items-center gap-1">
+              <div className="w-3 h-3 rounded-full bg-slate-600 flex items-center justify-center">
+                <span className="text-[4px] font-bold text-white">JK</span>
               </div>
               <div className="flex-1 min-w-0">
-                <div className="text-[6px] font-medium text-white truncate">James Kim</div>
-                <div className="text-[5px] text-slate-400">New Lead</div>
+                <div className="text-[4px] font-medium text-white truncate">James Kim</div>
+                <div className="text-[3px] text-slate-400">New Lead</div>
               </div>
-              <div className="w-1.5 h-1.5 rounded-full bg-slate-400" />
             </div>
           </div>
           
           <div 
-            className="bg-primary/20 rounded-lg p-1.5 border border-primary/30"
+            className="bg-primary/20 rounded p-1 border border-primary/30"
             style={{ animation: 'pipeSlide 5s ease-out infinite', animationDelay: '0.3s' }}
           >
-            <div className="flex items-center gap-1.5">
-              <div className="w-4 h-4 rounded-full bg-primary flex items-center justify-center">
-                <span className="text-[5px] font-bold text-white">SD</span>
+            <div className="flex items-center gap-1">
+              <div className="w-3 h-3 rounded-full bg-primary flex items-center justify-center">
+                <span className="text-[4px] font-bold text-white">SD</span>
               </div>
               <div className="flex-1 min-w-0">
-                <div className="text-[6px] font-medium text-white truncate">Sarah Davis</div>
-                <div className="text-[5px] text-primary">Meeting Today</div>
+                <div className="text-[4px] font-medium text-white truncate">Sarah Davis</div>
+                <div className="text-[3px] text-primary">Meeting</div>
               </div>
-              <div className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
             </div>
           </div>
           
           <div 
-            className="bg-emerald-500/20 rounded-lg p-1.5 border border-emerald-500/30"
+            className="bg-emerald-500/20 rounded p-1 border border-emerald-500/30"
             style={{ animation: 'pipeSlide 5s ease-out infinite', animationDelay: '0.6s' }}
           >
-            <div className="flex items-center gap-1.5">
-              <div className="w-4 h-4 rounded-full bg-emerald-500 flex items-center justify-center">
-                <span className="text-[5px] text-white">✓</span>
+            <div className="flex items-center gap-1">
+              <div className="w-3 h-3 rounded-full bg-emerald-500 flex items-center justify-center">
+                <span className="text-[4px] text-white">✓</span>
               </div>
               <div className="flex-1 min-w-0">
-                <div className="text-[6px] font-medium text-white truncate">Mike Chen</div>
-                <div className="text-[5px] text-emerald-400">$850K Signed</div>
+                <div className="text-[4px] font-medium text-white truncate">Mike Chen</div>
+                <div className="text-[3px] text-emerald-400">$850K</div>
               </div>
             </div>
           </div>
@@ -1692,37 +1687,37 @@ const MobilePipelineAnimation = () => (
     
     {/* Summary badge */}
     <div 
-      className="absolute -bottom-1 left-1/2 -translate-x-1/2 bg-card/95 backdrop-blur rounded-lg border border-border/50 px-3 py-1.5 shadow-xl"
+      className="absolute -bottom-1 left-1/2 -translate-x-1/2 bg-card/95 backdrop-blur rounded border border-border/50 px-2 py-1 shadow-xl"
       style={{ animation: 'summaryFade 5s ease-out infinite', animationDelay: '1s' }}
     >
-      <div className="flex items-center gap-3">
+      <div className="flex items-center gap-2">
         <div className="text-center">
-          <div className="text-[8px] font-bold text-foreground">12</div>
-          <div className="text-[5px] text-muted-foreground">Leads</div>
+          <div className="text-[6px] font-bold text-foreground">12</div>
+          <div className="text-[4px] text-muted-foreground">Leads</div>
         </div>
-        <div className="w-px h-4 bg-border" />
+        <div className="w-px h-3 bg-border" />
         <div className="text-center">
-          <div className="text-[8px] font-bold text-primary">5</div>
-          <div className="text-[5px] text-muted-foreground">Meetings</div>
+          <div className="text-[6px] font-bold text-primary">5</div>
+          <div className="text-[4px] text-muted-foreground">Mtgs</div>
         </div>
-        <div className="w-px h-4 bg-border" />
+        <div className="w-px h-3 bg-border" />
         <div className="text-center">
-          <div className="text-[8px] font-bold text-emerald-400">3</div>
-          <div className="text-[5px] text-muted-foreground">Won</div>
+          <div className="text-[6px] font-bold text-emerald-400">3</div>
+          <div className="text-[4px] text-muted-foreground">Won</div>
         </div>
       </div>
     </div>
     
     <style>{`
       @keyframes pipeSlide {
-        0%, 5% { opacity: 0; transform: translateX(-10px); }
+        0%, 5% { opacity: 0; transform: translateX(-8px); }
         15%, 70% { opacity: 1; transform: translateX(0); }
-        85%, 100% { opacity: 0; transform: translateX(-10px); }
+        85%, 100% { opacity: 0; transform: translateX(-8px); }
       }
       @keyframes summaryFade {
-        0%, 15% { opacity: 0; transform: translateX(-50%) translateY(5px); }
+        0%, 15% { opacity: 0; transform: translateX(-50%) translateY(4px); }
         25%, 70% { opacity: 1; transform: translateX(-50%) translateY(0); }
-        85%, 100% { opacity: 0; transform: translateX(-50%) translateY(5px); }
+        85%, 100% { opacity: 0; transform: translateX(-50%) translateY(4px); }
       }
     `}</style>
   </div>
