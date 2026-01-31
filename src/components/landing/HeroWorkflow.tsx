@@ -1,102 +1,155 @@
-import { Users, Mail, Calendar, MessageSquare, CreditCard, ClipboardList, BarChart3, Zap } from "lucide-react";
+import { useEffect, useState } from "react";
+import { Mail, Calendar, Star, CheckCircle, UserPlus, Users } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
-import lavoieLogo from "@/assets/lavoie-logo-square.png";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
-interface Tool {
-  id: string;
-  icon: LucideIcon;
-  label: string;
-  color: string;
-  x: number;
-  y: number;
+interface Notification {
+  id: number;
+  type: "avatar" | "icon";
+  icon?: LucideIcon;
+  avatar?: string;
+  initials?: string;
+  primary: string;
+  secondary: string;
 }
 
-const tools: Tool[] = [
-  { id: "crm", icon: Users, label: "CRM", color: "hsl(217 91% 60%)", x: -140, y: -80 },
-  { id: "email", icon: Mail, label: "Email", color: "hsl(280 70% 60%)", x: 140, y: -80 },
-  { id: "calendar", icon: Calendar, label: "Calendar", color: "hsl(45 93% 55%)", x: -160, y: 20 },
-  { id: "sms", icon: MessageSquare, label: "SMS", color: "hsl(142 70% 50%)", x: 160, y: 20 },
-  { id: "payments", icon: CreditCard, label: "Payments", color: "hsl(160 84% 39%)", x: -120, y: 100 },
-  { id: "forms", icon: ClipboardList, label: "Forms", color: "hsl(330 81% 60%)", x: 120, y: 100 },
-  { id: "analytics", icon: BarChart3, label: "Analytics", color: "hsl(190 90% 50%)", x: -60, y: -110 },
-  { id: "automation", icon: Zap, label: "Automation", color: "hsl(25 95% 55%)", x: 60, y: -110 },
+const notifications: Notification[] = [
+  {
+    id: 1,
+    type: "avatar",
+    avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&h=80&fit=crop&crop=faces&facepad=2",
+    initials: "SM",
+    primary: "Sarah M.",
+    secondary: "Submitted inquiry form",
+  },
+  {
+    id: 2,
+    type: "icon",
+    icon: Mail,
+    primary: "Follow-up #3",
+    secondary: "Sent to James",
+  },
+  {
+    id: 3,
+    type: "icon",
+    icon: Calendar,
+    primary: "Discovery call",
+    secondary: "Scheduled for Thursday",
+  },
+  {
+    id: 4,
+    type: "icon",
+    icon: Star,
+    primary: "Review request",
+    secondary: "Sent to Mike T.",
+  },
+  {
+    id: 5,
+    type: "icon",
+    icon: CheckCircle,
+    primary: "Welcome sequence",
+    secondary: "Started for Lisa",
+  },
+  {
+    id: 6,
+    type: "icon",
+    icon: UserPlus,
+    primary: "New referral",
+    secondary: "From David K.",
+  },
+  {
+    id: 7,
+    type: "avatar",
+    avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&h=80&fit=crop&crop=faces&facepad=2",
+    initials: "JR",
+    primary: "John R.",
+    secondary: "Completed onboarding",
+  },
+  {
+    id: 8,
+    type: "icon",
+    icon: Users,
+    primary: "Annual review",
+    secondary: "Reminder sent to 12 clients",
+  },
 ];
 
-interface ToolIconProps {
-  tool: Tool;
-  index: number;
+interface NotificationCardProps {
+  notification: Notification;
+  isVisible: boolean;
 }
 
-const ToolIcon = ({ tool, index }: ToolIconProps) => {
-  const Icon = tool.icon;
-  
-  return (
-    <div
-      className="absolute left-1/2 top-1/2 flex flex-col items-center gap-1"
-      style={{
-        ["--x" as string]: `${tool.x}px`,
-        ["--y" as string]: `${tool.y}px`,
-        ["--color" as string]: tool.color,
-        animation: `heroToolAnimation 8s ease-in-out infinite`,
-        animationDelay: `${index * 0.05}s`,
-      }}
-    >
-      <div 
-        className="w-12 h-12 rounded-xl flex items-center justify-center border backdrop-blur-sm transition-transform"
-        style={{
-          backgroundColor: `color-mix(in srgb, ${tool.color} 15%, transparent)`,
-          borderColor: `color-mix(in srgb, ${tool.color} 40%, transparent)`,
-          boxShadow: `0 0 20px color-mix(in srgb, ${tool.color} 25%, transparent)`,
-        }}
-      >
-        <Icon className="w-6 h-6" style={{ color: tool.color }} />
-      </div>
-      <span className="text-[10px] font-medium text-muted-foreground whitespace-nowrap">
-        {tool.label}
-      </span>
-    </div>
-  );
-};
+const NotificationCard = ({ notification, isVisible }: NotificationCardProps) => {
+  const Icon = notification.icon;
 
-const UnifiedCard = () => {
   return (
     <div
-      className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center"
+      className={`flex items-center gap-4 bg-card/80 backdrop-blur-sm border border-primary/20 rounded-2xl px-6 py-5 shadow-lg transition-all duration-500 ${
+        isVisible 
+          ? "opacity-100 translate-y-0 scale-100" 
+          : "opacity-0 -translate-y-6 scale-95"
+      }`}
       style={{
-        animation: `heroUnifiedReveal 8s ease-in-out infinite`,
+        boxShadow: "0 0 30px hsl(var(--primary) / 0.12), 0 12px 40px rgba(0,0,0,0.15)",
       }}
     >
-      <div 
-        className="w-24 h-24 rounded-2xl flex items-center justify-center border-2 border-primary/50 bg-card/90 backdrop-blur-md"
-        style={{
-          boxShadow: `0 0 60px hsl(217 91% 60% / 0.4), 0 0 100px hsl(217 91% 60% / 0.2)`,
-        }}
-      >
-        <img 
-          src={lavoieLogo} 
-          alt="Lavoie Systems" 
-          className="w-16 h-16 object-contain"
-        />
-      </div>
-      <div className="mt-3 text-center">
-        <p className="text-sm font-semibold text-foreground">One Platform</p>
-        <p className="text-xs text-primary font-medium">8 Tools → 1</p>
+      {/* Icon or Avatar */}
+      {notification.type === "avatar" ? (
+        <Avatar className="h-12 w-12 border-2 border-primary/30">
+          <AvatarImage src={notification.avatar} alt={notification.primary} />
+          <AvatarFallback className="bg-primary/20 text-primary text-base font-medium">
+            {notification.initials}
+          </AvatarFallback>
+        </Avatar>
+      ) : Icon ? (
+        <div 
+          className="w-12 h-12 flex items-center justify-center rounded-full bg-primary/10 border border-primary/30"
+          style={{ boxShadow: "0 0 16px hsl(var(--primary) / 0.25)" }}
+        >
+          <Icon className="w-6 h-6 text-primary" />
+        </div>
+      ) : null}
+
+      {/* Text content */}
+      <div className="flex flex-col">
+        <span className="text-base font-semibold text-foreground">
+          {notification.primary}
+        </span>
+        <span className="text-sm text-muted-foreground">
+          {notification.secondary}
+        </span>
       </div>
     </div>
   );
 };
 
 const HeroWorkflow = () => {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [isVisible, setIsVisible] = useState(true);
+  const cycleDuration = 3000; // ms per notification
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      // Fade out
+      setIsVisible(false);
+      
+      // After fade out, switch to next and fade in
+      setTimeout(() => {
+        setCurrentIndex((prev) => (prev + 1) % notifications.length);
+        setIsVisible(true);
+      }, 500);
+    }, cycleDuration);
+
+    return () => clearInterval(interval);
+  }, []);
+
   return (
-    <div className="w-full max-w-2xl mx-auto mt-12 px-4">
-      <div className="relative h-[280px] md:h-[300px]">
-        {/* Tool icons */}
-        {tools.map((tool, index) => (
-          <ToolIcon key={tool.id} tool={tool} index={index} />
-        ))}
-        
-        {/* Central unified card */}
-        <UnifiedCard />
+    <div className="w-full max-w-lg mx-auto mt-16 px-4">
+      <div className="flex justify-center items-center h-[100px]">
+        <NotificationCard
+          notification={notifications[currentIndex]}
+          isVisible={isVisible}
+        />
       </div>
     </div>
   );

@@ -1,169 +1,99 @@
 
-
-# Hero Animation: Floating Tool Consolidation
+# Campaign Attribution Animation: Staggered Slide-In with Count Up
 
 ## Overview
-Replace the current notification popup animation with a visually striking "tool consolidation" animation. Scattered tool icons (representing the typical tech stack chaos) will orbit around and then merge into a central unified Lavoie platform, visually demonstrating the value proposition.
+Update the Campaign Attribution animation to feature rows that slide in sequentially from the left, with lead counts animating from 0 to their final values, and checkmarks popping in at the end. The entire animation will loop infinitely on a 6-second cycle.
 
-## Animation Concept
+## Animation Sequence (6-second loop)
+1. **0.0s - 0.5s**: First row (Client Referrals) slides in from left
+2. **0.5s - 1.0s**: Count animates 0 → 12, checkmark pops
+3. **0.8s - 1.3s**: Second row (Email Campaigns) slides in
+4. **1.3s - 1.8s**: Count animates 0 → 8, checkmark pops
+5. **1.6s - 2.1s**: Third row (Website Forms) slides in
+6. **2.1s - 2.6s**: Count animates 0 → 6, checkmark pops
+7. **2.4s - 2.9s**: Fourth row (Social Media) slides in
+8. **2.9s - 3.4s**: Count animates 0 → 5, checkmark pops
+9. **3.5s - 4.0s**: Total summary fades in at bottom
+10. **4.5s - 5.5s**: Hold complete state
+11. **5.5s - 6.0s**: All elements fade out and reset
 
-```text
-Phase 1 (0-2s): Scattered Tools
-┌─────────────────────────────────────────────┐
-│                                             │
-│    📊 CRM        📧 Email                   │
-│                                             │
-│         📅 Calendar    📱 SMS               │
-│                                             │
-│    💰 Payments      📋 Forms                │
-│                                             │
-│         📈 Analytics    🔄 Automation       │
-│                                             │
-└─────────────────────────────────────────────┘
+## Technical Changes
 
-Phase 2 (2-4s): Converging
-┌─────────────────────────────────────────────┐
-│                                             │
-│       📊         📧                         │
-│            ╲   ╱                            │
-│         📅─→ ● ←─📱                         │
-│            ╱   ╲                            │
-│       💰         📋                         │
-│                                             │
-└─────────────────────────────────────────────┘
+### File: `src/components/landing/WhatYouGet.tsx`
 
-Phase 3 (4-6s): Unified Platform Reveal
-┌─────────────────────────────────────────────┐
-│                                             │
-│         ┌─────────────────────┐             │
-│         │  ✨ LAVOIE SYSTEMS  │             │
-│         │   One Platform      │             │
-│         │   8 Tools → 1       │             │
-│         └─────────────────────┘             │
-│                                             │
-└─────────────────────────────────────────────┘
+**1. Update CSS Keyframes (lines 1154-1167)**
 
-Phase 4 (6-8s): Hold + Reset
-```
-
-## Visual Design
-
-### Scattered Tool Icons (8 tools)
-Each tool represented by a small card with icon and label:
-- CRM (Users icon, blue)
-- Email (Mail icon, purple)
-- Calendar (Calendar icon, amber)
-- SMS (MessageSquare icon, green)
-- Payments (CreditCard icon, emerald)
-- Forms (ClipboardList icon, pink)
-- Analytics (BarChart3 icon, cyan)
-- Automation (Zap icon, orange)
-
-### Central Unified Card
-- Lavoie logo or stylized "L" icon
-- "One Platform" text
-- Glowing primary color border with pulse effect
-- Larger size (contrasts with scattered small icons)
-
-## Animation Sequence (8-second loop)
-
-| Time | Action |
-|------|--------|
-| 0s | Tool icons appear scattered in orbital positions, gently floating |
-| 0-2s | Icons slowly orbit/drift with subtle floating motion |
-| 2s | Icons begin converging toward center |
-| 3s | Icons reach center, scale down, and fade |
-| 3.5s | Central unified card scales up with glow effect |
-| 4-5.5s | Hold unified state with subtle pulse |
-| 5.5-6s | Central card fades, icons reappear at starting positions |
-| 6-8s | Gentle floating continues, then loop restarts |
-
-## Technical Implementation
-
-### File: `src/components/landing/HeroWorkflow.tsx`
-
-**Complete Rewrite** - Replace current notification-based animation with:
-
-1. **Tool Data Array**
-   - 8 tool objects with: id, icon, label, color, initial position (angle + radius)
-
-2. **CSS Keyframes** (inline styles or added to index.css)
-   - `@keyframes heroFloat` - Subtle floating motion
-   - `@keyframes heroConverge` - Move toward center + scale down + fade
-   - `@keyframes heroUnifiedReveal` - Scale up + glow pulse
-   - `@keyframes heroReset` - Fade back to starting positions
-
-3. **Component Structure**
-   ```tsx
-   <div className="relative w-full max-w-2xl mx-auto h-[280px]">
-     {/* Orbital tool icons */}
-     {tools.map((tool, index) => (
-       <ToolIcon 
-         key={tool.id}
-         tool={tool}
-         delay={index * 0.1}
-       />
-     ))}
-     
-     {/* Central unified platform card */}
-     <UnifiedCard />
-   </div>
-   ```
-
-4. **Positioning**
-   - Use `absolute` positioning with `transform: translate()` 
-   - Icons positioned in a rough elliptical pattern around center
-   - CSS custom properties for animation timing control
-
-### Keyframe Details
+Replace the current keyframes with looping versions:
 
 ```css
-@keyframes heroFloat {
-  0%, 100% { transform: translate(var(--x), var(--y)); }
-  50% { transform: translate(calc(var(--x) + 5px), calc(var(--y) - 8px)); }
+@keyframes attrSlideIn {
+  0%, 2% { opacity: 0; transform: translateX(-20px); }
+  8%, 85% { opacity: 1; transform: translateX(0); }
+  92%, 100% { opacity: 0; transform: translateX(-20px); }
 }
 
-@keyframes heroConverge {
-  0% { 
-    transform: translate(var(--x), var(--y)) scale(1);
-    opacity: 1;
-  }
-  80% {
-    transform: translate(0, 0) scale(0.3);
-    opacity: 0.5;
-  }
-  100% {
-    transform: translate(0, 0) scale(0);
-    opacity: 0;
-  }
+@keyframes attrCountUp {
+  0%, 10% { opacity: 0; }
+  15%, 85% { opacity: 1; }
+  92%, 100% { opacity: 0; }
 }
 
-@keyframes heroUnifiedReveal {
-  0%, 30% { 
-    transform: scale(0);
-    opacity: 0;
-  }
-  50% {
-    transform: scale(1.1);
-    opacity: 1;
-  }
-  60%, 80% {
-    transform: scale(1);
-    opacity: 1;
-  }
-  95%, 100% {
-    transform: scale(0);
-    opacity: 0;
-  }
+@keyframes attrCheckPop {
+  0%, 12% { opacity: 0; transform: scale(0); }
+  18%, 85% { opacity: 1; transform: scale(1); }
+  92%, 100% { opacity: 0; transform: scale(0); }
+}
+
+@keyframes attrTotalFade {
+  0%, 50% { opacity: 0; }
+  58%, 85% { opacity: 1; }
+  92%, 100% { opacity: 0; }
 }
 ```
 
-## Responsive Considerations
-- Desktop: Full 280px height, larger spread
-- Tablet: Slightly reduced spread
-- Mobile: Compact 200px height, tighter orbital pattern
+**2. Update Animation Styles on Elements (lines 1176-1241)**
 
-## Files to Modify
-1. **`src/components/landing/HeroWorkflow.tsx`** - Complete rewrite with new animation
-2. **`src/index.css`** - Add new hero-specific keyframes
+Apply the new looping keyframes with staggered delays:
+- Row 1: 0s delay
+- Row 2: 0.5s delay  
+- Row 3: 1.0s delay
+- Row 4: 1.5s delay
+- Total: appears after all rows complete
 
+Each row will use:
+- `attrSlideIn 6s ease-out infinite` for the row container
+- `attrCountUp 6s ease-out infinite` for the lead count number
+- `attrCheckPop 6s ease-out infinite` for the checkmark
+
+**3. Example Updated Row Structure**
+
+```tsx
+<div 
+  className="flex items-center gap-2 px-2 py-1.5 rounded-lg border bg-emerald-500/20 border-emerald-500/30"
+  style={{ animation: 'attrSlideIn 6s ease-out infinite' }}
+>
+  <Users className="w-3 h-3 text-emerald-400" />
+  <span className="text-[7px] text-foreground/80 flex-1">Client Referrals</span>
+  <div className="flex items-center gap-1">
+    <span 
+      className="text-[8px] font-bold text-emerald-400" 
+      style={{ animation: 'attrCountUp 6s ease-out 0.3s infinite' }}
+    >12</span>
+    <span className="text-[6px] text-muted-foreground">leads</span>
+  </div>
+  <div 
+    className="w-3 h-3 rounded-full bg-emerald-500/30 flex items-center justify-center" 
+    style={{ animation: 'attrCheckPop 6s ease-out 0.4s infinite' }}
+  >
+    <span className="text-[5px] text-emerald-400">✓</span>
+  </div>
+</div>
+```
+
+## Visual Result
+- Rows appear one-by-one sliding in from the left
+- Each row's lead count fades in shortly after the row appears
+- Checkmarks pop in with a scale effect after counts appear
+- Total summary fades in once all rows are complete
+- Everything resets and loops every 6 seconds
+- Smooth, continuous animation matching the Dashboard style
