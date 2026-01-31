@@ -29,7 +29,8 @@ import {
   MessageSquare,
   Phone,
   Globe,
-  ClipboardCheck
+  ClipboardCheck,
+  Filter
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import lavoieLogo from "@/assets/lavoie-logo-square.png";
@@ -1431,7 +1432,7 @@ const categories: Category[] = [
   },
   {
     id: "lead-capture",
-    icon: Target,
+    icon: Filter,
     title: "Lead Capture",
     color: "from-emerald-500 to-teal-500",
     features: [
