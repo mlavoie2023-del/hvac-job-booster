@@ -1201,13 +1201,9 @@ const CentralHub = ({ activeCategory }: { activeCategory: string | null }) => {
       </div>
       
       {/* "One Platform" label */}
-      <div className="mt-4 flex items-center gap-2">
-        <div className="h-px w-8 bg-gradient-to-r from-transparent to-primary/50" />
-        <span className="text-sm font-semibold text-primary tracking-wider uppercase">
-          One Platform
-        </span>
-        <div className="h-px w-8 bg-gradient-to-l from-transparent to-primary/50" />
-      </div>
+      <span className="mt-3 text-[10px] lg:text-xs text-muted-foreground tracking-wide">
+        One Platform
+      </span>
     </div>
   );
 };
