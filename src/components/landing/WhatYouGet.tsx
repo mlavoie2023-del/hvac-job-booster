@@ -1109,7 +1109,7 @@ const DashboardAnimation = () => (
     <div className="w-full bg-card/30 rounded-lg border border-border/30 p-3">
       <div className="flex items-center justify-between mb-2">
         <div className="text-[8px] font-medium text-foreground">Performance Overview</div>
-        <div className="px-1.5 py-0.5 bg-amber-500/20 rounded text-[6px] text-amber-400">This Month</div>
+        <div className="px-1.5 py-0.5 bg-amber-500/20 rounded text-[6px] text-amber-400">Past 6 Months</div>
       </div>
       
       {/* Chart area with two lines */}
