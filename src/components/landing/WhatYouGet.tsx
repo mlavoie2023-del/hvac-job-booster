@@ -143,39 +143,105 @@ const InboxAnimation = () => (
 
 const ContactAnimation = () => (
   <div className="relative h-40 flex items-center justify-center p-3">
-    <div className="w-full bg-card/50 rounded-lg border border-border/50 p-3 animate-[fadeSlideIn_3s_ease-in-out_infinite]">
+    <div className="w-full bg-card/50 rounded-lg border border-border/50 p-3">
       {/* Header with avatar */}
       <div className="flex items-center gap-3 mb-3">
-        <div className="w-10 h-10 rounded-full bg-gradient-to-br from-primary/40 to-primary/20 flex items-center justify-center">
+        <div 
+          className="w-10 h-10 rounded-full bg-gradient-to-br from-primary/40 to-primary/20 flex items-center justify-center"
+          style={{ animation: 'contactReveal 8s ease-out infinite', animationDelay: '0s' }}
+        >
           <span className="text-sm font-bold text-primary">JD</span>
         </div>
-        <div>
-          <div className="text-[10px] font-medium text-foreground">John Davidson</div>
-          <div className="text-[8px] text-muted-foreground">Pre-Retiree • Age 58</div>
+        <div style={{ animation: 'contactReveal 8s ease-out infinite', animationDelay: '0.3s' }}>
+          <div className="text-[10px] font-medium text-foreground overflow-hidden whitespace-nowrap">
+            <span style={{ animation: 'typeReveal 8s steps(14) infinite', animationDelay: '0.4s' }}>John Davidson</span>
+          </div>
+          <div className="text-[8px] text-muted-foreground overflow-hidden whitespace-nowrap">
+            <span style={{ animation: 'typeReveal 8s steps(18) infinite', animationDelay: '0.8s' }}>Pre-Retiree • Age 58</span>
+          </div>
         </div>
       </div>
       
       {/* Tags */}
       <div className="flex gap-1.5 mb-3">
-        <div className="px-2 py-0.5 bg-emerald-500/20 rounded text-[7px] text-emerald-400">Active Client</div>
-        <div className="px-2 py-0.5 bg-primary/20 rounded text-[7px] text-primary">$1.2M AUM</div>
+        <div 
+          className="px-2 py-0.5 bg-emerald-500/20 rounded text-[7px] text-emerald-400"
+          style={{ animation: 'tagReveal 8s ease-out infinite', animationDelay: '1.2s' }}
+        >
+          Active Client
+        </div>
+        <div 
+          className="px-2 py-0.5 bg-primary/20 rounded text-[7px] text-primary"
+          style={{ animation: 'tagReveal 8s ease-out infinite', animationDelay: '1.5s' }}
+        >
+          $1.2M AUM
+        </div>
       </div>
       
       {/* Notes section */}
-      <div className="bg-muted/30 rounded p-2 border border-border/30">
+      <div 
+        className="bg-muted/30 rounded p-2 border border-border/30"
+        style={{ animation: 'contactReveal 8s ease-out infinite', animationDelay: '1.8s' }}
+      >
         <div className="text-[7px] text-muted-foreground mb-1.5 font-medium">Financial Goals</div>
         <div className="space-y-1">
           <div className="flex items-center gap-1.5">
-            <div className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
-            <span className="text-[7px] text-foreground/70">Retire at 62 with $80K/year</span>
+            <div 
+              className="w-1.5 h-1.5 rounded-full bg-emerald-500"
+              style={{ animation: 'dotPop 8s ease-out infinite', animationDelay: '2.2s' }}
+            />
+            <span 
+              className="text-[7px] text-foreground/70 overflow-hidden whitespace-nowrap"
+              style={{ animation: 'goalReveal 8s ease-out infinite', animationDelay: '2.3s' }}
+            >
+              Retire at 62 with $80K/year
+            </span>
           </div>
           <div className="flex items-center gap-1.5">
-            <div className="w-1.5 h-1.5 rounded-full bg-primary" />
-            <span className="text-[7px] text-foreground/70">Estate planning for 2 children</span>
+            <div 
+              className="w-1.5 h-1.5 rounded-full bg-primary"
+              style={{ animation: 'dotPop 8s ease-out infinite', animationDelay: '2.8s' }}
+            />
+            <span 
+              className="text-[7px] text-foreground/70 overflow-hidden whitespace-nowrap"
+              style={{ animation: 'goalReveal 8s ease-out infinite', animationDelay: '2.9s' }}
+            >
+              Estate planning for 2 children
+            </span>
           </div>
         </div>
       </div>
     </div>
+    
+    <style>{`
+      @keyframes contactReveal {
+        0% { opacity: 0; transform: scale(0.95); }
+        5%, 85% { opacity: 1; transform: scale(1); }
+        95%, 100% { opacity: 0; transform: scale(0.95); }
+      }
+      @keyframes typeReveal {
+        0% { opacity: 0; max-width: 0; }
+        5% { opacity: 1; max-width: 0; }
+        20%, 85% { opacity: 1; max-width: 200px; }
+        95%, 100% { opacity: 0; max-width: 200px; }
+      }
+      @keyframes tagReveal {
+        0%, 2% { opacity: 0; transform: scale(0.8); }
+        8%, 85% { opacity: 1; transform: scale(1); }
+        95%, 100% { opacity: 0; transform: scale(0.8); }
+      }
+      @keyframes dotPop {
+        0%, 2% { opacity: 0; transform: scale(0); }
+        8%, 85% { opacity: 1; transform: scale(1); }
+        95%, 100% { opacity: 0; transform: scale(0); }
+      }
+      @keyframes goalReveal {
+        0% { opacity: 0; max-width: 0; }
+        5% { opacity: 1; max-width: 0; }
+        25%, 85% { opacity: 1; max-width: 200px; }
+        95%, 100% { opacity: 0; max-width: 200px; }
+      }
+    `}</style>
   </div>
 );
 
