@@ -143,6 +143,80 @@ const ContactAnimation = () => (
 const PipelineAnimation = () => {
   return (
     <div className="relative h-40 flex items-center justify-center p-2">
+      <style>{`
+        @keyframes moveContact1 {
+          0%, 20% { transform: translateX(0); opacity: 1; }
+          25% { transform: translateX(calc(100% + 8px)); opacity: 1; }
+          25.1%, 45% { transform: translateX(calc(100% + 8px)); opacity: 1; }
+          50% { transform: translateX(calc(200% + 16px)); opacity: 1; }
+          50.1%, 100% { transform: translateX(calc(200% + 16px)); opacity: 1; }
+        }
+        @keyframes moveContact2 {
+          0%, 50% { transform: translateX(0); opacity: 1; }
+          55% { transform: translateX(calc(100% + 8px)); opacity: 1; }
+          55.1%, 75% { transform: translateX(calc(100% + 8px)); opacity: 1; }
+          80% { transform: translateX(calc(200% + 16px)); opacity: 1; }
+          80.1%, 100% { transform: translateX(calc(200% + 16px)); opacity: 1; }
+        }
+        @keyframes toGreen1 {
+          0%, 49% { background: linear-gradient(135deg, #94a3b8, #64748b); }
+          50%, 100% { background: #10b981; }
+        }
+        @keyframes toGreen2 {
+          0%, 79% { background: linear-gradient(135deg, #3b82f6, #2563eb); }
+          80%, 100% { background: #10b981; }
+        }
+        @keyframes showCheck1 {
+          0%, 49% { opacity: 0; transform: scale(0); }
+          50%, 100% { opacity: 1; transform: scale(1); }
+        }
+        @keyframes showCheck2 {
+          0%, 79% { opacity: 0; transform: scale(0); }
+          80%, 100% { opacity: 1; transform: scale(1); }
+        }
+        @keyframes hideInitials1 {
+          0%, 49% { opacity: 1; }
+          50%, 100% { opacity: 0; }
+        }
+        @keyframes hideInitials2 {
+          0%, 79% { opacity: 1; }
+          80%, 100% { opacity: 0; }
+        }
+        @keyframes cardToGreen1 {
+          0%, 49% { background: rgba(15, 23, 42, 0.6); border-color: rgba(148, 163, 184, 0.3); }
+          50%, 100% { background: rgba(16, 185, 129, 0.1); border-color: rgba(16, 185, 129, 0.3); }
+        }
+        @keyframes cardToGreen2 {
+          0%, 79% { background: rgba(59, 130, 246, 0.1); border-color: rgba(59, 130, 246, 0.4); }
+          80%, 100% { background: rgba(16, 185, 129, 0.1); border-color: rgba(16, 185, 129, 0.3); }
+        }
+        @keyframes statusToGreen1 {
+          0%, 49% { color: #94a3b8; }
+          50%, 100% { color: #34d399; }
+        }
+        @keyframes statusToGreen2 {
+          0%, 79% { color: #3b82f6; }
+          80%, 100% { color: #34d399; }
+        }
+        @keyframes statusText1 {
+          0%, 49% { opacity: 1; }
+          49.9% { opacity: 0; }
+          50%, 100% { opacity: 0; }
+        }
+        @keyframes wonText1 {
+          0%, 49% { opacity: 0; }
+          50%, 100% { opacity: 1; }
+        }
+        @keyframes statusText2 {
+          0%, 79% { opacity: 1; }
+          79.9% { opacity: 0; }
+          80%, 100% { opacity: 0; }
+        }
+        @keyframes wonText2 {
+          0%, 79% { opacity: 0; }
+          80%, 100% { opacity: 1; }
+        }
+      `}</style>
       <div className="w-full h-full bg-card/40 rounded-lg border border-border/40 overflow-hidden">
         {/* Header */}
         <div className="h-5 bg-muted/30 border-b border-border/30 flex items-center px-2">
@@ -156,17 +230,33 @@ const PipelineAnimation = () => {
             <div className="flex items-center gap-1 mb-1.5">
               <div className="w-1.5 h-1.5 rounded-full bg-blue-500" />
               <span className="text-[7px] font-medium text-foreground/80">Lead</span>
-              <span className="text-[6px] text-muted-foreground ml-auto">2</span>
             </div>
             <div className="space-y-1">
-              <div className="bg-card/60 rounded p-1.5 border border-border/30">
+              {/* Contact 1 - S. Kim - moves through stages */}
+              <div 
+                className="rounded p-1.5 border"
+                style={{ animation: 'moveContact1 8s ease-in-out infinite, cardToGreen1 8s ease-in-out infinite' }}
+              >
                 <div className="flex items-center gap-1.5">
-                  <div className="w-5 h-5 rounded-full bg-gradient-to-br from-slate-400 to-slate-600 flex items-center justify-center">
-                    <span className="text-[6px] font-bold text-white">SK</span>
+                  <div 
+                    className="w-5 h-5 rounded-full flex items-center justify-center relative"
+                    style={{ animation: 'toGreen1 8s ease-in-out infinite' }}
+                  >
+                    <span 
+                      className="text-[6px] font-bold text-white absolute"
+                      style={{ animation: 'hideInitials1 8s ease-in-out infinite' }}
+                    >SK</span>
+                    <span 
+                      className="text-[7px] text-white absolute"
+                      style={{ animation: 'showCheck1 8s ease-in-out infinite' }}
+                    >✓</span>
                   </div>
                   <div>
                     <div className="text-[6px] font-medium text-foreground/80">S. Kim</div>
-                    <div className="text-[5px] text-muted-foreground">New inquiry</div>
+                    <div className="text-[5px] relative">
+                      <span style={{ animation: 'statusText1 8s ease-in-out infinite' }} className="text-slate-400">New inquiry</span>
+                      <span style={{ animation: 'wonText1 8s ease-in-out infinite' }} className="text-emerald-400 absolute left-0">$720K signed</span>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -178,18 +268,33 @@ const PipelineAnimation = () => {
             <div className="flex items-center gap-1 mb-1.5">
               <div className="w-1.5 h-1.5 rounded-full bg-cyan-500" />
               <span className="text-[7px] font-medium text-foreground/80">Meeting</span>
-              <span className="text-[6px] text-muted-foreground ml-auto">1</span>
             </div>
             <div className="space-y-1">
-              {/* Animated card moving through */}
-              <div className="bg-primary/10 rounded p-1.5 border border-primary/40 animate-[pipelineCardPulse_2s_ease-in-out_infinite]">
+              {/* Contact 2 - J. Davidson - moves through stages with delay */}
+              <div 
+                className="rounded p-1.5 border"
+                style={{ animation: 'moveContact2 8s ease-in-out infinite, cardToGreen2 8s ease-in-out infinite' }}
+              >
                 <div className="flex items-center gap-1.5">
-                  <div className="w-5 h-5 rounded-full bg-gradient-to-br from-primary to-blue-600 flex items-center justify-center">
-                    <span className="text-[6px] font-bold text-white">JD</span>
+                  <div 
+                    className="w-5 h-5 rounded-full flex items-center justify-center relative"
+                    style={{ animation: 'toGreen2 8s ease-in-out infinite' }}
+                  >
+                    <span 
+                      className="text-[6px] font-bold text-white absolute"
+                      style={{ animation: 'hideInitials2 8s ease-in-out infinite' }}
+                    >JD</span>
+                    <span 
+                      className="text-[7px] text-white absolute"
+                      style={{ animation: 'showCheck2 8s ease-in-out infinite' }}
+                    >✓</span>
                   </div>
                   <div>
                     <div className="text-[6px] font-medium text-foreground/80">J. Davidson</div>
-                    <div className="text-[5px] text-primary">Call scheduled</div>
+                    <div className="text-[5px] relative">
+                      <span style={{ animation: 'statusText2 8s ease-in-out infinite' }} className="text-primary">Call scheduled</span>
+                      <span style={{ animation: 'wonText2 8s ease-in-out infinite' }} className="text-emerald-400 absolute left-0">$1.2M signed</span>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -201,9 +306,9 @@ const PipelineAnimation = () => {
             <div className="flex items-center gap-1 mb-1.5">
               <div className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
               <span className="text-[7px] font-medium text-foreground/80">Won</span>
-              <span className="text-[6px] text-muted-foreground ml-auto">3</span>
             </div>
             <div className="space-y-1">
+              {/* Static won contact */}
               <div className="bg-emerald-500/10 rounded p-1.5 border border-emerald-500/30">
                 <div className="flex items-center gap-1.5">
                   <div className="w-5 h-5 rounded-full bg-emerald-500 flex items-center justify-center">
