@@ -27,7 +27,9 @@ import {
   MousePointer,
   Clock,
   MessageSquare,
-  Phone
+  Phone,
+  Globe,
+  ClipboardCheck
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import lavoieLogo from "@/assets/lavoie-logo-square.png";
@@ -1169,36 +1171,65 @@ const AttributionAnimation = () => (
       
       {/* Visual funnel-style sources */}
       <div className="space-y-1.5">
-        {[
-          { label: "Client Referrals", count: 12, icon: "👥", color: "bg-emerald-500/20 border-emerald-500/30", textColor: "text-emerald-400" },
-          { label: "Email Campaigns", count: 8, icon: "✉️", color: "bg-primary/20 border-primary/30", textColor: "text-primary" },
-          { label: "Website Forms", count: 6, icon: "📋", color: "bg-amber-500/20 border-amber-500/30", textColor: "text-amber-400" },
-          { label: "Social Media", count: 5, icon: "📱", color: "bg-pink-500/20 border-pink-500/30", textColor: "text-pink-400" }
-        ].map((item, i) => (
-          <div 
-            key={item.label}
-            className={`flex items-center gap-2 px-2 py-1.5 rounded-lg border ${item.color}`}
-            style={{ animation: `sourceReveal 0.5s ease-out ${i * 0.15}s forwards`, opacity: 0 }}
-          >
-            <span className="text-[8px]">{item.icon}</span>
-            <span className="text-[7px] text-foreground/80 flex-1">{item.label}</span>
-            <div className="flex items-center gap-1">
-              <span 
-                className={`text-[8px] font-bold ${item.textColor}`}
-                style={{ animation: `countUp 1s ease-out ${0.3 + i * 0.15}s forwards`, opacity: 0 }}
-              >
-                {item.count}
-              </span>
-              <span className="text-[6px] text-muted-foreground">leads</span>
-            </div>
-            <div 
-              className="w-3 h-3 rounded-full bg-emerald-500/30 flex items-center justify-center"
-              style={{ animation: `checkPop 1.2s ease-out ${0.4 + i * 0.15}s forwards`, opacity: 0 }}
-            >
-              <span className="text-[5px] text-emerald-400">✓</span>
-            </div>
+        <div 
+          className="flex items-center gap-2 px-2 py-1.5 rounded-lg border bg-emerald-500/20 border-emerald-500/30"
+          style={{ animation: 'sourceReveal 0.5s ease-out 0s forwards', opacity: 0 }}
+        >
+          <Users className="w-3 h-3 text-emerald-400" />
+          <span className="text-[7px] text-foreground/80 flex-1">Client Referrals</span>
+          <div className="flex items-center gap-1">
+            <span className="text-[8px] font-bold text-emerald-400" style={{ animation: 'countUp 1s ease-out 0.3s forwards', opacity: 0 }}>12</span>
+            <span className="text-[6px] text-muted-foreground">leads</span>
           </div>
-        ))}
+          <div className="w-3 h-3 rounded-full bg-emerald-500/30 flex items-center justify-center" style={{ animation: 'checkPop 1.2s ease-out 0.4s forwards', opacity: 0 }}>
+            <span className="text-[5px] text-emerald-400">✓</span>
+          </div>
+        </div>
+        
+        <div 
+          className="flex items-center gap-2 px-2 py-1.5 rounded-lg border bg-primary/20 border-primary/30"
+          style={{ animation: 'sourceReveal 0.5s ease-out 0.15s forwards', opacity: 0 }}
+        >
+          <Mail className="w-3 h-3 text-primary" />
+          <span className="text-[7px] text-foreground/80 flex-1">Email Campaigns</span>
+          <div className="flex items-center gap-1">
+            <span className="text-[8px] font-bold text-primary" style={{ animation: 'countUp 1s ease-out 0.45s forwards', opacity: 0 }}>8</span>
+            <span className="text-[6px] text-muted-foreground">leads</span>
+          </div>
+          <div className="w-3 h-3 rounded-full bg-emerald-500/30 flex items-center justify-center" style={{ animation: 'checkPop 1.2s ease-out 0.55s forwards', opacity: 0 }}>
+            <span className="text-[5px] text-emerald-400">✓</span>
+          </div>
+        </div>
+        
+        <div 
+          className="flex items-center gap-2 px-2 py-1.5 rounded-lg border bg-amber-500/20 border-amber-500/30"
+          style={{ animation: 'sourceReveal 0.5s ease-out 0.3s forwards', opacity: 0 }}
+        >
+          <ClipboardCheck className="w-3 h-3 text-amber-400" />
+          <span className="text-[7px] text-foreground/80 flex-1">Website Forms</span>
+          <div className="flex items-center gap-1">
+            <span className="text-[8px] font-bold text-amber-400" style={{ animation: 'countUp 1s ease-out 0.6s forwards', opacity: 0 }}>6</span>
+            <span className="text-[6px] text-muted-foreground">leads</span>
+          </div>
+          <div className="w-3 h-3 rounded-full bg-emerald-500/30 flex items-center justify-center" style={{ animation: 'checkPop 1.2s ease-out 0.7s forwards', opacity: 0 }}>
+            <span className="text-[5px] text-emerald-400">✓</span>
+          </div>
+        </div>
+        
+        <div 
+          className="flex items-center gap-2 px-2 py-1.5 rounded-lg border bg-pink-500/20 border-pink-500/30"
+          style={{ animation: 'sourceReveal 0.5s ease-out 0.45s forwards', opacity: 0 }}
+        >
+          <Globe className="w-3 h-3 text-pink-400" />
+          <span className="text-[7px] text-foreground/80 flex-1">Social Media</span>
+          <div className="flex items-center gap-1">
+            <span className="text-[8px] font-bold text-pink-400" style={{ animation: 'countUp 1s ease-out 0.75s forwards', opacity: 0 }}>5</span>
+            <span className="text-[6px] text-muted-foreground">leads</span>
+          </div>
+          <div className="w-3 h-3 rounded-full bg-emerald-500/30 flex items-center justify-center" style={{ animation: 'checkPop 1.2s ease-out 0.85s forwards', opacity: 0 }}>
+            <span className="text-[5px] text-emerald-400">✓</span>
+          </div>
+        </div>
       </div>
       
       {/* Total */}
