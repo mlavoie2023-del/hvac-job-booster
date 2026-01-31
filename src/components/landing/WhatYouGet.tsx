@@ -71,7 +71,7 @@ const InboxAnimation = () => (
         className="absolute left-2 right-2" 
         style={{ 
           top: '28px', 
-          animation: 'inboxRowSlide 6s ease-out infinite',
+          animation: 'inboxRowSlide 3s ease-out infinite',
           animationDelay: '0s'
         }}
       >
@@ -92,8 +92,8 @@ const InboxAnimation = () => (
         className="absolute left-2 right-2" 
         style={{ 
           top: '58px', 
-          animation: 'inboxRowSlide 6s ease-out infinite',
-          animationDelay: '0.8s'
+          animation: 'inboxRowSlide 3s ease-out infinite',
+          animationDelay: '0.2s'
         }}
       >
         <div className="flex items-center gap-2 h-6 bg-primary/20 rounded-lg border border-primary/30 px-2">
@@ -113,8 +113,8 @@ const InboxAnimation = () => (
         className="absolute left-2 right-2" 
         style={{ 
           top: '88px', 
-          animation: 'inboxRowSlide 6s ease-out infinite',
-          animationDelay: '1.6s'
+          animation: 'inboxRowSlide 3s ease-out infinite',
+          animationDelay: '0.4s'
         }}
       >
         <div className="flex items-center gap-2 h-6 bg-blue-500/20 rounded-lg border border-blue-500/30 px-2">
@@ -132,20 +132,20 @@ const InboxAnimation = () => (
       {/* Notification badge */}
       <div 
         className="absolute -top-1 -right-1 w-6 h-6 bg-primary rounded-full flex items-center justify-center shadow-lg shadow-primary/30"
-        style={{ animation: 'inboxBadgePop 6s ease-out infinite' }}
+        style={{ animation: 'inboxBadgePop 3s ease-out infinite' }}
       >
         <span className="text-[10px] font-bold text-primary-foreground">3</span>
       </div>
       
       <style>{`
         @keyframes inboxRowSlide {
-          0%, 2% { opacity: 0; transform: translateX(-20px); }
-          10%, 75% { opacity: 1; transform: translateX(0); }
+          0% { opacity: 0; transform: translateX(-20px); }
+          8%, 75% { opacity: 1; transform: translateX(0); }
           85%, 100% { opacity: 0; transform: translateX(-20px); }
         }
         @keyframes inboxBadgePop {
-          0%, 25% { opacity: 0; transform: scale(0); }
-          35%, 75% { opacity: 1; transform: scale(1); }
+          0%, 15% { opacity: 0; transform: scale(0); }
+          25%, 75% { opacity: 1; transform: scale(1); }
           85%, 100% { opacity: 0; transform: scale(0); }
         }
       `}</style>
@@ -514,7 +514,7 @@ const CalendarAnimation = () => (
                 className={cn(
                   "w-5 h-5 rounded flex items-center justify-center text-[7px] transition-all",
                   isSelected 
-                    ? "bg-emerald-500 text-white animate-[calendarSelect_4s_ease-in-out_infinite]" 
+                    ? "bg-emerald-500 text-white animate-[calendarSelect_2s_ease-in-out_infinite]" 
                     : hasAppointment 
                       ? "bg-primary/40 text-primary-foreground" 
                       : "text-foreground/60"
@@ -529,7 +529,7 @@ const CalendarAnimation = () => (
       
       {/* Confirmation message */}
       <div className="w-28 flex flex-col justify-center">
-        <div className="bg-card/50 rounded-lg border border-emerald-500/30 p-2.5 animate-[confirmSlideIn_4s_ease-out_infinite]" style={{ animationDelay: '2s' }}>
+        <div className="bg-card/50 rounded-lg border border-emerald-500/30 p-2.5 animate-[confirmSlideIn_2s_ease-out_infinite]" style={{ animationDelay: '0.5s' }}>
           <div className="flex items-center gap-1.5 mb-1.5">
             <Smartphone className="w-3.5 h-3.5 text-emerald-500" />
             <span className="text-[8px] text-emerald-400 font-medium">Confirmed!</span>
@@ -548,40 +548,40 @@ const WorkflowAnimation = () => (
   <div className="relative h-40 flex items-center justify-center p-3">
     <style>{`
       @keyframes stepComplete1 {
-        0%, 10% { opacity: 0.4; }
-        15%, 100% { opacity: 1; }
+        0%, 5% { opacity: 0.4; }
+        10%, 100% { opacity: 1; }
       }
       @keyframes stepCheck1 {
-        0%, 12% { opacity: 0; transform: scale(0); }
-        18%, 100% { opacity: 1; transform: scale(1); }
+        0%, 8% { opacity: 0; transform: scale(0); }
+        12%, 100% { opacity: 1; transform: scale(1); }
       }
       @keyframes stepComplete2 {
-        0%, 30% { opacity: 0.4; }
-        35%, 100% { opacity: 1; }
+        0%, 20% { opacity: 0.4; }
+        25%, 100% { opacity: 1; }
       }
       @keyframes stepCheck2 {
-        0%, 32% { opacity: 0; transform: scale(0); }
-        38%, 100% { opacity: 1; transform: scale(1); }
+        0%, 23% { opacity: 0; transform: scale(0); }
+        28%, 100% { opacity: 1; transform: scale(1); }
       }
       @keyframes stepComplete3 {
-        0%, 50% { opacity: 0.4; }
-        55%, 100% { opacity: 1; }
+        0%, 40% { opacity: 0.4; }
+        45%, 100% { opacity: 1; }
       }
       @keyframes stepCheck3 {
-        0%, 52% { opacity: 0; transform: scale(0); }
-        58%, 100% { opacity: 1; transform: scale(1); }
+        0%, 42% { opacity: 0; transform: scale(0); }
+        48%, 100% { opacity: 1; transform: scale(1); }
       }
       @keyframes stepComplete4 {
-        0%, 70% { opacity: 0.4; }
-        75%, 100% { opacity: 1; }
+        0%, 60% { opacity: 0.4; }
+        65%, 100% { opacity: 1; }
       }
       @keyframes stepCheck4 {
-        0%, 72% { opacity: 0; transform: scale(0); }
-        78%, 100% { opacity: 1; transform: scale(1); }
+        0%, 62% { opacity: 0; transform: scale(0); }
+        68%, 100% { opacity: 1; transform: scale(1); }
       }
       @keyframes progressFill {
         0% { width: 0; }
-        80%, 100% { width: 100%; }
+        70%, 100% { width: 100%; }
       }
     `}</style>
     <div className="w-full bg-card/50 rounded-lg border border-border/50 p-2">
@@ -589,7 +589,7 @@ const WorkflowAnimation = () => (
       <div className="h-0.5 bg-muted/30 rounded-full mb-2 overflow-hidden">
         <div 
           className="h-full bg-gradient-to-r from-primary to-emerald-500 rounded-full"
-          style={{ animation: 'progressFill 6s ease-out infinite' }}
+          style={{ animation: 'progressFill 3s ease-out infinite' }}
         />
       </div>
       
@@ -598,49 +598,49 @@ const WorkflowAnimation = () => (
         {/* Step 1 - Email */}
         <div 
           className="flex items-center gap-1.5 px-1.5 py-0.5 rounded bg-primary/5 border border-primary/20"
-          style={{ animation: 'stepComplete1 6s ease-out infinite' }}
+          style={{ animation: 'stepComplete1 3s ease-out infinite' }}
         >
           <div className="w-4 h-4 rounded bg-primary/20 flex items-center justify-center">
             <Mail className="w-2.5 h-2.5 text-primary" />
           </div>
           <span className="text-[6px] text-foreground/80 flex-1">Welcome Email</span>
-          <span className="text-[5px] text-emerald-400" style={{ animation: 'stepCheck1 6s ease-out infinite' }}>✓</span>
+          <span className="text-[5px] text-emerald-400" style={{ animation: 'stepCheck1 3s ease-out infinite' }}>✓</span>
         </div>
         
         {/* Step 2 - Wait */}
         <div 
           className="flex items-center gap-1.5 px-1.5 py-0.5 rounded bg-amber-500/5 border border-amber-500/20"
-          style={{ animation: 'stepComplete2 6s ease-out infinite' }}
+          style={{ animation: 'stepComplete2 3s ease-out infinite' }}
         >
           <div className="w-4 h-4 rounded bg-amber-500/20 flex items-center justify-center">
             <Clock className="w-2.5 h-2.5 text-amber-400" />
           </div>
           <span className="text-[6px] text-foreground/80 flex-1">Wait 2 Days</span>
-          <span className="text-[5px] text-emerald-400" style={{ animation: 'stepCheck2 6s ease-out infinite' }}>✓</span>
+          <span className="text-[5px] text-emerald-400" style={{ animation: 'stepCheck2 3s ease-out infinite' }}>✓</span>
         </div>
         
         {/* Step 3 - SMS */}
         <div 
           className="flex items-center gap-1.5 px-1.5 py-0.5 rounded bg-emerald-500/5 border border-emerald-500/20"
-          style={{ animation: 'stepComplete3 6s ease-out infinite' }}
+          style={{ animation: 'stepComplete3 3s ease-out infinite' }}
         >
           <div className="w-4 h-4 rounded bg-emerald-500/20 flex items-center justify-center">
             <MessageSquare className="w-2.5 h-2.5 text-emerald-400" />
           </div>
           <span className="text-[6px] text-foreground/80 flex-1">Follow-up SMS</span>
-          <span className="text-[5px] text-emerald-400" style={{ animation: 'stepCheck3 6s ease-out infinite' }}>✓</span>
+          <span className="text-[5px] text-emerald-400" style={{ animation: 'stepCheck3 3s ease-out infinite' }}>✓</span>
         </div>
         
         {/* Step 4 - Call */}
         <div 
           className="flex items-center gap-1.5 px-1.5 py-0.5 rounded bg-pink-500/5 border border-pink-500/20"
-          style={{ animation: 'stepComplete4 6s ease-out infinite' }}
+          style={{ animation: 'stepComplete4 3s ease-out infinite' }}
         >
           <div className="w-4 h-4 rounded bg-pink-500/20 flex items-center justify-center">
             <Phone className="w-2.5 h-2.5 text-pink-400" />
           </div>
           <span className="text-[6px] text-foreground/80 flex-1">Schedule Call</span>
-          <span className="text-[5px] text-emerald-400" style={{ animation: 'stepCheck4 6s ease-out infinite' }}>✓</span>
+          <span className="text-[5px] text-emerald-400" style={{ animation: 'stepCheck4 3s ease-out infinite' }}>✓</span>
         </div>
       </div>
     </div>
@@ -651,32 +651,32 @@ const AppointmentRemindersAnimation = () => (
   <div className="relative h-40 flex items-center justify-center p-3">
     <style>{`
       @keyframes reminderNode1 {
-        0%, 10% { opacity: 0.3; transform: scale(0.95); }
-        15%, 100% { opacity: 1; transform: scale(1); }
+        0%, 5% { opacity: 0.3; transform: scale(0.95); }
+        10%, 100% { opacity: 1; transform: scale(1); }
       }
       @keyframes reminderCheck1 {
-        0%, 15% { opacity: 0; transform: scale(0); }
-        20%, 100% { opacity: 1; transform: scale(1); }
+        0%, 8% { opacity: 0; transform: scale(0); }
+        12%, 100% { opacity: 1; transform: scale(1); }
       }
       @keyframes reminderNode2 {
-        0%, 35% { opacity: 0.3; transform: scale(0.95); }
-        40%, 100% { opacity: 1; transform: scale(1); }
+        0%, 25% { opacity: 0.3; transform: scale(0.95); }
+        30%, 100% { opacity: 1; transform: scale(1); }
       }
       @keyframes reminderCheck2 {
-        0%, 40% { opacity: 0; transform: scale(0); }
-        45%, 100% { opacity: 1; transform: scale(1); }
+        0%, 28% { opacity: 0; transform: scale(0); }
+        33%, 100% { opacity: 1; transform: scale(1); }
       }
       @keyframes reminderNode3 {
-        0%, 60% { opacity: 0.3; transform: scale(0.95); }
-        65%, 100% { opacity: 1; transform: scale(1); }
+        0%, 50% { opacity: 0.3; transform: scale(0.95); }
+        55%, 100% { opacity: 1; transform: scale(1); }
       }
       @keyframes reminderCheck3 {
-        0%, 65% { opacity: 0; transform: scale(0); }
-        70%, 100% { opacity: 1; transform: scale(1); }
+        0%, 53% { opacity: 0; transform: scale(0); }
+        58%, 100% { opacity: 1; transform: scale(1); }
       }
       @keyframes timelineFill {
         0% { height: 0; }
-        70%, 100% { height: 100%; }
+        60%, 100% { height: 100%; }
       }
     `}</style>
     <div className="w-full bg-card/50 rounded-lg border border-border/50 p-3">
@@ -697,14 +697,14 @@ const AppointmentRemindersAnimation = () => (
         <div className="absolute left-1 top-0 bottom-0 w-0.5 bg-border/30">
           <div 
             className="w-full bg-gradient-to-b from-primary via-emerald-500 to-emerald-500"
-            style={{ animation: 'timelineFill 6s ease-out infinite' }}
+            style={{ animation: 'timelineFill 3s ease-out infinite' }}
           />
         </div>
         
         {/* 24 hours before - Email */}
         <div 
           className="relative flex items-center gap-2 mb-2"
-          style={{ animation: 'reminderNode1 6s ease-out infinite' }}
+          style={{ animation: 'reminderNode1 3s ease-out infinite' }}
         >
           <div className="absolute -left-3 w-2 h-2 rounded-full bg-primary border-2 border-card" />
           <div className="w-32 flex items-center justify-between gap-1.5 px-2 py-1 bg-primary/10 rounded border border-primary/30">
@@ -714,7 +714,7 @@ const AppointmentRemindersAnimation = () => (
             </div>
             <span 
               className="text-[6px] text-emerald-400"
-              style={{ animation: 'reminderCheck1 6s ease-out infinite' }}
+              style={{ animation: 'reminderCheck1 3s ease-out infinite' }}
             >✓ Sent</span>
           </div>
         </div>
@@ -722,7 +722,7 @@ const AppointmentRemindersAnimation = () => (
         {/* 2 hours before - SMS */}
         <div 
           className="relative flex items-center gap-2 mb-2"
-          style={{ animation: 'reminderNode2 6s ease-out infinite' }}
+          style={{ animation: 'reminderNode2 3s ease-out infinite' }}
         >
           <div className="absolute -left-3 w-2 h-2 rounded-full bg-emerald-500 border-2 border-card" />
           <div className="w-32 flex items-center justify-between gap-1.5 px-2 py-1 bg-emerald-500/10 rounded border border-emerald-500/30">
@@ -732,7 +732,7 @@ const AppointmentRemindersAnimation = () => (
             </div>
             <span 
               className="text-[6px] text-emerald-400"
-              style={{ animation: 'reminderCheck2 6s ease-out infinite' }}
+              style={{ animation: 'reminderCheck2 3s ease-out infinite' }}
             >✓ Sent</span>
           </div>
         </div>
@@ -740,7 +740,7 @@ const AppointmentRemindersAnimation = () => (
         {/* 15 minutes before - Final SMS */}
         <div 
           className="relative flex items-center gap-2"
-          style={{ animation: 'reminderNode3 6s ease-out infinite' }}
+          style={{ animation: 'reminderNode3 3s ease-out infinite' }}
         >
           <div className="absolute -left-3 w-2 h-2 rounded-full bg-emerald-500 border-2 border-card" />
           <div className="w-32 flex items-center justify-between gap-1.5 px-2 py-1 bg-emerald-500/10 rounded border border-emerald-500/30">
@@ -750,7 +750,7 @@ const AppointmentRemindersAnimation = () => (
             </div>
             <span 
               className="text-[6px] text-emerald-400"
-              style={{ animation: 'reminderCheck3 6s ease-out infinite' }}
+              style={{ animation: 'reminderCheck3 3s ease-out infinite' }}
             >✓ Sent</span>
           </div>
         </div>
@@ -763,20 +763,20 @@ const ReferralRequestsAnimation = () => (
   <div className="relative h-40 flex items-center justify-center p-3">
     <style>{`
       @keyframes referralSend {
-        0%, 10% { opacity: 0; transform: translateX(-10px); }
-        20%, 100% { opacity: 1; transform: translateX(0); }
+        0%, 3% { opacity: 0; transform: translateX(-10px); }
+        10%, 100% { opacity: 1; transform: translateX(0); }
       }
       @keyframes referralForm {
-        0%, 30% { opacity: 0; transform: translateY(5px); }
-        40%, 100% { opacity: 1; transform: translateY(0); }
+        0%, 20% { opacity: 0; transform: translateY(5px); }
+        28%, 100% { opacity: 1; transform: translateY(0); }
       }
       @keyframes referralSuccess {
-        0%, 55% { opacity: 0; transform: scale(0.8); }
-        65%, 100% { opacity: 1; transform: scale(1); }
+        0%, 40% { opacity: 0; transform: scale(0.8); }
+        50%, 100% { opacity: 1; transform: scale(1); }
       }
       @keyframes referralCount {
-        0%, 70% { opacity: 0; }
-        80%, 100% { opacity: 1; }
+        0%, 55% { opacity: 0; }
+        65%, 100% { opacity: 1; }
       }
     `}</style>
     <div className="w-full bg-card/50 rounded-lg border border-border/50 p-3">
@@ -790,7 +790,7 @@ const ReferralRequestsAnimation = () => (
         </div>
         <div 
           className="px-1.5 py-0.5 bg-emerald-500/20 rounded text-[6px] text-emerald-400"
-          style={{ animation: 'referralCount 6s ease-out infinite' }}
+          style={{ animation: 'referralCount 3s ease-out infinite' }}
         >
           +3 this week
         </div>
@@ -799,7 +799,7 @@ const ReferralRequestsAnimation = () => (
       {/* Request sent */}
       <div 
         className="flex items-center gap-2 p-2 bg-primary/10 rounded-lg border border-primary/30 mb-2"
-        style={{ animation: 'referralSend 6s ease-out infinite' }}
+        style={{ animation: 'referralSend 3s ease-out infinite' }}
       >
         <Mail className="w-4 h-4 text-primary" />
         <div className="flex-1">
@@ -812,7 +812,7 @@ const ReferralRequestsAnimation = () => (
       {/* Referral form submission */}
       <div 
         className="flex items-center gap-2 p-2 bg-emerald-500/10 rounded-lg border border-emerald-500/30"
-        style={{ animation: 'referralForm 6s ease-out infinite' }}
+        style={{ animation: 'referralForm 3s ease-out infinite' }}
       >
         <div className="w-4 h-4 rounded-full bg-emerald-500/30 flex items-center justify-center">
           <span className="text-[6px] font-bold text-emerald-400">S</span>
@@ -823,7 +823,7 @@ const ReferralRequestsAnimation = () => (
         </div>
         <div 
           className="px-1.5 py-0.5 bg-emerald-500/30 rounded text-[5px] text-emerald-400"
-          style={{ animation: 'referralSuccess 6s ease-out infinite' }}
+          style={{ animation: 'referralSuccess 3s ease-out infinite' }}
         >
           New Lead
         </div>
@@ -913,28 +913,28 @@ const SocialAnimation = () => (
     <style>{`
       @keyframes aiTyping {
         0%, 100% { width: 0; }
-        20%, 80% { width: 100%; }
+        15%, 85% { width: 100%; }
       }
       @keyframes cursorBlink {
         0%, 50% { opacity: 1; }
         51%, 100% { opacity: 0; }
       }
       @keyframes sendButtonPulse {
-        0%, 70% { transform: scale(1); background: rgba(59, 130, 246, 0.3); }
-        75% { transform: scale(1.1); background: rgba(59, 130, 246, 0.6); }
-        80%, 100% { transform: scale(1); background: rgba(16, 185, 129, 0.4); }
+        0%, 55% { transform: scale(1); background: rgba(59, 130, 246, 0.3); }
+        60% { transform: scale(1.1); background: rgba(59, 130, 246, 0.6); }
+        65%, 100% { transform: scale(1); background: rgba(16, 185, 129, 0.4); }
       }
       @keyframes sendCheck {
-        0%, 75% { opacity: 0; transform: scale(0); }
-        80%, 100% { opacity: 1; transform: scale(1); }
+        0%, 60% { opacity: 0; transform: scale(0); }
+        68%, 100% { opacity: 1; transform: scale(1); }
       }
       @keyframes sendArrow {
-        0%, 75% { opacity: 1; }
-        80%, 100% { opacity: 0; }
+        0%, 60% { opacity: 1; }
+        68%, 100% { opacity: 0; }
       }
       @keyframes platformNotify {
-        0%, 80% { opacity: 0; transform: translateY(4px); }
-        85%, 95% { opacity: 1; transform: translateY(0); }
+        0%, 65% { opacity: 0; transform: translateY(4px); }
+        72%, 92% { opacity: 1; transform: translateY(0); }
         100% { opacity: 0; transform: translateY(-4px); }
       }
     `}</style>
@@ -952,7 +952,7 @@ const SocialAnimation = () => (
         <div className="relative overflow-hidden">
           <div 
             className="text-[7px] text-foreground/80 whitespace-nowrap overflow-hidden"
-            style={{ animation: 'aiTyping 6s ease-in-out infinite' }}
+            style={{ animation: 'aiTyping 3s ease-in-out infinite' }}
           >
             Planning for retirement? Here are 5 key strategies every pre-retiree should know...
           </div>
@@ -980,7 +980,7 @@ const SocialAnimation = () => (
             <span className="text-[5px] text-blue-400">LinkedIn</span>
             <div 
               className="absolute -top-1 -right-1 w-2 h-2 bg-emerald-500 rounded-full flex items-center justify-center"
-              style={{ animation: 'platformNotify 6s ease-in-out infinite', animationDelay: '0s' }}
+              style={{ animation: 'platformNotify 3s ease-in-out infinite', animationDelay: '0s' }}
             >
               <span className="text-[4px] text-white">✓</span>
             </div>
@@ -994,7 +994,7 @@ const SocialAnimation = () => (
             <span className="text-[5px] text-blue-400">Facebook</span>
             <div 
               className="absolute -top-1 -right-1 w-2 h-2 bg-emerald-500 rounded-full flex items-center justify-center"
-              style={{ animation: 'platformNotify 6s ease-in-out infinite', animationDelay: '0.1s' }}
+              style={{ animation: 'platformNotify 3s ease-in-out infinite', animationDelay: '0.1s' }}
             >
               <span className="text-[4px] text-white">✓</span>
             </div>
@@ -1008,7 +1008,7 @@ const SocialAnimation = () => (
             <span className="text-[5px] text-blue-400">Instagram</span>
             <div 
               className="absolute -top-1 -right-1 w-2 h-2 bg-emerald-500 rounded-full flex items-center justify-center"
-              style={{ animation: 'platformNotify 6s ease-in-out infinite', animationDelay: '0.2s' }}
+              style={{ animation: 'platformNotify 3s ease-in-out infinite', animationDelay: '0.2s' }}
             >
               <span className="text-[4px] text-white">✓</span>
             </div>
@@ -1018,17 +1018,17 @@ const SocialAnimation = () => (
         {/* Send Button */}
         <div 
           className="px-2 py-1 rounded-lg border border-primary/40 flex items-center gap-1 cursor-pointer"
-          style={{ animation: 'sendButtonPulse 6s ease-in-out infinite' }}
+          style={{ animation: 'sendButtonPulse 3s ease-in-out infinite' }}
         >
           <span className="text-[6px] font-medium text-primary">Post</span>
           <div className="relative w-2.5 h-2.5">
             <span 
               className="absolute inset-0 flex items-center justify-center text-[6px] text-primary"
-              style={{ animation: 'sendArrow 6s ease-in-out infinite' }}
+              style={{ animation: 'sendArrow 3s ease-in-out infinite' }}
             >→</span>
             <span 
               className="absolute inset-0 flex items-center justify-center text-[6px] text-emerald-400"
-              style={{ animation: 'sendCheck 6s ease-in-out infinite' }}
+              style={{ animation: 'sendCheck 3s ease-in-out infinite' }}
             >✓</span>
           </div>
         </div>
@@ -1042,13 +1042,13 @@ const DashboardAnimation = () => (
   <div className="relative h-40 flex items-center justify-center p-3">
     <style>{`
       @keyframes lineReveal {
-        0%, 5% { stroke-dashoffset: 200; }
-        40%, 95% { stroke-dashoffset: 0; }
+        0%, 3% { stroke-dashoffset: 200; }
+        30%, 95% { stroke-dashoffset: 0; }
         100% { stroke-dashoffset: 200; }
       }
       @keyframes dotPop {
-        0%, 20% { opacity: 0; transform: scale(0); }
-        30%, 90% { opacity: 1; transform: scale(1); }
+        0%, 10% { opacity: 0; transform: scale(0); }
+        20%, 90% { opacity: 1; transform: scale(1); }
         100% { opacity: 0; transform: scale(0); }
       }
     `}</style>
@@ -1078,7 +1078,7 @@ const DashboardAnimation = () => (
             strokeLinecap="round"
             strokeLinejoin="round"
             strokeDasharray="200"
-            style={{ animation: 'lineReveal 6s ease-in-out infinite' }}
+            style={{ animation: 'lineReveal 3s ease-in-out infinite' }}
           />
           {/* New Clients line (emerald) */}
           <path
@@ -1089,7 +1089,7 @@ const DashboardAnimation = () => (
             strokeLinecap="round"
             strokeLinejoin="round"
             strokeDasharray="200"
-            style={{ animation: 'lineReveal 6s ease-in-out 0.3s infinite', strokeDashoffset: 200 }}
+            style={{ animation: 'lineReveal 3s ease-in-out 0.15s infinite', strokeDashoffset: 200 }}
           />
           {/* Data points - Revenue */}
           {[[0, 40], [20, 35], [40, 38], [60, 28], [80, 20], [100, 15]].map(([x, y], i) => (
@@ -1099,7 +1099,7 @@ const DashboardAnimation = () => (
               cy={y}
               r="1.5"
               fill="hsl(45 93% 47%)"
-              style={{ animation: `dotPop 6s ease-in-out ${0.15 + i * 0.08}s infinite` }}
+              style={{ animation: `dotPop 3s ease-in-out ${0.1 + i * 0.05}s infinite` }}
             />
           ))}
           {/* Data points - Clients */}
@@ -1110,7 +1110,7 @@ const DashboardAnimation = () => (
               cy={y}
               r="1.5"
               fill="hsl(160 84% 39%)"
-              style={{ animation: `dotPop 6s ease-in-out ${0.3 + i * 0.08}s infinite` }}
+              style={{ animation: `dotPop 3s ease-in-out ${0.15 + i * 0.05}s infinite` }}
             />
           ))}
         </svg>
@@ -1227,60 +1227,60 @@ const AttributionAnimation = () => (
       <div className="space-y-1.5">
         <div 
           className="flex items-center gap-2 px-2 py-1.5 rounded-lg border bg-emerald-500/20 border-emerald-500/30"
-          style={{ animation: 'attrSlideIn 6s ease-out infinite' }}
+          style={{ animation: 'attrSlideIn 3s ease-out infinite' }}
         >
           <Users className="w-3 h-3 text-emerald-400" />
           <span className="text-[7px] text-foreground/80 flex-1">Client Referrals</span>
           <div className="flex items-center gap-1">
-            <span className="text-[8px] font-bold text-emerald-400" style={{ animation: 'attrCountUp 6s ease-out 0.3s infinite' }}>12</span>
+            <span className="text-[8px] font-bold text-emerald-400" style={{ animation: 'attrCountUp 3s ease-out 0.15s infinite' }}>12</span>
             <span className="text-[6px] text-muted-foreground">leads</span>
           </div>
-          <div className="w-3 h-3 rounded-full bg-emerald-500/30 flex items-center justify-center" style={{ animation: 'attrCheckPop 6s ease-out 0.4s infinite' }}>
+          <div className="w-3 h-3 rounded-full bg-emerald-500/30 flex items-center justify-center" style={{ animation: 'attrCheckPop 3s ease-out 0.2s infinite' }}>
             <span className="text-[5px] text-emerald-400">✓</span>
           </div>
         </div>
         
         <div 
           className="flex items-center gap-2 px-2 py-1.5 rounded-lg border bg-primary/20 border-primary/30"
-          style={{ animation: 'attrSlideIn 6s ease-out 0.5s infinite' }}
+          style={{ animation: 'attrSlideIn 3s ease-out 0.25s infinite' }}
         >
           <Mail className="w-3 h-3 text-primary" />
           <span className="text-[7px] text-foreground/80 flex-1">Email Campaigns</span>
           <div className="flex items-center gap-1">
-            <span className="text-[8px] font-bold text-primary" style={{ animation: 'attrCountUp 6s ease-out 0.8s infinite' }}>8</span>
+            <span className="text-[8px] font-bold text-primary" style={{ animation: 'attrCountUp 3s ease-out 0.4s infinite' }}>8</span>
             <span className="text-[6px] text-muted-foreground">leads</span>
           </div>
-          <div className="w-3 h-3 rounded-full bg-emerald-500/30 flex items-center justify-center" style={{ animation: 'attrCheckPop 6s ease-out 0.9s infinite' }}>
+          <div className="w-3 h-3 rounded-full bg-emerald-500/30 flex items-center justify-center" style={{ animation: 'attrCheckPop 3s ease-out 0.45s infinite' }}>
             <span className="text-[5px] text-emerald-400">✓</span>
           </div>
         </div>
         
         <div 
           className="flex items-center gap-2 px-2 py-1.5 rounded-lg border bg-amber-500/20 border-amber-500/30"
-          style={{ animation: 'attrSlideIn 6s ease-out 1s infinite' }}
+          style={{ animation: 'attrSlideIn 3s ease-out 0.5s infinite' }}
         >
           <ClipboardCheck className="w-3 h-3 text-amber-400" />
           <span className="text-[7px] text-foreground/80 flex-1">Website Forms</span>
           <div className="flex items-center gap-1">
-            <span className="text-[8px] font-bold text-amber-400" style={{ animation: 'attrCountUp 6s ease-out 1.3s infinite' }}>6</span>
+            <span className="text-[8px] font-bold text-amber-400" style={{ animation: 'attrCountUp 3s ease-out 0.65s infinite' }}>6</span>
             <span className="text-[6px] text-muted-foreground">leads</span>
           </div>
-          <div className="w-3 h-3 rounded-full bg-emerald-500/30 flex items-center justify-center" style={{ animation: 'attrCheckPop 6s ease-out 1.4s infinite' }}>
+          <div className="w-3 h-3 rounded-full bg-emerald-500/30 flex items-center justify-center" style={{ animation: 'attrCheckPop 3s ease-out 0.7s infinite' }}>
             <span className="text-[5px] text-emerald-400">✓</span>
           </div>
         </div>
         
         <div 
           className="flex items-center gap-2 px-2 py-1.5 rounded-lg border bg-pink-500/20 border-pink-500/30"
-          style={{ animation: 'attrSlideIn 6s ease-out 1.5s infinite' }}
+          style={{ animation: 'attrSlideIn 3s ease-out 0.75s infinite' }}
         >
           <Globe className="w-3 h-3 text-pink-400" />
           <span className="text-[7px] text-foreground/80 flex-1">Social Media</span>
           <div className="flex items-center gap-1">
-            <span className="text-[8px] font-bold text-pink-400" style={{ animation: 'attrCountUp 6s ease-out 1.8s infinite' }}>5</span>
+            <span className="text-[8px] font-bold text-pink-400" style={{ animation: 'attrCountUp 3s ease-out 0.9s infinite' }}>5</span>
             <span className="text-[6px] text-muted-foreground">leads</span>
           </div>
-          <div className="w-3 h-3 rounded-full bg-emerald-500/30 flex items-center justify-center" style={{ animation: 'attrCheckPop 6s ease-out 1.9s infinite' }}>
+          <div className="w-3 h-3 rounded-full bg-emerald-500/30 flex items-center justify-center" style={{ animation: 'attrCheckPop 3s ease-out 0.95s infinite' }}>
             <span className="text-[5px] text-emerald-400">✓</span>
           </div>
         </div>
@@ -1289,7 +1289,7 @@ const AttributionAnimation = () => (
       {/* Total */}
       <div 
         className="flex items-center justify-between mt-2 pt-2 border-t border-border/20"
-        style={{ animation: 'attrTotalFade 6s ease-out infinite' }}
+        style={{ animation: 'attrTotalFade 3s ease-out infinite' }}
       >
         <span className="text-[6px] text-muted-foreground">Total New Leads</span>
         <span className="text-[9px] font-bold text-foreground">31 this quarter</span>
@@ -1491,7 +1491,7 @@ const MobileNotificationsAnimation = () => (
         <div className="space-y-1">
           <div 
             className="bg-primary/20 rounded p-1 border border-primary/30"
-            style={{ animation: 'notifSlideDown 5s ease-out infinite' }}
+            style={{ animation: 'notifSlideDown 3s ease-out infinite' }}
           >
             <div className="flex items-start gap-1">
               <div className="w-3 h-3 rounded-full bg-primary flex items-center justify-center flex-shrink-0">
@@ -1506,7 +1506,7 @@ const MobileNotificationsAnimation = () => (
           
           <div 
             className="bg-emerald-500/20 rounded p-1 border border-emerald-500/30"
-            style={{ animation: 'notifSlideDown 5s ease-out infinite', animationDelay: '0.5s' }}
+            style={{ animation: 'notifSlideDown 3s ease-out infinite', animationDelay: '0.25s' }}
           >
             <div className="flex items-start gap-1">
               <div className="w-3 h-3 rounded-full bg-emerald-500 flex items-center justify-center flex-shrink-0">
@@ -1521,7 +1521,7 @@ const MobileNotificationsAnimation = () => (
           
           <div 
             className="bg-amber-500/20 rounded p-1 border border-amber-500/30"
-            style={{ animation: 'notifSlideDown 5s ease-out infinite', animationDelay: '1s' }}
+            style={{ animation: 'notifSlideDown 3s ease-out infinite', animationDelay: '0.5s' }}
           >
             <div className="flex items-start gap-1">
               <div className="w-3 h-3 rounded-full bg-amber-500 flex items-center justify-center flex-shrink-0">
@@ -1567,21 +1567,21 @@ const MobileConversationsAnimation = () => (
         <div className="flex-1 space-y-0.5 overflow-hidden">
           <div 
             className="bg-muted/30 rounded px-1 py-0.5 max-w-[85%]"
-            style={{ animation: 'msgSlide 6s ease-out infinite' }}
+            style={{ animation: 'msgSlide 3s ease-out infinite' }}
           >
             <div className="text-[4px] text-white/80">When can we meet?</div>
           </div>
           
           <div 
             className="bg-primary/30 rounded px-1 py-0.5 max-w-[85%] ml-auto"
-            style={{ animation: 'msgSlide 6s ease-out infinite', animationDelay: '0.8s' }}
+            style={{ animation: 'msgSlide 3s ease-out infinite', animationDelay: '0.4s' }}
           >
             <div className="text-[4px] text-white/80">Tomorrow at 2pm?</div>
           </div>
           
           <div 
             className="bg-muted/30 rounded px-1 py-0.5 max-w-[85%]"
-            style={{ animation: 'msgSlide 6s ease-out infinite', animationDelay: '1.6s' }}
+            style={{ animation: 'msgSlide 3s ease-out infinite', animationDelay: '0.8s' }}
           >
             <div className="text-[4px] text-white/80">Perfect!</div>
           </div>
@@ -1624,19 +1624,19 @@ const MobilePipelineAnimation = () => (
         <div className="flex gap-0.5 mb-1.5">
           <div 
             className="flex-1 text-center py-0.5 rounded text-[3px] font-medium"
-            style={{ animation: 'stageActive 6s ease-in-out infinite' }}
+            style={{ animation: 'stageActive 3s ease-in-out infinite' }}
           >
             Leads
           </div>
           <div 
             className="flex-1 text-center py-0.5 rounded text-[3px] font-medium"
-            style={{ animation: 'stageActive 6s ease-in-out infinite', animationDelay: '2s' }}
+            style={{ animation: 'stageActive 3s ease-in-out infinite', animationDelay: '1s' }}
           >
             Meeting
           </div>
           <div 
             className="flex-1 text-center py-0.5 rounded text-[3px] font-medium"
-            style={{ animation: 'stageActive 6s ease-in-out infinite', animationDelay: '4s' }}
+            style={{ animation: 'stageActive 3s ease-in-out infinite', animationDelay: '2s' }}
           >
             Won
           </div>
@@ -1647,7 +1647,7 @@ const MobilePipelineAnimation = () => (
           {/* Stage 1: Leads */}
           <div 
             className="absolute inset-0 space-y-0.5"
-            style={{ animation: 'stageSwipe 6s ease-in-out infinite' }}
+            style={{ animation: 'stageSwipe 3s ease-in-out infinite' }}
           >
             <div className="bg-slate-800/60 rounded p-1 border border-slate-700/50">
               <div className="flex items-center gap-1">
@@ -1676,7 +1676,7 @@ const MobilePipelineAnimation = () => (
           {/* Stage 2: Meeting */}
           <div 
             className="absolute inset-0 space-y-0.5"
-            style={{ animation: 'stageSwipe 6s ease-in-out infinite', animationDelay: '2s', animationFillMode: 'backwards' }}
+            style={{ animation: 'stageSwipe 3s ease-in-out infinite', animationDelay: '1s', animationFillMode: 'backwards' }}
           >
             <div className="bg-rose-500/20 rounded p-1 border border-rose-500/30">
               <div className="flex items-center gap-1">
@@ -1705,7 +1705,7 @@ const MobilePipelineAnimation = () => (
           {/* Stage 3: Won */}
           <div 
             className="absolute inset-0 space-y-0.5"
-            style={{ animation: 'stageSwipe 6s ease-in-out infinite', animationDelay: '4s', animationFillMode: 'backwards' }}
+            style={{ animation: 'stageSwipe 3s ease-in-out infinite', animationDelay: '2s', animationFillMode: 'backwards' }}
           >
             <div className="bg-emerald-500/20 rounded p-1 border border-emerald-500/30">
               <div className="flex items-center gap-1">
