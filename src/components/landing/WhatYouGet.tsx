@@ -142,61 +142,48 @@ const ContactAnimation = () => (
 
 const PipelineAnimation = () => {
   return (
-    <div className="relative h-44 flex items-center justify-center p-2">
-      <div className="w-full h-full bg-card/30 rounded-lg border border-border/30 p-3 flex flex-col">
-        {/* Stage Headers */}
-        <div className="flex gap-3 mb-3">
-          <div className="flex-1">
-            <div className="h-1.5 rounded-full bg-blue-500" />
-            <span className="text-[9px] font-medium text-foreground/70 mt-1.5 block">Lead</span>
+    <div className="relative h-40 flex items-center justify-center p-3">
+      <div className="flex items-end gap-4">
+        {/* Lead Stage */}
+        <div className="flex flex-col items-center">
+          <div className="w-16 bg-card/80 rounded-lg p-2 border border-blue-500/30 mb-2 animate-[pipelineCardMove_4s_ease-in-out_infinite]">
+            <div className="w-8 h-8 mx-auto rounded-full bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center mb-1">
+              <span className="text-[8px] font-bold text-white">JD</span>
+            </div>
+            <div className="text-[7px] text-foreground/60 text-center">New Lead</div>
           </div>
-          <div className="flex-1">
-            <div className="h-1.5 rounded-full bg-cyan-500" />
-            <span className="text-[9px] font-medium text-foreground/70 mt-1.5 block">Meeting</span>
-          </div>
-          <div className="flex-1">
-            <div className="h-1.5 rounded-full bg-emerald-500" />
-            <span className="text-[9px] font-medium text-foreground/70 mt-1.5 block">Won</span>
-          </div>
+          <div className="h-1 w-12 rounded-full bg-blue-500 mb-1" />
+          <span className="text-[9px] font-medium text-foreground/70">Lead</span>
         </div>
-        
-        {/* Pipeline Columns */}
-        <div className="flex gap-3 flex-1">
-          {/* Lead */}
-          <div className="flex-1 bg-muted/20 rounded-lg p-2">
-            <div className="bg-card/80 rounded-lg px-2.5 py-2 border border-border/40 animate-[pipelineCardMove_4s_ease-in-out_infinite]">
-              <div className="flex items-center gap-2">
-                <div className="w-6 h-6 rounded-full bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center shrink-0">
-                  <span className="text-[7px] font-bold text-white">JD</span>
-                </div>
-                <span className="text-[8px] text-foreground/70">New inquiry</span>
-              </div>
+
+        {/* Arrow */}
+        <div className="text-muted-foreground/40 mb-8">→</div>
+
+        {/* Meeting Stage */}
+        <div className="flex flex-col items-center">
+          <div className="w-16 bg-card/80 rounded-lg p-2 border border-primary/40 mb-2 animate-[pipelineCardPulse_2s_ease-in-out_infinite]">
+            <div className="w-8 h-8 mx-auto rounded-full bg-gradient-to-br from-purple-400 to-purple-600 flex items-center justify-center mb-1">
+              <span className="text-[8px] font-bold text-white">MK</span>
             </div>
+            <div className="text-[7px] text-foreground/60 text-center">Scheduled</div>
           </div>
-          
-          {/* Meeting */}
-          <div className="flex-1 bg-muted/20 rounded-lg p-2">
-            <div className="bg-card/80 rounded-lg px-2.5 py-2 border border-primary/30 animate-[pipelineCardPulse_2s_ease-in-out_infinite]">
-              <div className="flex items-center gap-2">
-                <div className="w-6 h-6 rounded-full bg-gradient-to-br from-purple-400 to-purple-600 flex items-center justify-center shrink-0">
-                  <span className="text-[7px] font-bold text-white">MK</span>
-                </div>
-                <span className="text-[8px] text-foreground/70">Discovery call</span>
-              </div>
+          <div className="h-1 w-12 rounded-full bg-cyan-500 mb-1" />
+          <span className="text-[9px] font-medium text-foreground/70">Meeting</span>
+        </div>
+
+        {/* Arrow */}
+        <div className="text-muted-foreground/40 mb-8">→</div>
+
+        {/* Won Stage */}
+        <div className="flex flex-col items-center">
+          <div className="w-16 bg-emerald-500/10 rounded-lg p-2 border border-emerald-500/30 mb-2">
+            <div className="w-8 h-8 mx-auto rounded-full bg-emerald-500 flex items-center justify-center mb-1">
+              <span className="text-[10px] text-white">✓</span>
             </div>
+            <div className="text-[7px] text-emerald-400 text-center">Signed!</div>
           </div>
-          
-          {/* Won */}
-          <div className="flex-1 bg-emerald-500/10 rounded-lg p-2 border border-emerald-500/20">
-            <div className="bg-card/80 rounded-lg px-2.5 py-2 border border-emerald-500/30">
-              <div className="flex items-center gap-2">
-                <div className="w-6 h-6 rounded-full bg-emerald-500 flex items-center justify-center shrink-0">
-                  <span className="text-[8px] text-white">✓</span>
-                </div>
-                <span className="text-[8px] text-emerald-400">Signed!</span>
-              </div>
-            </div>
-          </div>
+          <div className="h-1 w-12 rounded-full bg-emerald-500 mb-1" />
+          <span className="text-[9px] font-medium text-foreground/70">Won</span>
         </div>
       </div>
     </div>
