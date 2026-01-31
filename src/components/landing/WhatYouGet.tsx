@@ -8,7 +8,7 @@ import {
   Share2,
   Zap,
   Megaphone,
-  Linkedin,
+  Send,
   ChevronLeft,
   ChevronRight,
   LucideIcon,
@@ -1186,7 +1186,7 @@ const categories: Category[] = [
         animation: <SMSAnimation />
       },
       {
-        icon: Linkedin,
+        icon: Send,
         title: "AI Powered Social Media Management",
         description: "Leverage AI to draft content and manage all platforms on one dashboard",
         animation: <SocialAnimation />
