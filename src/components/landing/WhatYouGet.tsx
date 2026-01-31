@@ -2144,14 +2144,7 @@ const WhatYouGet = () => {
                         style={{ animationDelay: `${index * 100}ms` }}
                       >
                         <div className="flex gap-6 items-start">
-                          {/* Large Animation area */}
-                          <div className="w-56 lg:w-72 flex-shrink-0 bg-muted/30 rounded-xl overflow-hidden border border-border/30">
-                            <div className="transform scale-110 origin-center">
-                              {feature.animation}
-                            </div>
-                          </div>
-                          
-                          {/* Content */}
+                          {/* Content - Now on left */}
                           <div className="flex-1 py-2">
                             <div className="flex items-center gap-3 mb-3">
                               <div className={cn(
@@ -2163,6 +2156,13 @@ const WhatYouGet = () => {
                               <h4 className="font-bold text-foreground text-lg lg:text-xl">{feature.title}</h4>
                             </div>
                             <p className="text-body leading-relaxed text-base">{feature.description}</p>
+                          </div>
+                          
+                          {/* Animation area - Now on right */}
+                          <div className="w-56 lg:w-72 flex-shrink-0 bg-muted/30 rounded-xl overflow-hidden border border-border/30">
+                            <div className="transform scale-110 origin-center">
+                              {feature.animation}
+                            </div>
                           </div>
                         </div>
                       </div>
