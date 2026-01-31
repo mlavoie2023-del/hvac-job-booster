@@ -1,16 +1,14 @@
 import { useEffect, useState, useRef } from "react";
 import { 
-  Users, Calendar, DollarSign, TrendingUp, Mail, MessageSquare, 
-  Bell, Search, ChevronRight, LayoutDashboard, Filter, Zap, 
-  Megaphone, BarChart3, FileText, Smartphone, Settings, Plus,
-  Clock, CheckCircle2, ArrowUpRight
+  Users, Calendar, DollarSign, TrendingUp, Bell, Search, ChevronRight, 
+  Plus, Clock, CheckCircle2, ArrowUpRight, LayoutGrid, MessageCircle,
+  Contact, Receipt, Send, PlayCircle, Globe, LineChart, Smartphone, Settings
 } from "lucide-react";
 import lavoieLogo from "@/assets/lavoie-logo-square.png";
 
 const HeroDashboard = () => {
   const [isVisible, setIsVisible] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
-  const [animationStep, setAnimationStep] = useState(0);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -27,24 +25,18 @@ const HeroDashboard = () => {
     return () => observer.disconnect();
   }, []);
 
-  useEffect(() => {
-    if (!isVisible) return;
-    const interval = setInterval(() => {
-      setAnimationStep((prev) => (prev + 1) % 8);
-    }, 2000);
-    return () => clearInterval(interval);
-  }, [isVisible]);
-
   const sidebarItems = [
-    { icon: LayoutDashboard, label: "Dashboard", active: true },
-    { icon: Users, label: "Contacts" },
-    { icon: Filter, label: "Pipelines" },
-    { icon: Calendar, label: "Calendar" },
-    { icon: Zap, label: "Automation" },
-    { icon: Megaphone, label: "Marketing" },
-    { icon: BarChart3, label: "Analytics" },
-    { icon: FileText, label: "Documents" },
-    { icon: Smartphone, label: "Mobile" },
+    { icon: LayoutGrid, label: "Dashboard", active: true },
+    { icon: MessageCircle, label: "Conversations" },
+    { icon: Calendar, label: "Calendars" },
+    { icon: Contact, label: "Contacts" },
+    { icon: Users, label: "Opportunities" },
+    { icon: Receipt, label: "Payments" },
+    { icon: Send, label: "Marketing" },
+    { icon: PlayCircle, label: "Automation" },
+    { icon: Globe, label: "Sites" },
+    { icon: LineChart, label: "Reporting" },
+    { icon: Smartphone, label: "Mobile App" },
   ];
 
   const stats = [
@@ -83,20 +75,6 @@ const HeroDashboard = () => {
           boxShadow: "0 25px 80px -20px rgba(0,0,0,0.6), 0 0 60px -30px hsl(217 91% 60% / 0.2)",
         }}
       >
-        {/* Browser Chrome */}
-        <div className="flex items-center gap-2 px-4 py-2.5 bg-[hsl(0_0%_12%)] border-b border-border/30">
-          <div className="flex gap-1.5">
-            <div className="w-3 h-3 rounded-full bg-red-500/80" />
-            <div className="w-3 h-3 rounded-full bg-yellow-500/80" />
-            <div className="w-3 h-3 rounded-full bg-green-500/80" />
-          </div>
-          <div className="flex-1 flex justify-center">
-            <div className="px-4 py-1 bg-[hsl(0_0%_8%)] rounded-md text-[10px] text-muted-foreground flex items-center gap-2">
-              <span className="text-green-400">🔒</span>
-              app.lavoiesystems.com/dashboard
-            </div>
-          </div>
-        </div>
 
         <div className="flex min-h-[380px]">
           {/* Sidebar */}
@@ -140,9 +118,7 @@ const HeroDashboard = () => {
                 </div>
                 <div className="relative">
                   <Bell className="w-4 h-4 text-muted-foreground" />
-                  <div className={`absolute -top-1 -right-1 w-2 h-2 bg-primary rounded-full transition-all duration-300 ${
-                    animationStep === 0 ? "scale-125" : "scale-100"
-                  }`} />
+                  <div className="absolute -top-1 -right-1 w-2 h-2 bg-primary rounded-full" />
                 </div>
                 <div className="w-7 h-7 rounded-full bg-primary/30 flex items-center justify-center text-[10px] font-medium text-primary">
                   ML
@@ -157,9 +133,7 @@ const HeroDashboard = () => {
                 {stats.map((stat, idx) => (
                   <div
                     key={idx}
-                    className={`bg-[hsl(0_0%_9%)] rounded-lg p-3 border border-border/20 transition-all duration-500 ${
-                      animationStep === idx ? "border-primary/40 shadow-[0_0_20px_-5px_hsl(217_91%_60%/0.3)]" : ""
-                    }`}
+                    className="bg-[hsl(0_0%_9%)] rounded-lg p-3 border border-border/20"
                   >
                     <div className="flex items-center justify-between mb-1.5">
                       <span className="text-[9px] text-muted-foreground">{stat.label}</span>
@@ -201,11 +175,7 @@ const HeroDashboard = () => {
                             .map((card, idx) => (
                               <div
                                 key={idx}
-                                className={`bg-[hsl(0_0%_12%)] rounded-md p-2 border border-border/30 transition-all duration-500 ${
-                                  animationStep === 5 + stageIdx 
-                                    ? "border-primary/50 translate-x-0.5" 
-                                    : ""
-                                }`}
+                                className="bg-[hsl(0_0%_12%)] rounded-md p-2 border border-border/30"
                               >
                                 <div className="flex items-center gap-1.5 mb-1">
                                   <div className="w-4 h-4 rounded-full bg-primary/20 flex items-center justify-center text-[6px] text-primary font-medium">
@@ -241,9 +211,7 @@ const HeroDashboard = () => {
                     <div className="flex items-center justify-between mb-2">
                       <span className="text-[10px] font-medium text-foreground">Recent Activity</span>
                       <div className="flex items-center gap-1">
-                        <div className={`w-1.5 h-1.5 rounded-full bg-emerald-400 ${
-                          animationStep < 3 ? "animate-pulse" : ""
-                        }`} />
+                        <div className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
                         <span className="text-[7px] text-emerald-400">Live</span>
                       </div>
                     </div>
@@ -251,9 +219,7 @@ const HeroDashboard = () => {
                       {recentActivity.map((activity, idx) => (
                         <div 
                           key={idx}
-                          className={`flex items-center gap-2 transition-all duration-300 ${
-                            animationStep === idx ? "bg-primary/5 -mx-1.5 px-1.5 py-0.5 rounded" : ""
-                          }`}
+                          className="flex items-center gap-2"
                         >
                           <div className="w-5 h-5 rounded-full bg-primary/20 flex items-center justify-center text-[6px] text-primary font-medium">
                             {activity.avatar}
@@ -277,14 +243,7 @@ const HeroDashboard = () => {
                     <div className="space-y-1.5">
                       {upcomingTasks.map((task, idx) => (
                         <div key={idx} className="flex items-center gap-2">
-                          <div className={`w-3 h-3 rounded border flex items-center justify-center ${
-                            idx === 0 && animationStep === 4
-                              ? "border-primary bg-primary/20"
-                              : "border-border/50"
-                          }`}>
-                            {idx === 0 && animationStep === 4 && (
-                              <CheckCircle2 className="w-2 h-2 text-primary" />
-                            )}
+                          <div className="w-3 h-3 rounded border border-border/50 flex items-center justify-center">
                           </div>
                           <div className="flex-1 min-w-0">
                             <div className="text-[8px] text-foreground truncate">{task.task}</div>
