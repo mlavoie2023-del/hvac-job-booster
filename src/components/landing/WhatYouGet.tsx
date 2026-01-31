@@ -79,11 +79,11 @@ const InboxAnimation = () => (
           <div className="w-4 h-4 rounded bg-emerald-500/30 flex items-center justify-center">
             <MessageSquare className="w-2.5 h-2.5 text-emerald-400" />
           </div>
-          <div className="flex-1">
-            <div className="h-1.5 w-16 bg-emerald-500/40 rounded mb-0.5" />
-            <div className="h-1 w-24 bg-emerald-500/20 rounded" />
+          <div className="flex-1 min-w-0">
+            <div className="text-[6px] font-medium text-foreground/80 truncate">John Davidson</div>
+            <div className="text-[5px] text-muted-foreground truncate">Thanks for the call yesterday!</div>
           </div>
-          <span className="text-[6px] font-medium text-emerald-400">SMS</span>
+          <span className="text-[6px] font-medium text-emerald-400 flex-shrink-0">SMS</span>
         </div>
       </div>
       
@@ -100,11 +100,11 @@ const InboxAnimation = () => (
           <div className="w-4 h-4 rounded bg-primary/30 flex items-center justify-center">
             <Mail className="w-2.5 h-2.5 text-primary" />
           </div>
-          <div className="flex-1">
-            <div className="h-1.5 w-14 bg-primary/40 rounded mb-0.5" />
-            <div className="h-1 w-20 bg-primary/20 rounded" />
+          <div className="flex-1 min-w-0">
+            <div className="text-[6px] font-medium text-foreground/80 truncate">Sarah Kim</div>
+            <div className="text-[5px] text-muted-foreground truncate">Re: Portfolio Review Meeting</div>
           </div>
-          <span className="text-[6px] font-medium text-primary">Email</span>
+          <span className="text-[6px] font-medium text-primary flex-shrink-0">Email</span>
         </div>
       </div>
       
@@ -121,11 +121,11 @@ const InboxAnimation = () => (
           <div className="w-4 h-4 rounded bg-blue-600/40 flex items-center justify-center">
             <Linkedin className="w-2.5 h-2.5 text-blue-400" />
           </div>
-          <div className="flex-1">
-            <div className="h-1.5 w-12 bg-blue-500/40 rounded mb-0.5" />
-            <div className="h-1 w-18 bg-blue-500/20 rounded" />
+          <div className="flex-1 min-w-0">
+            <div className="text-[6px] font-medium text-foreground/80 truncate">Mike Chen</div>
+            <div className="text-[5px] text-muted-foreground truncate">I'd love to connect about...</div>
           </div>
-          <span className="text-[6px] font-medium text-blue-400">LinkedIn</span>
+          <span className="text-[6px] font-medium text-blue-400 flex-shrink-0">LinkedIn</span>
         </div>
       </div>
       
