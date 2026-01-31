@@ -84,6 +84,17 @@
 }
 
 @layer components {
+  /* Animation pause/play states for hover interactions */
+  .animation-paused,
+  .animation-paused * {
+    animation-play-state: paused !important;
+  }
+  
+  .group:hover .group-hover-animation-running,
+  .group:hover .group-hover-animation-running * {
+    animation-play-state: running !important;
+  }
+
   .section-container {
     @apply mx-auto max-w-7xl px-4 sm:px-6 lg:px-8;
   }
