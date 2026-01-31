@@ -7,6 +7,7 @@ import {
   BarChart3, 
   Share2,
   Zap,
+  MessageSquareShare,
   ChevronLeft,
   ChevronRight,
   LucideIcon,
@@ -1184,7 +1185,7 @@ const categories: Category[] = [
         animation: <SMSAnimation />
       },
       {
-        icon: Zap,
+        icon: MessageSquareShare,
         title: "AI Powered Social Media Management",
         description: "Leverage AI to draft content and manage all platforms on one dashboard",
         animation: <SocialAnimation />
