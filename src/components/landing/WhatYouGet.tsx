@@ -994,46 +994,96 @@ const SocialAnimation = () => (
 // Analytics Animations
 const DashboardAnimation = () => (
   <div className="relative h-40 flex items-center justify-center p-3">
-    <div className="w-full bg-card/30 rounded-lg border border-border/30 p-4">
-      <div className="flex items-center justify-between mb-3">
+    <style>{`
+      @keyframes lineReveal {
+        0% { stroke-dashoffset: 200; }
+        100% { stroke-dashoffset: 0; }
+      }
+      @keyframes dotPop {
+        0%, 50% { opacity: 0; transform: scale(0); }
+        60%, 100% { opacity: 1; transform: scale(1); }
+      }
+    `}</style>
+    <div className="w-full bg-card/30 rounded-lg border border-border/30 p-3">
+      <div className="flex items-center justify-between mb-2">
         <div className="text-[8px] font-medium text-foreground">Performance Overview</div>
-        <div className="flex gap-1">
-          <div className="px-1.5 py-0.5 bg-amber-500/20 rounded text-[6px] text-amber-400">This Month</div>
-        </div>
+        <div className="px-1.5 py-0.5 bg-amber-500/20 rounded text-[6px] text-amber-400">This Month</div>
       </div>
       
-      {/* Chart area */}
-      <div className="flex items-end gap-1.5 h-16 mb-2">
-        {[
-          { h: 40, label: "Jan" },
-          { h: 55, label: "Feb" },
-          { h: 35, label: "Mar" },
-          { h: 70, label: "Apr" },
-          { h: 85, label: "May" },
-          { h: 65, label: "Jun" }
-        ].map((bar, i) => (
-          <div key={i} className="flex-1 flex flex-col items-center gap-1">
-            <div 
-              className="w-full bg-gradient-to-t from-amber-500 to-amber-400/60 rounded-t animate-[barGrow_3s_ease-out_infinite]"
-              style={{ 
-                height: `${bar.h}%`,
-                animationDelay: `${i * 0.15}s`
-              }}
+      {/* Chart area with two lines */}
+      <div className="relative h-20 mb-2">
+        {/* Grid lines */}
+        <div className="absolute inset-0 flex flex-col justify-between">
+          {[0, 1, 2, 3].map((i) => (
+            <div key={i} className="w-full h-px bg-border/20" />
+          ))}
+        </div>
+        
+        {/* SVG Line Chart */}
+        <svg className="absolute inset-0 w-full h-full" viewBox="0 0 100 50" preserveAspectRatio="none">
+          {/* Revenue line (amber) */}
+          <path
+            d="M 0 40 L 20 35 L 40 38 L 60 28 L 80 20 L 100 15"
+            fill="none"
+            stroke="hsl(45 93% 47%)"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeDasharray="200"
+            style={{ animation: 'lineReveal 2s ease-out forwards' }}
+          />
+          {/* New Clients line (emerald) */}
+          <path
+            d="M 0 45 L 20 42 L 40 40 L 60 35 L 80 30 L 100 25"
+            fill="none"
+            stroke="hsl(160 84% 39%)"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeDasharray="200"
+            style={{ animation: 'lineReveal 2s ease-out 0.3s forwards', strokeDashoffset: 200 }}
+          />
+          {/* Data points - Revenue */}
+          {[[0, 40], [20, 35], [40, 38], [60, 28], [80, 20], [100, 15]].map(([x, y], i) => (
+            <circle
+              key={`rev-${i}`}
+              cx={x}
+              cy={y}
+              r="2"
+              fill="hsl(45 93% 47%)"
+              style={{ animation: `dotPop 2s ease-out ${0.3 + i * 0.1}s forwards`, opacity: 0 }}
             />
-            <span className="text-[5px] text-muted-foreground">{bar.label}</span>
-          </div>
-        ))}
+          ))}
+          {/* Data points - Clients */}
+          {[[0, 45], [20, 42], [40, 40], [60, 35], [80, 30], [100, 25]].map(([x, y], i) => (
+            <circle
+              key={`cli-${i}`}
+              cx={x}
+              cy={y}
+              r="2"
+              fill="hsl(160 84% 39%)"
+              style={{ animation: `dotPop 2s ease-out ${0.5 + i * 0.1}s forwards`, opacity: 0 }}
+            />
+          ))}
+        </svg>
+        
+        {/* X-axis labels */}
+        <div className="absolute -bottom-3 left-0 right-0 flex justify-between text-[5px] text-muted-foreground">
+          <span>Jan</span><span>Feb</span><span>Mar</span><span>Apr</span><span>May</span><span>Jun</span>
+        </div>
       </div>
       
-      {/* Stats row */}
-      <div className="flex gap-2">
-        <div className="flex-1 bg-amber-500/10 rounded px-2 py-1 border border-amber-500/20 animate-[statPop_3s_ease-in-out_infinite]">
-          <div className="text-[5px] text-amber-400/70">Revenue</div>
-          <div className="text-[9px] font-bold text-amber-400">$47,200</div>
+      {/* Legend */}
+      <div className="flex gap-3 pt-2 border-t border-border/20">
+        <div className="flex items-center gap-1.5">
+          <div className="w-2 h-0.5 bg-amber-500 rounded" />
+          <span className="text-[6px] text-muted-foreground">Revenue</span>
+          <span className="text-[7px] font-bold text-amber-400">$47.2K</span>
         </div>
-        <div className="flex-1 bg-emerald-500/10 rounded px-2 py-1 border border-emerald-500/20 animate-[statPop_3s_ease-in-out_infinite]" style={{ animationDelay: '0.3s' }}>
-          <div className="text-[5px] text-emerald-400/70">New Clients</div>
-          <div className="text-[9px] font-bold text-emerald-400">+12</div>
+        <div className="flex items-center gap-1.5">
+          <div className="w-2 h-0.5 bg-emerald-500 rounded" />
+          <span className="text-[6px] text-muted-foreground">Clients</span>
+          <span className="text-[7px] font-bold text-emerald-400">+12</span>
         </div>
       </div>
     </div>
@@ -1097,32 +1147,64 @@ const ReportsAnimation = () => (
 
 const AttributionAnimation = () => (
   <div className="relative h-40 flex items-center justify-center p-3">
-    <div className="w-full bg-card/30 rounded-lg border border-border/30 p-4">
-      <div className="text-[8px] font-medium text-foreground mb-3">Lead Source Attribution</div>
+    <style>{`
+      @keyframes sourceReveal {
+        0% { opacity: 0; transform: translateX(-8px); }
+        100% { opacity: 1; transform: translateX(0); }
+      }
+      @keyframes countUp {
+        0%, 30% { opacity: 0; }
+        50%, 100% { opacity: 1; }
+      }
+      @keyframes checkPop {
+        0%, 60% { opacity: 0; transform: scale(0); }
+        70%, 100% { opacity: 1; transform: scale(1); }
+      }
+    `}</style>
+    <div className="w-full bg-card/30 rounded-lg border border-border/30 p-3">
+      <div className="flex items-center justify-between mb-2">
+        <div className="text-[8px] font-medium text-foreground">Lead Source Attribution</div>
+        <div className="px-1.5 py-0.5 bg-primary/20 rounded text-[6px] text-primary">This Quarter</div>
+      </div>
       
-      <div className="space-y-2.5">
+      {/* Visual funnel-style sources */}
+      <div className="space-y-1.5">
         {[
-          { label: "Email Campaigns", value: 42, count: "156 leads", color: "from-primary to-cyan-400" },
-          { label: "Social Media", value: 28, count: "104 leads", color: "from-pink-500 to-rose-400" },
-          { label: "Client Referrals", value: 18, count: "67 leads", color: "from-emerald-500 to-teal-400" },
-          { label: "Website Forms", value: 12, count: "45 leads", color: "from-amber-500 to-yellow-400" }
+          { label: "Client Referrals", count: 12, icon: "👥", color: "bg-emerald-500/20 border-emerald-500/30", textColor: "text-emerald-400" },
+          { label: "Email Campaigns", count: 8, icon: "✉️", color: "bg-primary/20 border-primary/30", textColor: "text-primary" },
+          { label: "Website Forms", count: 6, icon: "📋", color: "bg-amber-500/20 border-amber-500/30", textColor: "text-amber-400" },
+          { label: "Social Media", count: 5, icon: "📱", color: "bg-pink-500/20 border-pink-500/30", textColor: "text-pink-400" }
         ].map((item, i) => (
-          <div key={item.label} className="space-y-1">
-            <div className="flex items-center justify-between">
-              <span className="text-[6px] text-foreground/70">{item.label}</span>
-              <span className="text-[6px] text-muted-foreground">{item.count}</span>
+          <div 
+            key={item.label}
+            className={`flex items-center gap-2 px-2 py-1.5 rounded-lg border ${item.color}`}
+            style={{ animation: `sourceReveal 0.5s ease-out ${i * 0.15}s forwards`, opacity: 0 }}
+          >
+            <span className="text-[8px]">{item.icon}</span>
+            <span className="text-[7px] text-foreground/80 flex-1">{item.label}</span>
+            <div className="flex items-center gap-1">
+              <span 
+                className={`text-[8px] font-bold ${item.textColor}`}
+                style={{ animation: `countUp 1s ease-out ${0.3 + i * 0.15}s forwards`, opacity: 0 }}
+              >
+                {item.count}
+              </span>
+              <span className="text-[6px] text-muted-foreground">leads</span>
             </div>
-            <div className="h-2 bg-muted/20 rounded-full overflow-hidden">
-              <div 
-                className={`h-full bg-gradient-to-r ${item.color} rounded-full animate-[attrBar_3s_ease-out_infinite]`}
-                style={{ 
-                  width: `${item.value}%`,
-                  animationDelay: `${i * 0.2}s`
-                }}
-              />
+            <div 
+              className="w-3 h-3 rounded-full bg-emerald-500/30 flex items-center justify-center"
+              style={{ animation: `checkPop 1.2s ease-out ${0.4 + i * 0.15}s forwards`, opacity: 0 }}
+            >
+              <span className="text-[5px] text-emerald-400">✓</span>
             </div>
           </div>
         ))}
+      </div>
+      
+      {/* Total */}
+      <div className="flex items-center justify-between mt-2 pt-2 border-t border-border/20">
+        <span className="text-[6px] text-muted-foreground">Total New Leads</span>
+        <span className="text-[9px] font-bold text-foreground">31 this quarter</span>
       </div>
     </div>
   </div>
