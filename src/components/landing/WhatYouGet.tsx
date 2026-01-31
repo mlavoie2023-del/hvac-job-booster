@@ -142,12 +142,12 @@ const ContactAnimation = () => (
 
 const PipelineAnimation = () => {
   return (
-    <div className="relative h-44 flex items-center justify-center p-2">
+    <div className="relative h-48 flex items-center justify-center p-2">
       <style>{`
         /* J. Davidson: Meeting -> Won (stacks below M. Chen at position 1) */
         @keyframes jdMove {
           0%, 25% { left: calc(33.33% + 4px); top: 0; }
-          35%, 100% { left: calc(66.66% + 8px); top: 32px; }
+          35%, 100% { left: calc(66.66% + 8px); top: 30px; }
         }
         @keyframes jdToGreen {
           0%, 30% { background: linear-gradient(135deg, #3b82f6, #2563eb); }
@@ -178,14 +178,16 @@ const PipelineAnimation = () => {
         @keyframes skMove {
           0%, 40% { left: 0; top: 0; }
           50%, 70% { left: calc(33.33% + 4px); top: 0; }
-          80%, 100% { left: calc(66.66% + 8px); top: 64px; }
+          80%, 100% { left: calc(66.66% + 8px); top: 60px; }
         }
-        @keyframes skToGreen {
-          0%, 75% { background: linear-gradient(135deg, #94a3b8, #64748b); }
+        @keyframes skAvatar {
+          0%, 45% { background: linear-gradient(135deg, #94a3b8, #64748b); }
+          50%, 75% { background: linear-gradient(135deg, #3b82f6, #2563eb); }
           80%, 100% { background: #10b981; }
         }
-        @keyframes skCardToGreen {
-          0%, 75% { background: rgba(15, 23, 42, 0.6); border-color: rgba(148, 163, 184, 0.3); }
+        @keyframes skCard {
+          0%, 45% { background: rgba(15, 23, 42, 0.6); border-color: rgba(148, 163, 184, 0.3); }
+          50%, 75% { background: rgba(59, 130, 246, 0.1); border-color: rgba(59, 130, 246, 0.4); }
           80%, 100% { background: rgba(16, 185, 129, 0.1); border-color: rgba(16, 185, 129, 0.3); }
         }
         @keyframes skShowCheck {
@@ -198,8 +200,7 @@ const PipelineAnimation = () => {
         }
         @keyframes skStatusText {
           0%, 45% { opacity: 1; }
-          50%, 75% { opacity: 0; }
-          75.1%, 100% { opacity: 0; }
+          50%, 100% { opacity: 0; }
         }
         @keyframes skMeetingText {
           0%, 45% { opacity: 0; }
@@ -293,12 +294,12 @@ const PipelineAnimation = () => {
             {/* S. Kim - starts in Lead, moves to Meeting, then to Won (below J. Davidson) */}
             <div 
               className="absolute rounded p-1.5 border w-[calc(33.33%-8px)]"
-              style={{ animation: 'skMove 10s ease-in-out infinite, skCardToGreen 10s ease-in-out infinite' }}
+              style={{ animation: 'skMove 10s ease-in-out infinite, skCard 10s ease-in-out infinite' }}
             >
               <div className="flex items-center gap-1.5">
                 <div 
                   className="w-5 h-5 rounded-full flex items-center justify-center relative"
-                  style={{ animation: 'skToGreen 10s ease-in-out infinite' }}
+                  style={{ animation: 'skAvatar 10s ease-in-out infinite' }}
                 >
                   <span 
                     className="text-[6px] font-bold text-white absolute"
