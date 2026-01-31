@@ -142,7 +142,7 @@ const ContactAnimation = () => (
 
 const PipelineAnimation = () => {
   return (
-    <div className="relative h-52 flex items-center justify-center p-2">
+    <div className="relative h-40 flex items-center justify-center p-2">
       <style>{`
         /* J. Davidson: Meeting -> Won (stacks below M. Chen at position 1) */
         @keyframes jdMove {
