@@ -139,14 +139,16 @@ const InboxAnimation = () => (
       
       <style>{`
         @keyframes inboxRowSlide {
-          0%, 75% { opacity: 1; transform: translateX(0); }
-          85%, 92% { opacity: 0; transform: translateX(-20px); }
-          100% { opacity: 1; transform: translateX(0); }
+          0% { opacity: 1; transform: translateX(0); }
+          5% { opacity: 0; transform: translateX(-20px); }
+          15%, 85% { opacity: 1; transform: translateX(0); }
+          95%, 100% { opacity: 0; transform: translateX(-20px); }
         }
         @keyframes inboxBadgePop {
-          0%, 75% { opacity: 1; transform: scale(1); }
-          85%, 92% { opacity: 0; transform: scale(0); }
-          100% { opacity: 1; transform: scale(1); }
+          0% { opacity: 1; transform: scale(1); }
+          5%, 20% { opacity: 0; transform: scale(0); }
+          30%, 80% { opacity: 1; transform: scale(1); }
+          90%, 100% { opacity: 0; transform: scale(0); }
         }
       `}</style>
     </div>
@@ -551,32 +553,44 @@ const WorkflowAnimation = () => (
   <div className="relative h-40 flex items-center justify-center p-3">
     <style>{`
       @keyframes stepComplete1 {
-        0%, 100% { opacity: 1; }
+        0% { opacity: 1; }
+        3%, 8% { opacity: 0.4; }
+        12%, 100% { opacity: 1; }
       }
       @keyframes stepCheck1 {
-        0%, 8% { opacity: 0; transform: scale(0); }
-        12%, 100% { opacity: 1; transform: scale(1); }
+        0% { opacity: 1; transform: scale(1); }
+        3%, 10% { opacity: 0; transform: scale(0); }
+        15%, 100% { opacity: 1; transform: scale(1); }
       }
       @keyframes stepComplete2 {
-        0%, 100% { opacity: 1; }
+        0% { opacity: 1; }
+        3%, 22% { opacity: 0.4; }
+        28%, 100% { opacity: 1; }
       }
       @keyframes stepCheck2 {
-        0%, 23% { opacity: 0; transform: scale(0); }
-        28%, 100% { opacity: 1; transform: scale(1); }
+        0% { opacity: 1; transform: scale(1); }
+        3%, 25% { opacity: 0; transform: scale(0); }
+        32%, 100% { opacity: 1; transform: scale(1); }
       }
       @keyframes stepComplete3 {
-        0%, 100% { opacity: 1; }
+        0% { opacity: 1; }
+        3%, 42% { opacity: 0.4; }
+        48%, 100% { opacity: 1; }
       }
       @keyframes stepCheck3 {
-        0%, 42% { opacity: 0; transform: scale(0); }
-        48%, 100% { opacity: 1; transform: scale(1); }
+        0% { opacity: 1; transform: scale(1); }
+        3%, 45% { opacity: 0; transform: scale(0); }
+        52%, 100% { opacity: 1; transform: scale(1); }
       }
       @keyframes stepComplete4 {
-        0%, 100% { opacity: 1; }
+        0% { opacity: 1; }
+        3%, 62% { opacity: 0.4; }
+        68%, 100% { opacity: 1; }
       }
       @keyframes stepCheck4 {
-        0%, 62% { opacity: 0; transform: scale(0); }
-        68%, 100% { opacity: 1; transform: scale(1); }
+        0% { opacity: 1; transform: scale(1); }
+        3%, 65% { opacity: 0; transform: scale(0); }
+        72%, 100% { opacity: 1; transform: scale(1); }
       }
       @keyframes progressFill {
         0% { width: 0; }
@@ -650,25 +664,34 @@ const AppointmentRemindersAnimation = () => (
   <div className="relative h-40 flex items-center justify-center p-3">
     <style>{`
       @keyframes reminderNode1 {
-        0%, 100% { opacity: 1; transform: scale(1); }
-      }
-      @keyframes reminderCheck1 {
-        0%, 8% { opacity: 0; transform: scale(0); }
+        0% { opacity: 1; transform: scale(1); }
+        3%, 8% { opacity: 0.3; transform: scale(0.95); }
         12%, 100% { opacity: 1; transform: scale(1); }
       }
-      @keyframes reminderNode2 {
-        0%, 100% { opacity: 1; transform: scale(1); }
+      @keyframes reminderCheck1 {
+        0% { opacity: 1; transform: scale(1); }
+        3%, 10% { opacity: 0; transform: scale(0); }
+        15%, 100% { opacity: 1; transform: scale(1); }
       }
-      @keyframes reminderCheck2 {
-        0%, 28% { opacity: 0; transform: scale(0); }
+      @keyframes reminderNode2 {
+        0% { opacity: 1; transform: scale(1); }
+        3%, 28% { opacity: 0.3; transform: scale(0.95); }
         33%, 100% { opacity: 1; transform: scale(1); }
       }
+      @keyframes reminderCheck2 {
+        0% { opacity: 1; transform: scale(1); }
+        3%, 30% { opacity: 0; transform: scale(0); }
+        36%, 100% { opacity: 1; transform: scale(1); }
+      }
       @keyframes reminderNode3 {
-        0%, 100% { opacity: 1; transform: scale(1); }
+        0% { opacity: 1; transform: scale(1); }
+        3%, 53% { opacity: 0.3; transform: scale(0.95); }
+        58%, 100% { opacity: 1; transform: scale(1); }
       }
       @keyframes reminderCheck3 {
-        0%, 53% { opacity: 0; transform: scale(0); }
-        58%, 100% { opacity: 1; transform: scale(1); }
+        0% { opacity: 1; transform: scale(1); }
+        3%, 55% { opacity: 0; transform: scale(0); }
+        62%, 100% { opacity: 1; transform: scale(1); }
       }
       @keyframes timelineFill {
         0% { height: 0; }
@@ -759,22 +782,24 @@ const ReferralRequestsAnimation = () => (
   <div className="relative h-40 flex items-center justify-center p-3">
     <style>{`
       @keyframes referralSend {
-        0%, 85% { opacity: 1; transform: translateX(0); }
-        92%, 98% { opacity: 0; transform: translateX(-10px); }
-        100% { opacity: 1; transform: translateX(0); }
+        0% { opacity: 1; transform: translateX(0); }
+        3%, 8% { opacity: 0; transform: translateX(-10px); }
+        15%, 100% { opacity: 1; transform: translateX(0); }
       }
       @keyframes referralForm {
-        0%, 85% { opacity: 1; transform: translateY(0); }
-        92%, 98% { opacity: 0; transform: translateY(5px); }
-        100% { opacity: 1; transform: translateY(0); }
+        0% { opacity: 1; transform: translateY(0); }
+        3%, 22% { opacity: 0; transform: translateY(5px); }
+        30%, 100% { opacity: 1; transform: translateY(0); }
       }
       @keyframes referralSuccess {
-        0%, 40% { opacity: 0; transform: scale(0.8); }
-        50%, 100% { opacity: 1; transform: scale(1); }
+        0% { opacity: 1; transform: scale(1); }
+        3%, 42% { opacity: 0; transform: scale(0.8); }
+        52%, 100% { opacity: 1; transform: scale(1); }
       }
       @keyframes referralCount {
-        0%, 55% { opacity: 0; }
-        65%, 100% { opacity: 1; }
+        0% { opacity: 1; }
+        3%, 58% { opacity: 0; }
+        68%, 100% { opacity: 1; }
       }
     `}</style>
     <div className="w-full bg-card/50 rounded-lg border border-border/50 p-3">
@@ -910,9 +935,10 @@ const SocialAnimation = () => (
   <div className="relative h-40 flex items-center justify-center p-3">
     <style>{`
       @keyframes aiTyping {
-        0%, 85% { width: 100%; }
-        92%, 98% { width: 0; }
-        100% { width: 100%; }
+        0% { width: 100%; }
+        5%, 10% { width: 0; }
+        25%, 90% { width: 100%; }
+        95%, 100% { width: 0; }
       }
       @keyframes cursorBlink {
         0%, 50% { opacity: 1; }
@@ -932,9 +958,10 @@ const SocialAnimation = () => (
         68%, 100% { opacity: 0; }
       }
       @keyframes platformNotify {
-        0% { opacity: 0; transform: translateY(4px); }
-        8%, 85% { opacity: 1; transform: translateY(0); }
-        92%, 100% { opacity: 0; transform: translateY(-4px); }
+        0% { opacity: 1; transform: translateY(0); }
+        5%, 65% { opacity: 0; transform: translateY(4px); }
+        72%, 92% { opacity: 1; transform: translateY(0); }
+        100% { opacity: 0; transform: translateY(-4px); }
       }
     `}</style>
     <div className="w-full bg-card/30 rounded-lg border border-border/30 p-3">
@@ -1041,14 +1068,16 @@ const DashboardAnimation = () => (
   <div className="relative h-40 flex items-center justify-center p-3">
     <style>{`
       @keyframes lineReveal {
-        0%, 85% { stroke-dashoffset: 0; }
-        92%, 98% { stroke-dashoffset: 200; }
-        100% { stroke-dashoffset: 0; }
+        0% { stroke-dashoffset: 0; }
+        5%, 10% { stroke-dashoffset: 200; }
+        40%, 95% { stroke-dashoffset: 0; }
+        100% { stroke-dashoffset: 200; }
       }
       @keyframes dotPop {
-        0%, 85% { opacity: 1; transform: scale(1); }
-        92%, 98% { opacity: 0; transform: scale(0); }
-        100% { opacity: 1; transform: scale(1); }
+        0% { opacity: 1; transform: scale(1); }
+        5%, 15% { opacity: 0; transform: scale(0); }
+        25%, 90% { opacity: 1; transform: scale(1); }
+        100% { opacity: 0; transform: scale(0); }
       }
     `}</style>
     <div className="w-full bg-card/30 rounded-lg border border-border/30 p-3">
@@ -1196,23 +1225,28 @@ const AttributionAnimation = () => (
   <div className="relative h-40 flex items-center justify-center p-3">
     <style>{`
       @keyframes attrSlideIn {
-        0%, 85% { opacity: 1; transform: translateX(0); }
-        92%, 98% { opacity: 0; transform: translateX(-20px); }
-        100% { opacity: 1; transform: translateX(0); }
+        0% { opacity: 1; transform: translateX(0); }
+        3%, 6% { opacity: 0; transform: translateX(-20px); }
+        12%, 85% { opacity: 1; transform: translateX(0); }
+        95%, 100% { opacity: 0; transform: translateX(-20px); }
       }
       @keyframes attrCountUp {
-        0%, 85% { opacity: 1; }
-        92%, 98% { opacity: 0; }
-        100% { opacity: 1; }
+        0% { opacity: 1; }
+        3%, 12% { opacity: 0; }
+        18%, 85% { opacity: 1; }
+        95%, 100% { opacity: 0; }
       }
       @keyframes attrCheckPop {
-        0%, 85% { opacity: 1; transform: scale(1); }
-        92%, 98% { opacity: 0; transform: scale(0); }
-        100% { opacity: 1; transform: scale(1); }
+        0% { opacity: 1; transform: scale(1); }
+        3%, 14% { opacity: 0; transform: scale(0); }
+        22%, 85% { opacity: 1; transform: scale(1); }
+        95%, 100% { opacity: 0; transform: scale(0); }
       }
       @keyframes attrTotalFade {
-        0%, 50% { opacity: 0; }
-        58%, 100% { opacity: 1; }
+        0% { opacity: 1; }
+        3%, 52% { opacity: 0; }
+        60%, 85% { opacity: 1; }
+        95%, 100% { opacity: 0; }
       }
     `}</style>
     <div className="w-full bg-card/30 rounded-lg border border-border/30 p-3">
@@ -1537,9 +1571,10 @@ const MobileNotificationsAnimation = () => (
     
     <style>{`
       @keyframes notifSlideDown {
-        0%, 70% { opacity: 1; transform: translateY(0); }
-        85%, 92% { opacity: 0; transform: translateY(-6px); }
-        100% { opacity: 1; transform: translateY(0); }
+        0% { opacity: 1; transform: translateY(0); }
+        3%, 8% { opacity: 0; transform: translateY(-6px); }
+        18%, 75% { opacity: 1; transform: translateY(0); }
+        90%, 100% { opacity: 0; transform: translateY(-6px); }
       }
     `}</style>
   </div>
@@ -1600,13 +1635,15 @@ const MobileConversationsAnimation = () => (
     
     <style>{`
       @keyframes msgSlide {
-        0%, 75% { opacity: 1; transform: translateY(0); }
-        85%, 92% { opacity: 0; transform: translateY(4px); }
-        100% { opacity: 1; transform: translateY(0); }
+        0% { opacity: 1; transform: translateY(0); }
+        3%, 8% { opacity: 0; transform: translateY(4px); }
+        15%, 80% { opacity: 1; transform: translateY(0); }
+        92%, 100% { opacity: 0; transform: translateY(4px); }
       }
       @keyframes replyType {
-        0%, 35% { opacity: 0; }
-        45%, 85% { opacity: 1; }
+        0% { opacity: 1; }
+        3%, 38% { opacity: 0; }
+        48%, 80% { opacity: 1; }
         92%, 100% { opacity: 0; }
       }
     `}</style>
@@ -1740,7 +1777,8 @@ const MobilePipelineAnimation = () => (
       }
       @keyframes stageSwipe {
         0%, 30% { opacity: 1; transform: translateX(0); }
-        33.33%, 97% { opacity: 0; transform: translateX(-100%); }
+        33.33% { opacity: 0; transform: translateX(-100%); }
+        97% { opacity: 0; transform: translateX(100%); }
         100% { opacity: 1; transform: translateX(0); }
       }
     `}</style>
