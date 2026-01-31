@@ -7,7 +7,8 @@ import {
   BarChart3, 
   Share2,
   Zap,
-  MessageSquareShare,
+  Megaphone,
+  Linkedin,
   ChevronLeft,
   ChevronRight,
   LucideIcon,
@@ -1168,7 +1169,7 @@ const categories: Category[] = [
   },
   {
     id: "marketing",
-    icon: Mail,
+    icon: Megaphone,
     title: "Marketing",
     color: "from-orange-500 to-red-500",
     features: [
@@ -1185,7 +1186,7 @@ const categories: Category[] = [
         animation: <SMSAnimation />
       },
       {
-        icon: MessageSquareShare,
+        icon: Linkedin,
         title: "AI Powered Social Media Management",
         description: "Leverage AI to draft content and manage all platforms on one dashboard",
         animation: <SocialAnimation />
