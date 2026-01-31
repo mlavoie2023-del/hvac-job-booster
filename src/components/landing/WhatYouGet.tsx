@@ -654,38 +654,73 @@ const AppointmentRemindersAnimation = () => (
   </div>
 );
 
-const TriggerAnimation = () => (
+const ReferralRequestsAnimation = () => (
   <div className="relative h-40 flex items-center justify-center p-3">
-    <div className="w-full bg-card/30 rounded-lg border border-border/30 p-3">
-      <div className="text-[8px] text-muted-foreground mb-3">Automation Rule</div>
+    <style>{`
+      @keyframes referralSend {
+        0%, 10% { opacity: 0; transform: translateX(-10px); }
+        20%, 100% { opacity: 1; transform: translateX(0); }
+      }
+      @keyframes referralForm {
+        0%, 30% { opacity: 0; transform: translateY(5px); }
+        40%, 100% { opacity: 1; transform: translateY(0); }
+      }
+      @keyframes referralSuccess {
+        0%, 55% { opacity: 0; transform: scale(0.8); }
+        65%, 100% { opacity: 1; transform: scale(1); }
+      }
+      @keyframes referralCount {
+        0%, 70% { opacity: 0; }
+        80%, 100% { opacity: 1; }
+      }
+    `}</style>
+    <div className="w-full bg-card/50 rounded-lg border border-border/50 p-3">
+      {/* Header */}
+      <div className="flex items-center justify-between mb-3">
+        <div className="flex items-center gap-2">
+          <div className="w-6 h-6 rounded-lg bg-pink-500/20 border border-pink-500/30 flex items-center justify-center">
+            <Users className="w-3 h-3 text-pink-400" />
+          </div>
+          <span className="text-[8px] font-medium text-foreground">Referral Campaign</span>
+        </div>
+        <div 
+          className="px-1.5 py-0.5 bg-emerald-500/20 rounded text-[6px] text-emerald-400"
+          style={{ animation: 'referralCount 6s ease-out infinite' }}
+        >
+          +3 this week
+        </div>
+      </div>
       
-      {/* If-Then display */}
-      <div className="space-y-2">
-        {/* IF condition */}
-        <div className="flex items-center gap-2 p-2 bg-amber-500/10 rounded-lg border border-amber-500/30 animate-[triggerPulse_4s_ease-in-out_infinite]">
-          <div className="w-8 h-8 rounded-lg bg-amber-500/20 flex items-center justify-center">
-            <Zap className="w-4 h-4 text-amber-400" />
-          </div>
-          <div>
-            <div className="text-[7px] text-amber-400 font-medium">IF</div>
-            <div className="text-[7px] text-foreground/80">Meeting is booked</div>
-          </div>
+      {/* Request sent */}
+      <div 
+        className="flex items-center gap-2 p-2 bg-primary/10 rounded-lg border border-primary/30 mb-2"
+        style={{ animation: 'referralSend 6s ease-out infinite' }}
+      >
+        <Mail className="w-4 h-4 text-primary" />
+        <div className="flex-1">
+          <div className="text-[7px] text-foreground/80">Request sent to John D.</div>
+          <div className="text-[5px] text-muted-foreground">"Know anyone who could benefit?"</div>
         </div>
-        
-        {/* Arrow */}
-        <div className="flex justify-center">
-          <div className="w-0.5 h-3 bg-gradient-to-b from-amber-500/40 to-emerald-500/40" />
+        <span className="text-[6px] text-primary">✓</span>
+      </div>
+      
+      {/* Referral form submission */}
+      <div 
+        className="flex items-center gap-2 p-2 bg-emerald-500/10 rounded-lg border border-emerald-500/30"
+        style={{ animation: 'referralForm 6s ease-out infinite' }}
+      >
+        <div className="w-4 h-4 rounded-full bg-emerald-500/30 flex items-center justify-center">
+          <span className="text-[6px] font-bold text-emerald-400">S</span>
         </div>
-        
-        {/* THEN actions */}
-        <div className="flex items-center gap-2 p-2 bg-emerald-500/10 rounded-lg border border-emerald-500/30 animate-[triggerPulse_4s_ease-in-out_infinite]" style={{ animationDelay: '1s' }}>
-          <div className="w-8 h-8 rounded-lg bg-emerald-500/20 flex items-center justify-center">
-            <span className="text-[10px]">✓</span>
-          </div>
-          <div>
-            <div className="text-[7px] text-emerald-400 font-medium">THEN</div>
-            <div className="text-[7px] text-foreground/80">Send confirmation + Create task</div>
-          </div>
+        <div className="flex-1">
+          <div className="text-[7px] text-foreground/80">Sarah Mitchell submitted</div>
+          <div className="text-[5px] text-muted-foreground">Referred by John Davidson</div>
+        </div>
+        <div 
+          className="px-1.5 py-0.5 bg-emerald-500/30 rounded text-[5px] text-emerald-400"
+          style={{ animation: 'referralSuccess 6s ease-out infinite' }}
+        >
+          New Lead
         </div>
       </div>
     </div>
@@ -1254,10 +1289,10 @@ const categories: Category[] = [
         animation: <AppointmentRemindersAnimation />
       },
       {
-        icon: MousePointer,
-        title: "Triggers & Actions",
-        description: "If-this-then-that logic for any event",
-        animation: <TriggerAnimation />
+        icon: Users,
+        title: "Referral Requests",
+        description: "Generate more referrals with automated requests and easy submission forms",
+        animation: <ReferralRequestsAnimation />
       }
     ]
   },
