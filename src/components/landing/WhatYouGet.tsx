@@ -1624,19 +1624,19 @@ const MobilePipelineAnimation = () => (
         <div className="flex gap-0.5 mb-1.5">
           <div 
             className="flex-1 text-center py-0.5 rounded text-[3px] font-medium"
-            style={{ animation: 'stageActive 6s ease-in-out infinite' }}
+            style={{ animation: 'stageActive1 6s ease-in-out infinite' }}
           >
             Leads
           </div>
           <div 
             className="flex-1 text-center py-0.5 rounded text-[3px] font-medium"
-            style={{ animation: 'stageActive 6s ease-in-out infinite', animationDelay: '2s' }}
+            style={{ animation: 'stageActive2 6s ease-in-out infinite' }}
           >
             Meeting
           </div>
           <div 
             className="flex-1 text-center py-0.5 rounded text-[3px] font-medium"
-            style={{ animation: 'stageActive 6s ease-in-out infinite', animationDelay: '4s' }}
+            style={{ animation: 'stageActive3 6s ease-in-out infinite' }}
           >
             Won
           </div>
@@ -1647,7 +1647,7 @@ const MobilePipelineAnimation = () => (
           {/* Stage 1: Leads */}
           <div 
             className="absolute inset-0 space-y-0.5"
-            style={{ animation: 'stageSwipe 6s ease-in-out infinite' }}
+            style={{ animation: 'stageSwipe1 6s ease-in-out infinite' }}
           >
             <div className="bg-slate-800/60 rounded p-1 border border-slate-700/50">
               <div className="flex items-center gap-1">
@@ -1676,7 +1676,7 @@ const MobilePipelineAnimation = () => (
           {/* Stage 2: Meeting */}
           <div 
             className="absolute inset-0 space-y-0.5"
-            style={{ animation: 'stageSwipe 6s ease-in-out infinite', animationDelay: '2s' }}
+            style={{ animation: 'stageSwipe2 6s ease-in-out infinite' }}
           >
             <div className="bg-rose-500/20 rounded p-1 border border-rose-500/30">
               <div className="flex items-center gap-1">
@@ -1705,7 +1705,7 @@ const MobilePipelineAnimation = () => (
           {/* Stage 3: Won */}
           <div 
             className="absolute inset-0 space-y-0.5"
-            style={{ animation: 'stageSwipe 6s ease-in-out infinite', animationDelay: '4s' }}
+            style={{ animation: 'stageSwipe3 6s ease-in-out infinite' }}
           >
             <div className="bg-emerald-500/20 rounded p-1 border border-emerald-500/30">
               <div className="flex items-center gap-1">
@@ -1735,15 +1735,40 @@ const MobilePipelineAnimation = () => (
     </PhoneFrame>
     
     <style>{`
-      @keyframes stageActive {
-        0%, 28% { background: hsl(217 91% 60% / 0.3); color: white; }
-        33%, 95% { background: transparent; color: hsl(0 0% 60%); }
-        100% { background: hsl(217 91% 60% / 0.3); color: white; }
+      @keyframes stageActive1 {
+        0%, 30% { background: hsl(217 91% 60% / 0.3); color: white; }
+        33.33%, 100% { background: transparent; color: hsl(0 0% 60%); }
       }
-      @keyframes stageSwipe {
-        0%, 5% { opacity: 0; transform: translateX(100%); }
-        10%, 28% { opacity: 1; transform: translateX(0); }
-        33%, 100% { opacity: 0; transform: translateX(-100%); }
+      @keyframes stageActive2 {
+        0%, 33.32% { background: transparent; color: hsl(0 0% 60%); }
+        33.33%, 63.33% { background: hsl(217 91% 60% / 0.3); color: white; }
+        66.66%, 100% { background: transparent; color: hsl(0 0% 60%); }
+      }
+      @keyframes stageActive3 {
+        0%, 66.65% { background: transparent; color: hsl(0 0% 60%); }
+        66.66%, 96.66% { background: hsl(217 91% 60% / 0.3); color: white; }
+        100% { background: transparent; color: hsl(0 0% 60%); }
+      }
+      @keyframes stageSwipe1 {
+        0% { opacity: 1; transform: translateX(0); }
+        30% { opacity: 1; transform: translateX(0); }
+        33.33% { opacity: 0; transform: translateX(-100%); }
+        100% { opacity: 0; transform: translateX(-100%); }
+      }
+      @keyframes stageSwipe2 {
+        0%, 33.32% { opacity: 0; transform: translateX(100%); }
+        33.33% { opacity: 0; transform: translateX(100%); }
+        36% { opacity: 1; transform: translateX(0); }
+        63.33% { opacity: 1; transform: translateX(0); }
+        66.66% { opacity: 0; transform: translateX(-100%); }
+        100% { opacity: 0; transform: translateX(-100%); }
+      }
+      @keyframes stageSwipe3 {
+        0%, 66.65% { opacity: 0; transform: translateX(100%); }
+        66.66% { opacity: 0; transform: translateX(100%); }
+        69% { opacity: 1; transform: translateX(0); }
+        96.66% { opacity: 1; transform: translateX(0); }
+        100% { opacity: 0; transform: translateX(0); }
       }
     `}</style>
   </div>
