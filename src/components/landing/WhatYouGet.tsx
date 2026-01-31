@@ -142,48 +142,81 @@ const ContactAnimation = () => (
 
 const PipelineAnimation = () => {
   return (
-    <div className="relative h-40 flex items-center justify-center p-3">
-      <div className="flex items-end gap-4">
-        {/* Lead Stage */}
-        <div className="flex flex-col items-center">
-          <div className="w-16 bg-card/80 rounded-lg p-2 border border-blue-500/30 mb-2 animate-[pipelineCardMove_4s_ease-in-out_infinite]">
-            <div className="w-8 h-8 mx-auto rounded-full bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center mb-1">
-              <span className="text-[8px] font-bold text-white">JD</span>
-            </div>
-            <div className="text-[7px] text-foreground/60 text-center">New Lead</div>
-          </div>
-          <div className="h-1 w-12 rounded-full bg-blue-500 mb-1" />
-          <span className="text-[9px] font-medium text-foreground/70">Lead</span>
+    <div className="relative h-40 flex items-center justify-center p-2">
+      <div className="w-full h-full bg-card/40 rounded-lg border border-border/40 overflow-hidden">
+        {/* Header */}
+        <div className="h-5 bg-muted/30 border-b border-border/30 flex items-center px-2">
+          <span className="text-[7px] text-muted-foreground font-medium">Sales Pipeline</span>
         </div>
-
-        {/* Arrow */}
-        <div className="text-muted-foreground/40 mb-8">→</div>
-
-        {/* Meeting Stage */}
-        <div className="flex flex-col items-center">
-          <div className="w-16 bg-card/80 rounded-lg p-2 border border-primary/40 mb-2 animate-[pipelineCardPulse_2s_ease-in-out_infinite]">
-            <div className="w-8 h-8 mx-auto rounded-full bg-gradient-to-br from-purple-400 to-purple-600 flex items-center justify-center mb-1">
-              <span className="text-[8px] font-bold text-white">MK</span>
+        
+        {/* Pipeline columns */}
+        <div className="flex h-[calc(100%-20px)]">
+          {/* Lead Column */}
+          <div className="flex-1 border-r border-border/20 p-1.5">
+            <div className="flex items-center gap-1 mb-1.5">
+              <div className="w-1.5 h-1.5 rounded-full bg-blue-500" />
+              <span className="text-[7px] font-medium text-foreground/80">Lead</span>
+              <span className="text-[6px] text-muted-foreground ml-auto">2</span>
             </div>
-            <div className="text-[7px] text-foreground/60 text-center">Scheduled</div>
-          </div>
-          <div className="h-1 w-12 rounded-full bg-cyan-500 mb-1" />
-          <span className="text-[9px] font-medium text-foreground/70">Meeting</span>
-        </div>
-
-        {/* Arrow */}
-        <div className="text-muted-foreground/40 mb-8">→</div>
-
-        {/* Won Stage */}
-        <div className="flex flex-col items-center">
-          <div className="w-16 bg-emerald-500/10 rounded-lg p-2 border border-emerald-500/30 mb-2">
-            <div className="w-8 h-8 mx-auto rounded-full bg-emerald-500 flex items-center justify-center mb-1">
-              <span className="text-[10px] text-white">✓</span>
+            <div className="space-y-1">
+              <div className="bg-card/60 rounded p-1.5 border border-border/30">
+                <div className="flex items-center gap-1.5">
+                  <div className="w-5 h-5 rounded-full bg-gradient-to-br from-slate-400 to-slate-600 flex items-center justify-center">
+                    <span className="text-[6px] font-bold text-white">SK</span>
+                  </div>
+                  <div>
+                    <div className="text-[6px] font-medium text-foreground/80">S. Kim</div>
+                    <div className="text-[5px] text-muted-foreground">New inquiry</div>
+                  </div>
+                </div>
+              </div>
             </div>
-            <div className="text-[7px] text-emerald-400 text-center">Signed!</div>
           </div>
-          <div className="h-1 w-12 rounded-full bg-emerald-500 mb-1" />
-          <span className="text-[9px] font-medium text-foreground/70">Won</span>
+          
+          {/* Meeting Column */}
+          <div className="flex-1 border-r border-border/20 p-1.5">
+            <div className="flex items-center gap-1 mb-1.5">
+              <div className="w-1.5 h-1.5 rounded-full bg-cyan-500" />
+              <span className="text-[7px] font-medium text-foreground/80">Meeting</span>
+              <span className="text-[6px] text-muted-foreground ml-auto">1</span>
+            </div>
+            <div className="space-y-1">
+              {/* Animated card moving through */}
+              <div className="bg-primary/10 rounded p-1.5 border border-primary/40 animate-[pipelineCardPulse_2s_ease-in-out_infinite]">
+                <div className="flex items-center gap-1.5">
+                  <div className="w-5 h-5 rounded-full bg-gradient-to-br from-primary to-blue-600 flex items-center justify-center">
+                    <span className="text-[6px] font-bold text-white">JD</span>
+                  </div>
+                  <div>
+                    <div className="text-[6px] font-medium text-foreground/80">J. Davidson</div>
+                    <div className="text-[5px] text-primary">Call scheduled</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          {/* Won Column */}
+          <div className="flex-1 p-1.5">
+            <div className="flex items-center gap-1 mb-1.5">
+              <div className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
+              <span className="text-[7px] font-medium text-foreground/80">Won</span>
+              <span className="text-[6px] text-muted-foreground ml-auto">3</span>
+            </div>
+            <div className="space-y-1">
+              <div className="bg-emerald-500/10 rounded p-1.5 border border-emerald-500/30">
+                <div className="flex items-center gap-1.5">
+                  <div className="w-5 h-5 rounded-full bg-emerald-500 flex items-center justify-center">
+                    <span className="text-[7px] text-white">✓</span>
+                  </div>
+                  <div>
+                    <div className="text-[6px] font-medium text-foreground/80">M. Chen</div>
+                    <div className="text-[5px] text-emerald-400">$850K signed</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
