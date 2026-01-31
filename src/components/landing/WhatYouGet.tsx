@@ -694,31 +694,107 @@ const SMSAnimation = () => (
 
 const SocialAnimation = () => (
   <div className="relative h-40 flex items-center justify-center p-3">
-    <div className="w-full bg-card/30 rounded-lg border border-border/30 p-4">
-      <div className="flex items-center gap-4">
-        {/* Central hub */}
-        <div className="relative">
-          <div className="w-14 h-14 rounded-xl bg-primary/10 border border-primary/30 flex items-center justify-center animate-[hubGlow_3s_ease-in-out_infinite]">
-            <Share2 className="w-6 h-6 text-primary" />
+    <style>{`
+      @keyframes aiTyping {
+        0%, 100% { width: 0; }
+        20%, 80% { width: 100%; }
+      }
+      @keyframes cursorBlink {
+        0%, 50% { opacity: 1; }
+        51%, 100% { opacity: 0; }
+      }
+      @keyframes sendButtonPulse {
+        0%, 70% { transform: scale(1); background: rgba(59, 130, 246, 0.3); }
+        75% { transform: scale(1.1); background: rgba(59, 130, 246, 0.6); }
+        80%, 100% { transform: scale(1); background: rgba(16, 185, 129, 0.4); }
+      }
+      @keyframes sendCheck {
+        0%, 75% { opacity: 0; transform: scale(0); }
+        80%, 100% { opacity: 1; transform: scale(1); }
+      }
+      @keyframes sendArrow {
+        0%, 75% { opacity: 1; }
+        80%, 100% { opacity: 0; }
+      }
+      @keyframes platformNotify {
+        0%, 80% { opacity: 0; transform: translateY(4px); }
+        85%, 95% { opacity: 1; transform: translateY(0); }
+        100% { opacity: 0; transform: translateY(-4px); }
+      }
+    `}</style>
+    <div className="w-full bg-card/30 rounded-lg border border-border/30 p-3">
+      {/* Header */}
+      <div className="flex items-center justify-between mb-2">
+        <div className="flex items-center gap-1.5">
+          <div className="w-4 h-4 rounded bg-gradient-to-br from-violet-500 to-primary flex items-center justify-center">
+            <span className="text-[6px]">✨</span>
+          </div>
+          <span className="text-[7px] font-medium text-foreground">AI Content Studio</span>
+        </div>
+        <div className="flex gap-1">
+          <div className="w-4 h-4 rounded bg-blue-600/30 flex items-center justify-center" title="LinkedIn">
+            <span className="text-[6px] font-bold text-blue-400">in</span>
           </div>
         </div>
-        
-        {/* Platform icons */}
-        <div className="flex-1 grid grid-cols-3 gap-2">
-          {[
-            { name: "LinkedIn", color: "bg-blue-500/20 border-blue-500/30 text-blue-400", delay: "0s" },
-            { name: "Facebook", color: "bg-indigo-500/20 border-indigo-500/30 text-indigo-400", delay: "0.3s" },
-            { name: "Instagram", color: "bg-pink-500/20 border-pink-500/30 text-pink-400", delay: "0.6s" }
-          ].map((platform) => (
+      </div>
+      
+      {/* AI Drafting Area */}
+      <div className="bg-card/50 rounded-lg border border-border/50 p-2 mb-2">
+        <div className="relative overflow-hidden">
+          <div 
+            className="text-[7px] text-foreground/80 whitespace-nowrap overflow-hidden"
+            style={{ animation: 'aiTyping 6s ease-in-out infinite' }}
+          >
+            Planning for retirement? Here are 5 key strategies every pre-retiree should know...
+          </div>
+          <div 
+            className="absolute right-0 top-0 w-0.5 h-3 bg-primary"
+            style={{ animation: 'cursorBlink 0.8s step-end infinite' }}
+          />
+        </div>
+        <div className="flex items-center gap-1 mt-1.5">
+          <div className="w-3 h-3 rounded bg-violet-500/20 flex items-center justify-center">
+            <span className="text-[5px]">✨</span>
+          </div>
+          <span className="text-[5px] text-violet-400">AI Generated</span>
+        </div>
+      </div>
+      
+      {/* Action Bar */}
+      <div className="flex items-center justify-between">
+        <div className="flex gap-1">
+          {['LinkedIn', 'Facebook', 'X'].map((p, i) => (
             <div 
-              key={platform.name}
-              className={`p-2 rounded-lg border ${platform.color} animate-[platformPulse_3s_ease-in-out_infinite]`}
-              style={{ animationDelay: platform.delay }}
+              key={p}
+              className="relative px-1.5 py-0.5 bg-blue-500/10 rounded border border-blue-500/20"
             >
-              <div className="text-[7px] font-medium mb-1">{platform.name}</div>
-              <div className="text-[5px] opacity-70">Scheduled</div>
+              <span className="text-[5px] text-blue-400">{p}</span>
+              <div 
+                className="absolute -top-1 -right-1 w-2 h-2 bg-emerald-500 rounded-full flex items-center justify-center"
+                style={{ animation: 'platformNotify 6s ease-in-out infinite', animationDelay: `${i * 0.1}s` }}
+              >
+                <span className="text-[4px] text-white">✓</span>
+              </div>
             </div>
           ))}
+        </div>
+        
+        {/* Send Button */}
+        <div 
+          className="px-2 py-1 rounded-lg border border-primary/40 flex items-center gap-1 cursor-pointer"
+          style={{ animation: 'sendButtonPulse 6s ease-in-out infinite' }}
+        >
+          <span className="text-[6px] font-medium text-primary">Post</span>
+          <div className="relative w-2.5 h-2.5">
+            <span 
+              className="absolute inset-0 flex items-center justify-center text-[6px] text-primary"
+              style={{ animation: 'sendArrow 6s ease-in-out infinite' }}
+            >→</span>
+            <span 
+              className="absolute inset-0 flex items-center justify-center text-[6px] text-emerald-400"
+              style={{ animation: 'sendCheck 6s ease-in-out infinite' }}
+            >✓</span>
+          </div>
         </div>
       </div>
     </div>
@@ -1108,9 +1184,9 @@ const categories: Category[] = [
         animation: <SMSAnimation />
       },
       {
-        icon: Share2,
-        title: "Social Media Hub",
-        description: "Schedule and manage posts across platforms",
+        icon: Zap,
+        title: "AI Powered Social Media Management",
+        description: "Leverage AI to draft content and manage all platforms on one dashboard",
         animation: <SocialAnimation />
       }
     ]
