@@ -71,8 +71,8 @@ const InboxAnimation = () => (
         className="absolute left-2 right-2" 
         style={{ 
           top: '28px', 
-          animation: 'inboxRowSlide 6s ease-out infinite',
-          animationDelay: '0s'
+          animation: 'inboxRowSlideIn 6s ease-out infinite',
+          animationDelay: '0.5s'
         }}
       >
         <div className="flex items-center gap-2 h-6 bg-emerald-500/20 rounded-lg border border-emerald-500/30 px-2">
@@ -92,8 +92,8 @@ const InboxAnimation = () => (
         className="absolute left-2 right-2" 
         style={{ 
           top: '58px', 
-          animation: 'inboxRowSlide 6s ease-out infinite',
-          animationDelay: '0.8s'
+          animation: 'inboxRowSlideIn 6s ease-out infinite',
+          animationDelay: '1.3s'
         }}
       >
         <div className="flex items-center gap-2 h-6 bg-primary/20 rounded-lg border border-primary/30 px-2">
@@ -113,8 +113,8 @@ const InboxAnimation = () => (
         className="absolute left-2 right-2" 
         style={{ 
           top: '88px', 
-          animation: 'inboxRowSlide 6s ease-out infinite',
-          animationDelay: '1.6s'
+          animation: 'inboxRowSlideIn 6s ease-out infinite',
+          animationDelay: '2.1s'
         }}
       >
         <div className="flex items-center gap-2 h-6 bg-blue-500/20 rounded-lg border border-blue-500/30 px-2">
@@ -129,24 +129,12 @@ const InboxAnimation = () => (
         </div>
       </div>
       
-      {/* Notification badge */}
-      <div 
-        className="absolute -top-1 -right-1 w-6 h-6 bg-primary rounded-full flex items-center justify-center shadow-lg shadow-primary/30"
-        style={{ animation: 'inboxBadgePop 6s ease-out infinite' }}
-      >
-        <span className="text-[10px] font-bold text-primary-foreground">3</span>
-      </div>
-      
       <style>{`
-        @keyframes inboxRowSlide {
-          0%, 2% { opacity: 0; transform: translateX(-20px); }
-          10%, 75% { opacity: 1; transform: translateX(0); }
+        @keyframes inboxRowSlideIn {
+          0% { opacity: 0; transform: translateX(-20px); }
+          8% { opacity: 1; transform: translateX(0); }
+          75% { opacity: 1; transform: translateX(0); }
           85%, 100% { opacity: 0; transform: translateX(-20px); }
-        }
-        @keyframes inboxBadgePop {
-          0%, 25% { opacity: 0; transform: scale(0); }
-          35%, 75% { opacity: 1; transform: scale(1); }
-          85%, 100% { opacity: 0; transform: scale(0); }
         }
       `}</style>
     </div>
