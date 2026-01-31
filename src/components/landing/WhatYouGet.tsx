@@ -2119,8 +2119,8 @@ const WhatYouGet = () => {
                         style={{ animationDelay: `${index * 100}ms` }}
                       >
                         <div className="flex gap-6 items-start">
-                          {/* Large Animation area */}
-                          <div className="w-56 lg:w-72 flex-shrink-0 bg-muted/30 rounded-xl overflow-hidden border border-border/30">
+                          {/* Large Animation area - grayscale/paused by default, colorful/playing on hover */}
+                          <div className="w-56 lg:w-72 flex-shrink-0 bg-muted/30 rounded-xl overflow-hidden border border-border/30 [filter:grayscale(100%)] opacity-60 group-hover:[filter:grayscale(0%)] group-hover:opacity-100 transition-all duration-300 [&_*]:[animation-play-state:paused] group-hover:[&_*]:[animation-play-state:running]">
                             <div className="transform scale-110 origin-center">
                               {feature.animation}
                             </div>
