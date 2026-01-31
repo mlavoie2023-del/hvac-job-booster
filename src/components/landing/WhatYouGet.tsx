@@ -144,20 +144,6 @@ const PipelineAnimation = () => {
   return (
     <div className="relative h-40 flex items-center justify-center p-2">
       <style>{`
-        @keyframes moveContact1 {
-          0%, 20% { transform: translateX(0); opacity: 1; }
-          25% { transform: translateX(calc(100% + 8px)); opacity: 1; }
-          25.1%, 45% { transform: translateX(calc(100% + 8px)); opacity: 1; }
-          50% { transform: translateX(calc(200% + 16px)); opacity: 1; }
-          50.1%, 100% { transform: translateX(calc(200% + 16px)); opacity: 1; }
-        }
-        @keyframes moveContact2 {
-          0%, 50% { transform: translateX(0); opacity: 1; }
-          55% { transform: translateX(calc(100% + 8px)); opacity: 1; }
-          55.1%, 75% { transform: translateX(calc(100% + 8px)); opacity: 1; }
-          80% { transform: translateX(calc(200% + 16px)); opacity: 1; }
-          80.1%, 100% { transform: translateX(calc(200% + 16px)); opacity: 1; }
-        }
         @keyframes toGreen1 {
           0%, 49% { background: linear-gradient(135deg, #94a3b8, #64748b); }
           50%, 100% { background: #10b981; }
@@ -190,14 +176,6 @@ const PipelineAnimation = () => {
           0%, 79% { background: rgba(59, 130, 246, 0.1); border-color: rgba(59, 130, 246, 0.4); }
           80%, 100% { background: rgba(16, 185, 129, 0.1); border-color: rgba(16, 185, 129, 0.3); }
         }
-        @keyframes statusToGreen1 {
-          0%, 49% { color: #94a3b8; }
-          50%, 100% { color: #34d399; }
-        }
-        @keyframes statusToGreen2 {
-          0%, 79% { color: #3b82f6; }
-          80%, 100% { color: #34d399; }
-        }
         @keyframes statusText1 {
           0%, 49% { opacity: 1; }
           49.9% { opacity: 0; }
@@ -216,6 +194,17 @@ const PipelineAnimation = () => {
           0%, 79% { opacity: 0; }
           80%, 100% { opacity: 1; }
         }
+        /* Card 1: Lead -> Meeting -> Won (stacks at top of Won) */
+        @keyframes card1Move {
+          0%, 15% { left: 0; top: 0; }
+          20%, 40% { left: calc(33.33% + 4px); top: 0; }
+          45%, 100% { left: calc(66.66% + 8px); top: 0; }
+        }
+        /* Card 2: Meeting -> Won (stacks below card 1) */
+        @keyframes card2Move {
+          0%, 55% { left: calc(33.33% + 4px); top: 0; }
+          60%, 100% { left: calc(66.66% + 8px); top: 32px; }
+        }
       `}</style>
       <div className="w-full h-full bg-card/40 rounded-lg border border-border/40 overflow-hidden">
         {/* Header */}
@@ -224,42 +213,12 @@ const PipelineAnimation = () => {
         </div>
         
         {/* Pipeline columns */}
-        <div className="flex h-[calc(100%-20px)]">
+        <div className="flex h-[calc(100%-20px)] relative">
           {/* Lead Column */}
           <div className="flex-1 border-r border-border/20 p-1.5">
             <div className="flex items-center gap-1 mb-1.5">
               <div className="w-1.5 h-1.5 rounded-full bg-blue-500" />
               <span className="text-[7px] font-medium text-foreground/80">Lead</span>
-            </div>
-            <div className="space-y-1">
-              {/* Contact 1 - S. Kim - moves through stages */}
-              <div 
-                className="rounded p-1.5 border"
-                style={{ animation: 'moveContact1 8s ease-in-out infinite, cardToGreen1 8s ease-in-out infinite' }}
-              >
-                <div className="flex items-center gap-1.5">
-                  <div 
-                    className="w-5 h-5 rounded-full flex items-center justify-center relative"
-                    style={{ animation: 'toGreen1 8s ease-in-out infinite' }}
-                  >
-                    <span 
-                      className="text-[6px] font-bold text-white absolute"
-                      style={{ animation: 'hideInitials1 8s ease-in-out infinite' }}
-                    >SK</span>
-                    <span 
-                      className="text-[7px] text-white absolute"
-                      style={{ animation: 'showCheck1 8s ease-in-out infinite' }}
-                    >✓</span>
-                  </div>
-                  <div>
-                    <div className="text-[6px] font-medium text-foreground/80">S. Kim</div>
-                    <div className="text-[5px] relative">
-                      <span style={{ animation: 'statusText1 8s ease-in-out infinite' }} className="text-slate-400">New inquiry</span>
-                      <span style={{ animation: 'wonText1 8s ease-in-out infinite' }} className="text-emerald-400 absolute left-0">$720K signed</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
             </div>
           </div>
           
@@ -269,36 +228,6 @@ const PipelineAnimation = () => {
               <div className="w-1.5 h-1.5 rounded-full bg-cyan-500" />
               <span className="text-[7px] font-medium text-foreground/80">Meeting</span>
             </div>
-            <div className="space-y-1">
-              {/* Contact 2 - J. Davidson - moves through stages with delay */}
-              <div 
-                className="rounded p-1.5 border"
-                style={{ animation: 'moveContact2 8s ease-in-out infinite, cardToGreen2 8s ease-in-out infinite' }}
-              >
-                <div className="flex items-center gap-1.5">
-                  <div 
-                    className="w-5 h-5 rounded-full flex items-center justify-center relative"
-                    style={{ animation: 'toGreen2 8s ease-in-out infinite' }}
-                  >
-                    <span 
-                      className="text-[6px] font-bold text-white absolute"
-                      style={{ animation: 'hideInitials2 8s ease-in-out infinite' }}
-                    >JD</span>
-                    <span 
-                      className="text-[7px] text-white absolute"
-                      style={{ animation: 'showCheck2 8s ease-in-out infinite' }}
-                    >✓</span>
-                  </div>
-                  <div>
-                    <div className="text-[6px] font-medium text-foreground/80">J. Davidson</div>
-                    <div className="text-[5px] relative">
-                      <span style={{ animation: 'statusText2 8s ease-in-out infinite' }} className="text-primary">Call scheduled</span>
-                      <span style={{ animation: 'wonText2 8s ease-in-out infinite' }} className="text-emerald-400 absolute left-0">$1.2M signed</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
           </div>
           
           {/* Won Column */}
@@ -307,17 +236,80 @@ const PipelineAnimation = () => {
               <div className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
               <span className="text-[7px] font-medium text-foreground/80">Won</span>
             </div>
-            <div className="space-y-1">
-              {/* Static won contact */}
-              <div className="bg-emerald-500/10 rounded p-1.5 border border-emerald-500/30">
-                <div className="flex items-center gap-1.5">
-                  <div className="w-5 h-5 rounded-full bg-emerald-500 flex items-center justify-center">
-                    <span className="text-[7px] text-white">✓</span>
+          </div>
+
+          {/* Animated cards container - positioned absolutely */}
+          <div className="absolute inset-0 top-5 p-1.5">
+            {/* Contact 1 - S. Kim - starts in Lead, moves to Won */}
+            <div 
+              className="absolute rounded p-1.5 border w-[calc(33.33%-8px)]"
+              style={{ animation: 'card1Move 10s ease-in-out infinite, cardToGreen1 10s ease-in-out infinite' }}
+            >
+              <div className="flex items-center gap-1.5">
+                <div 
+                  className="w-5 h-5 rounded-full flex items-center justify-center relative"
+                  style={{ animation: 'toGreen1 10s ease-in-out infinite' }}
+                >
+                  <span 
+                    className="text-[6px] font-bold text-white absolute"
+                    style={{ animation: 'hideInitials1 10s ease-in-out infinite' }}
+                  >SK</span>
+                  <span 
+                    className="text-[7px] text-white absolute"
+                    style={{ animation: 'showCheck1 10s ease-in-out infinite' }}
+                  >✓</span>
+                </div>
+                <div>
+                  <div className="text-[6px] font-medium text-foreground/80">S. Kim</div>
+                  <div className="text-[5px] relative h-3">
+                    <span style={{ animation: 'statusText1 10s ease-in-out infinite' }} className="text-slate-400 absolute">New inquiry</span>
+                    <span style={{ animation: 'wonText1 10s ease-in-out infinite' }} className="text-emerald-400 absolute">$720K signed</span>
                   </div>
-                  <div>
-                    <div className="text-[6px] font-medium text-foreground/80">M. Chen</div>
-                    <div className="text-[5px] text-emerald-400">$850K signed</div>
+                </div>
+              </div>
+            </div>
+
+            {/* Contact 2 - J. Davidson - starts in Meeting, moves to Won (below card 1) */}
+            <div 
+              className="absolute rounded p-1.5 border w-[calc(33.33%-8px)]"
+              style={{ animation: 'card2Move 10s ease-in-out infinite, cardToGreen2 10s ease-in-out infinite' }}
+            >
+              <div className="flex items-center gap-1.5">
+                <div 
+                  className="w-5 h-5 rounded-full flex items-center justify-center relative"
+                  style={{ animation: 'toGreen2 10s ease-in-out infinite' }}
+                >
+                  <span 
+                    className="text-[6px] font-bold text-white absolute"
+                    style={{ animation: 'hideInitials2 10s ease-in-out infinite' }}
+                  >JD</span>
+                  <span 
+                    className="text-[7px] text-white absolute"
+                    style={{ animation: 'showCheck2 10s ease-in-out infinite' }}
+                  >✓</span>
+                </div>
+                <div>
+                  <div className="text-[6px] font-medium text-foreground/80">J. Davidson</div>
+                  <div className="text-[5px] relative h-3">
+                    <span style={{ animation: 'statusText2 10s ease-in-out infinite' }} className="text-primary absolute">Call scheduled</span>
+                    <span style={{ animation: 'wonText2 10s ease-in-out infinite' }} className="text-emerald-400 absolute">$1.2M signed</span>
                   </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Static won contact - M. Chen - always at bottom of Won column */}
+            <div 
+              className="absolute rounded p-1.5 border w-[calc(33.33%-8px)] bg-emerald-500/10 border-emerald-500/30"
+              style={{ left: 'calc(66.66% + 8px)', top: '64px' }}
+            >
+              <div className="flex items-center gap-1.5">
+                <div className="w-5 h-5 rounded-full bg-emerald-500 flex items-center justify-center">
+                  <span className="text-[7px] text-white">✓</span>
+                </div>
+                <div>
+                  <div className="text-[6px] font-medium text-foreground/80">M. Chen</div>
+                  <div className="text-[5px] text-emerald-400">$850K signed</div>
                 </div>
               </div>
             </div>
