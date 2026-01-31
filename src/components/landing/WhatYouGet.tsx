@@ -30,7 +30,8 @@ import {
   Phone,
   Globe,
   ClipboardCheck,
-  Filter
+  Filter,
+  Linkedin
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import lavoieLogo from "@/assets/lavoie-logo-square.png";
@@ -57,55 +58,97 @@ interface Category {
 const InboxAnimation = () => (
   <div className="relative h-40 flex items-center justify-center p-3">
     <div className="relative w-full h-32 bg-card/50 rounded-lg border border-border/50 overflow-hidden">
-      <div className="h-5 bg-primary/10 border-b border-border/30 flex items-center px-2 gap-1">
+      {/* Browser chrome */}
+      <div className="h-5 bg-muted/40 border-b border-border/30 flex items-center px-2 gap-1">
         <div className="w-1.5 h-1.5 rounded-full bg-red-400/60" />
         <div className="w-1.5 h-1.5 rounded-full bg-yellow-400/60" />
         <div className="w-1.5 h-1.5 rounded-full bg-green-400/60" />
         <span className="ml-2 text-[7px] text-muted-foreground font-medium">Unified Inbox</span>
       </div>
       
-      <div className="absolute left-2 right-2 animate-[inboxSlide_6s_ease-in-out_infinite]" style={{ top: '28px', animationDelay: '0s' }}>
-        <div className="flex items-center gap-2 h-6 bg-emerald-500/15 rounded border-l-2 border-emerald-500 px-2">
+      {/* SMS Row - slides in first */}
+      <div 
+        className="absolute left-2 right-2" 
+        style={{ 
+          top: '28px', 
+          animation: 'inboxRowSlide 6s ease-out infinite',
+          animationDelay: '0s'
+        }}
+      >
+        <div className="flex items-center gap-2 h-6 bg-emerald-500/20 rounded-lg border border-emerald-500/30 px-2">
           <div className="w-4 h-4 rounded bg-emerald-500/30 flex items-center justify-center">
-            <span className="text-[7px]">💬</span>
+            <MessageSquare className="w-2.5 h-2.5 text-emerald-400" />
           </div>
           <div className="flex-1">
-            <div className="h-1.5 w-12 bg-emerald-500/30 rounded mb-0.5" />
-            <div className="h-1 w-20 bg-emerald-500/20 rounded" />
+            <div className="h-1.5 w-16 bg-emerald-500/40 rounded mb-0.5" />
+            <div className="h-1 w-24 bg-emerald-500/20 rounded" />
           </div>
-          <span className="text-[6px] text-emerald-400">SMS</span>
+          <span className="text-[6px] font-medium text-emerald-400">SMS</span>
         </div>
       </div>
       
-      <div className="absolute left-2 right-2 animate-[inboxSlide_6s_ease-in-out_infinite]" style={{ top: '58px', animationDelay: '2s' }}>
-        <div className="flex items-center gap-2 h-6 bg-primary/15 rounded border-l-2 border-primary px-2">
+      {/* Email Row - slides in second */}
+      <div 
+        className="absolute left-2 right-2" 
+        style={{ 
+          top: '58px', 
+          animation: 'inboxRowSlide 6s ease-out infinite',
+          animationDelay: '0.8s'
+        }}
+      >
+        <div className="flex items-center gap-2 h-6 bg-primary/20 rounded-lg border border-primary/30 px-2">
           <div className="w-4 h-4 rounded bg-primary/30 flex items-center justify-center">
-            <span className="text-[7px]">✉️</span>
+            <Mail className="w-2.5 h-2.5 text-primary" />
           </div>
           <div className="flex-1">
-            <div className="h-1.5 w-14 bg-primary/30 rounded mb-0.5" />
-            <div className="h-1 w-16 bg-primary/20 rounded" />
+            <div className="h-1.5 w-14 bg-primary/40 rounded mb-0.5" />
+            <div className="h-1 w-20 bg-primary/20 rounded" />
           </div>
-          <span className="text-[6px] text-primary">Email</span>
+          <span className="text-[6px] font-medium text-primary">Email</span>
         </div>
       </div>
       
-      <div className="absolute left-2 right-2 animate-[inboxSlide_6s_ease-in-out_infinite]" style={{ top: '88px', animationDelay: '4s' }}>
-        <div className="flex items-center gap-2 h-6 bg-blue-500/15 rounded border-l-2 border-blue-500 px-2">
+      {/* LinkedIn Row - slides in third */}
+      <div 
+        className="absolute left-2 right-2" 
+        style={{ 
+          top: '88px', 
+          animation: 'inboxRowSlide 6s ease-out infinite',
+          animationDelay: '1.6s'
+        }}
+      >
+        <div className="flex items-center gap-2 h-6 bg-blue-500/20 rounded-lg border border-blue-500/30 px-2">
           <div className="w-4 h-4 rounded bg-blue-600/40 flex items-center justify-center">
-            <span className="text-[7px] font-bold text-blue-300">in</span>
+            <Linkedin className="w-2.5 h-2.5 text-blue-400" />
           </div>
           <div className="flex-1">
-            <div className="h-1.5 w-10 bg-blue-500/30 rounded mb-0.5" />
-            <div className="h-1 w-14 bg-blue-500/20 rounded" />
+            <div className="h-1.5 w-12 bg-blue-500/40 rounded mb-0.5" />
+            <div className="h-1 w-18 bg-blue-500/20 rounded" />
           </div>
-          <span className="text-[6px] text-blue-400">LinkedIn</span>
+          <span className="text-[6px] font-medium text-blue-400">LinkedIn</span>
         </div>
       </div>
       
-      <div className="absolute -top-1 -right-1 w-6 h-6 bg-primary rounded-full flex items-center justify-center animate-[notificationPop_6s_ease-in-out_infinite] shadow-lg shadow-primary/30">
+      {/* Notification badge */}
+      <div 
+        className="absolute -top-1 -right-1 w-6 h-6 bg-primary rounded-full flex items-center justify-center shadow-lg shadow-primary/30"
+        style={{ animation: 'inboxBadgePop 6s ease-out infinite' }}
+      >
         <span className="text-[10px] font-bold text-primary-foreground">3</span>
       </div>
+      
+      <style>{`
+        @keyframes inboxRowSlide {
+          0%, 2% { opacity: 0; transform: translateX(-20px); }
+          10%, 75% { opacity: 1; transform: translateX(0); }
+          85%, 100% { opacity: 0; transform: translateX(-20px); }
+        }
+        @keyframes inboxBadgePop {
+          0%, 25% { opacity: 0; transform: scale(0); }
+          35%, 75% { opacity: 1; transform: scale(1); }
+          85%, 100% { opacity: 0; transform: scale(0); }
+        }
+      `}</style>
     </div>
   </div>
 );
