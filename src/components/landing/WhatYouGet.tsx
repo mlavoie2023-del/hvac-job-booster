@@ -150,7 +150,7 @@ const PipelineAnimation = () => {
         </div>
         
         {/* Pipeline columns */}
-        <div className="flex h-[calc(100%-20px)] relative">
+        <div className="flex h-[calc(100%-20px)]">
           {/* Lead Column */}
           <div className="flex-1 border-r border-border/20 p-1.5">
             <div className="flex items-center gap-1 mb-1.5">
@@ -180,7 +180,20 @@ const PipelineAnimation = () => {
               <span className="text-[7px] font-medium text-foreground/80">Meeting</span>
               <span className="text-[6px] text-muted-foreground ml-auto">1</span>
             </div>
-            <div className="space-y-1" />
+            <div className="space-y-1">
+              {/* Animated card moving through */}
+              <div className="bg-primary/10 rounded p-1.5 border border-primary/40 animate-[pipelineCardPulse_2s_ease-in-out_infinite]">
+                <div className="flex items-center gap-1.5">
+                  <div className="w-5 h-5 rounded-full bg-gradient-to-br from-primary to-blue-600 flex items-center justify-center">
+                    <span className="text-[6px] font-bold text-white">JD</span>
+                  </div>
+                  <div>
+                    <div className="text-[6px] font-medium text-foreground/80">J. Davidson</div>
+                    <div className="text-[5px] text-primary">Call scheduled</div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
           
           {/* Won Column */}
@@ -200,21 +213,6 @@ const PipelineAnimation = () => {
                     <div className="text-[6px] font-medium text-foreground/80">M. Chen</div>
                     <div className="text-[5px] text-emerald-400">$850K signed</div>
                   </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          
-          {/* Animated moving card */}
-          <div className="absolute top-[26px] animate-[pipelineMove_6s_ease-in-out_infinite]" style={{ left: '6px' }}>
-            <div className="bg-primary/15 rounded p-1.5 border border-primary/50 w-[calc(33.33%-8px)] shadow-lg shadow-primary/20">
-              <div className="flex items-center gap-1.5">
-                <div className="w-5 h-5 rounded-full bg-gradient-to-br from-primary to-blue-600 flex items-center justify-center">
-                  <span className="text-[6px] font-bold text-white">JD</span>
-                </div>
-                <div>
-                  <div className="text-[6px] font-medium text-foreground/80">J. Davidson</div>
-                  <div className="text-[5px] text-primary">Moving...</div>
                 </div>
               </div>
             </div>
