@@ -1444,6 +1444,138 @@ const ESignatureAnimation = () => (
   </div>
 );
 
+// Mobile App Animation - Full phone mockup
+const MobileAppAnimation = () => (
+  <div className="relative h-40 flex items-center justify-center p-2">
+    {/* iPhone-style phone frame */}
+    <div className="relative w-32 h-[140px] bg-[#1a1a1a] rounded-[20px] border-[3px] border-[#2a2a2a] shadow-2xl overflow-hidden">
+      {/* Dynamic Island / Notch */}
+      <div className="absolute top-1.5 left-1/2 -translate-x-1/2 w-14 h-4 bg-black rounded-full z-20" />
+      
+      {/* Status bar */}
+      <div className="h-6 bg-[#0a0a0a] flex items-end justify-between px-4 pb-0.5">
+        <span className="text-[5px] text-white/60">9:41</span>
+        <div className="flex items-center gap-1">
+          <div className="w-2.5 h-1.5 border border-white/60 rounded-sm">
+            <div className="w-1.5 h-full bg-emerald-400 rounded-sm" />
+          </div>
+        </div>
+      </div>
+      
+      {/* App content */}
+      <div className="h-[calc(100%-24px)] bg-[#0f0f0f] px-2 py-1.5 overflow-hidden">
+        {/* App header */}
+        <div className="flex items-center justify-between mb-2">
+          <div className="text-[7px] font-bold text-white">Pipeline</div>
+          <div 
+            className="w-4 h-4 bg-primary rounded-full flex items-center justify-center"
+            style={{ animation: 'mobileNotifPulse 3s ease-in-out infinite' }}
+          >
+            <Bell className="w-2 h-2 text-white" />
+          </div>
+        </div>
+        
+        {/* Pipeline cards sliding in */}
+        <div className="space-y-1.5">
+          {/* Lead card */}
+          <div 
+            className="bg-slate-800/60 rounded-lg p-1.5 border border-slate-700/50"
+            style={{ animation: 'mobileCardSlide 4s ease-out infinite', animationDelay: '0s' }}
+          >
+            <div className="flex items-center gap-1.5">
+              <div className="w-4 h-4 rounded-full bg-slate-600 flex items-center justify-center">
+                <span className="text-[5px] font-bold text-white">JK</span>
+              </div>
+              <div className="flex-1 min-w-0">
+                <div className="text-[6px] font-medium text-white truncate">James Kim</div>
+                <div className="text-[5px] text-slate-400">New Lead</div>
+              </div>
+              <div className="w-1.5 h-1.5 rounded-full bg-slate-400" />
+            </div>
+          </div>
+          
+          {/* Meeting card */}
+          <div 
+            className="bg-primary/20 rounded-lg p-1.5 border border-primary/30"
+            style={{ animation: 'mobileCardSlide 4s ease-out infinite', animationDelay: '0.3s' }}
+          >
+            <div className="flex items-center gap-1.5">
+              <div className="w-4 h-4 rounded-full bg-primary flex items-center justify-center">
+                <span className="text-[5px] font-bold text-white">SD</span>
+              </div>
+              <div className="flex-1 min-w-0">
+                <div className="text-[6px] font-medium text-white truncate">Sarah Davis</div>
+                <div className="text-[5px] text-primary">Meeting Today</div>
+              </div>
+              <div className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
+            </div>
+          </div>
+          
+          {/* Won card */}
+          <div 
+            className="bg-emerald-500/20 rounded-lg p-1.5 border border-emerald-500/30"
+            style={{ animation: 'mobileCardSlide 4s ease-out infinite', animationDelay: '0.6s' }}
+          >
+            <div className="flex items-center gap-1.5">
+              <div className="w-4 h-4 rounded-full bg-emerald-500 flex items-center justify-center">
+                <span className="text-[5px] text-white">✓</span>
+              </div>
+              <div className="flex-1 min-w-0">
+                <div className="text-[6px] font-medium text-white truncate">Mike Chen</div>
+                <div className="text-[5px] text-emerald-400">$850K Signed</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        {/* Bottom nav bar */}
+        <div className="absolute bottom-0 left-0 right-0 h-6 bg-[#1a1a1a] border-t border-white/10 flex items-center justify-around px-2">
+          <Inbox className="w-3 h-3 text-white/40" />
+          <Users className="w-3 h-3 text-primary" />
+          <Calendar className="w-3 h-3 text-white/40" />
+          <Bell className="w-3 h-3 text-white/40" />
+        </div>
+      </div>
+      
+      {/* Home indicator */}
+      <div className="absolute bottom-1 left-1/2 -translate-x-1/2 w-10 h-1 bg-white/30 rounded-full" />
+    </div>
+    
+    {/* Floating notification */}
+    <div 
+      className="absolute -top-1 -right-2 w-28 bg-card/95 backdrop-blur rounded-lg border border-border/50 p-2 shadow-xl"
+      style={{ animation: 'mobileNotifSlide 4s ease-out infinite' }}
+    >
+      <div className="flex items-start gap-1.5">
+        <div className="w-5 h-5 rounded-lg bg-primary/20 flex items-center justify-center flex-shrink-0">
+          <MessageSquare className="w-3 h-3 text-primary" />
+        </div>
+        <div className="min-w-0">
+          <div className="text-[6px] font-semibold text-foreground">New Message</div>
+          <div className="text-[5px] text-muted-foreground truncate">Sarah: Looking forward to...</div>
+        </div>
+      </div>
+    </div>
+    
+    <style>{`
+      @keyframes mobileCardSlide {
+        0%, 5% { opacity: 0; transform: translateX(-10px); }
+        15%, 75% { opacity: 1; transform: translateX(0); }
+        85%, 100% { opacity: 0; transform: translateX(-10px); }
+      }
+      @keyframes mobileNotifSlide {
+        0%, 20% { opacity: 0; transform: translateY(-10px) scale(0.9); }
+        30%, 60% { opacity: 1; transform: translateY(0) scale(1); }
+        70%, 100% { opacity: 0; transform: translateY(-10px) scale(0.9); }
+      }
+      @keyframes mobileNotifPulse {
+        0%, 100% { box-shadow: 0 0 0 0 hsl(217 91% 60% / 0); }
+        50% { box-shadow: 0 0 8px 3px hsl(217 91% 60% / 0.4); }
+      }
+    `}</style>
+  </div>
+);
+
 // ============= CATEGORY DATA =============
 
 const categories: Category[] = [
@@ -1602,6 +1734,14 @@ const categories: Category[] = [
         animation: <ESignatureAnimation />
       }
     ]
+  },
+  {
+    id: "mobile-app",
+    icon: Smartphone,
+    title: "Mobile App",
+    subtitle: "Your CRM in your pocket",
+    color: "from-cyan-500 to-blue-500",
+    features: [] // Special category - uses full phone mockup instead
   }
 ];
 
@@ -1778,39 +1918,97 @@ const WhatYouGet = () => {
                     <h3 className="text-2xl lg:text-3xl font-bold text-foreground">{activeData.title}</h3>
                   </div>
                   
-                  {/* Features - Vertical Stack */}
-                  <div className="space-y-4">
-                    {activeData.features.map((feature, index) => (
-                      <div 
-                        key={feature.title}
-                        className="group relative bg-background/50 rounded-xl border border-border/50 p-5 lg:p-6 transition-all duration-300 hover:border-primary/30 hover:shadow-[0_0_30px_-10px_hsl(217_91%_60%/0.2)]"
-                        style={{ animationDelay: `${index * 100}ms` }}
-                      >
-                        <div className="flex gap-6 items-start">
-                          {/* Large Animation area */}
-                          <div className="w-56 lg:w-72 flex-shrink-0 bg-muted/30 rounded-xl overflow-hidden border border-border/30">
-                            <div className="transform scale-110 origin-center">
-                              {feature.animation}
+                  {/* Features - Vertical Stack OR Mobile App Special View */}
+                  {activeData.id === 'mobile-app' ? (
+                    // Special full-width phone mockup for Mobile App
+                    <div className="flex items-center justify-center py-6">
+                      <div className="flex flex-col lg:flex-row items-center gap-8 lg:gap-12">
+                        {/* Phone mockup - larger version */}
+                        <div className="relative">
+                          <div className="transform scale-[1.8] origin-center">
+                            <MobileAppAnimation />
+                          </div>
+                        </div>
+                        
+                        {/* Feature highlights */}
+                        <div className="flex-1 space-y-4 max-w-md">
+                          <div className="flex items-start gap-3">
+                            <div className="w-8 h-8 rounded-lg bg-cyan-500/20 flex items-center justify-center flex-shrink-0">
+                              <Bell className="w-4 h-4 text-cyan-400" />
+                            </div>
+                            <div>
+                              <div className="font-semibold text-foreground mb-1">Push Notifications</div>
+                              <div className="text-sm text-body">Never miss a lead or message with instant alerts</div>
                             </div>
                           </div>
                           
-                          {/* Content */}
-                          <div className="flex-1 py-2">
-                            <div className="flex items-center gap-3 mb-3">
-                              <div className={cn(
-                                "w-9 h-9 rounded-lg flex items-center justify-center bg-gradient-to-br",
-                                activeData.color
-                              )}>
-                                <feature.icon className="w-4 h-4 text-white" />
-                              </div>
-                              <h4 className="font-bold text-foreground text-lg lg:text-xl">{feature.title}</h4>
+                          <div className="flex items-start gap-3">
+                            <div className="w-8 h-8 rounded-lg bg-primary/20 flex items-center justify-center flex-shrink-0">
+                              <MessageSquare className="w-4 h-4 text-primary" />
                             </div>
-                            <p className="text-body leading-relaxed text-base">{feature.description}</p>
+                            <div>
+                              <div className="font-semibold text-foreground mb-1">Quick Reply</div>
+                              <div className="text-sm text-body">Respond to clients on-the-go via SMS or email</div>
+                            </div>
+                          </div>
+                          
+                          <div className="flex items-start gap-3">
+                            <div className="w-8 h-8 rounded-lg bg-emerald-500/20 flex items-center justify-center flex-shrink-0">
+                              <Users className="w-4 h-4 text-emerald-400" />
+                            </div>
+                            <div>
+                              <div className="font-semibold text-foreground mb-1">Pipeline at a Glance</div>
+                              <div className="text-sm text-body">Check your deals and contacts anywhere</div>
+                            </div>
+                          </div>
+                          
+                          <div className="flex items-start gap-3">
+                            <div className="w-8 h-8 rounded-lg bg-violet-500/20 flex items-center justify-center flex-shrink-0">
+                              <Calendar className="w-4 h-4 text-violet-400" />
+                            </div>
+                            <div>
+                              <div className="font-semibold text-foreground mb-1">Calendar Sync</div>
+                              <div className="text-sm text-body">Your schedule synced across all devices</div>
+                            </div>
                           </div>
                         </div>
                       </div>
-                    ))}
-                  </div>
+                    </div>
+                  ) : (
+                    // Standard features list
+                    <div className="space-y-4">
+                      {activeData.features.map((feature, index) => (
+                        <div 
+                          key={feature.title}
+                          className="group relative bg-background/50 rounded-xl border border-border/50 p-5 lg:p-6 transition-all duration-300 hover:border-primary/30 hover:shadow-[0_0_30px_-10px_hsl(217_91%_60%/0.2)]"
+                          style={{ animationDelay: `${index * 100}ms` }}
+                        >
+                          <div className="flex gap-6 items-start">
+                            {/* Large Animation area */}
+                            <div className="w-56 lg:w-72 flex-shrink-0 bg-muted/30 rounded-xl overflow-hidden border border-border/30">
+                              <div className="transform scale-110 origin-center">
+                                {feature.animation}
+                              </div>
+                            </div>
+                            
+                            {/* Content */}
+                            <div className="flex-1 py-2">
+                              <div className="flex items-center gap-3 mb-3">
+                                <div className={cn(
+                                  "w-9 h-9 rounded-lg flex items-center justify-center bg-gradient-to-br",
+                                  activeData.color
+                                )}>
+                                  <feature.icon className="w-4 h-4 text-white" />
+                                </div>
+                                <h4 className="font-bold text-foreground text-lg lg:text-xl">{feature.title}</h4>
+                              </div>
+                              <p className="text-body leading-relaxed text-base">{feature.description}</p>
+                            </div>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  )}
                 </div>
               )}
             </div>
