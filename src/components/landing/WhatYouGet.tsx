@@ -1174,6 +1174,12 @@ const categories: Category[] = [
     color: "from-orange-500 to-red-500",
     features: [
       {
+        icon: Send,
+        title: "AI Powered Social Media Management",
+        description: "Leverage AI to draft content and manage all platforms on one dashboard",
+        animation: <SocialAnimation />
+      },
+      {
         icon: Mail,
         title: "Email Campaigns",
         description: "Newsletters, drip sequences, and broadcasts",
@@ -1184,12 +1190,6 @@ const categories: Category[] = [
         title: "SMS Marketing",
         description: "Boost open rates with A2P compliant SMS marketing",
         animation: <SMSAnimation />
-      },
-      {
-        icon: Send,
-        title: "AI Powered Social Media Management",
-        description: "Leverage AI to draft content and manage all platforms on one dashboard",
-        animation: <SocialAnimation />
       }
     ]
   },
