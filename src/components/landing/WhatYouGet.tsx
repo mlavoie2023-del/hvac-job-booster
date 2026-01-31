@@ -142,58 +142,58 @@ const ContactAnimation = () => (
 
 const PipelineAnimation = () => {
   return (
-    <div className="relative h-40 flex items-center justify-center p-2">
+    <div className="relative h-44 flex items-center justify-center p-2">
       <div className="w-full h-full bg-card/30 rounded-lg border border-border/30 p-3 flex flex-col">
         {/* Stage Headers */}
-        <div className="flex gap-2 mb-2">
+        <div className="flex gap-3 mb-3">
           <div className="flex-1">
-            <div className="h-1 rounded-full mb-1 bg-blue-500" />
-            <span className="text-[8px] font-medium text-foreground/70">Lead</span>
+            <div className="h-1.5 rounded-full bg-blue-500" />
+            <span className="text-[9px] font-medium text-foreground/70 mt-1.5 block">Lead</span>
           </div>
           <div className="flex-1">
-            <div className="h-1 rounded-full mb-1 bg-cyan-500" />
-            <span className="text-[8px] font-medium text-foreground/70">Meeting</span>
+            <div className="h-1.5 rounded-full bg-cyan-500" />
+            <span className="text-[9px] font-medium text-foreground/70 mt-1.5 block">Meeting</span>
           </div>
           <div className="flex-1">
-            <div className="h-1 rounded-full mb-1 bg-emerald-500" />
-            <span className="text-[8px] font-medium text-foreground/70">Won</span>
+            <div className="h-1.5 rounded-full bg-emerald-500" />
+            <span className="text-[9px] font-medium text-foreground/70 mt-1.5 block">Won</span>
           </div>
         </div>
         
         {/* Pipeline Columns */}
-        <div className="flex gap-2 flex-1 min-h-0">
+        <div className="flex gap-3 flex-1">
           {/* Lead */}
-          <div className="flex-1 bg-muted/20 rounded p-1.5">
-            <div className="bg-card/80 rounded px-2 py-1.5 border border-border/40 animate-[pipelineCardMove_4s_ease-in-out_infinite]">
-              <div className="flex items-center gap-1.5">
-                <div className="w-5 h-5 rounded-full bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center shrink-0">
-                  <span className="text-[6px] font-bold text-white">JD</span>
+          <div className="flex-1 bg-muted/20 rounded-lg p-2">
+            <div className="bg-card/80 rounded-lg px-2.5 py-2 border border-border/40 animate-[pipelineCardMove_4s_ease-in-out_infinite]">
+              <div className="flex items-center gap-2">
+                <div className="w-6 h-6 rounded-full bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center shrink-0">
+                  <span className="text-[7px] font-bold text-white">JD</span>
                 </div>
-                <span className="text-[7px] text-foreground/70 leading-tight">New inquiry</span>
+                <span className="text-[8px] text-foreground/70">New inquiry</span>
               </div>
             </div>
           </div>
           
           {/* Meeting */}
-          <div className="flex-1 bg-muted/20 rounded p-1.5">
-            <div className="bg-card/80 rounded px-2 py-1.5 border border-primary/30 animate-[pipelineCardPulse_2s_ease-in-out_infinite]">
-              <div className="flex items-center gap-1.5">
-                <div className="w-5 h-5 rounded-full bg-gradient-to-br from-purple-400 to-purple-600 flex items-center justify-center shrink-0">
-                  <span className="text-[6px] font-bold text-white">MK</span>
+          <div className="flex-1 bg-muted/20 rounded-lg p-2">
+            <div className="bg-card/80 rounded-lg px-2.5 py-2 border border-primary/30 animate-[pipelineCardPulse_2s_ease-in-out_infinite]">
+              <div className="flex items-center gap-2">
+                <div className="w-6 h-6 rounded-full bg-gradient-to-br from-purple-400 to-purple-600 flex items-center justify-center shrink-0">
+                  <span className="text-[7px] font-bold text-white">MK</span>
                 </div>
-                <span className="text-[7px] text-foreground/70 leading-tight">Discovery call</span>
+                <span className="text-[8px] text-foreground/70">Discovery call</span>
               </div>
             </div>
           </div>
           
           {/* Won */}
-          <div className="flex-1 bg-emerald-500/10 rounded p-1.5 border border-emerald-500/20">
-            <div className="bg-card/80 rounded px-2 py-1.5 border border-emerald-500/30">
-              <div className="flex items-center gap-1.5">
-                <div className="w-5 h-5 rounded-full bg-emerald-500 flex items-center justify-center shrink-0">
-                  <span className="text-[7px] text-white">✓</span>
+          <div className="flex-1 bg-emerald-500/10 rounded-lg p-2 border border-emerald-500/20">
+            <div className="bg-card/80 rounded-lg px-2.5 py-2 border border-emerald-500/30">
+              <div className="flex items-center gap-2">
+                <div className="w-6 h-6 rounded-full bg-emerald-500 flex items-center justify-center shrink-0">
+                  <span className="text-[8px] text-white">✓</span>
                 </div>
-                <span className="text-[7px] text-emerald-400 leading-tight">Signed!</span>
+                <span className="text-[8px] text-emerald-400">Signed!</span>
               </div>
             </div>
           </div>
