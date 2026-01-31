@@ -84,17 +84,6 @@
 }
 
 @layer components {
-  /* Animation pause/play states for hover interactions */
-  .animation-paused,
-  .animation-paused * {
-    animation-play-state: paused !important;
-  }
-  
-  .group:hover .group-hover-animation-running,
-  .group:hover .group-hover-animation-running * {
-    animation-play-state: running !important;
-  }
-
   .section-container {
     @apply mx-auto max-w-7xl px-4 sm:px-6 lg:px-8;
   }
@@ -384,13 +373,10 @@
   }
 
   @keyframes typing {
-    0% {
-      max-width: 200px;
-    }
-    5%, 10% {
+    0%, 5% {
       max-width: 0;
     }
-    55%, 95% {
+    50%, 95% {
       max-width: 200px;
     }
     100% {
@@ -559,14 +545,10 @@
   /* Analytics animations */
   @keyframes barGrow {
     0% {
-      transform: scaleY(1);
-      transform-origin: bottom;
-    }
-    5%, 10% {
       transform: scaleY(0);
       transform-origin: bottom;
     }
-    30%, 100% {
+    20%, 100% {
       transform: scaleY(1);
       transform-origin: bottom;
     }
@@ -574,50 +556,37 @@
 
   @keyframes pieSlice1 {
     0% {
-      stroke-dasharray: 45 55;
-    }
-    5%, 10% {
       stroke-dasharray: 0 100;
     }
-    30%, 100% {
+    25%, 100% {
       stroke-dasharray: 45 55;
     }
   }
 
   @keyframes pieSlice2 {
-    0% {
-      stroke-dasharray: 30 70;
-    }
-    5%, 18% {
+    0%, 15% {
       stroke-dasharray: 0 100;
     }
-    45%, 100% {
+    40%, 100% {
       stroke-dasharray: 30 70;
     }
   }
 
   @keyframes pieSlice3 {
-    0% {
-      stroke-dasharray: 25 75;
-    }
-    5%, 35% {
+    0%, 30% {
       stroke-dasharray: 0 100;
     }
-    60%, 100% {
+    55%, 100% {
       stroke-dasharray: 25 75;
     }
   }
 
   @keyframes legendSlide {
     0% {
-      opacity: 1;
-      transform: translateX(0);
-    }
-    5%, 10% {
       opacity: 0;
       transform: translateX(-10px);
     }
-    35%, 100% {
+    30%, 100% {
       opacity: 1;
       transform: translateX(0);
     }
@@ -644,41 +613,30 @@
 
   @keyframes docSlide {
     0% {
-      opacity: 1;
-      transform: translateY(0);
-    }
-    5%, 10% {
       opacity: 0;
       transform: translateY(8px);
     }
-    30%, 100% {
+    25%, 100% {
       opacity: 1;
       transform: translateY(0);
     }
   }
 
   @keyframes signatureDraw {
-    0% {
-      stroke-dashoffset: 0;
-    }
-    5%, 25% {
+    0%, 20% {
       stroke-dashoffset: 120;
     }
-    65%, 100% {
+    60%, 100% {
       stroke-dashoffset: 0;
     }
   }
 
   @keyframes signStatus {
-    0% {
-      opacity: 1;
-      transform: scale(1);
-    }
-    5%, 52% {
+    0%, 50% {
       opacity: 0;
       transform: scale(0.9);
     }
-    62%, 100% {
+    60%, 100% {
       opacity: 1;
       transform: scale(1);
     }
