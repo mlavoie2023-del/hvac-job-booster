@@ -25,7 +25,9 @@ import {
   Receipt,
   ClipboardList,
   MousePointer,
-  Clock
+  Clock,
+  MessageSquare,
+  Phone
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import lavoieLogo from "@/assets/lavoie-logo-square.png";
@@ -498,44 +500,107 @@ const CalendarAnimation = () => (
 // Automation Animations
 const WorkflowAnimation = () => (
   <div className="relative h-40 flex items-center justify-center p-3">
-    <div className="w-full bg-card/30 rounded-lg border border-border/30 p-4">
-      {/* Workflow title */}
-      <div className="text-[8px] text-muted-foreground mb-3">New Lead Nurture Sequence</div>
+    <style>{`
+      @keyframes stepComplete1 {
+        0%, 10% { opacity: 0.4; }
+        15%, 100% { opacity: 1; }
+      }
+      @keyframes stepCheck1 {
+        0%, 12% { opacity: 0; transform: scale(0); }
+        18%, 100% { opacity: 1; transform: scale(1); }
+      }
+      @keyframes stepComplete2 {
+        0%, 30% { opacity: 0.4; }
+        35%, 100% { opacity: 1; }
+      }
+      @keyframes stepCheck2 {
+        0%, 32% { opacity: 0; transform: scale(0); }
+        38%, 100% { opacity: 1; transform: scale(1); }
+      }
+      @keyframes stepComplete3 {
+        0%, 50% { opacity: 0.4; }
+        55%, 100% { opacity: 1; }
+      }
+      @keyframes stepCheck3 {
+        0%, 52% { opacity: 0; transform: scale(0); }
+        58%, 100% { opacity: 1; transform: scale(1); }
+      }
+      @keyframes stepComplete4 {
+        0%, 70% { opacity: 0.4; }
+        75%, 100% { opacity: 1; }
+      }
+      @keyframes stepCheck4 {
+        0%, 72% { opacity: 0; transform: scale(0); }
+        78%, 100% { opacity: 1; transform: scale(1); }
+      }
+      @keyframes progressFill {
+        0% { width: 0; }
+        80%, 100% { width: 100%; }
+      }
+    `}</style>
+    <div className="w-full bg-card/50 rounded-lg border border-border/50 p-3">
+      {/* Workflow header */}
+      <div className="flex items-center justify-between mb-2">
+        <div className="text-[8px] font-medium text-foreground">New Client Onboarding</div>
+        <div className="text-[6px] text-emerald-400 bg-emerald-500/10 px-1.5 py-0.5 rounded">Running</div>
+      </div>
       
-      {/* Workflow nodes */}
-      <div className="flex items-center justify-center gap-2">
-        {/* Trigger node */}
-        <div className="flex flex-col items-center">
-          <div className="w-12 h-12 rounded-xl bg-pink-500/10 border border-pink-500/30 flex items-center justify-center animate-[workflowNode1_4s_ease-in-out_infinite]">
-            <Inbox className="w-5 h-5 text-pink-400" />
+      {/* Progress bar */}
+      <div className="h-1 bg-muted/30 rounded-full mb-3 overflow-hidden">
+        <div 
+          className="h-full bg-gradient-to-r from-primary to-emerald-500 rounded-full"
+          style={{ animation: 'progressFill 6s ease-out infinite' }}
+        />
+      </div>
+      
+      {/* Vertical steps */}
+      <div className="space-y-1.5">
+        {/* Step 1 - Email */}
+        <div 
+          className="flex items-center gap-2 px-2 py-1 rounded bg-primary/5 border border-primary/20"
+          style={{ animation: 'stepComplete1 6s ease-out infinite' }}
+        >
+          <div className="w-5 h-5 rounded bg-primary/20 flex items-center justify-center">
+            <Mail className="w-3 h-3 text-primary" />
           </div>
-          <span className="text-[6px] text-muted-foreground mt-1">New Lead</span>
+          <span className="text-[7px] text-foreground/80 flex-1">Welcome Email</span>
+          <span className="text-[6px] text-emerald-400" style={{ animation: 'stepCheck1 6s ease-out infinite' }}>✓</span>
         </div>
         
-        {/* Connector line 1 */}
-        <div className="w-8 h-0.5 bg-muted/30 relative overflow-hidden rounded-full">
-          <div className="absolute inset-y-0 left-0 w-full bg-gradient-to-r from-pink-500 to-primary animate-[workflowLine1_4s_ease-in-out_infinite]" />
-        </div>
-        
-        {/* Wait node */}
-        <div className="flex flex-col items-center">
-          <div className="w-12 h-12 rounded-xl bg-primary/10 border border-primary/30 flex items-center justify-center animate-[workflowNode2_4s_ease-in-out_infinite]">
-            <Clock className="w-5 h-5 text-primary" />
+        {/* Step 2 - Wait */}
+        <div 
+          className="flex items-center gap-2 px-2 py-1 rounded bg-amber-500/5 border border-amber-500/20"
+          style={{ animation: 'stepComplete2 6s ease-out infinite' }}
+        >
+          <div className="w-5 h-5 rounded bg-amber-500/20 flex items-center justify-center">
+            <Clock className="w-3 h-3 text-amber-400" />
           </div>
-          <span className="text-[6px] text-muted-foreground mt-1">Wait 1 day</span>
+          <span className="text-[7px] text-foreground/80 flex-1">Wait 2 Days</span>
+          <span className="text-[6px] text-emerald-400" style={{ animation: 'stepCheck2 6s ease-out infinite' }}>✓</span>
         </div>
         
-        {/* Connector line 2 */}
-        <div className="w-8 h-0.5 bg-muted/30 relative overflow-hidden rounded-full">
-          <div className="absolute inset-y-0 left-0 w-full bg-gradient-to-r from-primary to-emerald-500 animate-[workflowLine2_4s_ease-in-out_infinite]" />
-        </div>
-        
-        {/* Email node */}
-        <div className="flex flex-col items-center">
-          <div className="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center animate-[workflowNode3_4s_ease-in-out_infinite]">
-            <Mail className="w-5 h-5 text-emerald-400" />
+        {/* Step 3 - SMS */}
+        <div 
+          className="flex items-center gap-2 px-2 py-1 rounded bg-emerald-500/5 border border-emerald-500/20"
+          style={{ animation: 'stepComplete3 6s ease-out infinite' }}
+        >
+          <div className="w-5 h-5 rounded bg-emerald-500/20 flex items-center justify-center">
+            <MessageSquare className="w-3 h-3 text-emerald-400" />
           </div>
-          <span className="text-[6px] text-muted-foreground mt-1">Send Email</span>
+          <span className="text-[7px] text-foreground/80 flex-1">Follow-up SMS</span>
+          <span className="text-[6px] text-emerald-400" style={{ animation: 'stepCheck3 6s ease-out infinite' }}>✓</span>
+        </div>
+        
+        {/* Step 4 - Call */}
+        <div 
+          className="flex items-center gap-2 px-2 py-1 rounded bg-pink-500/5 border border-pink-500/20"
+          style={{ animation: 'stepComplete4 6s ease-out infinite' }}
+        >
+          <div className="w-5 h-5 rounded bg-pink-500/20 flex items-center justify-center">
+            <Phone className="w-3 h-3 text-pink-400" />
+          </div>
+          <span className="text-[7px] text-foreground/80 flex-1">Schedule Call</span>
+          <span className="text-[6px] text-emerald-400" style={{ animation: 'stepCheck4 6s ease-out infinite' }}>✓</span>
         </div>
       </div>
     </div>
