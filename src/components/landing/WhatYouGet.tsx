@@ -542,40 +542,107 @@ const WorkflowAnimation = () => (
   </div>
 );
 
-const FollowUpAnimation = () => (
+const AppointmentRemindersAnimation = () => (
   <div className="relative h-40 flex items-center justify-center p-3">
+    <style>{`
+      @keyframes reminderNode1 {
+        0%, 10% { opacity: 0.3; transform: scale(0.95); }
+        15%, 100% { opacity: 1; transform: scale(1); }
+      }
+      @keyframes reminderCheck1 {
+        0%, 15% { opacity: 0; transform: scale(0); }
+        20%, 100% { opacity: 1; transform: scale(1); }
+      }
+      @keyframes reminderNode2 {
+        0%, 35% { opacity: 0.3; transform: scale(0.95); }
+        40%, 100% { opacity: 1; transform: scale(1); }
+      }
+      @keyframes reminderCheck2 {
+        0%, 40% { opacity: 0; transform: scale(0); }
+        45%, 100% { opacity: 1; transform: scale(1); }
+      }
+      @keyframes reminderNode3 {
+        0%, 60% { opacity: 0.3; transform: scale(0.95); }
+        65%, 100% { opacity: 1; transform: scale(1); }
+      }
+      @keyframes reminderCheck3 {
+        0%, 65% { opacity: 0; transform: scale(0); }
+        70%, 100% { opacity: 1; transform: scale(1); }
+      }
+      @keyframes timelineFill {
+        0% { height: 0; }
+        70%, 100% { height: 100%; }
+      }
+    `}</style>
     <div className="w-full bg-card/50 rounded-lg border border-border/50 p-3">
-      {/* Reminder card */}
-      <div className="flex items-start gap-3">
-        {/* Bell icon with badge */}
-        <div className="relative flex-shrink-0">
-          <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-pink-500/20 to-rose-500/20 border border-pink-500/30 flex items-center justify-center">
-            <Bell className="w-5 h-5 text-pink-400" />
-          </div>
-          <div className="absolute -top-1 -right-1 w-5 h-5 bg-emerald-500 rounded-full flex items-center justify-center animate-[bounce_2s_ease-in-out_infinite]">
-            <span className="text-[8px] font-bold text-white">!</span>
-          </div>
+      {/* Meeting header */}
+      <div className="flex items-center gap-2 mb-3 pb-2 border-b border-border/30">
+        <div className="w-8 h-8 rounded-lg bg-primary/20 border border-primary/30 flex items-center justify-center">
+          <Calendar className="w-4 h-4 text-primary" />
         </div>
-        
-        {/* Reminder content */}
-        <div className="flex-1">
-          <div className="text-[9px] font-semibold text-foreground mb-1">Follow-up Reminder</div>
-          <div className="text-[7px] text-muted-foreground mb-2">Call John Davidson - Retirement consultation</div>
-          <div className="flex gap-2">
-            <div className="px-2 py-1 bg-emerald-500/20 rounded text-[6px] text-emerald-400 border border-emerald-500/30">
-              Call Now
-            </div>
-            <div className="px-2 py-1 bg-muted/30 rounded text-[6px] text-muted-foreground border border-border/30">
-              Snooze 1hr
-            </div>
-          </div>
+        <div>
+          <div className="text-[8px] font-semibold text-foreground">Meeting with John Davidson</div>
+          <div className="text-[6px] text-muted-foreground">Tomorrow at 2:00 PM</div>
         </div>
       </div>
       
-      {/* Time indicator */}
-      <div className="mt-3 pt-2 border-t border-border/30 flex items-center gap-2">
-        <div className="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse" />
-        <span className="text-[6px] text-amber-400">Due in 30 minutes</span>
+      {/* Timeline of reminders */}
+      <div className="relative pl-4">
+        {/* Timeline line */}
+        <div className="absolute left-1 top-0 bottom-0 w-0.5 bg-border/30">
+          <div 
+            className="w-full bg-gradient-to-b from-primary via-emerald-500 to-emerald-500"
+            style={{ animation: 'timelineFill 6s ease-out infinite' }}
+          />
+        </div>
+        
+        {/* 24 hours before - Email */}
+        <div 
+          className="relative flex items-center gap-2 mb-2"
+          style={{ animation: 'reminderNode1 6s ease-out infinite' }}
+        >
+          <div className="absolute -left-3 w-2 h-2 rounded-full bg-primary border-2 border-card" />
+          <div className="flex items-center gap-1.5 px-2 py-1 bg-primary/10 rounded border border-primary/30">
+            <Mail className="w-3 h-3 text-primary" />
+            <span className="text-[6px] text-foreground/80">24h before</span>
+            <span 
+              className="text-[6px] text-emerald-400"
+              style={{ animation: 'reminderCheck1 6s ease-out infinite' }}
+            >✓ Sent</span>
+          </div>
+        </div>
+        
+        {/* 2 hours before - SMS */}
+        <div 
+          className="relative flex items-center gap-2 mb-2"
+          style={{ animation: 'reminderNode2 6s ease-out infinite' }}
+        >
+          <div className="absolute -left-3 w-2 h-2 rounded-full bg-emerald-500 border-2 border-card" />
+          <div className="flex items-center gap-1.5 px-2 py-1 bg-emerald-500/10 rounded border border-emerald-500/30">
+            <Smartphone className="w-3 h-3 text-emerald-400" />
+            <span className="text-[6px] text-foreground/80">2h before</span>
+            <span 
+              className="text-[6px] text-emerald-400"
+              style={{ animation: 'reminderCheck2 6s ease-out infinite' }}
+            >✓ Sent</span>
+          </div>
+        </div>
+        
+        {/* 15 minutes before - Final SMS */}
+        <div 
+          className="relative flex items-center gap-2"
+          style={{ animation: 'reminderNode3 6s ease-out infinite' }}
+        >
+          <div className="absolute -left-3 w-2 h-2 rounded-full bg-emerald-500 border-2 border-card" />
+          <div className="flex items-center gap-1.5 px-2 py-1 bg-emerald-500/10 rounded border border-emerald-500/30">
+            <Smartphone className="w-3 h-3 text-emerald-400" />
+            <span className="text-[6px] text-foreground/80">15m before</span>
+            <span 
+              className="text-[6px] text-emerald-400"
+              style={{ animation: 'reminderCheck3 6s ease-out infinite' }}
+            >✓ Sent</span>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -1175,10 +1242,10 @@ const categories: Category[] = [
         animation: <WorkflowAnimation />
       },
       {
-        icon: Bell,
-        title: "Follow Up",
-        description: "Never miss a touchpoint with smart reminders",
-        animation: <FollowUpAnimation />
+        icon: Clock,
+        title: "Appointment Reminders",
+        description: "Reduce no-shows with automated SMS and email reminders",
+        animation: <AppointmentRemindersAnimation />
       },
       {
         icon: MousePointer,
