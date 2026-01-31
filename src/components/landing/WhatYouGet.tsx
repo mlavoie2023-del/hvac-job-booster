@@ -1262,7 +1262,7 @@ const WhatYouGet = () => {
             {/* Left Sidebar - Compact Category Icons */}
             <div className="w-20 lg:w-24 flex-shrink-0">
               {/* Mini Hub */}
-              <div className="flex justify-center mb-4">
+              <div className="flex flex-col items-center mb-4">
                 <div className="relative">
                   <div className="absolute -inset-1.5 rounded-full bg-gradient-to-r from-primary/20 via-primary/10 to-primary/20 blur-md animate-[hubPulse_3s_ease-in-out_infinite]" />
                   <div className="relative w-10 h-10 rounded-full bg-card border border-primary/50 flex items-center justify-center shadow-[0_0_20px_-6px_hsl(217_91%_60%/0.5)]">
@@ -1273,6 +1273,9 @@ const WhatYouGet = () => {
                     />
                   </div>
                 </div>
+                <span className="mt-1.5 text-[8px] text-muted-foreground tracking-wide whitespace-nowrap">
+                  One Platform
+                </span>
               </div>
               
               {/* Category Icons - Vertical Stack */}
