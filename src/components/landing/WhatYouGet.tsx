@@ -1736,14 +1736,15 @@ const MobilePipelineAnimation = () => (
     
     <style>{`
       @keyframes stageActive {
-        0%, 28% { background: hsl(217 91% 60% / 0.3); color: white; }
-        33%, 95% { background: transparent; color: hsl(0 0% 60%); }
+        0%, 30% { background: hsl(217 91% 60% / 0.3); color: white; }
+        33.33%, 97% { background: transparent; color: hsl(0 0% 60%); }
         100% { background: hsl(217 91% 60% / 0.3); color: white; }
       }
       @keyframes stageSwipe {
-        0%, 5% { opacity: 0; transform: translateX(100%); }
-        10%, 28% { opacity: 1; transform: translateX(0); }
-        33%, 100% { opacity: 0; transform: translateX(-100%); }
+        0% { opacity: 0; transform: translateX(100%); }
+        3%, 30% { opacity: 1; transform: translateX(0); }
+        33.33% { opacity: 0; transform: translateX(-100%); }
+        100% { opacity: 0; transform: translateX(-100%); }
       }
     `}</style>
   </div>
