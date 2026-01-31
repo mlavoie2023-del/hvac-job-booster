@@ -602,9 +602,11 @@ const AppointmentRemindersAnimation = () => (
           style={{ animation: 'reminderNode1 6s ease-out infinite' }}
         >
           <div className="absolute -left-3 w-2 h-2 rounded-full bg-primary border-2 border-card" />
-          <div className="flex items-center gap-1.5 px-2 py-1 bg-primary/10 rounded border border-primary/30">
-            <Mail className="w-3 h-3 text-primary" />
-            <span className="text-[6px] text-foreground/80">24h before</span>
+          <div className="w-32 flex items-center justify-between gap-1.5 px-2 py-1 bg-primary/10 rounded border border-primary/30">
+            <div className="flex items-center gap-1.5">
+              <Mail className="w-3 h-3 text-primary" />
+              <span className="text-[6px] text-foreground/80">24h before</span>
+            </div>
             <span 
               className="text-[6px] text-emerald-400"
               style={{ animation: 'reminderCheck1 6s ease-out infinite' }}
@@ -618,9 +620,11 @@ const AppointmentRemindersAnimation = () => (
           style={{ animation: 'reminderNode2 6s ease-out infinite' }}
         >
           <div className="absolute -left-3 w-2 h-2 rounded-full bg-emerald-500 border-2 border-card" />
-          <div className="flex items-center gap-1.5 px-2 py-1 bg-emerald-500/10 rounded border border-emerald-500/30">
-            <Smartphone className="w-3 h-3 text-emerald-400" />
-            <span className="text-[6px] text-foreground/80">2h before</span>
+          <div className="w-32 flex items-center justify-between gap-1.5 px-2 py-1 bg-emerald-500/10 rounded border border-emerald-500/30">
+            <div className="flex items-center gap-1.5">
+              <Smartphone className="w-3 h-3 text-emerald-400" />
+              <span className="text-[6px] text-foreground/80">2h before</span>
+            </div>
             <span 
               className="text-[6px] text-emerald-400"
               style={{ animation: 'reminderCheck2 6s ease-out infinite' }}
@@ -634,9 +638,11 @@ const AppointmentRemindersAnimation = () => (
           style={{ animation: 'reminderNode3 6s ease-out infinite' }}
         >
           <div className="absolute -left-3 w-2 h-2 rounded-full bg-emerald-500 border-2 border-card" />
-          <div className="flex items-center gap-1.5 px-2 py-1 bg-emerald-500/10 rounded border border-emerald-500/30">
-            <Smartphone className="w-3 h-3 text-emerald-400" />
-            <span className="text-[6px] text-foreground/80">15m before</span>
+          <div className="w-32 flex items-center justify-between gap-1.5 px-2 py-1 bg-emerald-500/10 rounded border border-emerald-500/30">
+            <div className="flex items-center gap-1.5">
+              <Smartphone className="w-3 h-3 text-emerald-400" />
+              <span className="text-[6px] text-foreground/80">15m before</span>
+            </div>
             <span 
               className="text-[6px] text-emerald-400"
               style={{ animation: 'reminderCheck3 6s ease-out infinite' }}
