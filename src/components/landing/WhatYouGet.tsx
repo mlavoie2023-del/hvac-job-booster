@@ -1444,43 +1444,205 @@ const ESignatureAnimation = () => (
   </div>
 );
 
-// Mobile App Animation - Full phone mockup
-const MobileAppAnimation = () => (
-  <div className="relative h-40 flex items-center justify-center p-2">
-    {/* iPhone-style phone frame */}
-    <div className="relative w-32 h-[140px] bg-[#1a1a1a] rounded-[20px] border-[3px] border-[#2a2a2a] shadow-2xl overflow-hidden">
-      {/* Dynamic Island / Notch */}
-      <div className="absolute top-1.5 left-1/2 -translate-x-1/2 w-14 h-4 bg-black rounded-full z-20" />
+// Mobile App Animations
+
+// Shared phone frame component for consistency
+const PhoneFrame = ({ children, activeTab = 'inbox' }: { children: React.ReactNode; activeTab?: 'inbox' | 'contacts' | 'calendar' | 'notifications' }) => (
+  <div className="relative w-32 h-[140px] bg-[#1a1a1a] rounded-[20px] border-[3px] border-[#2a2a2a] shadow-2xl overflow-hidden">
+    {/* Dynamic Island */}
+    <div className="absolute top-1.5 left-1/2 -translate-x-1/2 w-14 h-4 bg-black rounded-full z-20" />
+    
+    {/* Status bar */}
+    <div className="h-6 bg-[#0a0a0a] flex items-end justify-between px-4 pb-0.5">
+      <span className="text-[5px] text-white/60">9:41</span>
+      <div className="flex items-center gap-1">
+        <div className="w-2.5 h-1.5 border border-white/60 rounded-sm">
+          <div className="w-1.5 h-full bg-emerald-400 rounded-sm" />
+        </div>
+      </div>
+    </div>
+    
+    {/* App content */}
+    <div className="h-[calc(100%-24px)] bg-[#0f0f0f] overflow-hidden relative">
+      {children}
       
-      {/* Status bar */}
-      <div className="h-6 bg-[#0a0a0a] flex items-end justify-between px-4 pb-0.5">
-        <span className="text-[5px] text-white/60">9:41</span>
-        <div className="flex items-center gap-1">
-          <div className="w-2.5 h-1.5 border border-white/60 rounded-sm">
-            <div className="w-1.5 h-full bg-emerald-400 rounded-sm" />
+      {/* Bottom nav bar */}
+      <div className="absolute bottom-0 left-0 right-0 h-6 bg-[#1a1a1a] border-t border-white/10 flex items-center justify-around px-2">
+        <Inbox className={`w-3 h-3 ${activeTab === 'inbox' ? 'text-primary' : 'text-white/40'}`} />
+        <Users className={`w-3 h-3 ${activeTab === 'contacts' ? 'text-primary' : 'text-white/40'}`} />
+        <Calendar className={`w-3 h-3 ${activeTab === 'calendar' ? 'text-primary' : 'text-white/40'}`} />
+        <Bell className={`w-3 h-3 ${activeTab === 'notifications' ? 'text-primary' : 'text-white/40'}`} />
+      </div>
+    </div>
+    
+    {/* Home indicator */}
+    <div className="absolute bottom-1 left-1/2 -translate-x-1/2 w-10 h-1 bg-white/30 rounded-full" />
+  </div>
+);
+
+// Animation 1: Push Notifications
+const MobileNotificationsAnimation = () => (
+  <div className="relative h-40 flex items-center justify-center p-2">
+    <PhoneFrame activeTab="notifications">
+      <div className="px-2 py-1.5 pb-8">
+        <div className="text-[7px] font-bold text-white mb-2">Notifications</div>
+        
+        {/* Notification stack */}
+        <div className="space-y-1.5">
+          <div 
+            className="bg-primary/20 rounded-lg p-1.5 border border-primary/30"
+            style={{ animation: 'notifSlideDown 5s ease-out infinite' }}
+          >
+            <div className="flex items-start gap-1.5">
+              <div className="w-4 h-4 rounded-full bg-primary flex items-center justify-center flex-shrink-0">
+                <MessageSquare className="w-2 h-2 text-white" />
+              </div>
+              <div className="min-w-0 flex-1">
+                <div className="text-[5px] font-medium text-white">New SMS from Sarah</div>
+                <div className="text-[4px] text-primary truncate">Thanks for the call!</div>
+              </div>
+              <div className="text-[4px] text-white/40">2m</div>
+            </div>
+          </div>
+          
+          <div 
+            className="bg-emerald-500/20 rounded-lg p-1.5 border border-emerald-500/30"
+            style={{ animation: 'notifSlideDown 5s ease-out infinite', animationDelay: '0.5s' }}
+          >
+            <div className="flex items-start gap-1.5">
+              <div className="w-4 h-4 rounded-full bg-emerald-500 flex items-center justify-center flex-shrink-0">
+                <Calendar className="w-2 h-2 text-white" />
+              </div>
+              <div className="min-w-0 flex-1">
+                <div className="text-[5px] font-medium text-white">Meeting Confirmed</div>
+                <div className="text-[4px] text-emerald-400 truncate">Mike Chen - Tomorrow 2pm</div>
+              </div>
+              <div className="text-[4px] text-white/40">5m</div>
+            </div>
+          </div>
+          
+          <div 
+            className="bg-amber-500/20 rounded-lg p-1.5 border border-amber-500/30"
+            style={{ animation: 'notifSlideDown 5s ease-out infinite', animationDelay: '1s' }}
+          >
+            <div className="flex items-start gap-1.5">
+              <div className="w-4 h-4 rounded-full bg-amber-500 flex items-center justify-center flex-shrink-0">
+                <Users className="w-2 h-2 text-white" />
+              </div>
+              <div className="min-w-0 flex-1">
+                <div className="text-[5px] font-medium text-white">New Lead</div>
+                <div className="text-[4px] text-amber-400 truncate">James Kim via website</div>
+              </div>
+              <div className="text-[4px] text-white/40">12m</div>
+            </div>
           </div>
         </div>
       </div>
-      
-      {/* App content */}
-      <div className="h-[calc(100%-24px)] bg-[#0f0f0f] px-2 py-1.5 overflow-hidden">
-        {/* App header */}
-        <div className="flex items-center justify-between mb-2">
-          <div className="text-[7px] font-bold text-white">Pipeline</div>
-          <div 
-            className="w-4 h-4 bg-primary rounded-full flex items-center justify-center"
-            style={{ animation: 'mobileNotifPulse 3s ease-in-out infinite' }}
-          >
-            <Bell className="w-2 h-2 text-white" />
+    </PhoneFrame>
+    
+    {/* Badge indicator */}
+    <div 
+      className="absolute top-2 right-4 w-5 h-5 bg-red-500 rounded-full flex items-center justify-center shadow-lg"
+      style={{ animation: 'badgePop 5s ease-out infinite' }}
+    >
+      <span className="text-[8px] font-bold text-white">3</span>
+    </div>
+    
+    <style>{`
+      @keyframes notifSlideDown {
+        0%, 5% { opacity: 0; transform: translateY(-8px); }
+        15%, 70% { opacity: 1; transform: translateY(0); }
+        85%, 100% { opacity: 0; transform: translateY(-8px); }
+      }
+      @keyframes badgePop {
+        0%, 10% { opacity: 0; transform: scale(0); }
+        20%, 70% { opacity: 1; transform: scale(1); }
+        85%, 100% { opacity: 0; transform: scale(0); }
+      }
+    `}</style>
+  </div>
+);
+
+// Animation 2: Quick Reply / Conversations
+const MobileConversationsAnimation = () => (
+  <div className="relative h-40 flex items-center justify-center p-2">
+    <PhoneFrame activeTab="inbox">
+      <div className="px-2 py-1.5 pb-8 flex flex-col h-full">
+        {/* Chat header */}
+        <div className="flex items-center gap-1.5 mb-2 pb-1 border-b border-white/10">
+          <div className="w-5 h-5 rounded-full bg-primary flex items-center justify-center">
+            <span className="text-[5px] font-bold text-white">SK</span>
+          </div>
+          <div>
+            <div className="text-[6px] font-medium text-white">Sarah Kim</div>
+            <div className="text-[4px] text-emerald-400">Online</div>
           </div>
         </div>
         
-        {/* Pipeline cards sliding in */}
+        {/* Messages */}
+        <div className="flex-1 space-y-1 overflow-hidden">
+          <div 
+            className="bg-muted/30 rounded-lg px-2 py-1 max-w-[80%]"
+            style={{ animation: 'msgSlide 6s ease-out infinite' }}
+          >
+            <div className="text-[5px] text-white/80">Hi! When can we meet?</div>
+          </div>
+          
+          <div 
+            className="bg-primary/30 rounded-lg px-2 py-1 max-w-[80%] ml-auto"
+            style={{ animation: 'msgSlide 6s ease-out infinite', animationDelay: '0.8s' }}
+          >
+            <div className="text-[5px] text-white/80">How about tomorrow at 2pm?</div>
+          </div>
+          
+          <div 
+            className="bg-muted/30 rounded-lg px-2 py-1 max-w-[80%]"
+            style={{ animation: 'msgSlide 6s ease-out infinite', animationDelay: '1.6s' }}
+          >
+            <div className="text-[5px] text-white/80">Perfect! See you then</div>
+          </div>
+        </div>
+        
+        {/* Reply input */}
+        <div 
+          className="mt-1 flex items-center gap-1 bg-muted/20 rounded-full px-2 py-1"
+          style={{ animation: 'replyType 6s ease-out infinite', animationDelay: '2.4s' }}
+        >
+          <div className="flex-1 text-[5px] text-white/40 overflow-hidden">
+            <span style={{ animation: 'typeText 6s steps(20) infinite', animationDelay: '2.4s' }}>Sounds great! I'll send a...</span>
+          </div>
+          <Send className="w-2.5 h-2.5 text-primary" />
+        </div>
+      </div>
+    </PhoneFrame>
+    
+    <style>{`
+      @keyframes msgSlide {
+        0%, 5% { opacity: 0; transform: translateY(5px); }
+        12%, 75% { opacity: 1; transform: translateY(0); }
+        85%, 100% { opacity: 0; transform: translateY(5px); }
+      }
+      @keyframes replyType {
+        0%, 35% { opacity: 0; }
+        45%, 75% { opacity: 1; }
+        85%, 100% { opacity: 0; }
+      }
+    `}</style>
+  </div>
+);
+
+// Animation 3: Pipeline View
+const MobilePipelineAnimation = () => (
+  <div className="relative h-40 flex items-center justify-center p-2">
+    <PhoneFrame activeTab="contacts">
+      <div className="px-2 py-1.5 pb-8">
+        <div className="text-[7px] font-bold text-white mb-2">Pipeline</div>
+        
+        {/* Pipeline cards */}
         <div className="space-y-1.5">
-          {/* Lead card */}
           <div 
             className="bg-slate-800/60 rounded-lg p-1.5 border border-slate-700/50"
-            style={{ animation: 'mobileCardSlide 4s ease-out infinite', animationDelay: '0s' }}
+            style={{ animation: 'pipeSlide 5s ease-out infinite' }}
           >
             <div className="flex items-center gap-1.5">
               <div className="w-4 h-4 rounded-full bg-slate-600 flex items-center justify-center">
@@ -1494,10 +1656,9 @@ const MobileAppAnimation = () => (
             </div>
           </div>
           
-          {/* Meeting card */}
           <div 
             className="bg-primary/20 rounded-lg p-1.5 border border-primary/30"
-            style={{ animation: 'mobileCardSlide 4s ease-out infinite', animationDelay: '0.3s' }}
+            style={{ animation: 'pipeSlide 5s ease-out infinite', animationDelay: '0.3s' }}
           >
             <div className="flex items-center gap-1.5">
               <div className="w-4 h-4 rounded-full bg-primary flex items-center justify-center">
@@ -1511,10 +1672,9 @@ const MobileAppAnimation = () => (
             </div>
           </div>
           
-          {/* Won card */}
           <div 
             className="bg-emerald-500/20 rounded-lg p-1.5 border border-emerald-500/30"
-            style={{ animation: 'mobileCardSlide 4s ease-out infinite', animationDelay: '0.6s' }}
+            style={{ animation: 'pipeSlide 5s ease-out infinite', animationDelay: '0.6s' }}
           >
             <div className="flex items-center gap-1.5">
               <div className="w-4 h-4 rounded-full bg-emerald-500 flex items-center justify-center">
@@ -1527,50 +1687,42 @@ const MobileAppAnimation = () => (
             </div>
           </div>
         </div>
-        
-        {/* Bottom nav bar */}
-        <div className="absolute bottom-0 left-0 right-0 h-6 bg-[#1a1a1a] border-t border-white/10 flex items-center justify-around px-2">
-          <Inbox className="w-3 h-3 text-white/40" />
-          <Users className="w-3 h-3 text-primary" />
-          <Calendar className="w-3 h-3 text-white/40" />
-          <Bell className="w-3 h-3 text-white/40" />
-        </div>
       </div>
-      
-      {/* Home indicator */}
-      <div className="absolute bottom-1 left-1/2 -translate-x-1/2 w-10 h-1 bg-white/30 rounded-full" />
-    </div>
+    </PhoneFrame>
     
-    {/* Floating notification */}
+    {/* Summary badge */}
     <div 
-      className="absolute -top-1 -right-2 w-28 bg-card/95 backdrop-blur rounded-lg border border-border/50 p-2 shadow-xl"
-      style={{ animation: 'mobileNotifSlide 4s ease-out infinite' }}
+      className="absolute -bottom-1 left-1/2 -translate-x-1/2 bg-card/95 backdrop-blur rounded-lg border border-border/50 px-3 py-1.5 shadow-xl"
+      style={{ animation: 'summaryFade 5s ease-out infinite', animationDelay: '1s' }}
     >
-      <div className="flex items-start gap-1.5">
-        <div className="w-5 h-5 rounded-lg bg-primary/20 flex items-center justify-center flex-shrink-0">
-          <MessageSquare className="w-3 h-3 text-primary" />
+      <div className="flex items-center gap-3">
+        <div className="text-center">
+          <div className="text-[8px] font-bold text-foreground">12</div>
+          <div className="text-[5px] text-muted-foreground">Leads</div>
         </div>
-        <div className="min-w-0">
-          <div className="text-[6px] font-semibold text-foreground">New Message</div>
-          <div className="text-[5px] text-muted-foreground truncate">Sarah: Looking forward to...</div>
+        <div className="w-px h-4 bg-border" />
+        <div className="text-center">
+          <div className="text-[8px] font-bold text-primary">5</div>
+          <div className="text-[5px] text-muted-foreground">Meetings</div>
+        </div>
+        <div className="w-px h-4 bg-border" />
+        <div className="text-center">
+          <div className="text-[8px] font-bold text-emerald-400">3</div>
+          <div className="text-[5px] text-muted-foreground">Won</div>
         </div>
       </div>
     </div>
     
     <style>{`
-      @keyframes mobileCardSlide {
+      @keyframes pipeSlide {
         0%, 5% { opacity: 0; transform: translateX(-10px); }
-        15%, 75% { opacity: 1; transform: translateX(0); }
+        15%, 70% { opacity: 1; transform: translateX(0); }
         85%, 100% { opacity: 0; transform: translateX(-10px); }
       }
-      @keyframes mobileNotifSlide {
-        0%, 20% { opacity: 0; transform: translateY(-10px) scale(0.9); }
-        30%, 60% { opacity: 1; transform: translateY(0) scale(1); }
-        70%, 100% { opacity: 0; transform: translateY(-10px) scale(0.9); }
-      }
-      @keyframes mobileNotifPulse {
-        0%, 100% { box-shadow: 0 0 0 0 hsl(217 91% 60% / 0); }
-        50% { box-shadow: 0 0 8px 3px hsl(217 91% 60% / 0.4); }
+      @keyframes summaryFade {
+        0%, 15% { opacity: 0; transform: translateX(-50%) translateY(5px); }
+        25%, 70% { opacity: 1; transform: translateX(-50%) translateY(0); }
+        85%, 100% { opacity: 0; transform: translateX(-50%) translateY(5px); }
       }
     `}</style>
   </div>
@@ -1741,7 +1893,26 @@ const categories: Category[] = [
     title: "Mobile App",
     subtitle: "Your CRM in your pocket",
     color: "from-cyan-500 to-blue-500",
-    features: [] // Special category - uses full phone mockup instead
+    features: [
+      {
+        icon: Bell,
+        title: "Push Notifications",
+        description: "Never miss a lead or message with instant mobile alerts",
+        animation: <MobileNotificationsAnimation />
+      },
+      {
+        icon: MessageSquare,
+        title: "Quick Reply",
+        description: "Respond to clients on-the-go via SMS or email",
+        animation: <MobileConversationsAnimation />
+      },
+      {
+        icon: Users,
+        title: "Pipeline at a Glance",
+        description: "Check your deals and contacts from anywhere",
+        animation: <MobilePipelineAnimation />
+      }
+    ]
   }
 ];
 
@@ -1918,101 +2089,39 @@ const WhatYouGet = () => {
                     <h3 className="text-2xl lg:text-3xl font-bold text-foreground">{activeData.title}</h3>
                   </div>
                   
-                  {/* Features - Vertical Stack OR Mobile App Special View */}
-                  {activeData.id === 'mobile-app' ? (
-                    // Mobile App - Same card layout as other categories
-                    <div className="space-y-4">
-                      {/* Single feature card with phone mockup */}
-                      <div className="group relative bg-background/50 rounded-xl border border-border/50 p-5 lg:p-6 transition-all duration-300 hover:border-primary/30 hover:shadow-[0_0_30px_-10px_hsl(217_91%_60%/0.2)]">
+                  {/* Features - Vertical Stack */}
+                  <div className="space-y-4">
+                    {activeData.features.map((feature, index) => (
+                      <div 
+                        key={feature.title}
+                        className="group relative bg-background/50 rounded-xl border border-border/50 p-5 lg:p-6 transition-all duration-300 hover:border-primary/30 hover:shadow-[0_0_30px_-10px_hsl(217_91%_60%/0.2)]"
+                        style={{ animationDelay: `${index * 100}ms` }}
+                      >
                         <div className="flex gap-6 items-start">
-                          {/* Phone mockup as animation area */}
+                          {/* Large Animation area */}
                           <div className="w-56 lg:w-72 flex-shrink-0 bg-muted/30 rounded-xl overflow-hidden border border-border/30">
-                            <div className="transform scale-100 origin-center">
-                              <MobileAppAnimation />
+                            <div className="transform scale-110 origin-center">
+                              {feature.animation}
                             </div>
                           </div>
                           
-                          {/* Content - Feature highlights */}
+                          {/* Content */}
                           <div className="flex-1 py-2">
-                            <div className="flex items-center gap-3 mb-4">
-                              <div className="w-9 h-9 rounded-lg flex items-center justify-center bg-gradient-to-br from-cyan-500 to-blue-500">
-                                <Smartphone className="w-4 h-4 text-white" />
+                            <div className="flex items-center gap-3 mb-3">
+                              <div className={cn(
+                                "w-9 h-9 rounded-lg flex items-center justify-center bg-gradient-to-br",
+                                activeData.color
+                              )}>
+                                <feature.icon className="w-4 h-4 text-white" />
                               </div>
-                              <h4 className="font-bold text-foreground text-lg lg:text-xl">Your CRM in Your Pocket</h4>
+                              <h4 className="font-bold text-foreground text-lg lg:text-xl">{feature.title}</h4>
                             </div>
-                            
-                            <div className="space-y-3">
-                              <div className="flex items-start gap-2">
-                                <Bell className="w-4 h-4 text-cyan-400 mt-0.5 flex-shrink-0" />
-                                <div>
-                                  <span className="font-medium text-foreground">Push Notifications</span>
-                                  <span className="text-body"> - Never miss a lead or message</span>
-                                </div>
-                              </div>
-                              
-                              <div className="flex items-start gap-2">
-                                <MessageSquare className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
-                                <div>
-                                  <span className="font-medium text-foreground">Quick Reply</span>
-                                  <span className="text-body"> - Respond on-the-go via SMS or email</span>
-                                </div>
-                              </div>
-                              
-                              <div className="flex items-start gap-2">
-                                <Users className="w-4 h-4 text-emerald-400 mt-0.5 flex-shrink-0" />
-                                <div>
-                                  <span className="font-medium text-foreground">Pipeline at a Glance</span>
-                                  <span className="text-body"> - Check deals anywhere</span>
-                                </div>
-                              </div>
-                              
-                              <div className="flex items-start gap-2">
-                                <Calendar className="w-4 h-4 text-violet-400 mt-0.5 flex-shrink-0" />
-                                <div>
-                                  <span className="font-medium text-foreground">Calendar Sync</span>
-                                  <span className="text-body"> - Schedule synced across devices</span>
-                                </div>
-                              </div>
-                            </div>
+                            <p className="text-body leading-relaxed text-base">{feature.description}</p>
                           </div>
                         </div>
                       </div>
-                    </div>
-                  ) : (
-                    // Standard features list
-                    <div className="space-y-4">
-                      {activeData.features.map((feature, index) => (
-                        <div 
-                          key={feature.title}
-                          className="group relative bg-background/50 rounded-xl border border-border/50 p-5 lg:p-6 transition-all duration-300 hover:border-primary/30 hover:shadow-[0_0_30px_-10px_hsl(217_91%_60%/0.2)]"
-                          style={{ animationDelay: `${index * 100}ms` }}
-                        >
-                          <div className="flex gap-6 items-start">
-                            {/* Large Animation area */}
-                            <div className="w-56 lg:w-72 flex-shrink-0 bg-muted/30 rounded-xl overflow-hidden border border-border/30">
-                              <div className="transform scale-110 origin-center">
-                                {feature.animation}
-                              </div>
-                            </div>
-                            
-                            {/* Content */}
-                            <div className="flex-1 py-2">
-                              <div className="flex items-center gap-3 mb-3">
-                                <div className={cn(
-                                  "w-9 h-9 rounded-lg flex items-center justify-center bg-gradient-to-br",
-                                  activeData.color
-                                )}>
-                                  <feature.icon className="w-4 h-4 text-white" />
-                                </div>
-                                <h4 className="font-bold text-foreground text-lg lg:text-xl">{feature.title}</h4>
-                              </div>
-                              <p className="text-body leading-relaxed text-base">{feature.description}</p>
-                            </div>
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  )}
+                    ))}
+                  </div>
                 </div>
               )}
             </div>
