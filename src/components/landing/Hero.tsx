@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
-import HeroWorkflow from "./HeroWorkflow";
+import HeroDashboard from "./HeroDashboard";
 
 const Hero = () => {
   const sectionRef = useRef<HTMLElement>(null);
@@ -69,8 +69,8 @@ const Hero = () => {
             </Link>
           </div>
 
-          {/* Workflow Diagram */}
-          <HeroWorkflow />
+          {/* Dashboard Preview */}
+          <HeroDashboard />
         </div>
       </div>
     </section>
