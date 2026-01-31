@@ -1978,6 +1978,66 @@ const CentralHub = ({ activeCategory }: { activeCategory: string | null }) => {
 };
 
 
+// ============= FEATURE CARD WITH ANIMATION RESET =============
+
+interface FeatureCardProps {
+  feature: Feature;
+  categoryColor: string;
+  index: number;
+}
+
+const FeatureCard = ({ feature, categoryColor, index }: FeatureCardProps) => {
+  const [isHovered, setIsHovered] = useState(false);
+  const [animationKey, setAnimationKey] = useState(0);
+
+  const handleMouseEnter = () => {
+    setIsHovered(true);
+  };
+
+  const handleMouseLeave = () => {
+    setIsHovered(false);
+    // Increment key to force remount and restart animation
+    setAnimationKey(prev => prev + 1);
+  };
+
+  return (
+    <div 
+      className="group relative bg-background/50 rounded-xl border border-border/50 p-5 lg:p-6 transition-all duration-300 hover:border-primary/30 hover:shadow-[0_0_30px_-10px_hsl(217_91%_60%/0.2)]"
+      style={{ animationDelay: `${index * 100}ms` }}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+    >
+      <div className="flex gap-6 items-start">
+        {/* Large Animation area - grayscale/paused by default, colorful/playing on hover */}
+        <div className={cn(
+          "w-56 lg:w-72 flex-shrink-0 bg-muted/30 rounded-xl overflow-hidden border border-border/30 transition-all duration-300",
+          isHovered 
+            ? "[filter:grayscale(0%)] opacity-100" 
+            : "[filter:grayscale(100%)] opacity-60"
+        )}>
+          <div className="transform scale-110 origin-center" key={animationKey}>
+            {isHovered ? feature.animation : null}
+          </div>
+        </div>
+        
+        {/* Content */}
+        <div className="flex-1 py-2">
+          <div className="flex items-center gap-3 mb-3">
+            <div className={cn(
+              "w-9 h-9 rounded-lg flex items-center justify-center bg-gradient-to-br",
+              categoryColor
+            )}>
+              <feature.icon className="w-4 h-4 text-white" />
+            </div>
+            <h4 className="font-bold text-foreground text-lg lg:text-xl">{feature.title}</h4>
+          </div>
+          <p className="text-body leading-relaxed text-base">{feature.description}</p>
+        </div>
+      </div>
+    </div>
+  );
+};
+
 // ============= MAIN COMPONENT =============
 
 const WhatYouGet = () => {
@@ -2114,34 +2174,12 @@ const WhatYouGet = () => {
                   {/* Features - Vertical Stack */}
                   <div className="space-y-4">
                     {activeData.features.map((feature, index) => (
-                      <div 
+                      <FeatureCard 
                         key={feature.title}
-                        className="group relative bg-background/50 rounded-xl border border-border/50 p-5 lg:p-6 transition-all duration-300 hover:border-primary/30 hover:shadow-[0_0_30px_-10px_hsl(217_91%_60%/0.2)]"
-                        style={{ animationDelay: `${index * 100}ms` }}
-                      >
-                        <div className="flex gap-6 items-start">
-                          {/* Large Animation area - grayscale/paused by default, colorful/playing on hover */}
-                          <div className="w-56 lg:w-72 flex-shrink-0 bg-muted/30 rounded-xl overflow-hidden border border-border/30 [filter:grayscale(100%)] opacity-60 group-hover:[filter:grayscale(0%)] group-hover:opacity-100 transition-all duration-300 animation-paused group-hover-animation-running">
-                            <div className="transform scale-110 origin-center">
-                              {feature.animation}
-                            </div>
-                          </div>
-                          
-                          {/* Content */}
-                          <div className="flex-1 py-2">
-                            <div className="flex items-center gap-3 mb-3">
-                              <div className={cn(
-                                "w-9 h-9 rounded-lg flex items-center justify-center bg-gradient-to-br",
-                                activeData.color
-                              )}>
-                                <feature.icon className="w-4 h-4 text-white" />
-                              </div>
-                              <h4 className="font-bold text-foreground text-lg lg:text-xl">{feature.title}</h4>
-                            </div>
-                            <p className="text-body leading-relaxed text-base">{feature.description}</p>
-                          </div>
-                        </div>
-                      </div>
+                        feature={feature}
+                        categoryColor={activeData.color}
+                        index={index}
+                      />
                     ))}
                   </div>
                 </div>
