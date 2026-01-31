@@ -139,14 +139,14 @@ const InboxAnimation = () => (
       
       <style>{`
         @keyframes inboxRowSlide {
-          0% { opacity: 0; transform: translateX(-20px); }
-          8%, 75% { opacity: 1; transform: translateX(0); }
-          85%, 100% { opacity: 0; transform: translateX(-20px); }
+          0%, 75% { opacity: 1; transform: translateX(0); }
+          85%, 92% { opacity: 0; transform: translateX(-20px); }
+          100% { opacity: 1; transform: translateX(0); }
         }
         @keyframes inboxBadgePop {
-          0%, 15% { opacity: 0; transform: scale(0); }
-          25%, 75% { opacity: 1; transform: scale(1); }
-          85%, 100% { opacity: 0; transform: scale(0); }
+          0%, 75% { opacity: 1; transform: scale(1); }
+          85%, 92% { opacity: 0; transform: scale(0); }
+          100% { opacity: 1; transform: scale(1); }
         }
       `}</style>
     </div>
@@ -458,8 +458,11 @@ const FormsAnimation = () => (
           <div className="text-[6px] text-muted-foreground mb-0.5">What are your financial goals?</div>
           <div className="h-5 bg-muted/30 rounded px-1.5 flex items-center border border-primary/30">
             <span 
-              className="text-[6px] text-foreground/80 whitespace-nowrap overflow-hidden animate-[typing_4s_steps(35)_infinite]"
-              style={{ maxWidth: 0 }}
+              className="text-[6px] text-foreground/80 whitespace-nowrap overflow-hidden"
+              style={{ 
+                animation: 'typing 4s steps(35) infinite',
+                maxWidth: '200px'
+              }}
             >
               I want to start investing for retirement
             </span>
@@ -548,32 +551,28 @@ const WorkflowAnimation = () => (
   <div className="relative h-40 flex items-center justify-center p-3">
     <style>{`
       @keyframes stepComplete1 {
-        0%, 5% { opacity: 0.4; }
-        10%, 100% { opacity: 1; }
+        0%, 100% { opacity: 1; }
       }
       @keyframes stepCheck1 {
         0%, 8% { opacity: 0; transform: scale(0); }
         12%, 100% { opacity: 1; transform: scale(1); }
       }
       @keyframes stepComplete2 {
-        0%, 20% { opacity: 0.4; }
-        25%, 100% { opacity: 1; }
+        0%, 100% { opacity: 1; }
       }
       @keyframes stepCheck2 {
         0%, 23% { opacity: 0; transform: scale(0); }
         28%, 100% { opacity: 1; transform: scale(1); }
       }
       @keyframes stepComplete3 {
-        0%, 40% { opacity: 0.4; }
-        45%, 100% { opacity: 1; }
+        0%, 100% { opacity: 1; }
       }
       @keyframes stepCheck3 {
         0%, 42% { opacity: 0; transform: scale(0); }
         48%, 100% { opacity: 1; transform: scale(1); }
       }
       @keyframes stepComplete4 {
-        0%, 60% { opacity: 0.4; }
-        65%, 100% { opacity: 1; }
+        0%, 100% { opacity: 1; }
       }
       @keyframes stepCheck4 {
         0%, 62% { opacity: 0; transform: scale(0); }
@@ -651,24 +650,21 @@ const AppointmentRemindersAnimation = () => (
   <div className="relative h-40 flex items-center justify-center p-3">
     <style>{`
       @keyframes reminderNode1 {
-        0%, 5% { opacity: 0.3; transform: scale(0.95); }
-        10%, 100% { opacity: 1; transform: scale(1); }
+        0%, 100% { opacity: 1; transform: scale(1); }
       }
       @keyframes reminderCheck1 {
         0%, 8% { opacity: 0; transform: scale(0); }
         12%, 100% { opacity: 1; transform: scale(1); }
       }
       @keyframes reminderNode2 {
-        0%, 25% { opacity: 0.3; transform: scale(0.95); }
-        30%, 100% { opacity: 1; transform: scale(1); }
+        0%, 100% { opacity: 1; transform: scale(1); }
       }
       @keyframes reminderCheck2 {
         0%, 28% { opacity: 0; transform: scale(0); }
         33%, 100% { opacity: 1; transform: scale(1); }
       }
       @keyframes reminderNode3 {
-        0%, 50% { opacity: 0.3; transform: scale(0.95); }
-        55%, 100% { opacity: 1; transform: scale(1); }
+        0%, 100% { opacity: 1; transform: scale(1); }
       }
       @keyframes reminderCheck3 {
         0%, 53% { opacity: 0; transform: scale(0); }
@@ -763,12 +759,14 @@ const ReferralRequestsAnimation = () => (
   <div className="relative h-40 flex items-center justify-center p-3">
     <style>{`
       @keyframes referralSend {
-        0%, 3% { opacity: 0; transform: translateX(-10px); }
-        10%, 100% { opacity: 1; transform: translateX(0); }
+        0%, 85% { opacity: 1; transform: translateX(0); }
+        92%, 98% { opacity: 0; transform: translateX(-10px); }
+        100% { opacity: 1; transform: translateX(0); }
       }
       @keyframes referralForm {
-        0%, 20% { opacity: 0; transform: translateY(5px); }
-        28%, 100% { opacity: 1; transform: translateY(0); }
+        0%, 85% { opacity: 1; transform: translateY(0); }
+        92%, 98% { opacity: 0; transform: translateY(5px); }
+        100% { opacity: 1; transform: translateY(0); }
       }
       @keyframes referralSuccess {
         0%, 40% { opacity: 0; transform: scale(0.8); }
@@ -912,8 +910,9 @@ const SocialAnimation = () => (
   <div className="relative h-40 flex items-center justify-center p-3">
     <style>{`
       @keyframes aiTyping {
-        0%, 100% { width: 0; }
-        15%, 85% { width: 100%; }
+        0%, 85% { width: 100%; }
+        92%, 98% { width: 0; }
+        100% { width: 100%; }
       }
       @keyframes cursorBlink {
         0%, 50% { opacity: 1; }
@@ -933,9 +932,9 @@ const SocialAnimation = () => (
         68%, 100% { opacity: 0; }
       }
       @keyframes platformNotify {
-        0%, 65% { opacity: 0; transform: translateY(4px); }
-        72%, 92% { opacity: 1; transform: translateY(0); }
-        100% { opacity: 0; transform: translateY(-4px); }
+        0% { opacity: 0; transform: translateY(4px); }
+        8%, 85% { opacity: 1; transform: translateY(0); }
+        92%, 100% { opacity: 0; transform: translateY(-4px); }
       }
     `}</style>
     <div className="w-full bg-card/30 rounded-lg border border-border/30 p-3">
@@ -1042,14 +1041,14 @@ const DashboardAnimation = () => (
   <div className="relative h-40 flex items-center justify-center p-3">
     <style>{`
       @keyframes lineReveal {
-        0%, 3% { stroke-dashoffset: 200; }
-        30%, 95% { stroke-dashoffset: 0; }
-        100% { stroke-dashoffset: 200; }
+        0%, 85% { stroke-dashoffset: 0; }
+        92%, 98% { stroke-dashoffset: 200; }
+        100% { stroke-dashoffset: 0; }
       }
       @keyframes dotPop {
-        0%, 10% { opacity: 0; transform: scale(0); }
-        20%, 90% { opacity: 1; transform: scale(1); }
-        100% { opacity: 0; transform: scale(0); }
+        0%, 85% { opacity: 1; transform: scale(1); }
+        92%, 98% { opacity: 0; transform: scale(0); }
+        100% { opacity: 1; transform: scale(1); }
       }
     `}</style>
     <div className="w-full bg-card/30 rounded-lg border border-border/30 p-3">
@@ -1089,7 +1088,7 @@ const DashboardAnimation = () => (
             strokeLinecap="round"
             strokeLinejoin="round"
             strokeDasharray="200"
-            style={{ animation: 'lineReveal 3s ease-in-out 0.15s infinite', strokeDashoffset: 200 }}
+            style={{ animation: 'lineReveal 3s ease-in-out 0.15s infinite' }}
           />
           {/* Data points - Revenue */}
           {[[0, 40], [20, 35], [40, 38], [60, 28], [80, 20], [100, 15]].map(([x, y], i) => (
@@ -1197,24 +1196,23 @@ const AttributionAnimation = () => (
   <div className="relative h-40 flex items-center justify-center p-3">
     <style>{`
       @keyframes attrSlideIn {
-        0%, 2% { opacity: 0; transform: translateX(-20px); }
-        8%, 85% { opacity: 1; transform: translateX(0); }
-        92%, 100% { opacity: 0; transform: translateX(-20px); }
+        0%, 85% { opacity: 1; transform: translateX(0); }
+        92%, 98% { opacity: 0; transform: translateX(-20px); }
+        100% { opacity: 1; transform: translateX(0); }
       }
       @keyframes attrCountUp {
-        0%, 10% { opacity: 0; }
-        15%, 85% { opacity: 1; }
-        92%, 100% { opacity: 0; }
+        0%, 85% { opacity: 1; }
+        92%, 98% { opacity: 0; }
+        100% { opacity: 1; }
       }
       @keyframes attrCheckPop {
-        0%, 12% { opacity: 0; transform: scale(0); }
-        18%, 85% { opacity: 1; transform: scale(1); }
-        92%, 100% { opacity: 0; transform: scale(0); }
+        0%, 85% { opacity: 1; transform: scale(1); }
+        92%, 98% { opacity: 0; transform: scale(0); }
+        100% { opacity: 1; transform: scale(1); }
       }
       @keyframes attrTotalFade {
         0%, 50% { opacity: 0; }
-        58%, 85% { opacity: 1; }
-        92%, 100% { opacity: 0; }
+        58%, 100% { opacity: 1; }
       }
     `}</style>
     <div className="w-full bg-card/30 rounded-lg border border-border/30 p-3">
@@ -1422,7 +1420,7 @@ const ESignatureAnimation = () => (
                   strokeLinecap="round"
                   className="animate-[signatureDraw_3s_ease-out_infinite]"
                   strokeDasharray="120"
-                  strokeDashoffset="120"
+                  strokeDashoffset="0"
                 />
               </svg>
             </div>
@@ -1539,9 +1537,9 @@ const MobileNotificationsAnimation = () => (
     
     <style>{`
       @keyframes notifSlideDown {
-        0%, 5% { opacity: 0; transform: translateY(-6px); }
-        15%, 70% { opacity: 1; transform: translateY(0); }
-        85%, 100% { opacity: 0; transform: translateY(-6px); }
+        0%, 70% { opacity: 1; transform: translateY(0); }
+        85%, 92% { opacity: 0; transform: translateY(-6px); }
+        100% { opacity: 1; transform: translateY(0); }
       }
     `}</style>
   </div>
@@ -1602,14 +1600,14 @@ const MobileConversationsAnimation = () => (
     
     <style>{`
       @keyframes msgSlide {
-        0%, 5% { opacity: 0; transform: translateY(4px); }
-        12%, 75% { opacity: 1; transform: translateY(0); }
-        85%, 100% { opacity: 0; transform: translateY(4px); }
+        0%, 75% { opacity: 1; transform: translateY(0); }
+        85%, 92% { opacity: 0; transform: translateY(4px); }
+        100% { opacity: 1; transform: translateY(0); }
       }
       @keyframes replyType {
         0%, 35% { opacity: 0; }
-        45%, 75% { opacity: 1; }
-        85%, 100% { opacity: 0; }
+        45%, 85% { opacity: 1; }
+        92%, 100% { opacity: 0; }
       }
     `}</style>
   </div>
@@ -1741,10 +1739,9 @@ const MobilePipelineAnimation = () => (
         100% { background: hsl(217 91% 60% / 0.3); color: white; }
       }
       @keyframes stageSwipe {
-        0% { opacity: 0; transform: translateX(100%); }
-        3%, 30% { opacity: 1; transform: translateX(0); }
-        33.33% { opacity: 0; transform: translateX(-100%); }
-        100% { opacity: 0; transform: translateX(-100%); }
+        0%, 30% { opacity: 1; transform: translateX(0); }
+        33.33%, 97% { opacity: 0; transform: translateX(-100%); }
+        100% { opacity: 1; transform: translateX(0); }
       }
     `}</style>
   </div>
@@ -2015,8 +2012,22 @@ const FeatureCard = ({ feature, categoryColor, index }: FeatureCardProps) => {
             ? "[filter:grayscale(0%)] opacity-100" 
             : "[filter:grayscale(100%)] opacity-60"
         )}>
-          <div className="transform scale-110 origin-center" key={animationKey}>
-            {isHovered ? feature.animation : null}
+          <div 
+            className="transform scale-110 origin-center" 
+            key={animationKey}
+            style={{ 
+              // Pause all animations when not hovered
+              animationPlayState: isHovered ? 'running' : 'paused'
+            }}
+          >
+            <div 
+              className={cn(
+                "animation-container",
+                !isHovered && "animation-paused"
+              )}
+            >
+              {feature.animation}
+            </div>
           </div>
         </div>
         
