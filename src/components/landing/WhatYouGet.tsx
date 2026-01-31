@@ -667,17 +667,17 @@ const SMSAnimation = () => (
           <div className="h-1 w-8 mx-auto bg-muted/40 rounded mb-2" />
           <div className="space-y-1.5">
             <div className="ml-auto max-w-[80%] px-2 py-1 bg-orange-500/20 rounded-l-lg rounded-tr-lg animate-[smsSlide_4s_ease-out_infinite]">
-              <div className="text-[6px] text-foreground/80">Your retirement review is tomorrow at 2pm!</div>
+              <div className="text-[6px] text-foreground/80">Hey! It's time for your annual review. Let's schedule a call!</div>
             </div>
             <div className="max-w-[60%] px-2 py-1 bg-muted/30 rounded-r-lg rounded-tl-lg animate-[smsSlide_4s_ease-out_infinite]" style={{ animationDelay: '1s' }}>
-              <div className="text-[6px] text-foreground/60">Thanks! See you then</div>
+              <div className="text-[6px] text-foreground/60">Sounds great, I'm free next week!</div>
             </div>
           </div>
         </div>
         
         {/* Campaign info */}
         <div className="flex-1">
-          <div className="text-[8px] font-medium text-foreground mb-2">Appointment Reminder</div>
+          <div className="text-[8px] font-medium text-foreground mb-2">Annual Review Reminder</div>
           <div className="space-y-1.5">
             <div className="flex items-center gap-2">
               <div className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
@@ -1207,7 +1207,7 @@ const categories: Category[] = [
       },
       {
         icon: Smartphone,
-        title: "SMS Marketing",
+        title: "SMS Campaigns",
         description: "Boost open rates with A2P compliant SMS marketing",
         animation: <SMSAnimation />
       }
