@@ -149,51 +149,51 @@ const PipelineAnimation = () => {
   
   return (
     <div className="relative h-40 flex items-center justify-center p-3">
-      <div className="w-full bg-card/30 rounded-lg border border-border/30 p-3">
+      <div className="w-full bg-card/30 rounded-lg border border-border/30 p-4">
         {/* Stage Headers */}
-        <div className="flex gap-3 mb-3">
+        <div className="flex gap-4 mb-3">
           {stages.map((stage) => (
             <div key={stage.name} className="flex-1">
-              <div className={cn("h-1.5 rounded-full mb-1.5", stage.color)} />
-              <span className="text-[8px] font-medium text-foreground/80">{stage.name}</span>
+              <div className={cn("h-1.5 rounded-full mb-2", stage.color)} />
+              <span className="text-[9px] font-medium text-foreground/80">{stage.name}</span>
             </div>
           ))}
         </div>
         
         {/* Pipeline Columns */}
-        <div className="flex gap-3 h-20">
+        <div className="flex gap-4">
           {/* Lead */}
-          <div className="flex-1 bg-muted/20 rounded-lg p-1.5 space-y-1.5">
-            <div className="bg-card/80 rounded-lg px-2 py-1.5 border border-border/40 animate-[pipelineCardMove_4s_ease-in-out_infinite]">
+          <div className="flex-1 bg-muted/20 rounded-lg p-2">
+            <div className="bg-card/80 rounded-lg px-2.5 py-2 border border-border/40 animate-[pipelineCardMove_4s_ease-in-out_infinite]">
               <div className="flex items-center gap-2">
-                <div className="w-5 h-5 rounded-full bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center">
-                  <span className="text-[6px] font-bold text-white">JD</span>
+                <div className="w-6 h-6 rounded-full bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center">
+                  <span className="text-[7px] font-bold text-white">JD</span>
                 </div>
-                <div className="text-[6px] text-foreground/70">New inquiry</div>
+                <div className="text-[8px] text-foreground/70">New inquiry</div>
               </div>
             </div>
           </div>
           
           {/* Meeting */}
-          <div className="flex-1 bg-muted/20 rounded-lg p-1.5">
-            <div className="bg-card/80 rounded-lg px-2 py-1.5 border border-primary/30 animate-[pipelineCardPulse_2s_ease-in-out_infinite]">
+          <div className="flex-1 bg-muted/20 rounded-lg p-2">
+            <div className="bg-card/80 rounded-lg px-2.5 py-2 border border-primary/30 animate-[pipelineCardPulse_2s_ease-in-out_infinite]">
               <div className="flex items-center gap-2">
-                <div className="w-5 h-5 rounded-full bg-gradient-to-br from-purple-400 to-purple-600 flex items-center justify-center">
-                  <span className="text-[6px] font-bold text-white">MK</span>
+                <div className="w-6 h-6 rounded-full bg-gradient-to-br from-purple-400 to-purple-600 flex items-center justify-center">
+                  <span className="text-[7px] font-bold text-white">MK</span>
                 </div>
-                <div className="text-[6px] text-foreground/70">Discovery call</div>
+                <div className="text-[8px] text-foreground/70">Discovery call</div>
               </div>
             </div>
           </div>
           
           {/* Won */}
-          <div className="flex-1 bg-emerald-500/10 rounded-lg p-1.5 border border-emerald-500/20">
-            <div className="bg-card/80 rounded-lg px-2 py-1.5 border border-emerald-500/30">
+          <div className="flex-1 bg-emerald-500/10 rounded-lg p-2 border border-emerald-500/20">
+            <div className="bg-card/80 rounded-lg px-2.5 py-2 border border-emerald-500/30">
               <div className="flex items-center gap-2">
-                <div className="w-5 h-5 rounded-full bg-emerald-500 flex items-center justify-center">
-                  <span className="text-[7px] text-white">✓</span>
+                <div className="w-6 h-6 rounded-full bg-emerald-500 flex items-center justify-center">
+                  <span className="text-[8px] text-white">✓</span>
                 </div>
-                <div className="text-[6px] text-emerald-400">Signed!</div>
+                <div className="text-[8px] text-emerald-400">Signed!</div>
               </div>
             </div>
           </div>
