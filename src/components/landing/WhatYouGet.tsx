@@ -1676,7 +1676,7 @@ const MobilePipelineAnimation = () => (
           {/* Stage 2: Meeting */}
           <div 
             className="absolute inset-0 space-y-0.5"
-            style={{ animation: 'stageSwipe 6s ease-in-out infinite', animationDelay: '2s' }}
+            style={{ animation: 'stageSwipe 6s ease-in-out infinite', animationDelay: '2s', animationFillMode: 'backwards' }}
           >
             <div className="bg-rose-500/20 rounded p-1 border border-rose-500/30">
               <div className="flex items-center gap-1">
@@ -1705,7 +1705,7 @@ const MobilePipelineAnimation = () => (
           {/* Stage 3: Won */}
           <div 
             className="absolute inset-0 space-y-0.5"
-            style={{ animation: 'stageSwipe 6s ease-in-out infinite', animationDelay: '4s' }}
+            style={{ animation: 'stageSwipe 6s ease-in-out infinite', animationDelay: '4s', animationFillMode: 'backwards' }}
           >
             <div className="bg-emerald-500/20 rounded p-1 border border-emerald-500/30">
               <div className="flex items-center gap-1">
