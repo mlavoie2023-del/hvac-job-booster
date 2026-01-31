@@ -9,6 +9,7 @@ import {
   Zap,
   Megaphone,
   Send,
+  MousePointerClick,
   ChevronLeft,
   ChevronRight,
   LucideIcon,
@@ -1142,7 +1143,7 @@ const categories: Category[] = [
     color: "from-emerald-500 to-teal-500",
     features: [
       {
-        icon: FileText,
+        icon: MousePointerClick,
         title: "Landing Pages",
         description: "Professional pages that convert visitors to leads",
         animation: <LandingPageAnimation />
