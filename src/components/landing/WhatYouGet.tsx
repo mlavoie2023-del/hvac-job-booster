@@ -1171,7 +1171,7 @@ const categories: Category[] = [
       {
         icon: Workflow,
         title: "Workflows",
-        description: "Automated nurture sequences and follow-ups",
+        description: "Automate anything you can imagine with powerful workflows natively integrated with your entire business",
         animation: <WorkflowAnimation />
       },
       {
