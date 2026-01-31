@@ -1,99 +1,118 @@
 
-# Campaign Attribution Animation: Staggered Slide-In with Count Up
+
+# Hybrid Hover Animation Plan
 
 ## Overview
-Update the Campaign Attribution animation to feature rows that slide in sequentially from the left, with lead counts animating from 0 to their final values, and checkmarks popping in at the end. The entire animation will loop infinitely on a 6-second cycle.
 
-## Animation Sequence (6-second loop)
-1. **0.0s - 0.5s**: First row (Client Referrals) slides in from left
-2. **0.5s - 1.0s**: Count animates 0 → 12, checkmark pops
-3. **0.8s - 1.3s**: Second row (Email Campaigns) slides in
-4. **1.3s - 1.8s**: Count animates 0 → 8, checkmark pops
-5. **1.6s - 2.1s**: Third row (Website Forms) slides in
-6. **2.1s - 2.6s**: Count animates 0 → 6, checkmark pops
-7. **2.4s - 2.9s**: Fourth row (Social Media) slides in
-8. **2.9s - 3.4s**: Count animates 0 → 5, checkmark pops
-9. **3.5s - 4.0s**: Total summary fades in at bottom
-10. **4.5s - 5.5s**: Hold complete state
-11. **5.5s - 6.0s**: All elements fade out and reset
+Implement a hover-activated animation system for feature cards where:
+- **Selected category** in the sidebar stays active/colorful (already implemented)
+- **Feature cards** within the selected category start in a grayscale/paused state
+- **On hover**, feature cards become colorful and animations start playing
 
-## Technical Changes
+## Technical Approach
 
-### File: `src/components/landing/WhatYouGet.tsx`
+### 1. Create CSS Classes for Animation States
 
-**1. Update CSS Keyframes (lines 1154-1167)**
-
-Replace the current keyframes with looping versions:
+Add new utility classes to control animation play state and grayscale filter:
 
 ```css
-@keyframes attrSlideIn {
-  0%, 2% { opacity: 0; transform: translateX(-20px); }
-  8%, 85% { opacity: 1; transform: translateX(0); }
-  92%, 100% { opacity: 0; transform: translateX(-20px); }
+/* Inactive state - grayscale and paused */
+.animation-inactive {
+  filter: grayscale(100%);
+  opacity: 0.6;
+  transition: filter 0.3s ease, opacity 0.3s ease;
 }
 
-@keyframes attrCountUp {
-  0%, 10% { opacity: 0; }
-  15%, 85% { opacity: 1; }
-  92%, 100% { opacity: 0; }
+.animation-inactive * {
+  animation-play-state: paused !important;
 }
 
-@keyframes attrCheckPop {
-  0%, 12% { opacity: 0; transform: scale(0); }
-  18%, 85% { opacity: 1; transform: scale(1); }
-  92%, 100% { opacity: 0; transform: scale(0); }
+/* Active state on hover - full color and playing */
+.animation-active {
+  filter: grayscale(0%);
+  opacity: 1;
 }
 
-@keyframes attrTotalFade {
-  0%, 50% { opacity: 0; }
-  58%, 85% { opacity: 1; }
-  92%, 100% { opacity: 0; }
+.animation-active * {
+  animation-play-state: running !important;
 }
 ```
 
-**2. Update Animation Styles on Elements (lines 1176-1241)**
+### 2. Modify Feature Card Wrapper
 
-Apply the new looping keyframes with staggered delays:
-- Row 1: 0s delay
-- Row 2: 0.5s delay  
-- Row 3: 1.0s delay
-- Row 4: 1.5s delay
-- Total: appears after all rows complete
+Update the feature card rendering in the desktop view (lines ~2115-2144) to:
+- Wrap the animation container with a `group` class (already present)
+- Apply `animation-inactive` by default to the animation wrapper
+- Toggle to `animation-active` on hover using Tailwind's `group-hover:` modifier
 
-Each row will use:
-- `attrSlideIn 6s ease-out infinite` for the row container
-- `attrCountUp 6s ease-out infinite` for the lead count number
-- `attrCheckPop 6s ease-out infinite` for the checkmark
-
-**3. Example Updated Row Structure**
-
+**Before:**
 ```tsx
-<div 
-  className="flex items-center gap-2 px-2 py-1.5 rounded-lg border bg-emerald-500/20 border-emerald-500/30"
-  style={{ animation: 'attrSlideIn 6s ease-out infinite' }}
->
-  <Users className="w-3 h-3 text-emerald-400" />
-  <span className="text-[7px] text-foreground/80 flex-1">Client Referrals</span>
-  <div className="flex items-center gap-1">
-    <span 
-      className="text-[8px] font-bold text-emerald-400" 
-      style={{ animation: 'attrCountUp 6s ease-out 0.3s infinite' }}
-    >12</span>
-    <span className="text-[6px] text-muted-foreground">leads</span>
-  </div>
-  <div 
-    className="w-3 h-3 rounded-full bg-emerald-500/30 flex items-center justify-center" 
-    style={{ animation: 'attrCheckPop 6s ease-out 0.4s infinite' }}
-  >
-    <span className="text-[5px] text-emerald-400">✓</span>
+<div className="w-56 lg:w-72 flex-shrink-0 bg-muted/30 rounded-xl overflow-hidden border border-border/30">
+  <div className="transform scale-110 origin-center">
+    {feature.animation}
   </div>
 </div>
 ```
 
-## Visual Result
-- Rows appear one-by-one sliding in from the left
-- Each row's lead count fades in shortly after the row appears
-- Checkmarks pop in with a scale effect after counts appear
-- Total summary fades in once all rows are complete
-- Everything resets and loops every 6 seconds
-- Smooth, continuous animation matching the Dashboard style
+**After:**
+```tsx
+<div className="w-56 lg:w-72 flex-shrink-0 bg-muted/30 rounded-xl overflow-hidden border border-border/30 
+  [filter:grayscale(100%)] opacity-60 group-hover:[filter:grayscale(0%)] group-hover:opacity-100 
+  transition-all duration-300
+  [&_*]:[animation-play-state:paused] group-hover:[&_*]:[animation-play-state:running]">
+  <div className="transform scale-110 origin-center">
+    {feature.animation}
+  </div>
+</div>
+```
+
+### 3. Key Technical Details
+
+| Aspect | Implementation |
+|--------|----------------|
+| **Grayscale** | `[filter:grayscale(100%)]` + `group-hover:[filter:grayscale(0%)]` |
+| **Opacity** | `opacity-60` (dimmed) + `group-hover:opacity-100` (full) |
+| **Animation pause** | `[&_*]:[animation-play-state:paused]` targets all child elements |
+| **Animation play** | `group-hover:[&_*]:[animation-play-state:running]` on hover |
+| **Smooth transition** | `transition-all duration-300` for filter/opacity changes |
+
+### 4. Visual Result
+
+```text
++------------------------------------------+
+|  Feature Card (not hovered)              |
+|  +------------------+  +--------------+  |
+|  | [Animation]      |  | Title        |  |
+|  | (grayscale,      |  | Description  |  |
+|  |  paused,         |  |              |  |
+|  |  60% opacity)    |  |              |  |
+|  +------------------+  +--------------+  |
++------------------------------------------+
+
+            User hovers...
+
++------------------------------------------+
+|  Feature Card (hovered)                  |
+|  +------------------+  +--------------+  |
+|  | [Animation]      |  | Title        |  |
+|  | (full color,     |  | Description  |  |
+|  |  playing,        |  |              |  |
+|  |  100% opacity)   |  |              |  |
+|  +------------------+  +--------------+  |
++------------------------------------------+
+```
+
+## Files to Modify
+
+| File | Changes |
+|------|---------|
+| `src/components/landing/WhatYouGet.tsx` | Update animation wrapper in desktop feature cards (~line 2123) with grayscale/pause states and hover activation |
+
+## Implementation Notes
+
+- Uses Tailwind's arbitrary value syntax `[filter:grayscale(100%)]` for the filter property
+- Uses child selector syntax `[&_*]` to target all descendant elements for animation-play-state
+- The `group` class is already on the parent card, so `group-hover:` works out of the box
+- Mobile carousel is left unchanged as requested (animations continue running)
+- Transition duration of 300ms provides smooth color/opacity fade
+
