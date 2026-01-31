@@ -1537,24 +1537,11 @@ const MobileNotificationsAnimation = () => (
       </div>
     </PhoneFrame>
     
-    {/* Badge indicator */}
-    <div 
-      className="absolute top-3 right-6 w-4 h-4 bg-red-500 rounded-full flex items-center justify-center shadow-lg"
-      style={{ animation: 'badgePop 5s ease-out infinite' }}
-    >
-      <span className="text-[6px] font-bold text-white">3</span>
-    </div>
-    
     <style>{`
       @keyframes notifSlideDown {
         0%, 5% { opacity: 0; transform: translateY(-6px); }
         15%, 70% { opacity: 1; transform: translateY(0); }
         85%, 100% { opacity: 0; transform: translateY(-6px); }
-      }
-      @keyframes badgePop {
-        0%, 10% { opacity: 0; transform: scale(0); }
-        20%, 70% { opacity: 1; transform: scale(1); }
-        85%, 100% { opacity: 0; transform: scale(0); }
       }
     `}</style>
   </div>
@@ -1628,56 +1615,118 @@ const MobileConversationsAnimation = () => (
   </div>
 );
 
-// Animation 3: Pipeline View
+// Animation 3: Pipeline View - Swipeable stages
 const MobilePipelineAnimation = () => (
   <div className="relative h-40 flex items-center justify-center p-2">
     <PhoneFrame activeTab="contacts">
-      <div className="px-1 py-1 pb-6">
-        <div className="text-[5px] font-bold text-white mb-1.5">Pipeline</div>
+      <div className="px-1 py-1 pb-6 h-full overflow-hidden">
+        {/* Stage tabs */}
+        <div className="flex gap-0.5 mb-1.5">
+          <div 
+            className="flex-1 text-center py-0.5 rounded text-[3px] font-medium"
+            style={{ animation: 'stageActive 6s ease-in-out infinite' }}
+          >
+            Leads
+          </div>
+          <div 
+            className="flex-1 text-center py-0.5 rounded text-[3px] font-medium"
+            style={{ animation: 'stageActive 6s ease-in-out infinite', animationDelay: '2s' }}
+          >
+            Meeting
+          </div>
+          <div 
+            className="flex-1 text-center py-0.5 rounded text-[3px] font-medium"
+            style={{ animation: 'stageActive 6s ease-in-out infinite', animationDelay: '4s' }}
+          >
+            Won
+          </div>
+        </div>
         
-        {/* Pipeline cards */}
-        <div className="space-y-1">
+        {/* Swipeable content area */}
+        <div className="relative h-[calc(100%-24px)] overflow-hidden">
+          {/* Stage 1: Leads */}
           <div 
-            className="bg-slate-800/60 rounded p-1 border border-slate-700/50"
-            style={{ animation: 'pipeSlide 5s ease-out infinite' }}
+            className="absolute inset-0 space-y-0.5"
+            style={{ animation: 'stageSwipe 6s ease-in-out infinite' }}
           >
-            <div className="flex items-center gap-1">
-              <div className="w-3 h-3 rounded-full bg-slate-600 flex items-center justify-center">
-                <span className="text-[4px] font-bold text-white">JK</span>
+            <div className="bg-slate-800/60 rounded p-1 border border-slate-700/50">
+              <div className="flex items-center gap-1">
+                <div className="w-3 h-3 rounded-full bg-slate-600 flex items-center justify-center">
+                  <span className="text-[4px] font-bold text-white">JK</span>
+                </div>
+                <div className="flex-1 min-w-0">
+                  <div className="text-[4px] font-medium text-white truncate">James Kim</div>
+                  <div className="text-[3px] text-slate-400">Website</div>
+                </div>
               </div>
-              <div className="flex-1 min-w-0">
-                <div className="text-[4px] font-medium text-white truncate">James Kim</div>
-                <div className="text-[3px] text-slate-400">New Lead</div>
+            </div>
+            <div className="bg-slate-800/60 rounded p-1 border border-slate-700/50">
+              <div className="flex items-center gap-1">
+                <div className="w-3 h-3 rounded-full bg-slate-600 flex items-center justify-center">
+                  <span className="text-[4px] font-bold text-white">LP</span>
+                </div>
+                <div className="flex-1 min-w-0">
+                  <div className="text-[4px] font-medium text-white truncate">Lisa Park</div>
+                  <div className="text-[3px] text-slate-400">Referral</div>
+                </div>
               </div>
             </div>
           </div>
           
+          {/* Stage 2: Meeting */}
           <div 
-            className="bg-primary/20 rounded p-1 border border-primary/30"
-            style={{ animation: 'pipeSlide 5s ease-out infinite', animationDelay: '0.3s' }}
+            className="absolute inset-0 space-y-0.5"
+            style={{ animation: 'stageSwipe 6s ease-in-out infinite', animationDelay: '2s' }}
           >
-            <div className="flex items-center gap-1">
-              <div className="w-3 h-3 rounded-full bg-primary flex items-center justify-center">
-                <span className="text-[4px] font-bold text-white">SD</span>
+            <div className="bg-rose-500/20 rounded p-1 border border-rose-500/30">
+              <div className="flex items-center gap-1">
+                <div className="w-3 h-3 rounded-full bg-rose-500 flex items-center justify-center">
+                  <span className="text-[4px] font-bold text-white">SD</span>
+                </div>
+                <div className="flex-1 min-w-0">
+                  <div className="text-[4px] font-medium text-white truncate">Sarah Davis</div>
+                  <div className="text-[3px] text-rose-400">Today 2pm</div>
+                </div>
               </div>
-              <div className="flex-1 min-w-0">
-                <div className="text-[4px] font-medium text-white truncate">Sarah Davis</div>
-                <div className="text-[3px] text-primary">Meeting</div>
+            </div>
+            <div className="bg-rose-500/20 rounded p-1 border border-rose-500/30">
+              <div className="flex items-center gap-1">
+                <div className="w-3 h-3 rounded-full bg-rose-500 flex items-center justify-center">
+                  <span className="text-[4px] font-bold text-white">TW</span>
+                </div>
+                <div className="flex-1 min-w-0">
+                  <div className="text-[4px] font-medium text-white truncate">Tom Wilson</div>
+                  <div className="text-[3px] text-rose-400">Tomorrow</div>
+                </div>
               </div>
             </div>
           </div>
           
+          {/* Stage 3: Won */}
           <div 
-            className="bg-emerald-500/20 rounded p-1 border border-emerald-500/30"
-            style={{ animation: 'pipeSlide 5s ease-out infinite', animationDelay: '0.6s' }}
+            className="absolute inset-0 space-y-0.5"
+            style={{ animation: 'stageSwipe 6s ease-in-out infinite', animationDelay: '4s' }}
           >
-            <div className="flex items-center gap-1">
-              <div className="w-3 h-3 rounded-full bg-emerald-500 flex items-center justify-center">
-                <span className="text-[4px] text-white">✓</span>
+            <div className="bg-emerald-500/20 rounded p-1 border border-emerald-500/30">
+              <div className="flex items-center gap-1">
+                <div className="w-3 h-3 rounded-full bg-emerald-500 flex items-center justify-center">
+                  <span className="text-[4px] text-white">✓</span>
+                </div>
+                <div className="flex-1 min-w-0">
+                  <div className="text-[4px] font-medium text-white truncate">Mike Chen</div>
+                  <div className="text-[3px] text-emerald-400">$850K</div>
+                </div>
               </div>
-              <div className="flex-1 min-w-0">
-                <div className="text-[4px] font-medium text-white truncate">Mike Chen</div>
-                <div className="text-[3px] text-emerald-400">$850K</div>
+            </div>
+            <div className="bg-emerald-500/20 rounded p-1 border border-emerald-500/30">
+              <div className="flex items-center gap-1">
+                <div className="w-3 h-3 rounded-full bg-emerald-500 flex items-center justify-center">
+                  <span className="text-[4px] text-white">✓</span>
+                </div>
+                <div className="flex-1 min-w-0">
+                  <div className="text-[4px] font-medium text-white truncate">Amy Lee</div>
+                  <div className="text-[3px] text-emerald-400">$1.2M</div>
+                </div>
               </div>
             </div>
           </div>
@@ -1685,39 +1734,16 @@ const MobilePipelineAnimation = () => (
       </div>
     </PhoneFrame>
     
-    {/* Summary badge */}
-    <div 
-      className="absolute -bottom-1 left-1/2 -translate-x-1/2 bg-card/95 backdrop-blur rounded border border-border/50 px-2 py-1 shadow-xl"
-      style={{ animation: 'summaryFade 5s ease-out infinite', animationDelay: '1s' }}
-    >
-      <div className="flex items-center gap-2">
-        <div className="text-center">
-          <div className="text-[6px] font-bold text-foreground">12</div>
-          <div className="text-[4px] text-muted-foreground">Leads</div>
-        </div>
-        <div className="w-px h-3 bg-border" />
-        <div className="text-center">
-          <div className="text-[6px] font-bold text-primary">5</div>
-          <div className="text-[4px] text-muted-foreground">Mtgs</div>
-        </div>
-        <div className="w-px h-3 bg-border" />
-        <div className="text-center">
-          <div className="text-[6px] font-bold text-emerald-400">3</div>
-          <div className="text-[4px] text-muted-foreground">Won</div>
-        </div>
-      </div>
-    </div>
-    
     <style>{`
-      @keyframes pipeSlide {
-        0%, 5% { opacity: 0; transform: translateX(-8px); }
-        15%, 70% { opacity: 1; transform: translateX(0); }
-        85%, 100% { opacity: 0; transform: translateX(-8px); }
+      @keyframes stageActive {
+        0%, 28% { background: hsl(217 91% 60% / 0.3); color: white; }
+        33%, 95% { background: transparent; color: hsl(0 0% 60%); }
+        100% { background: hsl(217 91% 60% / 0.3); color: white; }
       }
-      @keyframes summaryFade {
-        0%, 15% { opacity: 0; transform: translateX(-50%) translateY(4px); }
-        25%, 70% { opacity: 1; transform: translateX(-50%) translateY(0); }
-        85%, 100% { opacity: 0; transform: translateX(-50%) translateY(4px); }
+      @keyframes stageSwipe {
+        0%, 5% { opacity: 0; transform: translateX(100%); }
+        10%, 28% { opacity: 1; transform: translateX(0); }
+        33%, 100% { opacity: 0; transform: translateX(-100%); }
       }
     `}</style>
   </div>
@@ -1887,7 +1913,7 @@ const categories: Category[] = [
     icon: Smartphone,
     title: "Mobile App",
     subtitle: "Your CRM in your pocket",
-    color: "from-cyan-500 to-blue-500",
+    color: "from-rose-500 to-pink-500",
     features: [
       {
         icon: Bell,
