@@ -538,15 +538,9 @@ const WorkflowAnimation = () => (
         80%, 100% { width: 100%; }
       }
     `}</style>
-    <div className="w-full bg-card/50 rounded-lg border border-border/50 p-3">
-      {/* Workflow header */}
-      <div className="flex items-center justify-between mb-2">
-        <div className="text-[8px] font-medium text-foreground">New Client Onboarding</div>
-        <div className="text-[6px] text-emerald-400 bg-emerald-500/10 px-1.5 py-0.5 rounded">Running</div>
-      </div>
-      
+    <div className="w-full bg-card/50 rounded-lg border border-border/50 p-2">
       {/* Progress bar */}
-      <div className="h-1 bg-muted/30 rounded-full mb-3 overflow-hidden">
+      <div className="h-0.5 bg-muted/30 rounded-full mb-2 overflow-hidden">
         <div 
           className="h-full bg-gradient-to-r from-primary to-emerald-500 rounded-full"
           style={{ animation: 'progressFill 6s ease-out infinite' }}
@@ -554,53 +548,53 @@ const WorkflowAnimation = () => (
       </div>
       
       {/* Vertical steps */}
-      <div className="space-y-1.5">
+      <div className="space-y-1">
         {/* Step 1 - Email */}
         <div 
-          className="flex items-center gap-2 px-2 py-1 rounded bg-primary/5 border border-primary/20"
+          className="flex items-center gap-1.5 px-1.5 py-0.5 rounded bg-primary/5 border border-primary/20"
           style={{ animation: 'stepComplete1 6s ease-out infinite' }}
         >
-          <div className="w-5 h-5 rounded bg-primary/20 flex items-center justify-center">
-            <Mail className="w-3 h-3 text-primary" />
+          <div className="w-4 h-4 rounded bg-primary/20 flex items-center justify-center">
+            <Mail className="w-2.5 h-2.5 text-primary" />
           </div>
-          <span className="text-[7px] text-foreground/80 flex-1">Welcome Email</span>
-          <span className="text-[6px] text-emerald-400" style={{ animation: 'stepCheck1 6s ease-out infinite' }}>✓</span>
+          <span className="text-[6px] text-foreground/80 flex-1">Welcome Email</span>
+          <span className="text-[5px] text-emerald-400" style={{ animation: 'stepCheck1 6s ease-out infinite' }}>✓</span>
         </div>
         
         {/* Step 2 - Wait */}
         <div 
-          className="flex items-center gap-2 px-2 py-1 rounded bg-amber-500/5 border border-amber-500/20"
+          className="flex items-center gap-1.5 px-1.5 py-0.5 rounded bg-amber-500/5 border border-amber-500/20"
           style={{ animation: 'stepComplete2 6s ease-out infinite' }}
         >
-          <div className="w-5 h-5 rounded bg-amber-500/20 flex items-center justify-center">
-            <Clock className="w-3 h-3 text-amber-400" />
+          <div className="w-4 h-4 rounded bg-amber-500/20 flex items-center justify-center">
+            <Clock className="w-2.5 h-2.5 text-amber-400" />
           </div>
-          <span className="text-[7px] text-foreground/80 flex-1">Wait 2 Days</span>
-          <span className="text-[6px] text-emerald-400" style={{ animation: 'stepCheck2 6s ease-out infinite' }}>✓</span>
+          <span className="text-[6px] text-foreground/80 flex-1">Wait 2 Days</span>
+          <span className="text-[5px] text-emerald-400" style={{ animation: 'stepCheck2 6s ease-out infinite' }}>✓</span>
         </div>
         
         {/* Step 3 - SMS */}
         <div 
-          className="flex items-center gap-2 px-2 py-1 rounded bg-emerald-500/5 border border-emerald-500/20"
+          className="flex items-center gap-1.5 px-1.5 py-0.5 rounded bg-emerald-500/5 border border-emerald-500/20"
           style={{ animation: 'stepComplete3 6s ease-out infinite' }}
         >
-          <div className="w-5 h-5 rounded bg-emerald-500/20 flex items-center justify-center">
-            <MessageSquare className="w-3 h-3 text-emerald-400" />
+          <div className="w-4 h-4 rounded bg-emerald-500/20 flex items-center justify-center">
+            <MessageSquare className="w-2.5 h-2.5 text-emerald-400" />
           </div>
-          <span className="text-[7px] text-foreground/80 flex-1">Follow-up SMS</span>
-          <span className="text-[6px] text-emerald-400" style={{ animation: 'stepCheck3 6s ease-out infinite' }}>✓</span>
+          <span className="text-[6px] text-foreground/80 flex-1">Follow-up SMS</span>
+          <span className="text-[5px] text-emerald-400" style={{ animation: 'stepCheck3 6s ease-out infinite' }}>✓</span>
         </div>
         
         {/* Step 4 - Call */}
         <div 
-          className="flex items-center gap-2 px-2 py-1 rounded bg-pink-500/5 border border-pink-500/20"
+          className="flex items-center gap-1.5 px-1.5 py-0.5 rounded bg-pink-500/5 border border-pink-500/20"
           style={{ animation: 'stepComplete4 6s ease-out infinite' }}
         >
-          <div className="w-5 h-5 rounded bg-pink-500/20 flex items-center justify-center">
-            <Phone className="w-3 h-3 text-pink-400" />
+          <div className="w-4 h-4 rounded bg-pink-500/20 flex items-center justify-center">
+            <Phone className="w-2.5 h-2.5 text-pink-400" />
           </div>
-          <span className="text-[7px] text-foreground/80 flex-1">Schedule Call</span>
-          <span className="text-[6px] text-emerald-400" style={{ animation: 'stepCheck4 6s ease-out infinite' }}>✓</span>
+          <span className="text-[6px] text-foreground/80 flex-1">Schedule Call</span>
+          <span className="text-[5px] text-emerald-400" style={{ animation: 'stepCheck4 6s ease-out infinite' }}>✓</span>
         </div>
       </div>
     </div>
