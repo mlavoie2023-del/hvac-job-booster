@@ -1031,21 +1031,74 @@ const PaymentsContent = () => {
   );
 };
 
-/* Marketing Content - Social Planner */
+/* Marketing Content */
 const MarketingContent = () => {
-  const [activeSubTab, setActiveSubTab] = useState<"planner" | "content" | "comments" | "statistics" | "listening" | "settings">("planner");
+  const [activeMarketingTab, setActiveMarketingTab] = useState<"social" | "email" | "sms">("social");
 
-  const subTabs = [
-    { id: "planner" as const, label: "Planner" },
-    { id: "content" as const, label: "Content" },
-    { id: "comments" as const, label: "Comments", isNew: true },
-    { id: "statistics" as const, label: "Statistics" },
-    { id: "listening" as const, label: "Social Listening" },
-    { id: "settings" as const, label: "Settings" },
+  const marketingTabs = [
+    { id: "social" as const, label: "Social Planner", icon: Linkedin },
+    { id: "email" as const, label: "Email", icon: Mail },
+    { id: "sms" as const, label: "SMS", icon: MessageSquare },
   ];
 
   return (
     <div className="h-full flex flex-col gap-2">
+      {/* Top Level Marketing Tabs */}
+      <div className="flex items-center gap-2 border-b border-border/20 pb-2">
+        {marketingTabs.map((tab) => (
+          <button
+            key={tab.id}
+            onClick={() => setActiveMarketingTab(tab.id)}
+            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-md text-[8px] font-medium transition-colors ${
+              activeMarketingTab === tab.id
+                ? "bg-primary/20 text-primary"
+                : "text-muted-foreground hover:bg-muted/30 hover:text-foreground"
+            }`}
+          >
+            <tab.icon className="w-3 h-3" />
+            {tab.label}
+          </button>
+        ))}
+      </div>
+
+      {/* Social Planner Content */}
+      {activeMarketingTab === "social" && (
+        <SocialPlannerContent />
+      )}
+
+      {/* Email Placeholder */}
+      {activeMarketingTab === "email" && (
+        <div className="flex-1 flex items-center justify-center">
+          <div className="text-center">
+            <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-2">
+              <Mail className="w-5 h-5 text-primary" />
+            </div>
+            <div className="text-[9px] font-medium text-foreground">Email Marketing</div>
+            <div className="text-[7px] text-muted-foreground mt-1">Create and manage email campaigns</div>
+          </div>
+        </div>
+      )}
+
+      {/* SMS Placeholder */}
+      {activeMarketingTab === "sms" && (
+        <div className="flex-1 flex items-center justify-center">
+          <div className="text-center">
+            <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-2">
+              <MessageSquare className="w-5 h-5 text-primary" />
+            </div>
+            <div className="text-[9px] font-medium text-foreground">SMS Marketing</div>
+            <div className="text-[7px] text-muted-foreground mt-1">Send and schedule SMS campaigns</div>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+};
+
+/* Social Planner Content */
+const SocialPlannerContent = () => {
+  return (
+    <div className="flex-1 flex flex-col gap-2">
       {/* Header */}
       <div className="flex items-center justify-between">
         <h3 className="text-[11px] font-semibold text-foreground">Social Planner</h3>
@@ -1062,28 +1115,6 @@ const MarketingContent = () => {
             New Post
           </button>
         </div>
-      </div>
-
-      {/* Sub Tabs */}
-      <div className="flex items-center gap-3 border-b border-border/20 pb-1">
-        {subTabs.map((tab) => (
-          <button
-            key={tab.id}
-            onClick={() => setActiveSubTab(tab.id)}
-            className={`relative text-[8px] font-medium pb-1.5 transition-colors ${
-              activeSubTab === tab.id
-                ? "text-primary border-b-2 border-primary"
-                : "text-muted-foreground hover:text-foreground"
-            }`}
-          >
-            {tab.label}
-            {tab.isNew && (
-              <span className="absolute -top-1 -right-4 px-1 py-0.5 bg-amber-500 text-[5px] text-white rounded font-medium">
-                New
-              </span>
-            )}
-          </button>
-        ))}
       </div>
 
       {/* Filter Row */}
