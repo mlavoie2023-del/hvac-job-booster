@@ -541,12 +541,16 @@ const CalendarContent = ({ events }: { events: { title: string; time: string; du
 /* Contacts Content */
 const ContactsContent = () => {
   const contacts = [
-    { id: 1, name: "Sarah Mitchell", initials: "SM", phone: "(617) 555-0142", email: "sarah.m@email.com", age: 52, aum: "$1.2M", lastActivity: "2 hours ago", activityType: "email" as const, status: "Qualified" },
-    { id: 2, name: "James Chen", initials: "JC", phone: "(508) 555-0198", email: "jchen@outlook.com", age: 45, aum: "$850K", lastActivity: "1 day ago", activityType: "call" as const, status: "Prospect" },
-    { id: 3, name: "Emily Rodriguez", initials: "ER", phone: "(781) 555-0267", email: "emily.r@gmail.com", age: 61, aum: "$2.4M", lastActivity: "3 days ago", activityType: "email" as const, status: "Client" },
-    { id: 4, name: "Michael Brown", initials: "MB", phone: "(617) 555-0334", email: "mbrown@corp.com", age: 38, aum: "$425K", lastActivity: "5 days ago", activityType: "call" as const, status: "Qualified" },
-    { id: 5, name: "Lisa Thompson", initials: "LT", phone: "(508) 555-0421", email: "lisa.t@email.com", age: 55, aum: "$1.8M", lastActivity: "1 week ago", activityType: "linkedin" as const, status: "Client" },
-    { id: 6, name: "David Wilson", initials: "DW", phone: "(978) 555-0512", email: "dwilson@mail.com", age: 67, aum: "$3.1M", lastActivity: "1 week ago", activityType: "email" as const, status: "Client" },
+    { id: 1, name: "Sarah Mitchell", initials: "SM", phone: "(555) 123-4567", email: "sarah.m@email.com", age: 52, aum: "$1.2M", lastActivity: "2 hours ago", activityType: "email" as const, status: "Qualified" },
+    { id: 2, name: "James Chen", initials: "JC", phone: "(555) 234-5678", email: "jchen@outlook.com", age: 45, aum: "$850K", lastActivity: "1 day ago", activityType: "call" as const, status: "Prospect" },
+    { id: 3, name: "Emily Rodriguez", initials: "ER", phone: "(555) 345-6789", email: "emily.r@gmail.com", age: 61, aum: "$2.4M", lastActivity: "3 days ago", activityType: "email" as const, status: "Client" },
+    { id: 4, name: "Michael Brown", initials: "MB", phone: "(555) 456-7890", email: "mbrown@corp.com", age: 38, aum: "$425K", lastActivity: "5 days ago", activityType: "call" as const, status: "Qualified" },
+    { id: 5, name: "Lisa Thompson", initials: "LT", phone: "(555) 567-8901", email: "lisa.t@email.com", age: 55, aum: "$1.8M", lastActivity: "1 week ago", activityType: "linkedin" as const, status: "Client" },
+    { id: 6, name: "David Wilson", initials: "DW", phone: "(555) 678-9012", email: "dwilson@mail.com", age: 67, aum: "$3.1M", lastActivity: "1 week ago", activityType: "email" as const, status: "Client" },
+    { id: 7, name: "Jennifer Adams", initials: "JA", phone: "(555) 789-0123", email: "jadams@work.com", age: 49, aum: "$975K", lastActivity: "2 days ago", activityType: "email" as const, status: "Qualified" },
+    { id: 8, name: "Robert Garcia", initials: "RG", phone: "(555) 890-1234", email: "rgarcia@mail.com", age: 58, aum: "$1.5M", lastActivity: "4 days ago", activityType: "call" as const, status: "Client" },
+    { id: 9, name: "Amanda Foster", initials: "AF", phone: "(555) 901-2345", email: "afoster@email.com", age: 43, aum: "$620K", lastActivity: "6 days ago", activityType: "linkedin" as const, status: "Prospect" },
+    { id: 10, name: "William Parker", initials: "WP", phone: "(555) 012-3456", email: "wparker@corp.com", age: 71, aum: "$4.2M", lastActivity: "1 week ago", activityType: "email" as const, status: "Client" },
   ];
 
   const tabs = ["All", "Prospects", "Qualified", "Clients"];
