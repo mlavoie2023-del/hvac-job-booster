@@ -120,18 +120,23 @@ const Hero = () => {
                   <div className="relative flex-1 min-h-[260px]">
                     {beforeTools.map((tool, index) => {
                       const IconComponent = tool.icon;
+                      const animationDelay = (index * 0.5) % 4;
                       return (
                         <div
                           key={index}
-                          className="absolute transform -translate-x-1/2 -translate-y-1/2 group"
+                          className="absolute -translate-x-1/2 -translate-y-1/2 group animate-float-around"
                           style={{
                             left: `${tool.x}%`,
                             top: `${tool.y}%`,
-                            transform: `translate(-50%, -50%) rotate(${tool.rotate}deg)`,
                             zIndex: 10,
+                            animationDelay: `${animationDelay}s`,
+                            animationDuration: `${3 + (index % 3)}s`,
                           }}
                         >
-                          <div className="flex flex-col items-center gap-1">
+                          <div 
+                            className="flex flex-col items-center gap-1"
+                            style={{ transform: `rotate(${tool.rotate}deg)` }}
+                          >
                             <div className="p-2 sm:p-2.5 rounded-xl bg-[hsl(240_10%_10%)] border border-border shadow-lg group-hover:border-destructive/50 transition-colors">
                               <IconComponent className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-foreground/80" />
                             </div>
