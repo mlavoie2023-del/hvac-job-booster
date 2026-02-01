@@ -4,7 +4,7 @@ import {
   Plus, Clock, ArrowUpRight, LayoutGrid, MessageCircle,
   Contact, Receipt, Send, PlayCircle, Globe, LineChart, Smartphone,
   Phone, Video, MoreHorizontal, Paperclip, Smile, ChevronLeft, ChevronDown, Filter,
-  Mail, MessageSquare, Linkedin, PhoneCall, Users2, Download, Settings, ArrowUpDown,
+  Mail, MessageSquare, Linkedin, PhoneCall, Users2, Download, Settings, ArrowUpDown, BarChart3,
   Check, FileText, CreditCard, BookImage, GitBranch, Eye, Target
 } from "lucide-react";
 import lavoieLogo from "@/assets/lavoie-logo-square.png";
@@ -190,7 +190,10 @@ const HeroDashboard = () => {
               {activeTab === "sites" && (
                 <SitesContent />
               )}
-              {activeTab !== "dashboard" && activeTab !== "conversations" && activeTab !== "calendars" && activeTab !== "contacts" && activeTab !== "opportunities" && activeTab !== "payments" && activeTab !== "marketing" && activeTab !== "automation" && activeTab !== "sites" && (
+              {activeTab === "reporting" && (
+                <ReportingContent />
+              )}
+              {activeTab !== "dashboard" && activeTab !== "conversations" && activeTab !== "calendars" && activeTab !== "contacts" && activeTab !== "opportunities" && activeTab !== "payments" && activeTab !== "marketing" && activeTab !== "automation" && activeTab !== "sites" && activeTab !== "reporting" && (
                 <PlaceholderContent title={getPageTitle()} />
               )}
             </div>
@@ -1582,6 +1585,124 @@ const SitesContent = () => {
           </div>
         </>
       )}
+    </div>
+  );
+};
+
+/* Reporting Content */
+const ReportingContent = () => {
+  const metrics = [
+    { label: "Total Revenue", value: "$127.4k", change: "+18.2%", isPositive: true, icon: DollarSign },
+    { label: "New Clients", value: "24", change: "+6", isPositive: true, icon: Users },
+    { label: "Conversion Rate", value: "32%", change: "+4.2%", isPositive: true, icon: Target },
+    { label: "Avg. Deal Size", value: "$5.3k", change: "-2.1%", isPositive: false, icon: BarChart3 },
+  ];
+
+  const chartData = [
+    { month: "Aug", revenue: 45, clients: 12 },
+    { month: "Sep", revenue: 52, clients: 15 },
+    { month: "Oct", revenue: 48, clients: 11 },
+    { month: "Nov", revenue: 61, clients: 18 },
+    { month: "Dec", revenue: 58, clients: 14 },
+    { month: "Jan", revenue: 72, clients: 24 },
+  ];
+
+  const topSources = [
+    { source: "Referrals", leads: 42, percentage: 35 },
+    { source: "Website Forms", leads: 31, percentage: 26 },
+    { source: "LinkedIn", leads: 24, percentage: 20 },
+    { source: "Email Campaigns", leads: 15, percentage: 12 },
+    { source: "Other", leads: 8, percentage: 7 },
+  ];
+
+  const maxRevenue = Math.max(...chartData.map(d => d.revenue));
+
+  return (
+    <div className="h-full flex flex-col gap-3">
+      {/* Header */}
+      <div className="flex items-center justify-between">
+        <h3 className="text-[11px] font-semibold text-foreground">Analytics Overview</h3>
+        <div className="flex items-center gap-1.5">
+          <button className="flex items-center gap-1 px-2 py-1 rounded-md border border-border/30 hover:bg-muted/30 transition-colors text-[8px] text-muted-foreground">
+            Last 6 Months
+            <ChevronDown className="w-2.5 h-2.5" />
+          </button>
+          <button className="flex items-center gap-1 px-2 py-1 rounded-md border border-border/30 hover:bg-muted/30 transition-colors text-[8px] text-muted-foreground">
+            <Download className="w-2.5 h-2.5" />
+            Export
+          </button>
+        </div>
+      </div>
+
+      {/* Stats Row */}
+      <div className="grid grid-cols-4 gap-2">
+        {metrics.map((metric, idx) => (
+          <div key={idx} className="bg-[hsl(0_0%_9%)] rounded-lg border border-border/20 p-2">
+            <div className="flex items-center justify-between mb-1">
+              <span className="text-[7px] text-muted-foreground">{metric.label}</span>
+              <metric.icon className="w-3 h-3 text-primary" />
+            </div>
+            <div className="flex items-baseline gap-1.5">
+              <span className="text-[13px] font-bold text-foreground">{metric.value}</span>
+              <span className={`text-[7px] flex items-center ${metric.isPositive ? "text-emerald-400" : "text-red-400"}`}>
+                <ArrowUpRight className={`w-2 h-2 ${!metric.isPositive ? "rotate-90" : ""}`} />
+                {metric.change}
+              </span>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {/* Charts Row */}
+      <div className="flex-1 grid grid-cols-5 gap-3">
+        {/* Revenue Chart */}
+        <div className="col-span-3 bg-[hsl(0_0%_9%)] rounded-lg border border-border/20 p-3 flex flex-col">
+          <div className="flex items-center justify-between mb-2">
+            <span className="text-[9px] font-medium text-foreground">Revenue Trend</span>
+            <div className="flex items-center gap-3">
+              <div className="flex items-center gap-1">
+                <div className="w-2 h-2 rounded-full bg-primary" />
+                <span className="text-[7px] text-muted-foreground">Revenue ($k)</span>
+              </div>
+            </div>
+          </div>
+          <div className="flex-1 flex items-end gap-2 pt-2">
+            {chartData.map((data, idx) => (
+              <div key={idx} className="flex-1 flex flex-col items-center gap-1">
+                <div className="w-full flex justify-center">
+                  <div 
+                    className="w-4 bg-gradient-to-t from-primary to-primary/60 rounded-t"
+                    style={{ height: `${(data.revenue / maxRevenue) * 80}px` }}
+                  />
+                </div>
+                <span className="text-[6px] text-muted-foreground">{data.month}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Lead Sources */}
+        <div className="col-span-2 bg-[hsl(0_0%_9%)] rounded-lg border border-border/20 p-3 flex flex-col">
+          <div className="flex items-center justify-between mb-2">
+            <span className="text-[9px] font-medium text-foreground">Lead Sources</span>
+            <span className="text-[7px] text-muted-foreground">120 total</span>
+          </div>
+          <div className="flex-1 space-y-1.5">
+            {topSources.map((source, idx) => (
+              <div key={idx} className="flex items-center gap-2">
+                <span className="text-[7px] text-foreground w-20 truncate">{source.source}</span>
+                <div className="flex-1 h-1.5 bg-muted/30 rounded-full overflow-hidden">
+                  <div 
+                    className="h-full bg-primary rounded-full"
+                    style={{ width: `${source.percentage}%` }}
+                  />
+                </div>
+                <span className="text-[7px] text-muted-foreground w-6 text-right">{source.percentage}%</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
