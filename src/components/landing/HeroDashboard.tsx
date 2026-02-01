@@ -175,7 +175,10 @@ const HeroDashboard = () => {
               {activeTab === "contacts" && (
                 <ContactsContent />
               )}
-              {activeTab !== "dashboard" && activeTab !== "conversations" && activeTab !== "calendars" && activeTab !== "contacts" && (
+              {activeTab === "opportunities" && (
+                <OpportunitiesContent />
+              )}
+              {activeTab !== "dashboard" && activeTab !== "conversations" && activeTab !== "calendars" && activeTab !== "contacts" && activeTab !== "opportunities" && (
                 <PlaceholderContent title={getPageTitle()} />
               )}
             </div>
@@ -693,6 +696,162 @@ const ContactsContent = () => {
             </div>
           ))}
         </div>
+      </div>
+    </div>
+  );
+};
+
+/* Opportunities Content */
+const OpportunitiesContent = () => {
+  const stages = [
+    {
+      name: "Discovery",
+      count: 8,
+      value: "$4.2M",
+      color: "bg-slate-500",
+      opportunities: [
+        { id: 1, name: "Robert Anderson", aum: "$450K", probability: 20, lastContact: "2 days ago", source: "Referral" },
+        { id: 2, name: "Patricia Hayes", aum: "$680K", probability: 15, lastContact: "1 week ago", source: "Seminar" },
+        { id: 3, name: "Thomas Wright", aum: "$320K", probability: 25, lastContact: "3 days ago", source: "Website" },
+        { id: 4, name: "Nancy Cooper", aum: "$890K", probability: 10, lastContact: "5 days ago", source: "Referral" },
+      ]
+    },
+    {
+      name: "Qualification",
+      count: 5,
+      value: "$3.8M",
+      color: "bg-blue-500",
+      opportunities: [
+        { id: 5, name: "Daniel Foster", aum: "$1.2M", probability: 40, lastContact: "Yesterday", source: "COI Partner" },
+        { id: 6, name: "Sandra Kelly", aum: "$750K", probability: 35, lastContact: "3 days ago", source: "Referral" },
+        { id: 7, name: "Kevin Barnes", aum: "$920K", probability: 45, lastContact: "Today", source: "LinkedIn" },
+      ]
+    },
+    {
+      name: "Proposal Sent",
+      count: 3,
+      value: "$2.9M",
+      color: "bg-amber-500",
+      opportunities: [
+        { id: 8, name: "Jennifer Adams", aum: "$1.5M", probability: 60, lastContact: "1 day ago", source: "Referral" },
+        { id: 9, name: "William Parker", aum: "$980K", probability: 55, lastContact: "2 days ago", source: "Event" },
+      ]
+    },
+    {
+      name: "Commitment",
+      count: 2,
+      value: "$2.1M",
+      color: "bg-emerald-500",
+      opportunities: [
+        { id: 10, name: "Elizabeth Turner", aum: "$1.8M", probability: 85, lastContact: "Today", source: "Referral" },
+        { id: 11, name: "Christopher Lee", aum: "$2.2M", probability: 90, lastContact: "Yesterday", source: "COI Partner" },
+      ]
+    }
+  ];
+
+  return (
+    <div className="h-full flex flex-col">
+      {/* Header */}
+      <div className="flex items-center justify-between mb-3">
+        <div className="flex items-center gap-3">
+          <div className="flex items-center gap-1.5 px-2 py-1 bg-muted/30 rounded-md border border-border/20">
+            <span className="text-[8px] text-foreground font-medium">Sales Pipeline</span>
+            <ChevronDown className="w-2.5 h-2.5 text-muted-foreground" />
+          </div>
+          <span className="text-[9px] text-primary font-medium">18 opportunities</span>
+        </div>
+        <div className="flex items-center gap-2">
+          <div className="flex items-center gap-1 px-2 py-1 bg-muted/20 rounded border border-border/20">
+            <LayoutGrid className="w-2.5 h-2.5 text-primary" />
+          </div>
+          <button className="flex items-center gap-1 px-2 py-1 text-[8px] text-muted-foreground hover:text-foreground">
+            <Download className="w-2.5 h-2.5" />
+            Import
+          </button>
+          <button className="flex items-center gap-1 px-2 py-1 bg-primary text-primary-foreground text-[8px] rounded font-medium">
+            <Plus className="w-2.5 h-2.5" />
+            Add opportunity
+          </button>
+        </div>
+      </div>
+
+      {/* Filters */}
+      <div className="flex items-center gap-2 mb-3">
+        <button className="flex items-center gap-1 px-2 py-1 text-[8px] text-primary bg-primary/10 rounded border border-primary/30">
+          <Filter className="w-2.5 h-2.5" />
+          Advanced Filters
+        </button>
+        <button className="flex items-center gap-1 px-2 py-1 text-[8px] text-muted-foreground bg-muted/20 rounded border border-border/20">
+          <ArrowUpDown className="w-2.5 h-2.5" />
+          Sort (1)
+        </button>
+        <div className="flex-1" />
+        <div className="flex items-center gap-1.5 px-2 py-1 bg-muted/20 rounded border border-border/20">
+          <Search className="w-2.5 h-2.5 text-muted-foreground" />
+          <span className="text-[8px] text-muted-foreground">Search Opportunities</span>
+        </div>
+        <button className="flex items-center gap-1 px-2 py-1 text-[8px] text-muted-foreground">
+          <Settings className="w-2.5 h-2.5" />
+          Manage Fields
+        </button>
+      </div>
+
+      {/* Kanban Board */}
+      <div className="flex-1 grid grid-cols-4 gap-2">
+        {stages.map((stage) => (
+          <div key={stage.name} className="flex flex-col">
+            {/* Stage Header */}
+            <div className="mb-2">
+              <div className={`h-0.5 ${stage.color} rounded-full mb-1.5`} />
+              <div className="flex items-center justify-between">
+                <span className="text-[9px] font-semibold text-foreground">{stage.name}</span>
+              </div>
+              <div className="flex items-center gap-2 text-[7px] text-muted-foreground">
+                <span>{stage.count} Opportunities</span>
+                <span className="text-emerald-400 font-medium">{stage.value}</span>
+              </div>
+            </div>
+
+            {/* Cards */}
+            <div className="flex-1 space-y-1.5 overflow-y-auto">
+              {stage.opportunities.map((opp) => (
+                <div 
+                  key={opp.id}
+                  className="bg-[hsl(0_0%_9%)] rounded-lg p-2 border border-border/30 hover:border-border/50 cursor-pointer transition-colors"
+                >
+                  <div className="flex items-center justify-between mb-1.5">
+                    <span className="text-[8px] font-medium text-foreground">{opp.name}</span>
+                    <div className="w-4 h-4 rounded-full bg-primary/20 flex items-center justify-center">
+                      <Users className="w-2 h-2 text-primary" />
+                    </div>
+                  </div>
+                  <div className="space-y-1">
+                    <div className="flex items-center justify-between">
+                      <span className="text-[6px] text-muted-foreground">Potential AUM:</span>
+                      <span className="text-[7px] text-emerald-400 font-medium">{opp.aum}</span>
+                    </div>
+                    <div className="flex items-center justify-between">
+                      <span className="text-[6px] text-muted-foreground">Probability:</span>
+                      <span className="text-[7px] text-foreground">{opp.probability}%</span>
+                    </div>
+                    <div className="flex items-center justify-between">
+                      <span className="text-[6px] text-muted-foreground">Source:</span>
+                      <span className="text-[7px] text-muted-foreground">{opp.source}</span>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-1.5 mt-2 pt-1.5 border-t border-border/20">
+                    <Phone className="w-2 h-2 text-muted-foreground" />
+                    <MessageSquare className="w-2 h-2 text-muted-foreground" />
+                    <Mail className="w-2 h-2 text-muted-foreground" />
+                    <Calendar className="w-2 h-2 text-muted-foreground" />
+                    <div className="flex-1" />
+                    <span className="text-[6px] text-muted-foreground">{opp.lastContact}</span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        ))}
       </div>
     </div>
   );
