@@ -2058,7 +2058,7 @@ const WhatYouGet = () => {
         <div className="hidden md:block">
           <div className="flex gap-6 lg:gap-8 items-center">
             {/* Left Sidebar - Compact Category Icons */}
-            <div className="w-20 lg:w-24 flex-shrink-0">
+            <div className="w-24 lg:w-28 flex-shrink-0">
               {/* Category Icons - Vertical Stack */}
               <div className="space-y-2">
                 {categories.map((category) => {
@@ -2068,7 +2068,7 @@ const WhatYouGet = () => {
                       key={category.id}
                       onClick={() => setActiveCategory(category.id)}
                       className={cn(
-                        "w-full group relative flex flex-col items-center gap-1 py-3 px-2 rounded-xl transition-all duration-300",
+                        "w-full group relative flex flex-col items-center gap-1.5 py-3.5 px-2 rounded-xl transition-all duration-300",
                         isActive 
                           ? "bg-card border border-primary/30 shadow-[0_0_20px_-8px_hsl(217_91%_60%/0.4)]" 
                           : "bg-transparent border border-transparent hover:bg-card/50"
@@ -2084,20 +2084,20 @@ const WhatYouGet = () => {
                       
                       {/* Icon */}
                       <div className={cn(
-                        "relative w-10 h-10 rounded-lg flex items-center justify-center transition-all duration-300",
+                        "relative w-11 h-11 lg:w-12 lg:h-12 rounded-lg flex items-center justify-center transition-all duration-300",
                         isActive 
                           ? `bg-gradient-to-br ${category.color} shadow-md` 
                           : "bg-muted/50 group-hover:bg-primary/20"
                       )}>
                         <category.icon className={cn(
-                          "w-5 h-5 transition-all duration-300",
+                          "w-5 h-5 lg:w-6 lg:h-6 transition-all duration-300",
                           isActive ? "text-white" : "text-muted-foreground group-hover:text-primary"
                         )} />
                       </div>
                       
-                      {/* Title - Small */}
+                      {/* Title */}
                       <span className={cn(
-                        "text-[10px] font-medium transition-colors text-center leading-tight",
+                        "text-[11px] lg:text-xs font-medium transition-colors text-center leading-tight",
                         isActive ? "text-foreground" : "text-muted-foreground group-hover:text-foreground"
                       )}>
                         {category.title}
