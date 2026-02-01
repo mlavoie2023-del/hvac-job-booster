@@ -4,7 +4,8 @@ import {
   Plus, Clock, ArrowUpRight, LayoutGrid, MessageCircle,
   Contact, Receipt, Send, PlayCircle, Globe, LineChart, Smartphone,
   Phone, Video, MoreHorizontal, Paperclip, Smile, ChevronLeft, ChevronDown, Filter,
-  Mail, MessageSquare, Linkedin, PhoneCall, Users2
+  Mail, MessageSquare, Linkedin, PhoneCall, Users2, Download, Settings, ArrowUpDown,
+  Check
 } from "lucide-react";
 import lavoieLogo from "@/assets/lavoie-logo-square.png";
 
@@ -171,7 +172,10 @@ const HeroDashboard = () => {
               {activeTab === "calendars" && (
                 <CalendarContent events={calendarEvents} />
               )}
-              {activeTab !== "dashboard" && activeTab !== "conversations" && activeTab !== "calendars" && (
+              {activeTab === "contacts" && (
+                <ContactsContent />
+              )}
+              {activeTab !== "dashboard" && activeTab !== "conversations" && activeTab !== "calendars" && activeTab !== "contacts" && (
                 <PlaceholderContent title={getPageTitle()} />
               )}
             </div>
@@ -533,6 +537,162 @@ const CalendarContent = ({ events }: { events: { title: string; time: string; du
     </div>
   </div>
 );
+
+/* Contacts Content */
+const ContactsContent = () => {
+  const contacts = [
+    { id: 1, name: "Sarah Mitchell", initials: "SM", phone: "(617) 555-0142", email: "sarah.m@email.com", age: 52, aum: "$1.2M", lastActivity: "2 hours ago", activityType: "email" as const, status: "Qualified" },
+    { id: 2, name: "James Chen", initials: "JC", phone: "(508) 555-0198", email: "jchen@outlook.com", age: 45, aum: "$850K", lastActivity: "1 day ago", activityType: "call" as const, status: "Prospect" },
+    { id: 3, name: "Emily Rodriguez", initials: "ER", phone: "(781) 555-0267", email: "emily.r@gmail.com", age: 61, aum: "$2.4M", lastActivity: "3 days ago", activityType: "email" as const, status: "Client" },
+    { id: 4, name: "Michael Brown", initials: "MB", phone: "(617) 555-0334", email: "mbrown@corp.com", age: 38, aum: "$425K", lastActivity: "5 days ago", activityType: "call" as const, status: "Qualified" },
+    { id: 5, name: "Lisa Thompson", initials: "LT", phone: "(508) 555-0421", email: "lisa.t@email.com", age: 55, aum: "$1.8M", lastActivity: "1 week ago", activityType: "linkedin" as const, status: "Client" },
+    { id: 6, name: "David Wilson", initials: "DW", phone: "(978) 555-0512", email: "dwilson@mail.com", age: 67, aum: "$3.1M", lastActivity: "1 week ago", activityType: "email" as const, status: "Client" },
+  ];
+
+  const tabs = ["All", "Prospects", "Qualified", "Clients"];
+
+  const getActivityIcon = (type: "email" | "call" | "linkedin") => {
+    switch (type) {
+      case "email": return <Mail className="w-2 h-2" />;
+      case "call": return <PhoneCall className="w-2 h-2" />;
+      case "linkedin": return <Linkedin className="w-2 h-2" />;
+    }
+  };
+
+  const getStatusColor = (status: string) => {
+    switch (status) {
+      case "Client": return "bg-emerald-400/20 text-emerald-400";
+      case "Qualified": return "bg-primary/20 text-primary";
+      case "Prospect": return "bg-amber-400/20 text-amber-400";
+      default: return "bg-muted/30 text-muted-foreground";
+    }
+  };
+
+  return (
+    <div className="h-full flex flex-col">
+      {/* Header with count and actions */}
+      <div className="flex items-center justify-between mb-2">
+        <div className="flex items-center gap-2">
+          <span className="text-[9px] px-1.5 py-0.5 rounded bg-primary/20 text-primary font-medium">47 Contacts</span>
+        </div>
+        <div className="flex items-center gap-1.5">
+          <button className="flex items-center gap-1 text-[7px] text-muted-foreground border border-border/30 px-2 py-1 rounded hover:bg-muted/30">
+            <Download className="w-2.5 h-2.5" />
+            Import
+          </button>
+          <button className="flex items-center gap-1 text-[7px] text-primary-foreground bg-primary px-2 py-1 rounded">
+            <Plus className="w-2.5 h-2.5" />
+            Add Contact
+          </button>
+        </div>
+      </div>
+
+      {/* Tabs */}
+      <div className="flex items-center gap-3 mb-2 border-b border-border/20 pb-2">
+        {tabs.map((tab, idx) => (
+          <button
+            key={tab}
+            className={`text-[8px] pb-1 border-b-2 transition-colors ${
+              idx === 0 
+                ? "border-primary text-primary font-medium" 
+                : "border-transparent text-muted-foreground hover:text-foreground"
+            }`}
+          >
+            {tab}
+          </button>
+        ))}
+        <button className="text-[8px] text-muted-foreground flex items-center gap-0.5 ml-2">
+          <Plus className="w-2 h-2" />
+          Add Smart List
+        </button>
+      </div>
+
+      {/* Filters and Search */}
+      <div className="flex items-center justify-between mb-2">
+        <div className="flex items-center gap-2">
+          <button className="flex items-center gap-1 text-[7px] text-muted-foreground border border-border/30 px-2 py-1 rounded hover:bg-muted/30">
+            <Filter className="w-2.5 h-2.5" />
+            Filters
+          </button>
+          <button className="flex items-center gap-1 text-[7px] text-muted-foreground border border-border/30 px-2 py-1 rounded hover:bg-muted/30">
+            <ArrowUpDown className="w-2.5 h-2.5" />
+            Sort
+          </button>
+        </div>
+        <div className="flex items-center gap-2">
+          <div className="flex items-center gap-1.5 px-2 py-1 bg-muted/30 rounded">
+            <Search className="w-2.5 h-2.5 text-muted-foreground" />
+            <span className="text-[7px] text-muted-foreground">Search Contacts</span>
+          </div>
+          <button className="flex items-center gap-1 text-[7px] text-muted-foreground">
+            <Settings className="w-2.5 h-2.5" />
+            Fields
+          </button>
+        </div>
+      </div>
+
+      {/* Table */}
+      <div className="flex-1 bg-[hsl(0_0%_9%)] rounded-lg border border-border/20 overflow-hidden">
+        {/* Table Header */}
+        <div className="grid grid-cols-[20px_1fr_90px_120px_40px_60px_90px_70px] gap-2 px-2 py-1.5 bg-[hsl(0_0%_7%)] border-b border-border/20 items-center">
+          <div className="w-3 h-3 rounded border border-border/50" />
+          <span className="text-[7px] text-muted-foreground font-medium flex items-center gap-0.5">
+            Contact Name <ArrowUpDown className="w-2 h-2" />
+          </span>
+          <span className="text-[7px] text-muted-foreground font-medium">Phone</span>
+          <span className="text-[7px] text-muted-foreground font-medium">Email</span>
+          <span className="text-[7px] text-muted-foreground font-medium">Age</span>
+          <span className="text-[7px] text-muted-foreground font-medium flex items-center gap-0.5">
+            AUM <ArrowUpDown className="w-2 h-2" />
+          </span>
+          <span className="text-[7px] text-muted-foreground font-medium">Last Activity</span>
+          <span className="text-[7px] text-muted-foreground font-medium">Status</span>
+        </div>
+
+        {/* Table Body */}
+        <div className="divide-y divide-border/10">
+          {contacts.map((contact, idx) => (
+            <div 
+              key={contact.id}
+              className={`grid grid-cols-[20px_1fr_90px_120px_40px_60px_90px_70px] gap-2 px-2 py-1.5 items-center hover:bg-muted/20 cursor-pointer transition-colors ${
+                idx === 0 ? "bg-primary/5" : ""
+              }`}
+            >
+              <div className={`w-3 h-3 rounded border flex items-center justify-center ${
+                idx === 0 ? "border-primary bg-primary/20" : "border-border/50"
+              }`}>
+                {idx === 0 && <Check className="w-2 h-2 text-primary" />}
+              </div>
+              <div className="flex items-center gap-1.5">
+                <div className="w-5 h-5 rounded-full bg-primary/20 flex items-center justify-center text-[6px] text-primary font-medium">
+                  {contact.initials}
+                </div>
+                <span className="text-[8px] font-medium text-foreground">{contact.name}</span>
+              </div>
+              <div className="flex items-center gap-1 text-[7px] text-muted-foreground">
+                <Phone className="w-2 h-2" />
+                <span className="truncate">{contact.phone}</span>
+              </div>
+              <div className="flex items-center gap-1 text-[7px] text-muted-foreground">
+                <Mail className="w-2 h-2" />
+                <span className="truncate">{contact.email}</span>
+              </div>
+              <span className="text-[7px] text-foreground">{contact.age}</span>
+              <span className="text-[7px] text-emerald-400 font-medium">{contact.aum}</span>
+              <div className="flex items-center gap-1 text-[7px] text-muted-foreground">
+                {getActivityIcon(contact.activityType)}
+                <span>{contact.lastActivity}</span>
+              </div>
+              <span className={`text-[6px] px-1.5 py-0.5 rounded font-medium ${getStatusColor(contact.status)}`}>
+                {contact.status}
+              </span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+};
 
 /* Placeholder Content */
 const PlaceholderContent = ({ title }: { title: string }) => (
