@@ -73,7 +73,7 @@ const CustomBuilt = () => {
 
                     {/* Card */}
                     <div className="flex-1 rounded-xl border border-border bg-card p-4">
-                      <h4 className="text-base font-semibold text-foreground">
+                      <h4 className="text-lg font-semibold text-foreground">
                         {step.title}
                       </h4>
                       <p className="mt-1 text-sm text-body">
