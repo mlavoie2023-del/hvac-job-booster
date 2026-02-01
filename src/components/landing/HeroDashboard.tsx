@@ -3,7 +3,8 @@ import {
   Users, Calendar, DollarSign, TrendingUp, Bell, Search, ChevronRight, 
   Plus, Clock, ArrowUpRight, LayoutGrid, MessageCircle,
   Contact, Receipt, Send, PlayCircle, Globe, LineChart, Smartphone,
-  Phone, Video, MoreHorizontal, Paperclip, Smile, ChevronLeft, ChevronDown, Workflow
+  Phone, Video, MoreHorizontal, Paperclip, Smile, ChevronLeft, ChevronDown, Workflow,
+  Mail, MessageSquare, Linkedin
 } from "lucide-react";
 import lavoieLogo from "@/assets/lavoie-logo-square.png";
 
@@ -69,10 +70,12 @@ const HeroDashboard = () => {
   ];
 
   const conversations = [
-    { name: "Sarah Mitchell", message: "Thanks for the info! I'll review...", time: "2m", unread: true, avatar: "SM" },
-    { name: "James Chen", message: "Can we reschedule to Thursday?", time: "15m", unread: true, avatar: "JC" },
-    { name: "Emily Rodriguez", message: "Looking forward to our call", time: "1h", unread: false, avatar: "ER" },
-    { name: "Michael Brown", message: "Sent over the documents", time: "3h", unread: false, avatar: "MB" },
+    { name: "Sarah Mitchell", message: "Thanks for the info! I'll review...", time: "2m", unread: true, avatar: "SM", channel: "sms" as const },
+    { name: "James Chen", message: "Can we reschedule to Thursday?", time: "15m", unread: true, avatar: "JC", channel: "email" as const },
+    { name: "Emily Rodriguez", message: "Looking forward to our call", time: "1h", unread: false, avatar: "ER", channel: "linkedin" as const },
+    { name: "Michael Brown", message: "Sent over the documents", time: "3h", unread: false, avatar: "MB", channel: "email" as const },
+    { name: "Lisa Thompson", message: "Great meeting you yesterday!", time: "5h", unread: false, avatar: "LT", channel: "linkedin" as const },
+    { name: "David Wilson", message: "Confirmed for next week", time: "1d", unread: false, avatar: "DW", channel: "sms" as const },
   ];
 
   const calendarEvents = [
@@ -333,7 +336,24 @@ const DashboardContent = ({
 );
 
 /* Conversations Content */
-const ConversationsContent = ({ conversations }: { conversations: { name: string; message: string; time: string; unread: boolean; avatar: string }[] }) => (
+const ConversationsContent = ({ conversations }: { conversations: { name: string; message: string; time: string; unread: boolean; avatar: string; channel: "email" | "sms" | "linkedin" }[] }) => {
+  const getChannelIcon = (channel: "email" | "sms" | "linkedin") => {
+    switch (channel) {
+      case "email": return <Mail className="w-2.5 h-2.5" />;
+      case "sms": return <MessageSquare className="w-2.5 h-2.5" />;
+      case "linkedin": return <Linkedin className="w-2.5 h-2.5" />;
+    }
+  };
+
+  const getChannelColor = (channel: "email" | "sms" | "linkedin") => {
+    switch (channel) {
+      case "email": return "text-amber-400";
+      case "sms": return "text-emerald-400";
+      case "linkedin": return "text-blue-400";
+    }
+  };
+
+  return (
   <div className="flex h-full gap-3">
     {/* Conversation List */}
     <div className="w-2/5 bg-[hsl(0_0%_9%)] rounded-lg border border-border/20 overflow-hidden">
@@ -360,7 +380,10 @@ const ConversationsContent = ({ conversations }: { conversations: { name: string
               </div>
               <div className="flex-1 min-w-0">
                 <div className="flex items-center justify-between">
-                  <span className="text-[9px] font-medium text-foreground">{conv.name}</span>
+                  <div className="flex items-center gap-1">
+                    <span className="text-[9px] font-medium text-foreground">{conv.name}</span>
+                    <span className={getChannelColor(conv.channel)}>{getChannelIcon(conv.channel)}</span>
+                  </div>
                   <span className="text-[7px] text-muted-foreground">{conv.time}</span>
                 </div>
                 <p className="text-[8px] text-muted-foreground truncate mt-0.5">{conv.message}</p>
@@ -424,7 +447,8 @@ const ConversationsContent = ({ conversations }: { conversations: { name: string
       </div>
     </div>
   </div>
-);
+  );
+};
 
 /* Calendar Content */
 const CalendarContent = ({ events }: { events: { title: string; time: string; duration: string; type: string }[] }) => (
