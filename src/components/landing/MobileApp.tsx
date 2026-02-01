@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import { Bell, MessageSquare, Users, Smartphone, Calendar, Inbox, Send } from "lucide-react";
 
 // Realistic iPhone 15 Pro frame
@@ -541,14 +541,31 @@ const PipelineScreen = () => (
 
 const MobileApp = () => {
   const [activeFeature, setActiveFeature] = useState(0);
+  const intervalRef = useRef<NodeJS.Timeout | null>(null);
+  
+  const startTimer = useCallback(() => {
+    if (intervalRef.current) {
+      clearInterval(intervalRef.current);
+    }
+    intervalRef.current = setInterval(() => {
+      setActiveFeature(prev => (prev + 1) % 3);
+    }, 6000);
+  }, []);
   
   // Auto-cycle through features
   useEffect(() => {
-    const interval = setInterval(() => {
-      setActiveFeature(prev => (prev + 1) % 3);
-    }, 6000);
-    return () => clearInterval(interval);
-  }, []);
+    startTimer();
+    return () => {
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current);
+      }
+    };
+  }, [startTimer]);
+  
+  const handleFeatureClick = useCallback((idx: number) => {
+    setActiveFeature(idx);
+    startTimer(); // Reset timer when user clicks
+  }, [startTimer]);
 
   const features = [
     {
@@ -603,7 +620,7 @@ const MobileApp = () => {
               {features.map((feature, idx) => (
                 <button
                   key={idx}
-                  onClick={() => setActiveFeature(idx)}
+                  onClick={() => handleFeatureClick(idx)}
                   className={`w-full text-left p-4 rounded-xl border transition-all duration-300 ${
                     activeFeature === idx
                       ? "bg-rose-500/10 border-rose-500/30"
