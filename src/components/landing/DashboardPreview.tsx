@@ -1,6 +1,6 @@
 import HeroDashboard from "./HeroDashboard";
 
-const TechStackComparison = () => {
+const DashboardPreview = () => {
   return (
     <section className="relative py-20 lg:py-28 overflow-hidden spotlight-section">
       {/* Extra ambient glow */}
@@ -23,4 +23,4 @@ const TechStackComparison = () => {
   );
 };
 
-export default TechStackComparison;
+export default DashboardPreview;
