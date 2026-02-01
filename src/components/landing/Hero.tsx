@@ -162,7 +162,7 @@ const Hero = () => {
                 </div>
               </div>
 
-              {/* AFTER */}
+              {/* AFTER - Stacked Cards */}
               <div className="relative">
                 <div className="absolute -top-3 left-4 z-10">
                   <span className="bg-primary/20 text-primary text-sm font-semibold px-4 py-1.5 rounded-full border border-primary/30">
@@ -170,57 +170,104 @@ const Hero = () => {
                   </span>
                 </div>
                 <div className="bg-card/50 rounded-2xl border border-primary/20 p-6 pt-10 min-h-[400px] sm:min-h-[380px] relative overflow-hidden shadow-[0_0_60px_-20px_hsl(217_91%_60%/0.2)] flex flex-col">
-                  <div className="relative flex-1 min-h-[260px]">
-                    <div 
-                      className="absolute -translate-y-1/2 h-1.5 z-0 animate-pulse"
-                      style={{
-                        top: '42%',
-                        left: '38%',
-                        right: '38%',
-                        background: 'linear-gradient(90deg, hsl(217 91% 60%), hsl(195 80% 55%), hsl(172 66% 50%))',
-                        borderRadius: '4px',
-                        boxShadow: '0 0 16px 2px hsl(217 91% 60% / 0.4), 0 0 32px 4px hsl(172 66% 50% / 0.2)',
-                      }}
-                    />
-                    
-                    <div
-                      className="absolute transform -translate-x-1/2 -translate-y-1/2 z-10"
-                      style={{ left: '30%', top: '50%' }}
-                    >
-                      <div className="flex flex-col items-center gap-1.5">
-                        <div className="relative">
-                          <div className="absolute -inset-2 bg-primary/30 rounded-xl blur-lg" />
-                          <div className="relative p-2.5 sm:p-3 rounded-xl bg-primary/20 border-2 border-primary shadow-lg shadow-primary/20 transition-all duration-300 hover:scale-110 hover:shadow-xl hover:shadow-primary/30 cursor-pointer">
-                            <Inbox className="h-5 w-5 sm:h-6 sm:w-6 text-primary" />
+                  <div className="relative flex-1 min-h-[260px] flex items-center justify-center">
+                    {/* Stacked Cards Container */}
+                    <div className="relative w-full max-w-[280px] h-[200px]">
+                      {/* Card 4 - Payments (back) */}
+                      <div 
+                        className="absolute inset-x-6 top-0 h-[160px] rounded-xl bg-gradient-to-br from-amber-500/10 to-amber-600/5 border border-amber-500/20 backdrop-blur-sm transition-all duration-700 ease-out"
+                        style={{
+                          transform: 'translateY(0px) scale(0.88)',
+                          animation: 'stackBreathe 4s ease-in-out infinite',
+                          animationDelay: '0s',
+                        }}
+                      >
+                        <div className="p-3 flex items-center gap-2">
+                          <div className="p-1.5 rounded-lg bg-amber-500/20">
+                            <CreditCard className="h-3.5 w-3.5 text-amber-400" />
                           </div>
+                          <span className="text-[10px] font-medium text-amber-400/80">Payments</span>
                         </div>
-                        <span className="text-[9px] sm:text-[10px] text-primary font-semibold bg-background/90 px-1.5 py-0.5 rounded whitespace-nowrap">
-                          Lavoie Systems
-                        </span>
-                        <span className="text-[8px] sm:text-[9px] text-muted-foreground">
-                          CRM & Automation
-                        </span>
                       </div>
-                    </div>
 
-                    <div
-                      className="absolute transform -translate-x-1/2 -translate-y-1/2 z-10"
-                      style={{ left: '70%', top: '50%' }}
-                    >
-                      <div className="flex flex-col items-center gap-1.5">
-                        <div className="relative">
-                          <div className="absolute -inset-2 bg-success/30 rounded-xl blur-lg" />
-                          <div className="relative p-2.5 sm:p-3 rounded-xl bg-success/20 border-2 border-success shadow-lg shadow-success/20 transition-all duration-300 hover:scale-110 hover:shadow-xl hover:shadow-success/30 cursor-pointer">
-                            <BarChart3 className="h-5 w-5 sm:h-6 sm:w-6 text-success" />
+                      {/* Card 3 - Marketing */}
+                      <div 
+                        className="absolute inset-x-4 top-4 h-[160px] rounded-xl bg-gradient-to-br from-rose-500/10 to-rose-600/5 border border-rose-500/20 backdrop-blur-sm transition-all duration-700 ease-out"
+                        style={{
+                          transform: 'translateY(0px) scale(0.92)',
+                          animation: 'stackBreathe 4s ease-in-out infinite',
+                          animationDelay: '0.15s',
+                        }}
+                      >
+                        <div className="p-3 flex items-center gap-2">
+                          <div className="p-1.5 rounded-lg bg-rose-500/20">
+                            <Megaphone className="h-3.5 w-3.5 text-rose-400" />
+                          </div>
+                          <span className="text-[10px] font-medium text-rose-400/80">Marketing</span>
+                        </div>
+                      </div>
+
+                      {/* Card 2 - Automation */}
+                      <div 
+                        className="absolute inset-x-2 top-8 h-[160px] rounded-xl bg-gradient-to-br from-cyan-500/10 to-cyan-600/5 border border-cyan-500/20 backdrop-blur-sm transition-all duration-700 ease-out"
+                        style={{
+                          transform: 'translateY(0px) scale(0.96)',
+                          animation: 'stackBreathe 4s ease-in-out infinite',
+                          animationDelay: '0.3s',
+                        }}
+                      >
+                        <div className="p-3 flex items-center gap-2">
+                          <div className="p-1.5 rounded-lg bg-cyan-500/20">
+                            <Calendar className="h-3.5 w-3.5 text-cyan-400" />
+                          </div>
+                          <span className="text-[10px] font-medium text-cyan-400/80">Automation</span>
+                        </div>
+                      </div>
+
+                      {/* Card 1 - CRM (front) */}
+                      <div 
+                        className="absolute inset-x-0 top-12 h-[160px] rounded-xl bg-gradient-to-br from-primary/15 to-primary/5 border border-primary/30 backdrop-blur-sm shadow-lg shadow-primary/10 transition-all duration-700 ease-out"
+                        style={{
+                          animation: 'stackBreathe 4s ease-in-out infinite',
+                          animationDelay: '0.45s',
+                        }}
+                      >
+                        <div className="p-4">
+                          <div className="flex items-center gap-2 mb-3">
+                            <div className="p-2 rounded-lg bg-primary/20 border border-primary/30">
+                              <Inbox className="h-4 w-4 text-primary" />
+                            </div>
+                            <div>
+                              <span className="text-xs font-semibold text-primary">Lavoie Systems</span>
+                              <p className="text-[9px] text-muted-foreground">CRM & Automation</p>
+                            </div>
+                          </div>
+                          {/* Mini stats preview */}
+                          <div className="grid grid-cols-3 gap-2 mt-2">
+                            <div className="bg-background/50 rounded-lg p-2 text-center">
+                              <p className="text-sm font-bold text-foreground">24</p>
+                              <p className="text-[8px] text-muted-foreground">Leads</p>
+                            </div>
+                            <div className="bg-background/50 rounded-lg p-2 text-center">
+                              <p className="text-sm font-bold text-success">8</p>
+                              <p className="text-[8px] text-muted-foreground">Meetings</p>
+                            </div>
+                            <div className="bg-background/50 rounded-lg p-2 text-center">
+                              <p className="text-sm font-bold text-primary">$42k</p>
+                              <p className="text-[8px] text-muted-foreground">Pipeline</p>
+                            </div>
                           </div>
                         </div>
-                        <span className="text-[9px] sm:text-[10px] text-success font-semibold bg-background/90 px-1.5 py-0.5 rounded whitespace-nowrap">
-                          Planning Software
-                        </span>
-                        <span className="text-[8px] sm:text-[9px] text-muted-foreground">
-                          eMoney, RightCapital
-                        </span>
                       </div>
+
+                      {/* Connecting glow effect */}
+                      <div 
+                        className="absolute inset-0 rounded-xl opacity-30 pointer-events-none"
+                        style={{
+                          background: 'radial-gradient(ellipse at center, hsl(217 91% 60% / 0.15), transparent 70%)',
+                          animation: 'pulseGlow 3s ease-in-out infinite',
+                        }}
+                      />
                     </div>
                   </div>
                   

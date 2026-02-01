@@ -696,4 +696,25 @@
       transform: scale(1);
     }
   }
+
+  /* Stacked Cards breathing animation */
+  @keyframes stackBreathe {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-4px);
+    }
+  }
+
+  @keyframes pulseGlow {
+    0%, 100% {
+      opacity: 0.2;
+      transform: scale(0.95);
+    }
+    50% {
+      opacity: 0.4;
+      transform: scale(1.02);
+    }
+  }
 }
