@@ -6,8 +6,6 @@ import WhatYouGet from "@/components/landing/WhatYouGet";
 import MobileApp from "@/components/landing/MobileApp";
 import TryIt from "@/components/landing/TryIt";
 import CustomBuilt from "@/components/landing/CustomBuilt";
-
-import FounderCredibility from "@/components/landing/FounderCredibility";
 import FAQ from "@/components/landing/FAQ";
 import FinalCTA from "@/components/landing/FinalCTA";
 import Footer from "@/components/landing/Footer";
@@ -22,10 +20,8 @@ const Index = () => {
         <WhatYouGet />
         <MobileApp />
         <CustomBuilt />
-        <FounderCredibility />
         <Problem />
         <WhoIsFor />
-        
         <FAQ />
         <FinalCTA />
       </main>
