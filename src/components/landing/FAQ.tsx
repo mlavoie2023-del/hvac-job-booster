@@ -42,7 +42,7 @@ const FAQ = () => {
   return (
     <section className="relative py-20 lg:py-28 spotlight-section-dual">
       {/* Subtle transition */}
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-primary/[0.02] to-transparent" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_50%_at_30%_70%,hsl(270_80%_60%/0.04),transparent)] pointer-events-none" />
       <div className="section-container">
         <div className="mx-auto max-w-3xl text-center">
           <h2 className="text-3xl font-bold text-foreground sm:text-4xl lg:text-5xl">

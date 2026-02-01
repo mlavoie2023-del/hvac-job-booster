@@ -96,48 +96,73 @@
     @apply text-[#e8e8e8];
   }
 
-  /* Section spotlight - top center glow */
+  /* Section spotlight - blue top glow */
   .spotlight-section {
     @apply relative;
-    background: radial-gradient(ellipse 80% 50% at 50% 0%, hsl(217 91% 60% / 0.12), transparent 70%);
+    background: 
+      radial-gradient(ellipse 100% 60% at 50% -10%, hsl(217 91% 60% / 0.12), transparent 60%);
   }
 
-  /* Alternate spotlight - bottom center */
-  .spotlight-section-bottom {
+  /* Spotlight flowing down - for smooth transitions */
+  .spotlight-section-flow {
     @apply relative;
-    background: radial-gradient(ellipse 80% 50% at 50% 100%, hsl(217 91% 60% / 0.1), transparent 70%);
+    background: 
+      radial-gradient(ellipse 120% 50% at 50% 100%, hsl(217 91% 60% / 0.08), transparent 50%),
+      radial-gradient(ellipse 100% 40% at 50% 0%, hsl(217 91% 60% / 0.06), transparent 50%);
   }
 
-  /* Dual spotlight - top and bottom */
+  /* Dual spotlight - blue top, cyan bottom */
   .spotlight-section-dual {
     @apply relative;
     background: 
-      radial-gradient(ellipse 70% 40% at 50% 0%, hsl(217 91% 60% / 0.1), transparent 60%),
-      radial-gradient(ellipse 70% 40% at 50% 100%, hsl(217 91% 60% / 0.08), transparent 60%);
+      radial-gradient(ellipse 80% 50% at 50% 0%, hsl(217 91% 60% / 0.1), transparent 55%),
+      radial-gradient(ellipse 80% 50% at 50% 100%, hsl(190 90% 50% / 0.06), transparent 55%);
   }
 
-  /* Side spotlight - left */
-  .spotlight-section-left {
+  /* Purple spotlight - left accent */
+  .spotlight-section-purple {
     @apply relative;
-    background: radial-gradient(ellipse 50% 80% at 0% 50%, hsl(217 91% 60% / 0.1), transparent 70%);
+    background: 
+      radial-gradient(ellipse 60% 70% at 10% 30%, hsl(270 80% 60% / 0.08), transparent 60%),
+      radial-gradient(ellipse 80% 50% at 50% 0%, hsl(217 91% 60% / 0.06), transparent 50%);
   }
 
-  /* Side spotlight - right */
-  .spotlight-section-right {
-    @apply relative;
-    background: radial-gradient(ellipse 50% 80% at 100% 50%, hsl(217 91% 60% / 0.1), transparent 70%);
-  }
-
-  /* Rose spotlight for mobile app section */
+  /* Rose/Pink spotlight - warm accent */
   .spotlight-section-rose {
     @apply relative;
-    background: radial-gradient(ellipse 80% 50% at 50% 30%, hsl(340 82% 52% / 0.1), transparent 70%);
+    background: 
+      radial-gradient(ellipse 70% 60% at 80% 40%, hsl(340 82% 52% / 0.08), transparent 60%),
+      radial-gradient(ellipse 80% 50% at 20% 80%, hsl(217 91% 60% / 0.05), transparent 50%);
   }
 
-  /* Warm spotlight */
+  /* Cyan/teal spotlight - tech feel */
+  .spotlight-section-cyan {
+    @apply relative;
+    background: 
+      radial-gradient(ellipse 80% 50% at 50% 20%, hsl(190 90% 50% / 0.1), transparent 55%),
+      radial-gradient(ellipse 60% 60% at 90% 70%, hsl(217 91% 60% / 0.06), transparent 50%);
+  }
+
+  /* Warm/amber spotlight */
   .spotlight-section-warm {
     @apply relative;
-    background: radial-gradient(ellipse 80% 50% at 50% 0%, hsl(30 80% 50% / 0.08), transparent 70%);
+    background: 
+      radial-gradient(ellipse 70% 60% at 30% 30%, hsl(35 90% 55% / 0.07), transparent 55%),
+      radial-gradient(ellipse 80% 50% at 70% 80%, hsl(217 91% 60% / 0.05), transparent 50%);
+  }
+
+  /* Green/success spotlight */
+  .spotlight-section-emerald {
+    @apply relative;
+    background: 
+      radial-gradient(ellipse 80% 50% at 50% 30%, hsl(160 80% 45% / 0.08), transparent 55%),
+      radial-gradient(ellipse 60% 60% at 20% 70%, hsl(217 91% 60% / 0.05), transparent 50%);
+  }
+
+  /* Subtle bottom glow for transitions */
+  .spotlight-section-bottom {
+    @apply relative;
+    background: radial-gradient(ellipse 100% 50% at 50% 100%, hsl(217 91% 60% / 0.08), transparent 60%);
   }
 
   .spotlight-glow {
