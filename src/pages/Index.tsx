@@ -17,8 +17,8 @@ const Index = () => {
     <div className="min-h-screen bg-background">
       <Header />
       <main>
-        <Hero />
         <TechStackComparison />
+        <Hero />
         <WhatYouGet />
         <MobileApp />
         <HowItWorks />
