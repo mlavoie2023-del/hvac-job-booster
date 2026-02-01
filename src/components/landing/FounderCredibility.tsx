@@ -2,9 +2,9 @@ import mattLavoie from "@/assets/matt-lavoie.jpg";
 
 const FounderCredibility = () => {
   return (
-    <section className="relative py-20 sm:py-24">
+    <section className="relative py-20 sm:py-24 spotlight-section-warm">
       {/* Subtle glow behind quote */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_40%_at_50%_50%,hsl(217_91%_60%/0.04),transparent)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_40%_at_50%_50%,hsl(217_91%_60%/0.06),transparent)]" />
 
       <div className="section-container relative">
         <div className="mx-auto max-w-[800px] text-center">

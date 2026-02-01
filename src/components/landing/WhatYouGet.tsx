@@ -2037,9 +2037,9 @@ const WhatYouGet = () => {
   const activeData = categories.find(c => c.id === activeCategory);
 
   return (
-    <section className="relative py-20 lg:py-28 overflow-hidden">
+    <section className="relative py-20 lg:py-28 overflow-hidden spotlight-section-left">
       {/* Ambient glow */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_40%_at_50%_30%,hsl(217_91%_60%/0.04),transparent)] pointer-events-none" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_40%_at_50%_30%,hsl(217_91%_60%/0.06),transparent)] pointer-events-none" />
       
       <div className="section-container">
         {/* Section Header */}
