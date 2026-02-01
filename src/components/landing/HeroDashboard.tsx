@@ -2,7 +2,7 @@ import { useEffect, useState, useRef } from "react";
 import { 
   Users, Calendar, DollarSign, TrendingUp, Bell, Search, ChevronRight, 
   Plus, Clock, ArrowUpRight, LayoutGrid, MessageCircle,
-  Contact, Receipt, Send, PlayCircle, Globe, LineChart, Smartphone, Settings,
+  Contact, Receipt, Send, PlayCircle, Globe, LineChart, Smartphone,
   Phone, Video, MoreHorizontal, Paperclip, Smile, ChevronLeft, ChevronDown
 } from "lucide-react";
 import lavoieLogo from "@/assets/lavoie-logo-square.png";
@@ -30,17 +30,17 @@ const HeroDashboard = () => {
   }, []);
 
   const sidebarItems: { icon: typeof LayoutGrid; label: string; id: TabType; showLabel?: boolean }[] = [
-    { icon: LayoutGrid, label: "Dashboard", id: "dashboard" },
+    { icon: LayoutGrid, label: "Dashboard", id: "dashboard", showLabel: true },
     { icon: MessageCircle, label: "Conversations", id: "conversations", showLabel: true },
     { icon: Calendar, label: "Calendars", id: "calendars", showLabel: true },
-    { icon: Contact, label: "Contacts", id: "contacts" },
-    { icon: Users, label: "Opportunities", id: "opportunities" },
-    { icon: Receipt, label: "Payments", id: "payments" },
-    { icon: Send, label: "Marketing", id: "marketing" },
-    { icon: PlayCircle, label: "Automation", id: "automation" },
-    { icon: Globe, label: "Sites", id: "sites" },
-    { icon: LineChart, label: "Reporting", id: "reporting" },
-    { icon: Smartphone, label: "Mobile App", id: "mobile" },
+    { icon: Contact, label: "Contacts", id: "contacts", showLabel: true },
+    { icon: Users, label: "Opportunities", id: "opportunities", showLabel: true },
+    { icon: Receipt, label: "Payments", id: "payments", showLabel: true },
+    { icon: Send, label: "Marketing", id: "marketing", showLabel: true },
+    { icon: PlayCircle, label: "Automations", id: "automation", showLabel: true },
+    { icon: Globe, label: "Sites", id: "sites", showLabel: true },
+    { icon: LineChart, label: "Reporting", id: "reporting", showLabel: true },
+    { icon: Smartphone, label: "Mobile App", id: "mobile", showLabel: true },
   ];
 
   const stats = [
@@ -127,9 +127,6 @@ const HeroDashboard = () => {
             ))}
             
             <div className="flex-1" />
-            <div className="w-10 h-10 rounded-lg flex items-center justify-center text-muted-foreground hover:bg-muted/50 cursor-pointer">
-              <Settings className="w-4 h-4" />
-            </div>
           </div>
 
           {/* Main Content */}
