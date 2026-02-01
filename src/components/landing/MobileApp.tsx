@@ -237,35 +237,82 @@ const QuickReplyScreen = () => (
       >
         <div className="text-xs sm:text-sm text-white/80">Perfect! See you then 👍</div>
       </div>
+      
+      {/* Sent message - appears after typing */}
+      <div 
+        className="bg-primary/30 rounded-2xl rounded-br-sm px-4 py-3 max-w-[85%] ml-auto"
+        style={{ animation: 'msgSent 6s ease-out infinite' }}
+      >
+        <div className="text-xs sm:text-sm text-white/80">Sounds great! Looking forward to it</div>
+      </div>
     </div>
     
-    {/* Reply input */}
+    {/* Reply input with typing animation */}
     <div 
-      className="mt-3 sm:mt-4 flex items-center gap-3 bg-muted/20 rounded-full px-4 sm:px-5 py-3 sm:py-3.5"
-      style={{ animation: 'replyType 6s ease-out infinite' }}
+      className="mt-3 sm:mt-4 flex items-center gap-3 bg-muted/20 rounded-full px-4 sm:px-5 py-3 sm:py-3.5 relative overflow-hidden"
+      style={{ animation: 'inputAppear 6s ease-out infinite' }}
     >
-      <div className="flex-1 text-[11px] sm:text-xs text-white/40 overflow-hidden truncate">
-        Sounds great! Looking forward to it...
+      {/* Typing text with cursor */}
+      <div className="flex-1 relative overflow-hidden">
+        <div 
+          className="text-[11px] sm:text-xs text-white/70 whitespace-nowrap"
+          style={{ animation: 'typeText 6s steps(32, end) infinite' }}
+        >
+          Sounds great! Looking forward to it
+        </div>
+        {/* Blinking cursor */}
+        <div 
+          className="absolute top-0 h-full w-[2px] bg-primary"
+          style={{ animation: 'cursorMove 6s steps(32, end) infinite, cursorBlink 0.6s step-end infinite' }}
+        />
       </div>
-      <Send className="w-5 h-5 sm:w-6 sm:h-6 text-primary" />
+      {/* Send button with pulse on send */}
+      <div style={{ animation: 'sendPulse 6s ease-out infinite' }}>
+        <Send className="w-5 h-5 sm:w-6 sm:h-6 text-primary" />
+      </div>
     </div>
     
     <style>{`
       @keyframes msgSlide1 {
-        0%, 15% { opacity: 0; transform: translateY(16px) scale(0.95); }
-        20%, 100% { opacity: 1; transform: translateY(0) scale(1); }
+        0%, 8% { opacity: 0; transform: translateY(16px) scale(0.95); }
+        12%, 100% { opacity: 1; transform: translateY(0) scale(1); }
       }
       @keyframes msgSlide2 {
-        0%, 30% { opacity: 0; transform: translateY(16px) scale(0.95); }
-        35%, 100% { opacity: 1; transform: translateY(0) scale(1); }
+        0%, 18% { opacity: 0; transform: translateY(16px) scale(0.95); }
+        22%, 100% { opacity: 1; transform: translateY(0) scale(1); }
       }
       @keyframes msgSlide3 {
-        0%, 45% { opacity: 0; transform: translateY(16px) scale(0.95); }
-        50%, 100% { opacity: 1; transform: translateY(0) scale(1); }
+        0%, 28% { opacity: 0; transform: translateY(16px) scale(0.95); }
+        32%, 100% { opacity: 1; transform: translateY(0) scale(1); }
       }
-      @keyframes replyType {
-        0%, 55% { opacity: 0; }
-        60%, 100% { opacity: 1; }
+      @keyframes inputAppear {
+        0%, 35% { opacity: 0; }
+        38%, 82% { opacity: 1; }
+        85%, 100% { opacity: 0; }
+      }
+      @keyframes typeText {
+        0%, 38% { width: 0; }
+        70% { width: 100%; }
+        100% { width: 100%; }
+      }
+      @keyframes cursorMove {
+        0%, 38% { left: 0; opacity: 1; }
+        70% { left: 100%; opacity: 1; }
+        75%, 100% { left: 100%; opacity: 0; }
+      }
+      @keyframes cursorBlink {
+        0%, 50% { opacity: 1; }
+        51%, 100% { opacity: 0; }
+      }
+      @keyframes sendPulse {
+        0%, 72% { transform: scale(1); }
+        74% { transform: scale(1.3); }
+        76% { transform: scale(1); }
+        100% { transform: scale(1); }
+      }
+      @keyframes msgSent {
+        0%, 76% { opacity: 0; transform: translateY(16px) scale(0.95); }
+        80%, 100% { opacity: 1; transform: translateY(0) scale(1); }
       }
     `}</style>
   </div>
