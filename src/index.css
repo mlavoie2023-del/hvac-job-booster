@@ -244,13 +244,10 @@
 
   @keyframes floatAround {
     0%, 100% {
-      transform: translate(0, 0);
+      transform: translateY(0);
     }
-    33% {
-      transform: translate(2px, -3px);
-    }
-    66% {
-      transform: translate(-2px, 2px);
+    50% {
+      transform: translateY(-6px);
     }
   }
 
@@ -263,7 +260,7 @@
   }
 
   .animate-float-around {
-    animation: floatAround 8s ease-in-out infinite;
+    animation: floatAround 3s ease-in-out infinite;
   }
 
   /* Pipeline animations */
