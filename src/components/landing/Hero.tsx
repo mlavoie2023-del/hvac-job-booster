@@ -10,28 +10,36 @@ import {
   FileSignature,
   Inbox,
   Check,
+  PieChart,
+  Shield,
+  FileText,
+  Users,
+  Megaphone,
+  Receipt,
+  FolderOpen,
   type LucideIcon
 } from "lucide-react";
 
 interface Tool {
   icon: LucideIcon;
   label: string;
-  x: number;
-  y: number;
 }
 
 const beforeTools: Tool[] = [
-  { icon: FileSpreadsheet, label: "CRM / Spreadsheets", x: 50, y: 42 },
-  { icon: BarChart3, label: "Planning Software", x: 50, y: 12 },
-  { icon: Calendar, label: "Calendar", x: 82, y: 24 },
-  { icon: Mail, label: "Email", x: 82, y: 58 },
-  { icon: FormInput, label: "Website Forms", x: 50, y: 72 },
-  { icon: CreditCard, label: "Payments", x: 18, y: 58 },
-  { icon: FileSignature, label: "DocuSign", x: 18, y: 24 },
-];
-
-const connections: [number, number][] = [
-  [0, 1], [0, 2], [0, 3], [0, 4], [0, 5], [0, 6],
+  { icon: FileSpreadsheet, label: "CRM" },
+  { icon: BarChart3, label: "Planning Software" },
+  { icon: Calendar, label: "Scheduling" },
+  { icon: Mail, label: "Email Marketing" },
+  { icon: FormInput, label: "Website Forms" },
+  { icon: CreditCard, label: "Payments" },
+  { icon: FileSignature, label: "E-Signature" },
+  { icon: PieChart, label: "Portfolio Mgmt" },
+  { icon: Shield, label: "Compliance" },
+  { icon: FileText, label: "Document Mgmt" },
+  { icon: Users, label: "Client Portal" },
+  { icon: Megaphone, label: "Digital Marketing" },
+  { icon: Receipt, label: "Fee Billing" },
+  { icon: FolderOpen, label: "File Sharing" },
 ];
 
 const Hero = () => {
@@ -112,46 +120,27 @@ const Hero = () => {
                   </span>
                 </div>
                 <div className="bg-card/50 rounded-2xl border border-border p-6 pt-10 min-h-[400px] sm:min-h-[380px] relative overflow-hidden flex flex-col">
-                  <div className="relative flex-1 min-h-[260px] isolate">
-                    <svg className="absolute inset-0 w-full h-full" style={{ zIndex: 1 }} viewBox="0 0 100 80" preserveAspectRatio="xMidYMid meet">
-                      {connections.map(([from, to], index) => (
-                        <line
-                          key={index}
-                          x1={beforeTools[from].x}
-                          y1={beforeTools[from].y}
-                          x2={beforeTools[to].x}
-                          y2={beforeTools[to].y}
-                          stroke="hsl(0 72% 50%)"
-                          strokeWidth="0.5"
-                          strokeOpacity="0.6"
-                          strokeDasharray="1.5 1"
-                        />
-                      ))}
-                    </svg>
-                    
-                    {beforeTools.map((tool, index) => {
-                      const IconComponent = tool.icon;
-                      return (
-                        <div
-                          key={index}
-                          className="absolute transform -translate-x-1/2 -translate-y-1/2 group"
-                          style={{
-                            left: `${tool.x}%`,
-                            top: `${(tool.y / 80) * 100}%`,
-                            zIndex: 10,
-                          }}
-                        >
-                          <div className="flex flex-col items-center gap-1.5">
-                            <div className="p-2 sm:p-2.5 rounded-xl bg-[hsl(240_10%_10%)] border border-border shadow-lg group-hover:border-destructive/50 transition-colors">
-                              <IconComponent className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-foreground/80" />
+                  <div className="relative flex-1 min-h-[260px]">
+                    <div className="flex flex-wrap justify-center items-center gap-2 sm:gap-3 p-2">
+                      {beforeTools.map((tool, index) => {
+                        const IconComponent = tool.icon;
+                        return (
+                          <div
+                            key={index}
+                            className="group"
+                          >
+                            <div className="flex flex-col items-center gap-1">
+                              <div className="p-2 sm:p-2.5 rounded-xl bg-[hsl(240_10%_10%)] border border-border shadow-lg group-hover:border-destructive/50 transition-colors">
+                                <IconComponent className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-foreground/80" />
+                              </div>
+                              <span className="text-[7px] sm:text-[8px] text-muted-foreground font-medium bg-background px-1 py-0.5 rounded whitespace-nowrap">
+                                {tool.label}
+                              </span>
                             </div>
-                            <span className="text-[8px] sm:text-[9px] text-muted-foreground font-medium bg-background px-1 py-0.5 rounded whitespace-nowrap">
-                              {tool.label}
-                            </span>
                           </div>
-                        </div>
-                      );
-                    })}
+                        );
+                      })}
+                    </div>
                   </div>
                   
                   <div className="space-y-1 bg-background/60 backdrop-blur-sm rounded-lg p-2.5 mt-3">
