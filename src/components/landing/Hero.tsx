@@ -123,25 +123,30 @@ const Hero = () => {
                       return (
                         <div
                           key={index}
-                          className="absolute -translate-x-1/2 -translate-y-1/2 group animate-float-around"
+                          className="absolute -translate-x-1/2 -translate-y-1/2"
                           style={{
                             left: `${tool.x}%`,
                             top: `${tool.y}%`,
                             zIndex: 10,
-                            animationDelay: `${index * 0.7}s`,
-                            animationDuration: `${7 + (index % 4)}s`,
                           }}
                         >
                           <div 
-                            className="flex flex-col items-center gap-1"
-                            style={{ transform: `rotate(${tool.rotate}deg)` }}
+                            className="animate-float-around"
+                            style={{
+                              animationDelay: `${index * 0.2}s`,
+                            }}
                           >
-                            <div className="p-2 sm:p-2.5 rounded-xl bg-[hsl(240_10%_10%)] border border-border shadow-lg group-hover:border-destructive/50 transition-colors">
-                              <IconComponent className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-foreground/80" />
+                            <div 
+                              className="flex flex-col items-center gap-1"
+                              style={{ transform: `rotate(${tool.rotate}deg)` }}
+                            >
+                              <div className="p-2 sm:p-2.5 rounded-xl bg-[hsl(240_10%_10%)] border border-border shadow-lg group-hover:border-destructive/50 transition-colors">
+                                <IconComponent className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-foreground/80" />
+                              </div>
+                              <span className="text-[7px] sm:text-[8px] text-muted-foreground font-medium bg-background px-1 py-0.5 rounded whitespace-nowrap">
+                                {tool.label}
+                              </span>
                             </div>
-                            <span className="text-[7px] sm:text-[8px] text-muted-foreground font-medium bg-background px-1 py-0.5 rounded whitespace-nowrap">
-                              {tool.label}
-                            </span>
                           </div>
                         </div>
                       );
