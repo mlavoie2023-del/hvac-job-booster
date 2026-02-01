@@ -34,15 +34,15 @@ const CustomBuilt = () => {
             </h2>
           </div>
 
-          {/* Two-column layout */}
-          <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-start">
+          {/* Two-column layout - vertically centered */}
+          <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
             {/* Left: Founder quote card */}
-            <div className="rounded-xl border border-border/50 bg-card/50 p-6 lg:p-8">
-              <div className="flex flex-col items-center text-center">
+            <div className="rounded-xl border border-border/50 bg-card/50 p-8 lg:p-10 h-full flex items-center">
+              <div className="flex flex-col items-center text-center w-full">
                 <img
                   src={mattLavoie}
                   alt="Matt Lavoie"
-                  className="h-20 w-20 rounded-full object-cover border-2 border-primary/30 shadow-lg mb-6"
+                  className="h-24 w-24 rounded-full object-cover border-2 border-primary/30 shadow-lg mb-6"
                   style={{ objectPosition: "center 25%" }}
                 />
                 <blockquote className="text-lg text-body italic leading-relaxed">
@@ -55,29 +55,34 @@ const CustomBuilt = () => {
               </div>
             </div>
 
-            {/* Right: Process Steps */}
-            <div className="space-y-4">
+            {/* Right: How It Works */}
+            <div className="flex flex-col h-full">
+              {/* Headline above cards */}
               <h3 className="text-lg font-semibold text-primary mb-6 text-center lg:text-left">
                 How It Works
               </h3>
-              {steps.map((step, index) => (
-                <div key={index} className="flex items-start gap-4">
-                  {/* Number badge */}
-                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-primary text-sm font-bold text-primary-foreground shadow-primary">
-                    {step.number}
-                  </div>
+              
+              {/* Steps cards */}
+              <div className="space-y-4 flex-1 flex flex-col justify-center">
+                {steps.map((step, index) => (
+                  <div key={index} className="flex items-start gap-4">
+                    {/* Number badge */}
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-primary text-sm font-bold text-primary-foreground shadow-primary">
+                      {step.number}
+                    </div>
 
-                  {/* Card */}
-                  <div className="flex-1 rounded-xl border border-border bg-card p-4">
-                    <h4 className="text-base font-semibold text-foreground">
-                      {step.title}
-                    </h4>
-                    <p className="mt-1 text-sm text-body">
-                      {step.description}
-                    </p>
+                    {/* Card */}
+                    <div className="flex-1 rounded-xl border border-border bg-card p-4">
+                      <h4 className="text-base font-semibold text-foreground">
+                        {step.title}
+                      </h4>
+                      <p className="mt-1 text-sm text-body">
+                        {step.description}
+                      </p>
+                    </div>
                   </div>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
           </div>
         </div>
