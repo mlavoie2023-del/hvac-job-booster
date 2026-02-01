@@ -3,7 +3,7 @@ import {
   Users, Calendar, DollarSign, TrendingUp, Bell, Search, ChevronRight, 
   Plus, Clock, ArrowUpRight, LayoutGrid, MessageCircle,
   Contact, Receipt, Send, PlayCircle, Globe, LineChart, Smartphone,
-  Phone, Video, MoreHorizontal, Paperclip, Smile, ChevronLeft, ChevronDown, Workflow,
+  Phone, Video, MoreHorizontal, Paperclip, Smile, ChevronLeft, ChevronDown, Filter,
   Mail, MessageSquare, Linkedin
 } from "lucide-react";
 import lavoieLogo from "@/assets/lavoie-logo-square.png";
@@ -35,7 +35,7 @@ const HeroDashboard = () => {
     { icon: MessageCircle, label: "Conversations", id: "conversations", showLabel: true },
     { icon: Calendar, label: "Calendars", id: "calendars", showLabel: true },
     { icon: Contact, label: "Contacts", id: "contacts", showLabel: true },
-    { icon: Workflow, label: "Opportunities", id: "opportunities", showLabel: true },
+    { icon: Filter, label: "Opportunities", id: "opportunities", showLabel: true },
     { icon: Receipt, label: "Payments", id: "payments", showLabel: true },
     { icon: Send, label: "Marketing", id: "marketing", showLabel: true },
     { icon: PlayCircle, label: "Automations", id: "automation", showLabel: true },
