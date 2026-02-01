@@ -10,10 +10,7 @@ import {
   FileSignature,
   Inbox,
   Check,
-  PieChart,
-  Shield,
   FileText,
-  Users,
   Megaphone,
   Receipt,
   FolderOpen,
@@ -23,23 +20,23 @@ import {
 interface Tool {
   icon: LucideIcon;
   label: string;
+  x: number;
+  y: number;
+  rotate: number;
 }
 
 const beforeTools: Tool[] = [
-  { icon: FileSpreadsheet, label: "CRM" },
-  { icon: BarChart3, label: "Planning Software" },
-  { icon: Calendar, label: "Scheduling" },
-  { icon: Mail, label: "Email Marketing" },
-  { icon: FormInput, label: "Website Forms" },
-  { icon: CreditCard, label: "Payments" },
-  { icon: FileSignature, label: "E-Signature" },
-  { icon: PieChart, label: "Portfolio Mgmt" },
-  { icon: Shield, label: "Compliance" },
-  { icon: FileText, label: "Document Mgmt" },
-  { icon: Users, label: "Client Portal" },
-  { icon: Megaphone, label: "Digital Marketing" },
-  { icon: Receipt, label: "Fee Billing" },
-  { icon: FolderOpen, label: "File Sharing" },
+  { icon: FileSpreadsheet, label: "CRM", x: 50, y: 40, rotate: -3 },
+  { icon: BarChart3, label: "Planning Software", x: 25, y: 15, rotate: 5 },
+  { icon: Calendar, label: "Scheduling", x: 78, y: 20, rotate: -8 },
+  { icon: Mail, label: "Email Marketing", x: 85, y: 55, rotate: 6 },
+  { icon: FormInput, label: "Website Forms", x: 42, y: 70, rotate: -4 },
+  { icon: CreditCard, label: "Payments", x: 15, y: 60, rotate: 7 },
+  { icon: FileSignature, label: "E-Signature", x: 70, y: 75, rotate: -6 },
+  { icon: FileText, label: "Document Mgmt", x: 18, y: 32, rotate: 4 },
+  { icon: Megaphone, label: "Digital Marketing", x: 75, y: 38, rotate: -5 },
+  { icon: Receipt, label: "Fee Billing", x: 55, y: 18, rotate: 3 },
+  { icon: FolderOpen, label: "File Sharing", x: 30, y: 78, rotate: -7 },
 ];
 
 const Hero = () => {
@@ -121,26 +118,30 @@ const Hero = () => {
                 </div>
                 <div className="bg-card/50 rounded-2xl border border-border p-6 pt-10 min-h-[400px] sm:min-h-[380px] relative overflow-hidden flex flex-col">
                   <div className="relative flex-1 min-h-[260px]">
-                    <div className="flex flex-wrap justify-center items-center gap-2 sm:gap-3 p-2">
-                      {beforeTools.map((tool, index) => {
-                        const IconComponent = tool.icon;
-                        return (
-                          <div
-                            key={index}
-                            className="group"
-                          >
-                            <div className="flex flex-col items-center gap-1">
-                              <div className="p-2 sm:p-2.5 rounded-xl bg-[hsl(240_10%_10%)] border border-border shadow-lg group-hover:border-destructive/50 transition-colors">
-                                <IconComponent className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-foreground/80" />
-                              </div>
-                              <span className="text-[7px] sm:text-[8px] text-muted-foreground font-medium bg-background px-1 py-0.5 rounded whitespace-nowrap">
-                                {tool.label}
-                              </span>
+                    {beforeTools.map((tool, index) => {
+                      const IconComponent = tool.icon;
+                      return (
+                        <div
+                          key={index}
+                          className="absolute transform -translate-x-1/2 -translate-y-1/2 group"
+                          style={{
+                            left: `${tool.x}%`,
+                            top: `${tool.y}%`,
+                            transform: `translate(-50%, -50%) rotate(${tool.rotate}deg)`,
+                            zIndex: 10,
+                          }}
+                        >
+                          <div className="flex flex-col items-center gap-1">
+                            <div className="p-2 sm:p-2.5 rounded-xl bg-[hsl(240_10%_10%)] border border-border shadow-lg group-hover:border-destructive/50 transition-colors">
+                              <IconComponent className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-foreground/80" />
                             </div>
+                            <span className="text-[7px] sm:text-[8px] text-muted-foreground font-medium bg-background px-1 py-0.5 rounded whitespace-nowrap">
+                              {tool.label}
+                            </span>
                           </div>
-                        );
-                      })}
-                    </div>
+                        </div>
+                      );
+                    })}
                   </div>
                   
                   <div className="space-y-1 bg-background/60 backdrop-blur-sm rounded-lg p-2.5 mt-3">
