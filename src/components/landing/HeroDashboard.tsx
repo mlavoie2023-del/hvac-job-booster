@@ -1066,28 +1066,142 @@ const MarketingContent = () => {
         <SocialPlannerContent />
       )}
 
-      {/* Email Placeholder */}
+      {/* Email Content */}
       {activeMarketingTab === "email" && (
-        <div className="flex-1 flex items-center justify-center">
-          <div className="text-center">
-            <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-2">
-              <Mail className="w-5 h-5 text-primary" />
+        <div className="flex-1 flex flex-col gap-2">
+          {/* Header */}
+          <div className="flex items-center justify-between">
+            <h3 className="text-[11px] font-semibold text-foreground">Email Campaigns</h3>
+            <div className="flex items-center gap-1.5">
+              <button className="flex items-center gap-1 px-2 py-1 rounded-md border border-border/30 hover:bg-muted/30 transition-colors text-[8px] text-muted-foreground">
+                <Settings className="w-2.5 h-2.5" />
+                Templates
+              </button>
+              <button className="flex items-center gap-1 px-2 py-1 rounded-md bg-primary text-primary-foreground text-[8px] font-medium hover:bg-primary/90 transition-colors">
+                <Plus className="w-2.5 h-2.5" />
+                New Campaign
+              </button>
             </div>
-            <div className="text-[9px] font-medium text-foreground">Email Marketing</div>
-            <div className="text-[7px] text-muted-foreground mt-1">Create and manage email campaigns</div>
+          </div>
+
+          {/* Stats Row */}
+          <div className="grid grid-cols-4 gap-2">
+            {[
+              { label: "Total Sent", value: "12,847", change: "+8.2%" },
+              { label: "Open Rate", value: "42.3%", change: "+2.1%" },
+              { label: "Click Rate", value: "18.7%", change: "+1.5%" },
+              { label: "Unsubscribes", value: "0.3%", change: "-0.1%" },
+            ].map((stat, idx) => (
+              <div key={idx} className="bg-[hsl(0_0%_9%)] rounded-lg border border-border/20 p-2">
+                <div className="text-[7px] text-muted-foreground">{stat.label}</div>
+                <div className="text-[11px] font-semibold text-foreground mt-0.5">{stat.value}</div>
+                <div className={`text-[6px] ${stat.change.startsWith('+') ? 'text-emerald-500' : 'text-red-400'}`}>{stat.change}</div>
+              </div>
+            ))}
+          </div>
+
+          {/* Campaigns Table */}
+          <div className="flex-1 bg-[hsl(0_0%_9%)] rounded-lg border border-border/20 overflow-hidden flex flex-col">
+            <div className="grid grid-cols-[1fr_80px_60px_60px_50px] gap-2 px-3 py-2 bg-[hsl(0_0%_8%)] border-b border-border/20 text-[7px] font-medium text-muted-foreground">
+              <span>Campaign Name</span>
+              <span>Status</span>
+              <span>Sent</span>
+              <span>Opens</span>
+              <span>Clicks</span>
+            </div>
+            <div className="flex-1 overflow-y-auto">
+              {[
+                { name: "Q1 Newsletter - Market Update", status: "Sent", sent: "2,450", opens: "1,127", clicks: "412", date: "Jan 15" },
+                { name: "New Year Portfolio Review Invite", status: "Sent", sent: "1,890", opens: "823", clicks: "298", date: "Jan 2" },
+                { name: "February Wealth Insights", status: "Scheduled", sent: "-", opens: "-", clicks: "-", date: "Feb 5" },
+                { name: "Tax Planning Reminder 2025", status: "Draft", sent: "-", opens: "-", clicks: "-", date: "-" },
+                { name: "Client Appreciation Event", status: "Sent", sent: "3,200", opens: "1,456", clicks: "567", date: "Dec 18" },
+              ].map((campaign, idx) => (
+                <div key={idx} className="grid grid-cols-[1fr_80px_60px_60px_50px] gap-2 px-3 py-2 border-b border-border/10 hover:bg-muted/20 transition-colors items-center">
+                  <div>
+                    <div className="text-[8px] font-medium text-foreground truncate">{campaign.name}</div>
+                    <div className="text-[6px] text-muted-foreground">{campaign.date}</div>
+                  </div>
+                  <span className={`text-[7px] font-medium px-1.5 py-0.5 rounded-full w-fit ${
+                    campaign.status === "Sent" ? "bg-emerald-500/20 text-emerald-400" :
+                    campaign.status === "Scheduled" ? "bg-primary/20 text-primary" :
+                    "bg-muted text-muted-foreground"
+                  }`}>{campaign.status}</span>
+                  <span className="text-[7px] text-muted-foreground">{campaign.sent}</span>
+                  <span className="text-[7px] text-muted-foreground">{campaign.opens}</span>
+                  <span className="text-[7px] text-muted-foreground">{campaign.clicks}</span>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       )}
 
-      {/* SMS Placeholder */}
+      {/* SMS Content */}
       {activeMarketingTab === "sms" && (
-        <div className="flex-1 flex items-center justify-center">
-          <div className="text-center">
-            <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-2">
-              <MessageSquare className="w-5 h-5 text-primary" />
+        <div className="flex-1 flex flex-col gap-2">
+          {/* Header */}
+          <div className="flex items-center justify-between">
+            <h3 className="text-[11px] font-semibold text-foreground">SMS Campaigns</h3>
+            <div className="flex items-center gap-1.5">
+              <button className="flex items-center gap-1 px-2 py-1 rounded-md border border-border/30 hover:bg-muted/30 transition-colors text-[8px] text-muted-foreground">
+                <Settings className="w-2.5 h-2.5" />
+                Templates
+              </button>
+              <button className="flex items-center gap-1 px-2 py-1 rounded-md bg-primary text-primary-foreground text-[8px] font-medium hover:bg-primary/90 transition-colors">
+                <Plus className="w-2.5 h-2.5" />
+                New SMS
+              </button>
             </div>
-            <div className="text-[9px] font-medium text-foreground">SMS Marketing</div>
-            <div className="text-[7px] text-muted-foreground mt-1">Send and schedule SMS campaigns</div>
+          </div>
+
+          {/* Stats Row */}
+          <div className="grid grid-cols-4 gap-2">
+            {[
+              { label: "Messages Sent", value: "4,892", change: "+12.4%" },
+              { label: "Delivery Rate", value: "98.7%", change: "+0.2%" },
+              { label: "Response Rate", value: "24.5%", change: "+3.8%" },
+              { label: "Opt-outs", value: "0.1%", change: "-0.05%" },
+            ].map((stat, idx) => (
+              <div key={idx} className="bg-[hsl(0_0%_9%)] rounded-lg border border-border/20 p-2">
+                <div className="text-[7px] text-muted-foreground">{stat.label}</div>
+                <div className="text-[11px] font-semibold text-foreground mt-0.5">{stat.value}</div>
+                <div className={`text-[6px] ${stat.change.startsWith('+') ? 'text-emerald-500' : 'text-red-400'}`}>{stat.change}</div>
+              </div>
+            ))}
+          </div>
+
+          {/* SMS Table */}
+          <div className="flex-1 bg-[hsl(0_0%_9%)] rounded-lg border border-border/20 overflow-hidden flex flex-col">
+            <div className="grid grid-cols-[1fr_70px_60px_60px] gap-2 px-3 py-2 bg-[hsl(0_0%_8%)] border-b border-border/20 text-[7px] font-medium text-muted-foreground">
+              <span>Message Preview</span>
+              <span>Status</span>
+              <span>Sent</span>
+              <span>Responses</span>
+            </div>
+            <div className="flex-1 overflow-y-auto">
+              {[
+                { message: "Hi {name}, your quarterly review is scheduled for tomorrow at {time}. Reply Y to confirm.", status: "Sent", sent: "847", responses: "312", date: "Jan 28" },
+                { message: "Reminder: Tax documents due Feb 15. Need an extension? Reply HELP for assistance.", status: "Sent", sent: "1,230", responses: "89", date: "Jan 25" },
+                { message: "Happy Birthday {name}! 🎂 We're grateful to have you as a client. Enjoy your special day!", status: "Scheduled", sent: "-", responses: "-", date: "Feb 3" },
+                { message: "Market Alert: New investment opportunities available. Call us to discuss your portfolio.", status: "Draft", sent: "-", responses: "-", date: "-" },
+                { message: "Thank you for meeting today! Your updated plan is attached to your email. Questions? Reply here.", status: "Sent", sent: "156", responses: "43", date: "Jan 20" },
+              ].map((sms, idx) => (
+                <div key={idx} className="grid grid-cols-[1fr_70px_60px_60px] gap-2 px-3 py-2 border-b border-border/10 hover:bg-muted/20 transition-colors items-center">
+                  <div>
+                    <div className="text-[7px] text-foreground line-clamp-2">{sms.message}</div>
+                    <div className="text-[6px] text-muted-foreground mt-0.5">{sms.date}</div>
+                  </div>
+                  <span className={`text-[7px] font-medium px-1.5 py-0.5 rounded-full w-fit ${
+                    sms.status === "Sent" ? "bg-emerald-500/20 text-emerald-400" :
+                    sms.status === "Scheduled" ? "bg-primary/20 text-primary" :
+                    "bg-muted text-muted-foreground"
+                  }`}>{sms.status}</span>
+                  <span className="text-[7px] text-muted-foreground">{sms.sent}</span>
+                  <span className="text-[7px] text-muted-foreground">{sms.responses}</span>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       )}
