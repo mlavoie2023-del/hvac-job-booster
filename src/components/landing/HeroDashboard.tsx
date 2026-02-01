@@ -1367,12 +1367,11 @@ const AutomationsContent = () => {
       </div>
 
       {/* Stats Row */}
-      <div className="grid grid-cols-4 gap-2">
+      <div className="grid grid-cols-3 gap-2">
         {[
-          { label: "Active Workflows", value: "4", icon: PlayCircle },
+          { label: "Active Workflows", value: "6", icon: PlayCircle },
           { label: "Total Runs", value: "3,667", icon: GitBranch },
           { label: "Success Rate", value: "99.2%", icon: Check },
-          { label: "Time Saved", value: "47h", icon: Clock },
         ].map((stat, idx) => (
           <div key={idx} className="bg-[hsl(0_0%_9%)] rounded-lg border border-border/20 p-2 flex items-center gap-2">
             <div className="w-6 h-6 rounded-md bg-primary/10 flex items-center justify-center">
@@ -1414,32 +1413,6 @@ const AutomationsContent = () => {
               <span className="text-[7px] text-muted-foreground text-center">{workflow.actions}</span>
               <span className="text-[7px] text-muted-foreground">{workflow.lastRun}</span>
               <span className="text-[7px] text-muted-foreground text-center">{workflow.runs.toLocaleString()}</span>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      {/* Sample Workflow Preview */}
-      <div className="bg-[hsl(0_0%_9%)] rounded-lg border border-border/20 p-3">
-        <div className="flex items-center justify-between mb-2">
-          <span className="text-[8px] font-medium text-foreground">New Lead Welcome Sequence</span>
-          <span className="text-[6px] px-1.5 py-0.5 rounded-full bg-emerald-500/20 text-emerald-400">Active</span>
-        </div>
-        <div className="flex items-center gap-1">
-          {[
-            { icon: Mail, label: "Welcome Email", color: "bg-blue-500/20 text-blue-400" },
-            { icon: Clock, label: "Wait 24h", color: "bg-muted text-muted-foreground" },
-            { icon: MessageSquare, label: "SMS Check-in", color: "bg-emerald-500/20 text-emerald-400" },
-            { icon: Phone, label: "Call Task", color: "bg-amber-500/20 text-amber-400" },
-          ].map((step, idx) => (
-            <div key={idx} className="flex items-center">
-              <div className={`flex items-center gap-1 px-2 py-1 rounded-md ${step.color}`}>
-                <step.icon className="w-2.5 h-2.5" />
-                <span className="text-[6px] font-medium">{step.label}</span>
-              </div>
-              {idx < 3 && (
-                <div className="w-3 h-px bg-border/50 mx-0.5" />
-              )}
             </div>
           ))}
         </div>
