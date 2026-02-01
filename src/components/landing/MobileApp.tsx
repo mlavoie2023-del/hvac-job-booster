@@ -175,10 +175,9 @@ const QuickReplyScreen = () => (
       <div className="w-11 h-11 sm:w-14 sm:h-14 rounded-full bg-primary flex items-center justify-center">
         <span className="text-xs sm:text-sm font-bold text-white">SK</span>
       </div>
-      <div>
-        <div className="text-xs sm:text-sm font-semibold text-white">Sarah Kim</div>
-        <div className="text-[10px] sm:text-xs text-emerald-400">Online</div>
-      </div>
+        <div>
+          <div className="text-xs sm:text-sm font-semibold text-white">Sarah Kim</div>
+        </div>
     </div>
     
     {/* Messages */}
