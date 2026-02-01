@@ -5,7 +5,7 @@ import {
   Contact, Receipt, Send, PlayCircle, Globe, LineChart, Smartphone,
   Phone, Video, MoreHorizontal, Paperclip, Smile, ChevronLeft, ChevronDown, Filter,
   Mail, MessageSquare, Linkedin, PhoneCall, Users2, Download, Settings, ArrowUpDown,
-  Check, FileText, CreditCard
+  Check, FileText, CreditCard, BookImage
 } from "lucide-react";
 import lavoieLogo from "@/assets/lavoie-logo-square.png";
 
@@ -1036,7 +1036,7 @@ const MarketingContent = () => {
   const [activeMarketingTab, setActiveMarketingTab] = useState<"social" | "email" | "sms">("social");
 
   const marketingTabs = [
-    { id: "social" as const, label: "Social Planner", icon: Smartphone },
+    { id: "social" as const, label: "Social Planner", icon: BookImage },
     { id: "email" as const, label: "Email", icon: Mail },
     { id: "sms" as const, label: "SMS", icon: MessageSquare },
   ];
