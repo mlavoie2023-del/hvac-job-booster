@@ -96,73 +96,132 @@
     @apply text-[#e8e8e8];
   }
 
-  /* Section spotlight - blue top glow */
+  /* Section spotlight - subtle accent that blends */
   .spotlight-section {
     @apply relative;
-    background: 
-      radial-gradient(ellipse 100% 60% at 50% -10%, hsl(217 91% 60% / 0.12), transparent 60%);
+    background: transparent;
+  }
+  
+  .spotlight-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 100% 80% at 50% 30%, hsl(217 91% 60% / 0.06), transparent 70%);
+    pointer-events: none;
   }
 
-  /* Spotlight flowing down - for smooth transitions */
+  /* Spotlight flowing - seamless transitions */
   .spotlight-section-flow {
     @apply relative;
-    background: 
-      radial-gradient(ellipse 120% 50% at 50% 100%, hsl(217 91% 60% / 0.08), transparent 50%),
-      radial-gradient(ellipse 100% 40% at 50% 0%, hsl(217 91% 60% / 0.06), transparent 50%);
+    background: transparent;
+  }
+  
+  .spotlight-section-flow::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 120% 100% at 50% 50%, hsl(217 91% 60% / 0.04), transparent 60%);
+    pointer-events: none;
   }
 
-  /* Dual spotlight - blue top, cyan bottom */
+  /* Dual spotlight - blue accents */
   .spotlight-section-dual {
     @apply relative;
+    background: transparent;
+  }
+  
+  .spotlight-section-dual::before {
+    content: '';
+    position: absolute;
+    inset: 0;
     background: 
-      radial-gradient(ellipse 80% 50% at 50% 0%, hsl(217 91% 60% / 0.1), transparent 55%),
-      radial-gradient(ellipse 80% 50% at 50% 100%, hsl(190 90% 50% / 0.06), transparent 55%);
+      radial-gradient(ellipse 100% 60% at 30% 20%, hsl(217 91% 60% / 0.05), transparent 50%),
+      radial-gradient(ellipse 80% 60% at 70% 80%, hsl(190 90% 50% / 0.04), transparent 50%);
+    pointer-events: none;
   }
 
-  /* Purple spotlight - left accent */
+  /* Purple spotlight */
   .spotlight-section-purple {
     @apply relative;
-    background: 
-      radial-gradient(ellipse 60% 70% at 10% 30%, hsl(270 80% 60% / 0.08), transparent 60%),
-      radial-gradient(ellipse 80% 50% at 50% 0%, hsl(217 91% 60% / 0.06), transparent 50%);
+    background: transparent;
+  }
+  
+  .spotlight-section-purple::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 80% 70% at 20% 40%, hsl(270 80% 60% / 0.05), transparent 60%);
+    pointer-events: none;
   }
 
-  /* Rose/Pink spotlight - warm accent */
+  /* Rose/Pink spotlight */
   .spotlight-section-rose {
     @apply relative;
-    background: 
-      radial-gradient(ellipse 70% 60% at 80% 40%, hsl(340 82% 52% / 0.08), transparent 60%),
-      radial-gradient(ellipse 80% 50% at 20% 80%, hsl(217 91% 60% / 0.05), transparent 50%);
+    background: transparent;
+  }
+  
+  .spotlight-section-rose::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 90% 70% at 75% 40%, hsl(340 82% 52% / 0.06), transparent 60%);
+    pointer-events: none;
   }
 
-  /* Cyan/teal spotlight - tech feel */
+  /* Cyan/teal spotlight */
   .spotlight-section-cyan {
     @apply relative;
-    background: 
-      radial-gradient(ellipse 80% 50% at 50% 20%, hsl(190 90% 50% / 0.1), transparent 55%),
-      radial-gradient(ellipse 60% 60% at 90% 70%, hsl(217 91% 60% / 0.06), transparent 50%);
+    background: transparent;
+  }
+  
+  .spotlight-section-cyan::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 90% 70% at 60% 30%, hsl(190 90% 50% / 0.06), transparent 60%);
+    pointer-events: none;
   }
 
   /* Warm/amber spotlight */
   .spotlight-section-warm {
     @apply relative;
-    background: 
-      radial-gradient(ellipse 70% 60% at 30% 30%, hsl(35 90% 55% / 0.07), transparent 55%),
-      radial-gradient(ellipse 80% 50% at 70% 80%, hsl(217 91% 60% / 0.05), transparent 50%);
+    background: transparent;
+  }
+  
+  .spotlight-section-warm::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 80% 70% at 35% 35%, hsl(35 90% 55% / 0.05), transparent 60%);
+    pointer-events: none;
   }
 
-  /* Green/success spotlight */
+  /* Emerald/green spotlight */
   .spotlight-section-emerald {
     @apply relative;
-    background: 
-      radial-gradient(ellipse 80% 50% at 50% 30%, hsl(160 80% 45% / 0.08), transparent 55%),
-      radial-gradient(ellipse 60% 60% at 20% 70%, hsl(217 91% 60% / 0.05), transparent 50%);
+    background: transparent;
+  }
+  
+  .spotlight-section-emerald::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 90% 70% at 50% 40%, hsl(160 80% 45% / 0.05), transparent 60%);
+    pointer-events: none;
   }
 
-  /* Subtle bottom glow for transitions */
+  /* Bottom glow for transitions */
   .spotlight-section-bottom {
     @apply relative;
-    background: radial-gradient(ellipse 100% 50% at 50% 100%, hsl(217 91% 60% / 0.08), transparent 60%);
+    background: transparent;
+  }
+  
+  .spotlight-section-bottom::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 100% 60% at 50% 100%, hsl(217 91% 60% / 0.05), transparent 60%);
+    pointer-events: none;
   }
 
   .spotlight-glow {

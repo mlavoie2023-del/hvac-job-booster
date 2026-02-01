@@ -593,8 +593,6 @@ const MobileApp = () => {
 
   return (
     <section className="relative py-20 lg:py-28 overflow-hidden spotlight-section-rose">
-      {/* Background gradient */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_50%_50%_at_20%_60%,hsl(270_80%_60%/0.05),transparent)] pointer-events-none" />
       
       <div className="section-container">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
