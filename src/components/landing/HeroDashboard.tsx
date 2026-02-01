@@ -5,7 +5,7 @@ import {
   Contact, Receipt, Send, PlayCircle, Globe, LineChart, Smartphone,
   Phone, Video, MoreHorizontal, Paperclip, Smile, ChevronLeft, ChevronDown, Filter,
   Mail, MessageSquare, Linkedin, PhoneCall, Users2, Download, Settings, ArrowUpDown,
-  Check
+  Check, FileText, CreditCard
 } from "lucide-react";
 import lavoieLogo from "@/assets/lavoie-logo-square.png";
 
@@ -37,7 +37,7 @@ const HeroDashboard = () => {
     { icon: Calendar, label: "Calendars", id: "calendars", showLabel: true },
     { icon: Contact, label: "Contacts", id: "contacts", showLabel: true },
     { icon: Filter, label: "Opportunities", id: "opportunities", showLabel: true },
-    { icon: Receipt, label: "Payments", id: "payments", showLabel: true },
+    { icon: Receipt, label: "Payments & Docs", id: "payments", showLabel: true },
     { icon: Send, label: "Marketing", id: "marketing", showLabel: true },
     { icon: PlayCircle, label: "Automations", id: "automation", showLabel: true },
     { icon: Globe, label: "Sites", id: "sites", showLabel: true },
@@ -178,7 +178,10 @@ const HeroDashboard = () => {
               {activeTab === "opportunities" && (
                 <OpportunitiesContent />
               )}
-              {activeTab !== "dashboard" && activeTab !== "conversations" && activeTab !== "calendars" && activeTab !== "contacts" && activeTab !== "opportunities" && (
+              {activeTab === "payments" && (
+                <PaymentsContent />
+              )}
+              {activeTab !== "dashboard" && activeTab !== "conversations" && activeTab !== "calendars" && activeTab !== "contacts" && activeTab !== "opportunities" && activeTab !== "payments" && (
                 <PlaceholderContent title={getPageTitle()} />
               )}
             </div>
@@ -852,6 +855,194 @@ const OpportunitiesContent = () => {
             </div>
           </div>
         ))}
+      </div>
+    </div>
+  );
+};
+
+/* Payments & Documents Content */
+const PaymentsContent = () => {
+  const [activeSubTab, setActiveSubTab] = useState<"invoices" | "documents">("invoices");
+
+  const invoices = [
+    { id: "INV-000012", name: "Annual Planning Fee", customer: "Sarah Mitchell", initials: "SM", date: "Jan 28, 2026", amount: "$2,500.00", status: "Paid" },
+    { id: "INV-000011", name: "Portfolio Review", customer: "James Chen", initials: "JC", date: "Jan 25, 2026", amount: "$750.00", status: "Due In 7 Days" },
+    { id: "INV-000010", name: "Retirement Analysis", customer: "Emily Rodriguez", initials: "ER", date: "Jan 20, 2026", amount: "$1,200.00", status: "Paid" },
+    { id: "INV-000009", name: "Estate Planning Consult", customer: "Michael Brown", initials: "MB", date: "Jan 15, 2026", amount: "$3,000.00", status: "Overdue" },
+    { id: "INV-000008", name: "Tax Strategy Session", customer: "Lisa Thompson", initials: "LT", date: "Jan 10, 2026", amount: "$500.00", status: "Paid" },
+    { id: "INV-000007", name: "Investment Rebalancing", customer: "David Wilson", initials: "DW", date: "Jan 5, 2026", amount: "$850.00", status: "Paid" },
+  ];
+
+  const documents = [
+    { id: 1, title: "Financial Planning Agreement", status: "Completed", customer: "Sarah Mitchell", initials: "SM", date: "Jan 28, 2026", value: "$2,500.00" },
+    { id: 2, title: "Investment Policy Statement", status: "Pending Signature", customer: "James Chen", initials: "JC", date: "Jan 27, 2026", value: "$0.00" },
+    { id: 3, title: "Retirement Proposal", status: "Draft", customer: "Emily Rodriguez", initials: "ER", date: "Jan 25, 2026", value: "$1,200.00" },
+    { id: 4, title: "Estate Plan Review", status: "Completed", customer: "Michael Brown", initials: "MB", date: "Jan 20, 2026", value: "$3,000.00" },
+    { id: 5, title: "Risk Tolerance Questionnaire", status: "Waiting for Client", customer: "Robert Anderson", initials: "RA", date: "Jan 18, 2026", value: "$0.00" },
+    { id: 6, title: "Annual Review Summary", status: "Completed", customer: "Lisa Thompson", initials: "LT", date: "Jan 15, 2026", value: "$500.00" },
+  ];
+
+  const getStatusColor = (status: string) => {
+    switch (status) {
+      case "Paid":
+      case "Completed":
+        return "bg-emerald-500/20 text-emerald-400";
+      case "Due In 7 Days":
+      case "Pending Signature":
+        return "bg-amber-500/20 text-amber-400";
+      case "Overdue":
+        return "bg-red-500/20 text-red-400";
+      case "Draft":
+        return "bg-slate-500/20 text-slate-400";
+      case "Waiting for Client":
+        return "bg-blue-500/20 text-blue-400";
+      default:
+        return "bg-muted text-muted-foreground";
+    }
+  };
+
+  return (
+    <div className="h-full flex flex-col gap-3">
+      {/* Sub-tabs */}
+      <div className="flex items-center gap-4 border-b border-border/30 pb-2">
+        <button
+          onClick={() => setActiveSubTab("invoices")}
+          className={`flex items-center gap-1.5 text-[9px] font-medium pb-1 border-b-2 transition-colors ${
+            activeSubTab === "invoices" 
+              ? "border-primary text-primary" 
+              : "border-transparent text-muted-foreground hover:text-foreground"
+          }`}
+        >
+          <CreditCard className="w-3 h-3" />
+          Invoices
+        </button>
+        <button
+          onClick={() => setActiveSubTab("documents")}
+          className={`flex items-center gap-1.5 text-[9px] font-medium pb-1 border-b-2 transition-colors ${
+            activeSubTab === "documents" 
+              ? "border-primary text-primary" 
+              : "border-transparent text-muted-foreground hover:text-foreground"
+          }`}
+        >
+          <FileText className="w-3 h-3" />
+          Documents
+        </button>
+        <div className="flex-1" />
+        <button className="flex items-center gap-1 px-2 py-1 text-[8px] bg-primary text-primary-foreground rounded-md font-medium">
+          <Plus className="w-2.5 h-2.5" />
+          New
+        </button>
+      </div>
+
+      {/* Stats Row */}
+      {activeSubTab === "invoices" && (
+        <div className="grid grid-cols-4 gap-2">
+          {[
+            { label: "Draft", count: 2, value: "$1,500.00" },
+            { label: "Due", count: 1, value: "$750.00" },
+            { label: "Received", count: 4, value: "$7,050.00" },
+            { label: "Overdue", count: 1, value: "$3,000.00" },
+          ].map((stat, idx) => (
+            <div key={idx} className="bg-[hsl(0_0%_9%)] rounded-lg p-2 border border-border/20">
+              <div className="text-[7px] text-muted-foreground">{stat.count} Invoice(s) {stat.label}</div>
+              <div className="text-[11px] font-bold text-foreground">{stat.value}</div>
+            </div>
+          ))}
+        </div>
+      )}
+
+      {activeSubTab === "documents" && (
+        <div className="grid grid-cols-5 gap-2">
+          {[
+            { label: "Draft", count: 1 },
+            { label: "Waiting", count: 1 },
+            { label: "Completed", count: 3 },
+            { label: "Pending", count: 1 },
+            { label: "Archived", count: 0 },
+          ].map((stat, idx) => (
+            <button
+              key={idx}
+              className={`text-left px-2 py-1.5 rounded-md text-[8px] font-medium transition-colors ${
+                idx === 2 ? "bg-primary/20 text-primary border-b-2 border-primary" : "text-muted-foreground hover:bg-muted/30"
+              }`}
+            >
+              {stat.label} <span className="ml-1 text-[7px]">{stat.count}</span>
+            </button>
+          ))}
+        </div>
+      )}
+
+      {/* Table */}
+      <div className="flex-1 bg-[hsl(0_0%_9%)] rounded-lg border border-border/20 overflow-hidden">
+        {activeSubTab === "invoices" ? (
+          <>
+            {/* Invoice Header */}
+            <div className="grid grid-cols-[1fr_80px_100px_80px_70px_60px] gap-2 px-3 py-2 border-b border-border/20 text-[7px] text-muted-foreground font-medium">
+              <span>Invoice Name</span>
+              <span>Invoice #</span>
+              <span>Customer</span>
+              <span>Issue Date</span>
+              <span>Amount</span>
+              <span>Status</span>
+            </div>
+            {/* Invoice Rows */}
+            <div className="divide-y divide-border/10">
+              {invoices.map((invoice) => (
+                <div key={invoice.id} className="grid grid-cols-[1fr_80px_100px_80px_70px_60px] gap-2 px-3 py-1.5 items-center hover:bg-muted/20 transition-colors">
+                  <div className="flex items-center gap-2">
+                    <FileText className="w-3 h-3 text-muted-foreground" />
+                    <span className="text-[8px] font-medium text-foreground">{invoice.name}</span>
+                  </div>
+                  <span className="text-[7px] text-muted-foreground">{invoice.id}</span>
+                  <div className="flex items-center gap-1.5">
+                    <div className="w-4 h-4 rounded-full bg-primary/20 flex items-center justify-center text-[5px] text-primary font-medium">
+                      {invoice.initials}
+                    </div>
+                    <span className="text-[7px] text-foreground truncate">{invoice.customer}</span>
+                  </div>
+                  <span className="text-[7px] text-muted-foreground">{invoice.date}</span>
+                  <span className="text-[8px] font-medium text-foreground">{invoice.amount}</span>
+                  <span className={`text-[6px] px-1.5 py-0.5 rounded font-medium ${getStatusColor(invoice.status)}`}>
+                    {invoice.status}
+                  </span>
+                </div>
+              ))}
+            </div>
+          </>
+        ) : (
+          <>
+            {/* Documents Header */}
+            <div className="grid grid-cols-[1fr_90px_100px_80px_70px] gap-2 px-3 py-2 border-b border-border/20 text-[7px] text-muted-foreground font-medium">
+              <span>Title</span>
+              <span>Status</span>
+              <span>Customer</span>
+              <span>Date Modified</span>
+              <span>Value</span>
+            </div>
+            {/* Document Rows */}
+            <div className="divide-y divide-border/10">
+              {documents.map((doc) => (
+                <div key={doc.id} className="grid grid-cols-[1fr_90px_100px_80px_70px] gap-2 px-3 py-1.5 items-center hover:bg-muted/20 transition-colors">
+                  <div className="flex items-center gap-2">
+                    <FileText className="w-3 h-3 text-muted-foreground" />
+                    <span className="text-[8px] font-medium text-foreground">{doc.title}</span>
+                  </div>
+                  <span className={`text-[6px] px-1.5 py-0.5 rounded font-medium w-fit ${getStatusColor(doc.status)}`}>
+                    {doc.status}
+                  </span>
+                  <div className="flex items-center gap-1.5">
+                    <div className="w-4 h-4 rounded-full bg-primary/20 flex items-center justify-center text-[5px] text-primary font-medium">
+                      {doc.initials}
+                    </div>
+                    <span className="text-[7px] text-foreground truncate">{doc.customer}</span>
+                  </div>
+                  <span className="text-[7px] text-muted-foreground">{doc.date}</span>
+                  <span className="text-[8px] font-medium text-emerald-400">{doc.value}</span>
+                </div>
+              ))}
+            </div>
+          </>
+        )}
       </div>
     </div>
   );
