@@ -202,7 +202,7 @@ const Hero = () => {
                       {/* Label */}
                       <div className="mt-5 text-center">
                         <p className="text-base font-semibold text-primary">Lavoie Systems</p>
-                        <p className="text-sm text-muted-foreground mt-0.5">One Unified System</p>
+                        <p className="text-sm text-muted-foreground mt-0.5">One Unified Platform</p>
                       </div>
                     </div>
                   </div>
