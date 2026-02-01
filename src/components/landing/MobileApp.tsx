@@ -103,7 +103,7 @@ const NotificationsScreen = () => (
     <div className="space-y-3 sm:space-y-4">
       <div 
         className="bg-primary/20 rounded-2xl p-3 sm:p-4 border border-primary/30"
-        style={{ animation: 'notifSlideDown 5s ease-out infinite' }}
+        style={{ animation: 'notifSlideDown1 6s ease-out infinite' }}
       >
         <div className="flex items-start gap-3 sm:gap-4">
           <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-primary flex items-center justify-center flex-shrink-0">
@@ -118,7 +118,7 @@ const NotificationsScreen = () => (
       
       <div 
         className="bg-emerald-500/20 rounded-2xl p-3 sm:p-4 border border-emerald-500/30"
-        style={{ animation: 'notifSlideDown 5s ease-out infinite', animationDelay: '0.5s' }}
+        style={{ animation: 'notifSlideDown2 6s ease-out infinite' }}
       >
         <div className="flex items-start gap-3 sm:gap-4">
           <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-emerald-500 flex items-center justify-center flex-shrink-0">
@@ -133,7 +133,7 @@ const NotificationsScreen = () => (
       
       <div 
         className="bg-amber-500/20 rounded-2xl p-3 sm:p-4 border border-amber-500/30"
-        style={{ animation: 'notifSlideDown 5s ease-out infinite', animationDelay: '1s' }}
+        style={{ animation: 'notifSlideDown3 6s ease-out infinite' }}
       >
         <div className="flex items-start gap-3 sm:gap-4">
           <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-amber-500 flex items-center justify-center flex-shrink-0">
@@ -148,10 +148,20 @@ const NotificationsScreen = () => (
     </div>
     
     <style>{`
-      @keyframes notifSlideDown {
-        0%, 5% { opacity: 0; transform: translateY(-16px); }
-        15%, 70% { opacity: 1; transform: translateY(0); }
-        85%, 100% { opacity: 0; transform: translateY(-16px); }
+      @keyframes notifSlideDown1 {
+        0%, 20% { opacity: 0; transform: translateY(-20px) scale(0.95); }
+        25%, 75% { opacity: 1; transform: translateY(0) scale(1); }
+        85%, 100% { opacity: 0; transform: translateY(-20px) scale(0.95); }
+      }
+      @keyframes notifSlideDown2 {
+        0%, 35% { opacity: 0; transform: translateY(-20px) scale(0.95); }
+        40%, 75% { opacity: 1; transform: translateY(0) scale(1); }
+        85%, 100% { opacity: 0; transform: translateY(-20px) scale(0.95); }
+      }
+      @keyframes notifSlideDown3 {
+        0%, 50% { opacity: 0; transform: translateY(-20px) scale(0.95); }
+        55%, 75% { opacity: 1; transform: translateY(0) scale(1); }
+        85%, 100% { opacity: 0; transform: translateY(-20px) scale(0.95); }
       }
     `}</style>
   </div>
@@ -175,21 +185,21 @@ const QuickReplyScreen = () => (
     <div className="flex-1 space-y-3 sm:space-y-4 overflow-hidden">
       <div 
         className="bg-muted/30 rounded-2xl rounded-bl-sm px-4 py-3 max-w-[85%]"
-        style={{ animation: 'msgSlide 6s ease-out infinite' }}
+        style={{ animation: 'msgSlide1 6s ease-out infinite' }}
       >
         <div className="text-xs sm:text-sm text-white/80">When can we meet to discuss the portfolio?</div>
       </div>
       
       <div 
         className="bg-primary/30 rounded-2xl rounded-br-sm px-4 py-3 max-w-[85%] ml-auto"
-        style={{ animation: 'msgSlide 6s ease-out infinite', animationDelay: '0.8s' }}
+        style={{ animation: 'msgSlide2 6s ease-out infinite' }}
       >
         <div className="text-xs sm:text-sm text-white/80">Tomorrow at 2pm works great!</div>
       </div>
       
       <div 
         className="bg-muted/30 rounded-2xl rounded-bl-sm px-4 py-3 max-w-[85%]"
-        style={{ animation: 'msgSlide 6s ease-out infinite', animationDelay: '1.6s' }}
+        style={{ animation: 'msgSlide3 6s ease-out infinite' }}
       >
         <div className="text-xs sm:text-sm text-white/80">Perfect! See you then 👍</div>
       </div>
@@ -198,7 +208,7 @@ const QuickReplyScreen = () => (
     {/* Reply input */}
     <div 
       className="mt-3 sm:mt-4 flex items-center gap-3 bg-muted/20 rounded-full px-4 sm:px-5 py-3 sm:py-3.5"
-      style={{ animation: 'replyType 6s ease-out infinite', animationDelay: '2.4s' }}
+      style={{ animation: 'replyType 6s ease-out infinite' }}
     >
       <div className="flex-1 text-[11px] sm:text-xs text-white/40 overflow-hidden truncate">
         Sounds great! Looking forward to it...
@@ -207,14 +217,24 @@ const QuickReplyScreen = () => (
     </div>
     
     <style>{`
-      @keyframes msgSlide {
-        0%, 5% { opacity: 0; transform: translateY(12px); }
-        12%, 75% { opacity: 1; transform: translateY(0); }
-        85%, 100% { opacity: 0; transform: translateY(12px); }
+      @keyframes msgSlide1 {
+        0%, 15% { opacity: 0; transform: translateY(16px) scale(0.95); }
+        20%, 70% { opacity: 1; transform: translateY(0) scale(1); }
+        80%, 100% { opacity: 0; transform: translateY(16px) scale(0.95); }
+      }
+      @keyframes msgSlide2 {
+        0%, 30% { opacity: 0; transform: translateY(16px) scale(0.95); }
+        35%, 70% { opacity: 1; transform: translateY(0) scale(1); }
+        80%, 100% { opacity: 0; transform: translateY(16px) scale(0.95); }
+      }
+      @keyframes msgSlide3 {
+        0%, 45% { opacity: 0; transform: translateY(16px) scale(0.95); }
+        50%, 70% { opacity: 1; transform: translateY(0) scale(1); }
+        80%, 100% { opacity: 0; transform: translateY(16px) scale(0.95); }
       }
       @keyframes replyType {
-        0%, 35% { opacity: 0; }
-        45%, 75% { opacity: 1; }
+        0%, 55% { opacity: 0; }
+        60%, 75% { opacity: 1; }
         85%, 100% { opacity: 0; }
       }
     `}</style>
