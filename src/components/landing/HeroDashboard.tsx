@@ -709,8 +709,8 @@ const OpportunitiesContent = () => {
   const stages = [
     {
       name: "Discovery",
-      count: 8,
-      value: "$4.2M",
+      count: 4,
+      value: "$2.3M",
       color: "bg-slate-500",
       opportunities: [
         { id: 1, name: "Robert Anderson", aum: "$450K", probability: 20, lastContact: "2 days ago", source: "Referral" },
@@ -721,8 +721,8 @@ const OpportunitiesContent = () => {
     },
     {
       name: "Qualification",
-      count: 5,
-      value: "$3.8M",
+      count: 3,
+      value: "$2.9M",
       color: "bg-blue-500",
       opportunities: [
         { id: 5, name: "Daniel Foster", aum: "$1.2M", probability: 40, lastContact: "Yesterday", source: "COI Partner" },
@@ -732,8 +732,8 @@ const OpportunitiesContent = () => {
     },
     {
       name: "Proposal Sent",
-      count: 3,
-      value: "$2.9M",
+      count: 2,
+      value: "$2.5M",
       color: "bg-amber-500",
       opportunities: [
         { id: 8, name: "Jennifer Adams", aum: "$1.5M", probability: 60, lastContact: "1 day ago", source: "Referral" },
@@ -743,7 +743,7 @@ const OpportunitiesContent = () => {
     {
       name: "Commitment",
       count: 2,
-      value: "$2.1M",
+      value: "$4.0M",
       color: "bg-emerald-500",
       opportunities: [
         { id: 10, name: "Elizabeth Turner", aum: "$1.8M", probability: 85, lastContact: "Today", source: "Referral" },
@@ -761,7 +761,7 @@ const OpportunitiesContent = () => {
             <span className="text-[8px] text-foreground font-medium">Sales Pipeline</span>
             <ChevronDown className="w-2.5 h-2.5 text-muted-foreground" />
           </div>
-          <span className="text-[9px] text-primary font-medium">18 opportunities</span>
+          <span className="text-[9px] text-primary font-medium">11 opportunities</span>
         </div>
         <div className="flex items-center gap-2">
           <div className="flex items-center gap-1 px-2 py-1 bg-muted/20 rounded border border-border/20">
