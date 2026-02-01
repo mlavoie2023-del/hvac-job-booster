@@ -5,7 +5,7 @@ import {
   Contact, Receipt, Send, PlayCircle, Globe, LineChart, Smartphone,
   Phone, Video, MoreHorizontal, Paperclip, Smile, ChevronLeft, ChevronDown, Filter,
   Mail, MessageSquare, Linkedin, PhoneCall, Users2, Download, Settings, ArrowUpDown,
-  Check, FileText, CreditCard, BookImage
+  Check, FileText, CreditCard, BookImage, GitBranch
 } from "lucide-react";
 import lavoieLogo from "@/assets/lavoie-logo-square.png";
 
@@ -184,7 +184,10 @@ const HeroDashboard = () => {
               {activeTab === "marketing" && (
                 <MarketingContent />
               )}
-              {activeTab !== "dashboard" && activeTab !== "conversations" && activeTab !== "calendars" && activeTab !== "contacts" && activeTab !== "opportunities" && activeTab !== "payments" && activeTab !== "marketing" && (
+              {activeTab === "automation" && (
+                <AutomationsContent />
+              )}
+              {activeTab !== "dashboard" && activeTab !== "conversations" && activeTab !== "calendars" && activeTab !== "contacts" && activeTab !== "opportunities" && activeTab !== "payments" && activeTab !== "marketing" && activeTab !== "automation" && (
                 <PlaceholderContent title={getPageTitle()} />
               )}
             </div>
@@ -1327,6 +1330,116 @@ const SocialPlannerContent = () => {
                   <Linkedin className="w-2.5 h-2.5 text-white" />
                 </div>
               </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+/* Automations Content */
+const AutomationsContent = () => {
+  const workflows = [
+    { id: 1, name: "New Lead Welcome Sequence", status: "Active", triggers: "Form Submission", actions: 4, lastRun: "2 hours ago", runs: 847 },
+    { id: 2, name: "Appointment Reminder (24h)", status: "Active", triggers: "Calendar Event", actions: 2, lastRun: "35 min ago", runs: 2341 },
+    { id: 3, name: "Post-Meeting Follow-up", status: "Active", triggers: "Meeting Completed", actions: 3, lastRun: "Yesterday", runs: 156 },
+    { id: 4, name: "Birthday Greeting", status: "Active", triggers: "Contact Birthday", actions: 2, lastRun: "Jan 28", runs: 89 },
+    { id: 5, name: "Quarterly Review Reminder", status: "Paused", triggers: "Date Trigger", actions: 5, lastRun: "Dec 15", runs: 234 },
+    { id: 6, name: "Referral Request Campaign", status: "Draft", triggers: "Manual", actions: 3, lastRun: "-", runs: 0 },
+  ];
+
+  return (
+    <div className="h-full flex flex-col gap-3">
+      {/* Header */}
+      <div className="flex items-center justify-between">
+        <h3 className="text-[11px] font-semibold text-foreground">Workflows</h3>
+        <div className="flex items-center gap-1.5">
+          <button className="flex items-center gap-1 px-2 py-1 rounded-md border border-border/30 hover:bg-muted/30 transition-colors text-[8px] text-muted-foreground">
+            <Filter className="w-2.5 h-2.5" />
+            Filter
+          </button>
+          <button className="flex items-center gap-1 px-2 py-1 rounded-md bg-primary text-primary-foreground text-[8px] font-medium hover:bg-primary/90 transition-colors">
+            <Plus className="w-2.5 h-2.5" />
+            New Workflow
+          </button>
+        </div>
+      </div>
+
+      {/* Stats Row */}
+      <div className="grid grid-cols-4 gap-2">
+        {[
+          { label: "Active Workflows", value: "4", icon: PlayCircle },
+          { label: "Total Runs", value: "3,667", icon: GitBranch },
+          { label: "Success Rate", value: "99.2%", icon: Check },
+          { label: "Time Saved", value: "47h", icon: Clock },
+        ].map((stat, idx) => (
+          <div key={idx} className="bg-[hsl(0_0%_9%)] rounded-lg border border-border/20 p-2 flex items-center gap-2">
+            <div className="w-6 h-6 rounded-md bg-primary/10 flex items-center justify-center">
+              <stat.icon className="w-3 h-3 text-primary" />
+            </div>
+            <div>
+              <div className="text-[7px] text-muted-foreground">{stat.label}</div>
+              <div className="text-[11px] font-semibold text-foreground">{stat.value}</div>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {/* Workflows Table */}
+      <div className="flex-1 bg-[hsl(0_0%_9%)] rounded-lg border border-border/20 overflow-hidden flex flex-col">
+        <div className="grid grid-cols-[1fr_70px_90px_50px_70px_50px] gap-2 px-3 py-2 bg-[hsl(0_0%_8%)] border-b border-border/20 text-[7px] font-medium text-muted-foreground">
+          <span>Workflow Name</span>
+          <span>Status</span>
+          <span>Trigger</span>
+          <span>Actions</span>
+          <span>Last Run</span>
+          <span>Total Runs</span>
+        </div>
+        <div className="flex-1 overflow-y-auto">
+          {workflows.map((workflow) => (
+            <div key={workflow.id} className="grid grid-cols-[1fr_70px_90px_50px_70px_50px] gap-2 px-3 py-2 border-b border-border/10 hover:bg-muted/20 transition-colors items-center">
+              <div className="flex items-center gap-2">
+                <div className="w-5 h-5 rounded bg-primary/10 flex items-center justify-center">
+                  <GitBranch className="w-2.5 h-2.5 text-primary" />
+                </div>
+                <span className="text-[8px] font-medium text-foreground truncate">{workflow.name}</span>
+              </div>
+              <span className={`text-[7px] font-medium px-1.5 py-0.5 rounded-full w-fit ${
+                workflow.status === "Active" ? "bg-emerald-500/20 text-emerald-400" :
+                workflow.status === "Paused" ? "bg-amber-500/20 text-amber-400" :
+                "bg-muted text-muted-foreground"
+              }`}>{workflow.status}</span>
+              <span className="text-[7px] text-muted-foreground truncate">{workflow.triggers}</span>
+              <span className="text-[7px] text-muted-foreground text-center">{workflow.actions}</span>
+              <span className="text-[7px] text-muted-foreground">{workflow.lastRun}</span>
+              <span className="text-[7px] text-muted-foreground text-center">{workflow.runs.toLocaleString()}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Sample Workflow Preview */}
+      <div className="bg-[hsl(0_0%_9%)] rounded-lg border border-border/20 p-3">
+        <div className="flex items-center justify-between mb-2">
+          <span className="text-[8px] font-medium text-foreground">New Lead Welcome Sequence</span>
+          <span className="text-[6px] px-1.5 py-0.5 rounded-full bg-emerald-500/20 text-emerald-400">Active</span>
+        </div>
+        <div className="flex items-center gap-1">
+          {[
+            { icon: Mail, label: "Welcome Email", color: "bg-blue-500/20 text-blue-400" },
+            { icon: Clock, label: "Wait 24h", color: "bg-muted text-muted-foreground" },
+            { icon: MessageSquare, label: "SMS Check-in", color: "bg-emerald-500/20 text-emerald-400" },
+            { icon: Phone, label: "Call Task", color: "bg-amber-500/20 text-amber-400" },
+          ].map((step, idx) => (
+            <div key={idx} className="flex items-center">
+              <div className={`flex items-center gap-1 px-2 py-1 rounded-md ${step.color}`}>
+                <step.icon className="w-2.5 h-2.5" />
+                <span className="text-[6px] font-medium">{step.label}</span>
+              </div>
+              {idx < 3 && (
+                <div className="w-3 h-px bg-border/50 mx-0.5" />
+              )}
             </div>
           ))}
         </div>
