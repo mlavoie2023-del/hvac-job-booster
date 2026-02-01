@@ -181,7 +181,10 @@ const HeroDashboard = () => {
               {activeTab === "payments" && (
                 <PaymentsContent />
               )}
-              {activeTab !== "dashboard" && activeTab !== "conversations" && activeTab !== "calendars" && activeTab !== "contacts" && activeTab !== "opportunities" && activeTab !== "payments" && (
+              {activeTab === "marketing" && (
+                <MarketingContent />
+              )}
+              {activeTab !== "dashboard" && activeTab !== "conversations" && activeTab !== "calendars" && activeTab !== "contacts" && activeTab !== "opportunities" && activeTab !== "payments" && activeTab !== "marketing" && (
                 <PlaceholderContent title={getPageTitle()} />
               )}
             </div>
@@ -1023,6 +1026,146 @@ const PaymentsContent = () => {
             </div>
           </>
         )}
+      </div>
+    </div>
+  );
+};
+
+/* Marketing Content - Social Planner */
+const MarketingContent = () => {
+  const [activeSubTab, setActiveSubTab] = useState<"planner" | "content" | "comments" | "statistics" | "listening" | "settings">("planner");
+
+  const subTabs = [
+    { id: "planner" as const, label: "Planner" },
+    { id: "content" as const, label: "Content" },
+    { id: "comments" as const, label: "Comments", isNew: true },
+    { id: "statistics" as const, label: "Statistics" },
+    { id: "listening" as const, label: "Social Listening" },
+    { id: "settings" as const, label: "Settings" },
+  ];
+
+  return (
+    <div className="h-full flex flex-col gap-2">
+      {/* Header */}
+      <div className="flex items-center justify-between">
+        <h3 className="text-[11px] font-semibold text-foreground">Social Planner</h3>
+        <div className="flex items-center gap-1.5">
+          <button className="p-1.5 rounded-md border border-border/30 hover:bg-muted/30 transition-colors">
+            <Settings className="w-3 h-3 text-muted-foreground" />
+          </button>
+          <button className="flex items-center gap-1 px-2 py-1 rounded-md border border-border/30 hover:bg-muted/30 transition-colors text-[8px] text-muted-foreground">
+            <Plus className="w-2.5 h-2.5" />
+            Socials
+          </button>
+          <button className="flex items-center gap-1 px-2 py-1 rounded-md bg-primary text-primary-foreground text-[8px] font-medium hover:bg-primary/90 transition-colors">
+            <Plus className="w-2.5 h-2.5" />
+            New Post
+          </button>
+        </div>
+      </div>
+
+      {/* Sub Tabs */}
+      <div className="flex items-center gap-3 border-b border-border/20 pb-1">
+        {subTabs.map((tab) => (
+          <button
+            key={tab.id}
+            onClick={() => setActiveSubTab(tab.id)}
+            className={`relative text-[8px] font-medium pb-1.5 transition-colors ${
+              activeSubTab === tab.id
+                ? "text-primary border-b-2 border-primary"
+                : "text-muted-foreground hover:text-foreground"
+            }`}
+          >
+            {tab.label}
+            {tab.isNew && (
+              <span className="absolute -top-1 -right-4 px-1 py-0.5 bg-amber-500 text-[5px] text-white rounded font-medium">
+                New
+              </span>
+            )}
+          </button>
+        ))}
+      </div>
+
+      {/* Filter Row */}
+      <div className="flex items-center justify-between gap-2">
+        <div className="flex items-center gap-2">
+          {/* LinkedIn Dropdown */}
+          <button className="flex items-center gap-1 px-2 py-1 rounded-md border border-border/30 hover:bg-muted/30 transition-colors">
+            <div className="w-4 h-4 rounded-sm bg-[#0077B5] flex items-center justify-center">
+              <Linkedin className="w-2.5 h-2.5 text-white" />
+            </div>
+            <ChevronDown className="w-2.5 h-2.5 text-muted-foreground" />
+          </button>
+          {/* Date Range */}
+          <div className="flex items-center gap-1 px-2 py-1 rounded-md border border-border/30 text-[7px] text-muted-foreground">
+            <span>2025-09-01</span>
+            <span>→</span>
+            <span>2026-03-01</span>
+            <Calendar className="w-2.5 h-2.5 ml-1" />
+          </div>
+        </div>
+        <div className="flex items-center gap-1.5">
+          <button className="flex items-center gap-1 px-2 py-1 rounded-md border border-border/30 hover:bg-muted/30 transition-colors text-[7px] text-muted-foreground">
+            <Filter className="w-2.5 h-2.5" />
+            Filters
+          </button>
+          <button className="p-1.5 rounded-md border border-border/30 hover:bg-muted/30 transition-colors">
+            <LayoutGrid className="w-3 h-3 text-muted-foreground" />
+          </button>
+          <button className="p-1.5 rounded-md border border-border/30 hover:bg-muted/30 transition-colors">
+            <Calendar className="w-3 h-3 text-muted-foreground" />
+          </button>
+        </div>
+      </div>
+
+      {/* Actions Row */}
+      <div className="flex items-center justify-between gap-2">
+        <div className="flex items-center gap-2">
+          <button className="flex items-center gap-1 px-2 py-1 rounded-md border border-border/30 hover:bg-muted/30 transition-colors text-[7px] text-muted-foreground">
+            Actions
+            <ChevronDown className="w-2.5 h-2.5" />
+          </button>
+          <div className="flex items-center gap-1 text-[7px] text-muted-foreground">
+            <span>Filter Views:</span>
+            <button className="flex items-center gap-1 px-2 py-1 rounded-md border border-border/30 hover:bg-muted/30 transition-colors font-medium text-foreground">
+              All
+              <ChevronDown className="w-2.5 h-2.5" />
+            </button>
+          </div>
+        </div>
+        <div className="flex items-center gap-1 px-2 py-1 rounded-md border border-border/30 text-[7px] text-muted-foreground">
+          <Search className="w-2.5 h-2.5" />
+          <span>Search by caption (min 3 chars)</span>
+        </div>
+      </div>
+
+      {/* Table */}
+      <div className="flex-1 bg-[hsl(0_0%_9%)] rounded-lg border border-border/20 overflow-hidden flex flex-col">
+        {/* Table Header */}
+        <div className="grid grid-cols-[20px_1fr_60px_60px_50px_60px_40px] gap-2 px-3 py-2 bg-[hsl(0_0%_8%)] border-b border-border/20 text-[7px] font-medium text-muted-foreground">
+          <div className="flex items-center">
+            <div className="w-3 h-3 rounded border border-border/50" />
+          </div>
+          <span>Caption</span>
+          <span>Media</span>
+          <span>Status</span>
+          <span>Type</span>
+          <span>Date</span>
+          <span>Social</span>
+        </div>
+        
+        {/* Empty State */}
+        <div className="flex-1 flex flex-col items-center justify-center py-6">
+          <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center mb-2">
+            <FileText className="w-4 h-4 text-primary" />
+          </div>
+          <div className="text-[9px] font-medium text-foreground mb-1">No post found</div>
+          <div className="text-[7px] text-muted-foreground mb-3">Find all your social media posts in this section</div>
+          <button className="flex items-center gap-1 px-3 py-1.5 rounded-md bg-primary text-primary-foreground text-[8px] font-medium hover:bg-primary/90 transition-colors">
+            <Plus className="w-3 h-3" />
+            New Post
+          </button>
+        </div>
       </div>
     </div>
   );
