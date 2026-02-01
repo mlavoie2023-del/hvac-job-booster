@@ -1,13 +1,17 @@
 import { useEffect, useState, useRef } from "react";
 import { 
   Users, Calendar, DollarSign, TrendingUp, Bell, Search, ChevronRight, 
-  Plus, Clock, CheckCircle2, ArrowUpRight, LayoutGrid, MessageCircle,
-  Contact, Receipt, Send, PlayCircle, Globe, LineChart, Smartphone, Settings
+  Plus, Clock, ArrowUpRight, LayoutGrid, MessageCircle,
+  Contact, Receipt, Send, PlayCircle, Globe, LineChart, Smartphone, Settings,
+  Phone, Video, MoreHorizontal, Paperclip, Smile, ChevronLeft, ChevronDown
 } from "lucide-react";
 import lavoieLogo from "@/assets/lavoie-logo-square.png";
 
+type TabType = "dashboard" | "conversations" | "calendars" | "contacts" | "opportunities" | "payments" | "marketing" | "automation" | "sites" | "reporting" | "mobile";
+
 const HeroDashboard = () => {
   const [isVisible, setIsVisible] = useState(false);
+  const [activeTab, setActiveTab] = useState<TabType>("dashboard");
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -25,18 +29,18 @@ const HeroDashboard = () => {
     return () => observer.disconnect();
   }, []);
 
-  const sidebarItems = [
-    { icon: LayoutGrid, label: "Dashboard", active: true },
-    { icon: MessageCircle, label: "Conversations" },
-    { icon: Calendar, label: "Calendars" },
-    { icon: Contact, label: "Contacts" },
-    { icon: Users, label: "Opportunities" },
-    { icon: Receipt, label: "Payments" },
-    { icon: Send, label: "Marketing" },
-    { icon: PlayCircle, label: "Automation" },
-    { icon: Globe, label: "Sites" },
-    { icon: LineChart, label: "Reporting" },
-    { icon: Smartphone, label: "Mobile App" },
+  const sidebarItems: { icon: typeof LayoutGrid; label: string; id: TabType; showLabel?: boolean }[] = [
+    { icon: LayoutGrid, label: "Dashboard", id: "dashboard" },
+    { icon: MessageCircle, label: "Conversations", id: "conversations", showLabel: true },
+    { icon: Calendar, label: "Calendar", id: "calendars", showLabel: true },
+    { icon: Contact, label: "Contacts", id: "contacts" },
+    { icon: Users, label: "Opportunities", id: "opportunities" },
+    { icon: Receipt, label: "Payments", id: "payments" },
+    { icon: Send, label: "Marketing", id: "marketing" },
+    { icon: PlayCircle, label: "Automation", id: "automation" },
+    { icon: Globe, label: "Sites", id: "sites" },
+    { icon: LineChart, label: "Reporting", id: "reporting" },
+    { icon: Smartphone, label: "Mobile App", id: "mobile" },
   ];
 
   const stats = [
@@ -64,6 +68,25 @@ const HeroDashboard = () => {
     { task: "Annual review - Mike T.", due: "Wed, 10am", priority: "low" },
   ];
 
+  const conversations = [
+    { name: "Sarah Mitchell", message: "Thanks for the info! I'll review...", time: "2m", unread: true, avatar: "SM" },
+    { name: "James Chen", message: "Can we reschedule to Thursday?", time: "15m", unread: true, avatar: "JC" },
+    { name: "Emily Rodriguez", message: "Looking forward to our call", time: "1h", unread: false, avatar: "ER" },
+    { name: "Michael Brown", message: "Sent over the documents", time: "3h", unread: false, avatar: "MB" },
+  ];
+
+  const calendarEvents = [
+    { title: "Discovery Call - Sarah M.", time: "9:00 AM", duration: "30 min", type: "call" },
+    { title: "Portfolio Review - James C.", time: "11:00 AM", duration: "1 hr", type: "meeting" },
+    { title: "Follow-up - Emily R.", time: "2:00 PM", duration: "15 min", type: "call" },
+    { title: "New Client Onboarding", time: "4:00 PM", duration: "45 min", type: "meeting" },
+  ];
+
+  const getPageTitle = () => {
+    const item = sidebarItems.find(i => i.id === activeTab);
+    return item?.label || "Dashboard";
+  };
+
   return (
     <div ref={containerRef} className="w-full max-w-4xl mx-auto mt-12 px-4">
       <div 
@@ -78,22 +101,28 @@ const HeroDashboard = () => {
 
         <div className="flex min-h-[380px]">
           {/* Sidebar */}
-          <div className="w-16 bg-[hsl(0_0%_6%)] border-r border-border/30 flex flex-col items-center py-3 gap-1">
+          <div className="w-16 bg-[hsl(0_0%_6%)] border-r border-border/30 flex flex-col items-center py-3 gap-0.5">
             {/* Logo */}
             <div className="w-9 h-9 rounded-lg bg-primary/20 flex items-center justify-center mb-3 overflow-hidden">
               <img src={lavoieLogo} alt="Logo" className="w-7 h-7 object-contain" />
             </div>
             
-            {sidebarItems.map((item, idx) => (
+            {sidebarItems.map((item) => (
               <div
-                key={idx}
-                className={`w-10 h-10 rounded-lg flex items-center justify-center cursor-pointer transition-all duration-200 group ${
-                  item.active 
+                key={item.id}
+                onClick={() => setActiveTab(item.id)}
+                className={`w-12 rounded-lg flex flex-col items-center justify-center cursor-pointer transition-all duration-200 group ${
+                  item.showLabel ? "py-1.5 gap-0.5" : "h-10"
+                } ${
+                  activeTab === item.id 
                     ? "bg-primary/20 text-primary" 
                     : "text-muted-foreground hover:bg-muted/50 hover:text-foreground"
                 }`}
               >
                 <item.icon className="w-4 h-4" />
+                {item.showLabel && (
+                  <span className="text-[6px] font-medium truncate">{item.label}</span>
+                )}
               </div>
             ))}
             
@@ -108,7 +137,7 @@ const HeroDashboard = () => {
             {/* Top Bar */}
             <div className="h-12 px-4 flex items-center justify-between border-b border-border/30 bg-[hsl(0_0%_7%)]">
               <div className="flex items-center gap-3">
-                <h2 className="text-sm font-semibold text-foreground">Dashboard</h2>
+                <h2 className="text-sm font-semibold text-foreground">{getPageTitle()}</h2>
                 <span className="text-[10px] text-muted-foreground">Good morning, John</span>
               </div>
               <div className="flex items-center gap-2">
@@ -121,143 +150,30 @@ const HeroDashboard = () => {
                   <div className="absolute -top-1 -right-1 w-2 h-2 bg-primary rounded-full" />
                 </div>
                 <div className="w-7 h-7 rounded-full bg-primary/30 flex items-center justify-center text-[10px] font-medium text-primary">
-                  ML
+                  JD
                 </div>
               </div>
             </div>
 
             {/* Content Area */}
             <div className="flex-1 p-4 overflow-hidden">
-              {/* Stats Row */}
-              <div className="grid grid-cols-4 gap-3 mb-4">
-                {stats.map((stat, idx) => (
-                  <div
-                    key={idx}
-                    className="bg-[hsl(0_0%_9%)] rounded-lg p-3 border border-border/20"
-                  >
-                    <div className="flex items-center justify-between mb-1.5">
-                      <span className="text-[9px] text-muted-foreground">{stat.label}</span>
-                      <stat.icon className={`w-3 h-3 ${stat.color}`} />
-                    </div>
-                    <div className="flex items-baseline gap-1.5">
-                      <span className="text-lg font-bold text-foreground">{stat.value}</span>
-                      <span className="text-[8px] text-emerald-400 flex items-center">
-                        <ArrowUpRight className="w-2 h-2" />
-                        {stat.change}
-                      </span>
-                    </div>
-                  </div>
-                ))}
-              </div>
-
-              {/* Two Column Layout */}
-              <div className="grid grid-cols-5 gap-3">
-                {/* Pipeline Preview */}
-                <div className="col-span-3 bg-[hsl(0_0%_9%)] rounded-lg p-3 border border-border/20">
-                  <div className="flex items-center justify-between mb-2.5">
-                    <span className="text-[10px] font-medium text-foreground">Active Pipeline</span>
-                    <button className="text-[8px] text-primary flex items-center gap-0.5">
-                      View all <ChevronRight className="w-2.5 h-2.5" />
-                    </button>
-                  </div>
-                  <div className="grid grid-cols-3 gap-2">
-                    {["Lead", "Meeting", "Proposal"].map((stage, stageIdx) => (
-                      <div key={stage} className="space-y-1.5">
-                        <div className="flex items-center justify-between">
-                          <span className="text-[8px] text-muted-foreground">{stage}</span>
-                          <span className="text-[8px] text-muted-foreground">
-                            {stage === "Lead" ? "4" : stage === "Meeting" ? "3" : "2"}
-                          </span>
-                        </div>
-                        <div className="space-y-1.5">
-                          {pipelineCards
-                            .filter((_, idx) => idx === stageIdx)
-                            .map((card, idx) => (
-                              <div
-                                key={idx}
-                                className="bg-[hsl(0_0%_12%)] rounded-md p-2 border border-border/30"
-                              >
-                                <div className="flex items-center gap-1.5 mb-1">
-                                  <div className="w-4 h-4 rounded-full bg-primary/20 flex items-center justify-center text-[6px] text-primary font-medium">
-                                    {card.name.split(" ").map(n => n[0]).join("")}
-                                  </div>
-                                  <span className="text-[8px] font-medium text-foreground">{card.name}</span>
-                                </div>
-                                <div className="flex items-center justify-between">
-                                  <span className="text-[7px] text-emerald-400">{card.amount}</span>
-                                  <span className="text-[6px] text-muted-foreground">{card.daysIn}d</span>
-                                </div>
-                              </div>
-                            ))}
-                          {/* Placeholder cards */}
-                          {stageIdx === 0 && (
-                            <div className="bg-[hsl(0_0%_10%)] rounded-md p-2 border border-dashed border-border/20">
-                              <div className="flex items-center justify-center gap-1 text-[7px] text-muted-foreground">
-                                <Plus className="w-2.5 h-2.5" />
-                                Add lead
-                              </div>
-                            </div>
-                          )}
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Right Column */}
-                <div className="col-span-2 space-y-3">
-                  {/* Recent Activity */}
-                  <div className="bg-[hsl(0_0%_9%)] rounded-lg p-3 border border-border/20">
-                    <div className="flex items-center justify-between mb-2">
-                      <span className="text-[10px] font-medium text-foreground">Recent Activity</span>
-                      <div className="flex items-center gap-1">
-                        <div className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                        <span className="text-[7px] text-emerald-400">Live</span>
-                      </div>
-                    </div>
-                    <div className="space-y-2">
-                      {recentActivity.map((activity, idx) => (
-                        <div 
-                          key={idx}
-                          className="flex items-center gap-2"
-                        >
-                          <div className="w-5 h-5 rounded-full bg-primary/20 flex items-center justify-center text-[6px] text-primary font-medium">
-                            {activity.avatar}
-                          </div>
-                          <div className="flex-1 min-w-0">
-                            <div className="text-[8px] font-medium text-foreground truncate">{activity.name}</div>
-                            <div className="text-[7px] text-muted-foreground truncate">{activity.action}</div>
-                          </div>
-                          <span className="text-[6px] text-muted-foreground whitespace-nowrap">{activity.time}</span>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-
-                  {/* Upcoming Tasks */}
-                  <div className="bg-[hsl(0_0%_9%)] rounded-lg p-3 border border-border/20">
-                    <div className="flex items-center justify-between mb-2">
-                      <span className="text-[10px] font-medium text-foreground">Today's Tasks</span>
-                      <span className="text-[8px] text-muted-foreground">3 pending</span>
-                    </div>
-                    <div className="space-y-1.5">
-                      {upcomingTasks.map((task, idx) => (
-                        <div key={idx} className="flex items-center gap-2">
-                          <div className="w-3 h-3 rounded border border-border/50 flex items-center justify-center">
-                          </div>
-                          <div className="flex-1 min-w-0">
-                            <div className="text-[8px] text-foreground truncate">{task.task}</div>
-                          </div>
-                          <div className="flex items-center gap-1">
-                            <Clock className="w-2 h-2 text-muted-foreground" />
-                            <span className="text-[6px] text-muted-foreground">{task.due}</span>
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              </div>
+              {activeTab === "dashboard" && (
+                <DashboardContent 
+                  stats={stats} 
+                  pipelineCards={pipelineCards} 
+                  recentActivity={recentActivity} 
+                  upcomingTasks={upcomingTasks} 
+                />
+              )}
+              {activeTab === "conversations" && (
+                <ConversationsContent conversations={conversations} />
+              )}
+              {activeTab === "calendars" && (
+                <CalendarContent events={calendarEvents} />
+              )}
+              {activeTab !== "dashboard" && activeTab !== "conversations" && activeTab !== "calendars" && (
+                <PlaceholderContent title={getPageTitle()} />
+              )}
             </div>
           </div>
         </div>
@@ -273,5 +189,335 @@ const HeroDashboard = () => {
     </div>
   );
 };
+
+/* Dashboard Content */
+const DashboardContent = ({ 
+  stats, 
+  pipelineCards, 
+  recentActivity, 
+  upcomingTasks 
+}: { 
+  stats: { label: string; value: string; change: string; icon: typeof Users; color: string }[];
+  pipelineCards: { name: string; stage: string; amount: string; daysIn: number }[];
+  recentActivity: { name: string; action: string; time: string; avatar: string }[];
+  upcomingTasks: { task: string; due: string; priority: string }[];
+}) => (
+  <>
+    {/* Stats Row */}
+    <div className="grid grid-cols-4 gap-3 mb-4">
+      {stats.map((stat, idx) => (
+        <div
+          key={idx}
+          className="bg-[hsl(0_0%_9%)] rounded-lg p-3 border border-border/20"
+        >
+          <div className="flex items-center justify-between mb-1.5">
+            <span className="text-[9px] text-muted-foreground">{stat.label}</span>
+            <stat.icon className={`w-3 h-3 ${stat.color}`} />
+          </div>
+          <div className="flex items-baseline gap-1.5">
+            <span className="text-lg font-bold text-foreground">{stat.value}</span>
+            <span className="text-[8px] text-emerald-400 flex items-center">
+              <ArrowUpRight className="w-2 h-2" />
+              {stat.change}
+            </span>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    {/* Two Column Layout */}
+    <div className="grid grid-cols-5 gap-3">
+      {/* Pipeline Preview */}
+      <div className="col-span-3 bg-[hsl(0_0%_9%)] rounded-lg p-3 border border-border/20">
+        <div className="flex items-center justify-between mb-2.5">
+          <span className="text-[10px] font-medium text-foreground">Active Pipeline</span>
+          <button className="text-[8px] text-primary flex items-center gap-0.5">
+            View all <ChevronRight className="w-2.5 h-2.5" />
+          </button>
+        </div>
+        <div className="grid grid-cols-3 gap-2">
+          {["Lead", "Meeting", "Proposal"].map((stage, stageIdx) => (
+            <div key={stage} className="space-y-1.5">
+              <div className="flex items-center justify-between">
+                <span className="text-[8px] text-muted-foreground">{stage}</span>
+                <span className="text-[8px] text-muted-foreground">
+                  {stage === "Lead" ? "4" : stage === "Meeting" ? "3" : "2"}
+                </span>
+              </div>
+              <div className="space-y-1.5">
+                {pipelineCards
+                  .filter((_, idx) => idx === stageIdx)
+                  .map((card, idx) => (
+                    <div
+                      key={idx}
+                      className="bg-[hsl(0_0%_12%)] rounded-md p-2 border border-border/30"
+                    >
+                      <div className="flex items-center gap-1.5 mb-1">
+                        <div className="w-4 h-4 rounded-full bg-primary/20 flex items-center justify-center text-[6px] text-primary font-medium">
+                          {card.name.split(" ").map(n => n[0]).join("")}
+                        </div>
+                        <span className="text-[8px] font-medium text-foreground">{card.name}</span>
+                      </div>
+                      <div className="flex items-center justify-between">
+                        <span className="text-[7px] text-emerald-400">{card.amount}</span>
+                        <span className="text-[6px] text-muted-foreground">{card.daysIn}d</span>
+                      </div>
+                    </div>
+                  ))}
+                {stageIdx === 0 && (
+                  <div className="bg-[hsl(0_0%_10%)] rounded-md p-2 border border-dashed border-border/20">
+                    <div className="flex items-center justify-center gap-1 text-[7px] text-muted-foreground">
+                      <Plus className="w-2.5 h-2.5" />
+                      Add lead
+                    </div>
+                  </div>
+                )}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Right Column */}
+      <div className="col-span-2 space-y-3">
+        {/* Recent Activity */}
+        <div className="bg-[hsl(0_0%_9%)] rounded-lg p-3 border border-border/20">
+          <div className="flex items-center justify-between mb-2">
+            <span className="text-[10px] font-medium text-foreground">Recent Activity</span>
+            <div className="flex items-center gap-1">
+              <div className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+              <span className="text-[7px] text-emerald-400">Live</span>
+            </div>
+          </div>
+          <div className="space-y-2">
+            {recentActivity.map((activity, idx) => (
+              <div 
+                key={idx}
+                className="flex items-center gap-2"
+              >
+                <div className="w-5 h-5 rounded-full bg-primary/20 flex items-center justify-center text-[6px] text-primary font-medium">
+                  {activity.avatar}
+                </div>
+                <div className="flex-1 min-w-0">
+                  <div className="text-[8px] font-medium text-foreground truncate">{activity.name}</div>
+                  <div className="text-[7px] text-muted-foreground truncate">{activity.action}</div>
+                </div>
+                <span className="text-[6px] text-muted-foreground whitespace-nowrap">{activity.time}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Upcoming Tasks */}
+        <div className="bg-[hsl(0_0%_9%)] rounded-lg p-3 border border-border/20">
+          <div className="flex items-center justify-between mb-2">
+            <span className="text-[10px] font-medium text-foreground">Today's Tasks</span>
+            <span className="text-[8px] text-muted-foreground">3 pending</span>
+          </div>
+          <div className="space-y-1.5">
+            {upcomingTasks.map((task, idx) => (
+              <div key={idx} className="flex items-center gap-2">
+                <div className="w-3 h-3 rounded border border-border/50 flex items-center justify-center">
+                </div>
+                <div className="flex-1 min-w-0">
+                  <div className="text-[8px] text-foreground truncate">{task.task}</div>
+                </div>
+                <div className="flex items-center gap-1">
+                  <Clock className="w-2 h-2 text-muted-foreground" />
+                  <span className="text-[6px] text-muted-foreground">{task.due}</span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  </>
+);
+
+/* Conversations Content */
+const ConversationsContent = ({ conversations }: { conversations: { name: string; message: string; time: string; unread: boolean; avatar: string }[] }) => (
+  <div className="flex h-full gap-3">
+    {/* Conversation List */}
+    <div className="w-2/5 bg-[hsl(0_0%_9%)] rounded-lg border border-border/20 overflow-hidden">
+      <div className="p-2 border-b border-border/20">
+        <div className="flex items-center gap-2 px-2 py-1.5 bg-muted/30 rounded-md">
+          <Search className="w-3 h-3 text-muted-foreground" />
+          <span className="text-[9px] text-muted-foreground">Search conversations...</span>
+        </div>
+      </div>
+      <div className="divide-y divide-border/20">
+        {conversations.map((conv, idx) => (
+          <div 
+            key={idx} 
+            className={`p-2.5 cursor-pointer transition-colors ${idx === 0 ? "bg-primary/10" : "hover:bg-muted/30"}`}
+          >
+            <div className="flex items-start gap-2">
+              <div className="relative">
+                <div className="w-6 h-6 rounded-full bg-primary/20 flex items-center justify-center text-[7px] text-primary font-medium">
+                  {conv.avatar}
+                </div>
+                {conv.unread && (
+                  <div className="absolute -top-0.5 -right-0.5 w-2 h-2 bg-primary rounded-full" />
+                )}
+              </div>
+              <div className="flex-1 min-w-0">
+                <div className="flex items-center justify-between">
+                  <span className="text-[9px] font-medium text-foreground">{conv.name}</span>
+                  <span className="text-[7px] text-muted-foreground">{conv.time}</span>
+                </div>
+                <p className="text-[8px] text-muted-foreground truncate mt-0.5">{conv.message}</p>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    {/* Chat View */}
+    <div className="flex-1 bg-[hsl(0_0%_9%)] rounded-lg border border-border/20 flex flex-col">
+      {/* Chat Header */}
+      <div className="p-2.5 border-b border-border/20 flex items-center justify-between">
+        <div className="flex items-center gap-2">
+          <div className="w-6 h-6 rounded-full bg-primary/20 flex items-center justify-center text-[7px] text-primary font-medium">
+            SM
+          </div>
+          <div>
+            <div className="text-[9px] font-medium text-foreground">Sarah Mitchell</div>
+            <div className="text-[7px] text-emerald-400">Online</div>
+          </div>
+        </div>
+        <div className="flex items-center gap-2">
+          <Phone className="w-3 h-3 text-muted-foreground cursor-pointer hover:text-foreground" />
+          <Video className="w-3 h-3 text-muted-foreground cursor-pointer hover:text-foreground" />
+          <MoreHorizontal className="w-3 h-3 text-muted-foreground cursor-pointer hover:text-foreground" />
+        </div>
+      </div>
+
+      {/* Messages */}
+      <div className="flex-1 p-3 space-y-2 overflow-hidden">
+        <div className="flex justify-start">
+          <div className="bg-muted/30 rounded-lg px-2.5 py-1.5 max-w-[80%]">
+            <p className="text-[8px] text-foreground">Hi! I saw your planning services and I'm interested in learning more.</p>
+            <span className="text-[6px] text-muted-foreground">9:41 AM</span>
+          </div>
+        </div>
+        <div className="flex justify-end">
+          <div className="bg-primary/20 rounded-lg px-2.5 py-1.5 max-w-[80%]">
+            <p className="text-[8px] text-foreground">Hello Sarah! I'd be happy to help. Would you like to schedule a discovery call?</p>
+            <span className="text-[6px] text-muted-foreground">9:43 AM</span>
+          </div>
+        </div>
+        <div className="flex justify-start">
+          <div className="bg-muted/30 rounded-lg px-2.5 py-1.5 max-w-[80%]">
+            <p className="text-[8px] text-foreground">Thanks for the info! I'll review and get back to you.</p>
+            <span className="text-[6px] text-muted-foreground">9:45 AM</span>
+          </div>
+        </div>
+      </div>
+
+      {/* Input */}
+      <div className="p-2 border-t border-border/20">
+        <div className="flex items-center gap-2 bg-muted/20 rounded-md px-2 py-1.5">
+          <Paperclip className="w-3 h-3 text-muted-foreground" />
+          <span className="flex-1 text-[8px] text-muted-foreground">Type a message...</span>
+          <Smile className="w-3 h-3 text-muted-foreground" />
+          <Send className="w-3 h-3 text-primary" />
+        </div>
+      </div>
+    </div>
+  </div>
+);
+
+/* Calendar Content */
+const CalendarContent = ({ events }: { events: { title: string; time: string; duration: string; type: string }[] }) => (
+  <div className="flex h-full gap-3">
+    {/* Mini Calendar */}
+    <div className="w-1/3 bg-[hsl(0_0%_9%)] rounded-lg border border-border/20 p-3">
+      <div className="flex items-center justify-between mb-3">
+        <span className="text-[10px] font-medium text-foreground">February 2026</span>
+        <div className="flex items-center gap-1">
+          <ChevronLeft className="w-3 h-3 text-muted-foreground cursor-pointer" />
+          <ChevronRight className="w-3 h-3 text-muted-foreground cursor-pointer" />
+        </div>
+      </div>
+      <div className="grid grid-cols-7 gap-1 text-center mb-2">
+        {["S", "M", "T", "W", "T", "F", "S"].map((d, i) => (
+          <span key={i} className="text-[7px] text-muted-foreground">{d}</span>
+        ))}
+      </div>
+      <div className="grid grid-cols-7 gap-1 text-center">
+        {Array.from({ length: 28 }, (_, i) => i + 1).map((day) => (
+          <div 
+            key={day} 
+            className={`text-[7px] py-1 rounded cursor-pointer transition-colors ${
+              day === 1 ? "bg-primary text-primary-foreground" : 
+              [5, 12, 18, 25].includes(day) ? "bg-primary/20 text-primary" :
+              "text-muted-foreground hover:bg-muted/30"
+            }`}
+          >
+            {day}
+          </div>
+        ))}
+      </div>
+      <div className="mt-3 pt-3 border-t border-border/20">
+        <div className="text-[8px] text-muted-foreground mb-1">Today</div>
+        <div className="text-[10px] font-medium text-foreground">Saturday, Feb 1</div>
+        <div className="text-[8px] text-primary mt-0.5">4 appointments</div>
+      </div>
+    </div>
+
+    {/* Day Schedule */}
+    <div className="flex-1 bg-[hsl(0_0%_9%)] rounded-lg border border-border/20 p-3">
+      <div className="flex items-center justify-between mb-3">
+        <div>
+          <span className="text-[10px] font-medium text-foreground">Today's Schedule</span>
+          <span className="text-[8px] text-muted-foreground ml-2">4 appointments</span>
+        </div>
+        <button className="flex items-center gap-1 text-[8px] text-primary bg-primary/10 px-2 py-1 rounded">
+          <Plus className="w-2.5 h-2.5" />
+          Add Event
+        </button>
+      </div>
+      <div className="space-y-2">
+        {events.map((event, idx) => (
+          <div 
+            key={idx} 
+            className="flex items-start gap-3 p-2 bg-[hsl(0_0%_12%)] rounded-md border-l-2 border-primary"
+          >
+            <div className="text-right min-w-[50px]">
+              <div className="text-[9px] font-medium text-foreground">{event.time}</div>
+              <div className="text-[7px] text-muted-foreground">{event.duration}</div>
+            </div>
+            <div className="flex-1">
+              <div className="text-[9px] font-medium text-foreground">{event.title}</div>
+              <div className="flex items-center gap-2 mt-1">
+                <span className={`text-[7px] px-1.5 py-0.5 rounded ${
+                  event.type === "call" ? "bg-emerald-400/20 text-emerald-400" : "bg-primary/20 text-primary"
+                }`}>
+                  {event.type === "call" ? "📞 Call" : "👥 Meeting"}
+                </span>
+              </div>
+            </div>
+            <ChevronDown className="w-3 h-3 text-muted-foreground" />
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+);
+
+/* Placeholder Content */
+const PlaceholderContent = ({ title }: { title: string }) => (
+  <div className="h-full flex items-center justify-center">
+    <div className="text-center">
+      <div className="w-12 h-12 rounded-full bg-muted/30 flex items-center justify-center mx-auto mb-3">
+        <LayoutGrid className="w-6 h-6 text-muted-foreground" />
+      </div>
+      <div className="text-[11px] font-medium text-foreground">{title}</div>
+      <div className="text-[9px] text-muted-foreground mt-1">Click to explore this section</div>
+    </div>
+  </div>
+);
 
 export default HeroDashboard;
