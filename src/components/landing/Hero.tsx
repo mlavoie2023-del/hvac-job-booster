@@ -26,17 +26,17 @@ interface Tool {
 }
 
 const beforeTools: Tool[] = [
-  { icon: FileSpreadsheet, label: "CRM", x: 50, y: 50, rotate: -2 },
-  { icon: BarChart3, label: "Planning Software", x: 15, y: 12, rotate: 3 },
-  { icon: Calendar, label: "Scheduling", x: 85, y: 12, rotate: -4 },
-  { icon: Mail, label: "Email Marketing", x: 85, y: 50, rotate: 3 },
-  { icon: FormInput, label: "Website Forms", x: 50, y: 88, rotate: -3 },
-  { icon: CreditCard, label: "Payments", x: 15, y: 88, rotate: 4 },
-  { icon: FileSignature, label: "E-Signature", x: 85, y: 88, rotate: -2 },
-  { icon: FileText, label: "Document Mgmt", x: 15, y: 50, rotate: 2 },
-  { icon: Megaphone, label: "Digital Marketing", x: 50, y: 12, rotate: -3 },
-  { icon: Receipt, label: "Fee Billing", x: 32, y: 30, rotate: 2 },
-  { icon: FolderOpen, label: "File Sharing", x: 68, y: 70, rotate: -2 },
+  { icon: FileSpreadsheet, label: "CRM", x: 50, y: 45, rotate: -2 },
+  { icon: BarChart3, label: "Planning Software", x: 8, y: 8, rotate: 3 },
+  { icon: Calendar, label: "Scheduling", x: 88, y: 8, rotate: -4 },
+  { icon: Mail, label: "Email Marketing", x: 88, y: 42, rotate: 3 },
+  { icon: FormInput, label: "Website Forms", x: 50, y: 72, rotate: -3 },
+  { icon: CreditCard, label: "Payments", x: 8, y: 72, rotate: 4 },
+  { icon: FileSignature, label: "E-Signature", x: 88, y: 72, rotate: -2 },
+  { icon: FileText, label: "Document Mgmt", x: 8, y: 40, rotate: 2 },
+  { icon: Megaphone, label: "Digital Marketing", x: 50, y: 8, rotate: -3 },
+  { icon: Receipt, label: "Fee Billing", x: 28, y: 25, rotate: 2 },
+  { icon: FolderOpen, label: "File Sharing", x: 72, y: 55, rotate: -2 },
 ];
 
 const Hero = () => {
