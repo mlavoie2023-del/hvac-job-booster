@@ -12,7 +12,7 @@ const TryIt = () => {
             Try It Yourself
           </h2>
           <p className="mx-auto mt-4 max-w-2xl text-lg text-body">
-            Explore the dashboard and see how everything works together.
+            Explore the platform.
           </p>
         </div>
 
