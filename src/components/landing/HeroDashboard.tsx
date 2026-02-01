@@ -32,7 +32,7 @@ const HeroDashboard = () => {
   const sidebarItems: { icon: typeof LayoutGrid; label: string; id: TabType; showLabel?: boolean }[] = [
     { icon: LayoutGrid, label: "Dashboard", id: "dashboard" },
     { icon: MessageCircle, label: "Conversations", id: "conversations", showLabel: true },
-    { icon: Calendar, label: "Calendar", id: "calendars", showLabel: true },
+    { icon: Calendar, label: "Calendars", id: "calendars", showLabel: true },
     { icon: Contact, label: "Contacts", id: "contacts" },
     { icon: Users, label: "Opportunities", id: "opportunities" },
     { icon: Receipt, label: "Payments", id: "payments" },
