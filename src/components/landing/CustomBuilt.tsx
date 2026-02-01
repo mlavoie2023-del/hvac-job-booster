@@ -19,7 +19,7 @@ const steps = [
   },
 ];
 
-const HowItWorks = () => {
+const CustomBuilt = () => {
   return (
     <section id="how-it-works" className="relative py-20 lg:py-28 spotlight-section-dual">
       {/* Subtle darker zone that blends */}
@@ -99,4 +99,4 @@ const HowItWorks = () => {
   );
 };
 
-export default HowItWorks;
+export default CustomBuilt;

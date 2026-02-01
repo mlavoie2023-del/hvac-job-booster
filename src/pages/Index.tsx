@@ -4,8 +4,8 @@ import Problem from "@/components/landing/Problem";
 import WhoIsFor from "@/components/landing/WhoIsFor";
 import WhatYouGet from "@/components/landing/WhatYouGet";
 import MobileApp from "@/components/landing/MobileApp";
-import TechStackComparison from "@/components/landing/TechStackComparison";
-import HowItWorks from "@/components/landing/HowItWorks";
+import DashboardPreview from "@/components/landing/DashboardPreview";
+import CustomBuilt from "@/components/landing/CustomBuilt";
 
 import FounderCredibility from "@/components/landing/FounderCredibility";
 import FAQ from "@/components/landing/FAQ";
@@ -18,10 +18,10 @@ const Index = () => {
       <Header />
       <main>
         <Hero />
-        <TechStackComparison />
+        <DashboardPreview />
         <WhatYouGet />
         <MobileApp />
-        <HowItWorks />
+        <CustomBuilt />
         <FounderCredibility />
         <Problem />
         <WhoIsFor />
