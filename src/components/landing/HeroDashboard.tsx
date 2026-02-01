@@ -5,7 +5,7 @@ import {
   Contact, Receipt, Send, PlayCircle, Globe, LineChart, Smartphone,
   Phone, Video, MoreHorizontal, Paperclip, Smile, ChevronLeft, ChevronDown, Filter,
   Mail, MessageSquare, Linkedin, PhoneCall, Users2, Download, Settings, ArrowUpDown,
-  Check, FileText, CreditCard, BookImage, GitBranch
+  Check, FileText, CreditCard, BookImage, GitBranch, Eye, Target
 } from "lucide-react";
 import lavoieLogo from "@/assets/lavoie-logo-square.png";
 
@@ -187,7 +187,10 @@ const HeroDashboard = () => {
               {activeTab === "automation" && (
                 <AutomationsContent />
               )}
-              {activeTab !== "dashboard" && activeTab !== "conversations" && activeTab !== "calendars" && activeTab !== "contacts" && activeTab !== "opportunities" && activeTab !== "payments" && activeTab !== "marketing" && activeTab !== "automation" && (
+              {activeTab === "sites" && (
+                <SitesContent />
+              )}
+              {activeTab !== "dashboard" && activeTab !== "conversations" && activeTab !== "calendars" && activeTab !== "contacts" && activeTab !== "opportunities" && activeTab !== "payments" && activeTab !== "marketing" && activeTab !== "automation" && activeTab !== "sites" && (
                 <PlaceholderContent title={getPageTitle()} />
               )}
             </div>
@@ -1417,6 +1420,168 @@ const AutomationsContent = () => {
           ))}
         </div>
       </div>
+    </div>
+  );
+};
+
+/* Sites Content */
+const SitesContent = () => {
+  const [activeSubTab, setActiveSubTab] = useState<"pages" | "forms">("pages");
+
+  const landingPages = [
+    { id: 1, name: "Retirement Planning Guide", status: "Published", views: 1247, conversions: 89, convRate: "7.1%", lastUpdated: "2 days ago" },
+    { id: 2, name: "Free Consultation Booking", status: "Published", views: 892, conversions: 67, convRate: "7.5%", lastUpdated: "5 days ago" },
+    { id: 3, name: "Wealth Assessment Quiz", status: "Published", views: 634, conversions: 52, convRate: "8.2%", lastUpdated: "1 week ago" },
+    { id: 4, name: "Tax Planning Webinar", status: "Draft", views: 0, conversions: 0, convRate: "—", lastUpdated: "3 days ago" },
+  ];
+
+  const forms = [
+    { id: 1, name: "Contact Request Form", status: "Active", submissions: 234, fields: 5, lastSubmission: "1 hour ago" },
+    { id: 2, name: "Financial Goals Survey", status: "Active", submissions: 156, fields: 8, lastSubmission: "3 hours ago" },
+    { id: 3, name: "Newsletter Signup", status: "Active", submissions: 512, fields: 3, lastSubmission: "30 min ago" },
+    { id: 4, name: "Appointment Request", status: "Active", submissions: 89, fields: 6, lastSubmission: "2 hours ago" },
+    { id: 5, name: "Referral Submission", status: "Inactive", submissions: 45, fields: 4, lastSubmission: "2 weeks ago" },
+  ];
+
+  return (
+    <div className="h-full flex flex-col gap-3">
+      {/* Header with Sub-navigation */}
+      <div className="flex items-center justify-between">
+        <div className="flex items-center gap-3">
+          <h3 className="text-[11px] font-semibold text-foreground">Sites</h3>
+          <div className="flex items-center gap-1 bg-muted/30 rounded-md p-0.5">
+            <button
+              onClick={() => setActiveSubTab("pages")}
+              className={`flex items-center gap-1 px-2 py-1 rounded text-[8px] font-medium transition-colors ${
+                activeSubTab === "pages" ? "bg-primary text-primary-foreground" : "text-muted-foreground hover:text-foreground"
+              }`}
+            >
+              <Globe className="w-2.5 h-2.5" />
+              Landing Pages
+            </button>
+            <button
+              onClick={() => setActiveSubTab("forms")}
+              className={`flex items-center gap-1 px-2 py-1 rounded text-[8px] font-medium transition-colors ${
+                activeSubTab === "forms" ? "bg-primary text-primary-foreground" : "text-muted-foreground hover:text-foreground"
+              }`}
+            >
+              <FileText className="w-2.5 h-2.5" />
+              Forms
+            </button>
+          </div>
+        </div>
+        <button className="flex items-center gap-1 px-2 py-1 rounded-md bg-primary text-primary-foreground text-[8px] font-medium hover:bg-primary/90 transition-colors">
+          <Plus className="w-2.5 h-2.5" />
+          {activeSubTab === "pages" ? "New Page" : "New Form"}
+        </button>
+      </div>
+
+      {activeSubTab === "pages" && (
+        <>
+          {/* Stats Row */}
+          <div className="grid grid-cols-4 gap-2">
+            {[
+              { label: "Total Pages", value: "4", icon: Globe },
+              { label: "Total Views", value: "2,773", icon: Eye },
+              { label: "Conversions", value: "208", icon: Target },
+              { label: "Avg. Conv. Rate", value: "7.5%", icon: TrendingUp },
+            ].map((stat, idx) => (
+              <div key={idx} className="bg-[hsl(0_0%_9%)] rounded-lg border border-border/20 p-2 flex items-center gap-2">
+                <div className="w-6 h-6 rounded-md bg-primary/10 flex items-center justify-center">
+                  <stat.icon className="w-3 h-3 text-primary" />
+                </div>
+                <div>
+                  <div className="text-[7px] text-muted-foreground">{stat.label}</div>
+                  <div className="text-[11px] font-semibold text-foreground">{stat.value}</div>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Landing Pages Table */}
+          <div className="flex-1 bg-[hsl(0_0%_9%)] rounded-lg border border-border/20 overflow-hidden flex flex-col">
+            <div className="grid grid-cols-[1fr_70px_60px_70px_55px_70px] gap-2 px-3 py-2 bg-[hsl(0_0%_8%)] border-b border-border/20 text-[7px] font-medium text-muted-foreground">
+              <span>Page Name</span>
+              <span>Status</span>
+              <span>Views</span>
+              <span>Conversions</span>
+              <span>Conv. Rate</span>
+              <span>Last Updated</span>
+            </div>
+            <div className="flex-1 overflow-y-auto">
+              {landingPages.map((page) => (
+                <div key={page.id} className="grid grid-cols-[1fr_70px_60px_70px_55px_70px] gap-2 px-3 py-2 border-b border-border/10 hover:bg-muted/20 transition-colors items-center">
+                  <div className="flex items-center gap-2">
+                    <div className="w-5 h-5 rounded bg-primary/10 flex items-center justify-center">
+                      <FileText className="w-2.5 h-2.5 text-primary" />
+                    </div>
+                    <span className="text-[8px] font-medium text-foreground truncate">{page.name}</span>
+                  </div>
+                  <span className={`text-[7px] font-medium px-1.5 py-0.5 rounded-full w-fit ${
+                    page.status === "Published" ? "bg-emerald-500/20 text-emerald-400" : "bg-muted text-muted-foreground"
+                  }`}>{page.status}</span>
+                  <span className="text-[7px] text-muted-foreground">{page.views.toLocaleString()}</span>
+                  <span className="text-[7px] text-muted-foreground">{page.conversions}</span>
+                  <span className={`text-[7px] ${page.convRate !== "—" ? "text-emerald-400" : "text-muted-foreground"}`}>{page.convRate}</span>
+                  <span className="text-[7px] text-muted-foreground">{page.lastUpdated}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </>
+      )}
+
+      {activeSubTab === "forms" && (
+        <>
+          {/* Stats Row */}
+          <div className="grid grid-cols-3 gap-2">
+            {[
+              { label: "Active Forms", value: "4", icon: FileText },
+              { label: "Total Submissions", value: "1,036", icon: Send },
+              { label: "This Month", value: "187", icon: TrendingUp },
+            ].map((stat, idx) => (
+              <div key={idx} className="bg-[hsl(0_0%_9%)] rounded-lg border border-border/20 p-2 flex items-center gap-2">
+                <div className="w-6 h-6 rounded-md bg-primary/10 flex items-center justify-center">
+                  <stat.icon className="w-3 h-3 text-primary" />
+                </div>
+                <div>
+                  <div className="text-[7px] text-muted-foreground">{stat.label}</div>
+                  <div className="text-[11px] font-semibold text-foreground">{stat.value}</div>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Forms Table */}
+          <div className="flex-1 bg-[hsl(0_0%_9%)] rounded-lg border border-border/20 overflow-hidden flex flex-col">
+            <div className="grid grid-cols-[1fr_60px_80px_50px_80px] gap-2 px-3 py-2 bg-[hsl(0_0%_8%)] border-b border-border/20 text-[7px] font-medium text-muted-foreground">
+              <span>Form Name</span>
+              <span>Status</span>
+              <span>Submissions</span>
+              <span>Fields</span>
+              <span>Last Submission</span>
+            </div>
+            <div className="flex-1 overflow-y-auto">
+              {forms.map((form) => (
+                <div key={form.id} className="grid grid-cols-[1fr_60px_80px_50px_80px] gap-2 px-3 py-2 border-b border-border/10 hover:bg-muted/20 transition-colors items-center">
+                  <div className="flex items-center gap-2">
+                    <div className="w-5 h-5 rounded bg-primary/10 flex items-center justify-center">
+                      <FileText className="w-2.5 h-2.5 text-primary" />
+                    </div>
+                    <span className="text-[8px] font-medium text-foreground truncate">{form.name}</span>
+                  </div>
+                  <span className={`text-[7px] font-medium px-1.5 py-0.5 rounded-full w-fit ${
+                    form.status === "Active" ? "bg-emerald-500/20 text-emerald-400" : "bg-muted text-muted-foreground"
+                  }`}>{form.status}</span>
+                  <span className="text-[7px] text-muted-foreground">{form.submissions.toLocaleString()}</span>
+                  <span className="text-[7px] text-muted-foreground text-center">{form.fields}</span>
+                  <span className="text-[7px] text-muted-foreground">{form.lastSubmission}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </>
+      )}
     </div>
   );
 };
