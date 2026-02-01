@@ -86,6 +86,16 @@ const WhoIsFor = () => {
               </div>
             </div>
           </div>
+
+          {/* CTA */}
+          <div className="mt-10 text-center">
+            <a 
+              href="/book" 
+              className="btn-primary inline-flex items-center gap-2"
+            >
+              Book a Discovery Call
+            </a>
+          </div>
         </div>
       </div>
     </section>
