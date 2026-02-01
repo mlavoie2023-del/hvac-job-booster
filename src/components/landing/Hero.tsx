@@ -26,17 +26,17 @@ interface Tool {
 }
 
 const beforeTools: Tool[] = [
-  { icon: FileSpreadsheet, label: "CRM", x: 50, y: 45, rotate: -2 },
-  { icon: BarChart3, label: "Planning Software", x: 18, y: 12, rotate: 3 },
-  { icon: Calendar, label: "Scheduling", x: 82, y: 12, rotate: -4 },
-  { icon: Mail, label: "Email Marketing", x: 82, y: 45, rotate: 3 },
-  { icon: FormInput, label: "Website Forms", x: 50, y: 78, rotate: -3 },
-  { icon: CreditCard, label: "Payments", x: 18, y: 78, rotate: 4 },
-  { icon: FileSignature, label: "E-Signature", x: 82, y: 78, rotate: -2 },
-  { icon: FileText, label: "Document Mgmt", x: 18, y: 45, rotate: 2 },
-  { icon: Megaphone, label: "Digital Marketing", x: 50, y: 12, rotate: -3 },
-  { icon: Receipt, label: "Fee Billing", x: 35, y: 28, rotate: 2 },
-  { icon: FolderOpen, label: "File Sharing", x: 65, y: 62, rotate: -2 },
+  { icon: FileSpreadsheet, label: "CRM", x: 50, y: 50, rotate: -2 },
+  { icon: BarChart3, label: "Planning Software", x: 12, y: 15, rotate: 3 },
+  { icon: Calendar, label: "Scheduling", x: 88, y: 15, rotate: -4 },
+  { icon: Mail, label: "Email Marketing", x: 88, y: 50, rotate: 3 },
+  { icon: FormInput, label: "Website Forms", x: 50, y: 85, rotate: -3 },
+  { icon: CreditCard, label: "Payments", x: 12, y: 85, rotate: 4 },
+  { icon: FileSignature, label: "E-Signature", x: 88, y: 85, rotate: -2 },
+  { icon: FileText, label: "Document Mgmt", x: 12, y: 50, rotate: 2 },
+  { icon: Megaphone, label: "Digital Marketing", x: 50, y: 15, rotate: -3 },
+  { icon: Receipt, label: "Fee Billing", x: 30, y: 32, rotate: 2 },
+  { icon: FolderOpen, label: "File Sharing", x: 70, y: 68, rotate: -2 },
 ];
 
 const Hero = () => {
@@ -120,7 +120,6 @@ const Hero = () => {
                   <div className="relative flex-1 min-h-[260px]">
                     {beforeTools.map((tool, index) => {
                       const IconComponent = tool.icon;
-                      const animationDelay = (index * 0.5) % 4;
                       return (
                         <div
                           key={index}
@@ -129,8 +128,8 @@ const Hero = () => {
                             left: `${tool.x}%`,
                             top: `${tool.y}%`,
                             zIndex: 10,
-                            animationDelay: `${animationDelay}s`,
-                            animationDuration: `${3 + (index % 3)}s`,
+                            animationDelay: `${index * 0.7}s`,
+                            animationDuration: `${7 + (index % 4)}s`,
                           }}
                         >
                           <div 
