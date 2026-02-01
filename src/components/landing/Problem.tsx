@@ -20,9 +20,9 @@ const problems = [
 
 const Problem = () => {
   return (
-    <section className="relative py-20 lg:py-28">
+    <section className="relative py-20 lg:py-28 spotlight-section-bottom">
       {/* Subtle ambient glow */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_50%_at_50%_50%,hsl(217_91%_60%/0.03),transparent)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_50%_at_50%_50%,hsl(217_91%_60%/0.04),transparent)]" />
       
       <div className="section-container relative">
         <div className="mx-auto max-w-3xl text-center">

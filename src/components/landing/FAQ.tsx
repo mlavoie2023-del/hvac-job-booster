@@ -40,9 +40,9 @@ const faqs = [
 
 const FAQ = () => {
   return (
-    <section className="relative py-20 lg:py-28">
+    <section className="relative py-20 lg:py-28 spotlight-section-dual">
       {/* Subtle transition */}
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-primary/[0.015] to-transparent" />
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-primary/[0.02] to-transparent" />
       <div className="section-container">
         <div className="mx-auto max-w-3xl text-center">
           <h2 className="text-3xl font-bold text-foreground sm:text-4xl lg:text-5xl">

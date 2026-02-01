@@ -41,9 +41,9 @@ const connections: [number, number][] = [
 
 const TechStackComparison = () => {
   return (
-    <section className="relative py-20 lg:py-28 overflow-hidden">
-      {/* Ambient glow */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_70%_50%_at_50%_50%,hsl(217_91%_60%/0.05),transparent)] pointer-events-none" />
+    <section className="relative py-20 lg:py-28 overflow-hidden spotlight-section">
+      {/* Extra ambient glow */}
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_70%_50%_at_50%_50%,hsl(217_91%_60%/0.06),transparent)] pointer-events-none" />
       
       <div className="section-container">
         <div className="mx-auto max-w-3xl text-center mb-16">
