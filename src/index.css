@@ -251,6 +251,29 @@
     }
   }
 
+  /* Chaotic floating for problem section - more erratic movement */
+  @keyframes floatChaotic {
+    0%, 100% {
+      transform: translate(0, 0) rotate(0deg);
+    }
+    25% {
+      transform: translate(3px, -5px) rotate(2deg);
+    }
+    50% {
+      transform: translate(-2px, 3px) rotate(-1deg);
+    }
+    75% {
+      transform: translate(4px, -2px) rotate(1deg);
+    }
+  }
+
+  /* Dashed line animation */
+  @keyframes dash {
+    to {
+      stroke-dashoffset: -100;
+    }
+  }
+
   .animate-float {
     animation: float 6s ease-in-out infinite;
   }
@@ -261,6 +284,10 @@
 
   .animate-float-around {
     animation: floatAround 3s ease-in-out infinite;
+  }
+
+  .animate-float-chaotic {
+    animation: floatChaotic 4s ease-in-out infinite;
   }
 
   /* Pipeline animations */
