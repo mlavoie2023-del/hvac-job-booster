@@ -27,30 +27,31 @@ const CustomBuilt = () => {
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#0d0d0d]/30 to-transparent" />
       <div className="section-container relative">
         <div className="mx-auto max-w-5xl">
-          {/* Two-column layout on desktop */}
-          <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-            {/* Left: About Matt */}
-            <div className="text-center lg:text-left">
-              <div className="flex flex-col items-center lg:items-start">
+          {/* Centered headline */}
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-foreground sm:text-4xl lg:text-5xl">
+              Custom-Built For <span className="gradient-text">Your</span> Practice
+            </h2>
+          </div>
+
+          {/* Two-column layout */}
+          <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-start">
+            {/* Left: Founder quote card */}
+            <div className="rounded-xl border border-border/50 bg-card/50 p-6 lg:p-8">
+              <div className="flex flex-col items-center text-center">
                 <img
                   src={mattLavoie}
                   alt="Matt Lavoie"
-                  className="h-24 w-24 rounded-full object-cover border-2 border-primary/30 shadow-lg mb-6"
+                  className="h-20 w-20 rounded-full object-cover border-2 border-primary/30 shadow-lg mb-6"
                   style={{ objectPosition: "center 25%" }}
                 />
-                <h2 className="text-3xl font-bold text-foreground sm:text-4xl lg:text-5xl">
-                  Custom-Built For{" "}
-                  <span className="gradient-text">Your</span> Practice
-                </h2>
-                <p className="mt-4 text-lg text-body max-w-md">
-                  I'm Matt Lavoie, and I build every system myself. After watching planners struggle with generic software for years, I started Lavoie Systems to offer something different.
-                </p>
-                <p className="mt-4 text-body">
-                  No templates. No hand-offs. Just a system built around how <em>you</em> actually work.
-                </p>
-                <p className="mt-6 text-sm text-muted-foreground">
-                  No technical skills required. I handle everything so you can just use it.
-                </p>
+                <blockquote className="text-lg text-body italic leading-relaxed">
+                  "I watched too many planners waste hours on software that wasn't built for them. So I started building systems that actually fit how solo practices work."
+                </blockquote>
+                <div className="mt-6 flex flex-col items-center">
+                  <span className="font-semibold text-foreground">Matt Lavoie</span>
+                  <span className="text-sm text-muted-foreground">Founder, Lavoie Systems</span>
+                </div>
               </div>
             </div>
 
