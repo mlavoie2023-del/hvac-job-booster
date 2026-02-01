@@ -2,7 +2,7 @@ import { AlertCircle } from "lucide-react";
 
 const Problem = () => {
   return (
-    <section className="relative py-16 lg:py-20 spotlight-section">
+    <section className="relative py-16 lg:py-20 spotlight-section-flow">
       <div className="section-container relative">
         <div className="mx-auto max-w-4xl">
           {/* Badge */}
