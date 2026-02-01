@@ -242,12 +242,31 @@
     }
   }
 
+  @keyframes floatAround {
+    0%, 100% {
+      transform: translate(0, 0);
+    }
+    25% {
+      transform: translate(3px, -4px);
+    }
+    50% {
+      transform: translate(-2px, 2px);
+    }
+    75% {
+      transform: translate(2px, 3px);
+    }
+  }
+
   .animate-float {
     animation: float 6s ease-in-out infinite;
   }
 
   .animate-float-delayed {
     animation: float 6s ease-in-out 2s infinite;
+  }
+
+  .animate-float-around {
+    animation: floatAround 4s ease-in-out infinite;
   }
 
   /* Pipeline animations */
