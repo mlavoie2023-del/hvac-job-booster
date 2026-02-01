@@ -7,11 +7,11 @@ const idealClient = [
   },
   {
     icon: TrendingUp, 
-    text: "Making $100K-$250K and ready to grow",
+    text: "Ready to grow but not ready to hire",
   },
   {
     icon: Target,
-    text: "Serving 30-100 planning clients",
+    text: "Focused on financial planning, not chasing leads",
   },
   {
     icon: Clock,
