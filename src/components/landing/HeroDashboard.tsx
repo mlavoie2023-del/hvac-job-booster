@@ -109,7 +109,7 @@ const HeroDashboard = () => {
             <div className="h-12 px-4 flex items-center justify-between border-b border-border/30 bg-[hsl(0_0%_7%)]">
               <div className="flex items-center gap-3">
                 <h2 className="text-sm font-semibold text-foreground">Dashboard</h2>
-                <span className="text-[10px] text-muted-foreground">Good morning, Matt</span>
+                <span className="text-[10px] text-muted-foreground">Good morning, John</span>
               </div>
               <div className="flex items-center gap-2">
                 <div className="flex items-center gap-2 px-2.5 py-1.5 bg-muted/30 rounded-md">
