@@ -1965,33 +1965,6 @@ const categories: Category[] = [
       }
     ]
   },
-  {
-    id: "mobile-app",
-    icon: Smartphone,
-    title: "Mobile App",
-    subtitle: "Your CRM in your pocket",
-    color: "from-rose-500 to-pink-500",
-    features: [
-      {
-        icon: Bell,
-        title: "Push Notifications",
-        description: "Never miss a lead or message with instant mobile alerts",
-        animation: <MobileNotificationsAnimation />
-      },
-      {
-        icon: MessageSquare,
-        title: "Quick Reply",
-        description: "Respond to clients on-the-go via SMS or email",
-        animation: <MobileConversationsAnimation />
-      },
-      {
-        icon: Users,
-        title: "Pipeline at a Glance",
-        description: "Check your deals and contacts from anywhere",
-        animation: <MobilePipelineAnimation />
-      }
-    ]
-  }
 ];
 
 // All features flattened for mobile carousel

@@ -9,7 +9,7 @@ import {
 } from "lucide-react";
 import lavoieLogo from "@/assets/lavoie-logo-square.png";
 
-type TabType = "dashboard" | "conversations" | "calendars" | "contacts" | "opportunities" | "payments" | "marketing" | "automation" | "sites" | "reporting" | "mobile";
+type TabType = "dashboard" | "conversations" | "calendars" | "contacts" | "opportunities" | "payments" | "marketing" | "automation" | "sites" | "reporting";
 
 const HeroDashboard = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -42,7 +42,6 @@ const HeroDashboard = () => {
     { icon: PlayCircle, label: "Automations", id: "automation", showLabel: true },
     { icon: Globe, label: "Sites", id: "sites", showLabel: true },
     { icon: LineChart, label: "Reporting", id: "reporting", showLabel: true },
-    { icon: Smartphone, label: "Mobile App", id: "mobile", showLabel: true },
   ];
 
   const stats = [

@@ -3,6 +3,7 @@ import Hero from "@/components/landing/Hero";
 import Problem from "@/components/landing/Problem";
 import WhoIsFor from "@/components/landing/WhoIsFor";
 import WhatYouGet from "@/components/landing/WhatYouGet";
+import MobileApp from "@/components/landing/MobileApp";
 import TechStackComparison from "@/components/landing/TechStackComparison";
 import HowItWorks from "@/components/landing/HowItWorks";
 
@@ -19,6 +20,7 @@ const Index = () => {
         <Hero />
         <TechStackComparison />
         <WhatYouGet />
+        <MobileApp />
         <HowItWorks />
         <FounderCredibility />
         <Problem />
