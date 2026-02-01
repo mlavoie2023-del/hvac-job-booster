@@ -219,23 +219,19 @@ const QuickReplyScreen = () => (
     <style>{`
       @keyframes msgSlide1 {
         0%, 15% { opacity: 0; transform: translateY(16px) scale(0.95); }
-        20%, 70% { opacity: 1; transform: translateY(0) scale(1); }
-        80%, 100% { opacity: 0; transform: translateY(16px) scale(0.95); }
+        20%, 100% { opacity: 1; transform: translateY(0) scale(1); }
       }
       @keyframes msgSlide2 {
         0%, 30% { opacity: 0; transform: translateY(16px) scale(0.95); }
-        35%, 70% { opacity: 1; transform: translateY(0) scale(1); }
-        80%, 100% { opacity: 0; transform: translateY(16px) scale(0.95); }
+        35%, 100% { opacity: 1; transform: translateY(0) scale(1); }
       }
       @keyframes msgSlide3 {
         0%, 45% { opacity: 0; transform: translateY(16px) scale(0.95); }
-        50%, 70% { opacity: 1; transform: translateY(0) scale(1); }
-        80%, 100% { opacity: 0; transform: translateY(16px) scale(0.95); }
+        50%, 100% { opacity: 1; transform: translateY(0) scale(1); }
       }
       @keyframes replyType {
         0%, 55% { opacity: 0; }
-        60%, 75% { opacity: 1; }
-        85%, 100% { opacity: 0; }
+        60%, 100% { opacity: 1; }
       }
     `}</style>
   </div>
