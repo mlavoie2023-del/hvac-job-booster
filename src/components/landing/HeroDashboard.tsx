@@ -951,26 +951,6 @@ const PaymentsContent = () => {
         </div>
       )}
 
-      {activeSubTab === "documents" && (
-        <div className="grid grid-cols-5 gap-2">
-          {[
-            { label: "Draft", count: 1 },
-            { label: "Waiting", count: 1 },
-            { label: "Completed", count: 3 },
-            { label: "Pending", count: 1 },
-            { label: "Archived", count: 0 },
-          ].map((stat, idx) => (
-            <button
-              key={idx}
-              className={`text-left px-2 py-1.5 rounded-md text-[8px] font-medium transition-colors ${
-                idx === 2 ? "bg-primary/20 text-primary border-b-2 border-primary" : "text-muted-foreground hover:bg-muted/30"
-              }`}
-            >
-              {stat.label} <span className="ml-1 text-[7px]">{stat.count}</span>
-            </button>
-          ))}
-        </div>
-      )}
 
       {/* Table */}
       <div className="flex-1 bg-[hsl(0_0%_9%)] rounded-lg border border-border/20 overflow-hidden">
