@@ -20,8 +20,8 @@ const Index = () => {
         <WhatYouGet />
         <MobileApp />
         <CustomBuilt />
-        <TryIt />
         <WhoIsFor />
+        <TryIt />
         <FAQ />
         <FinalCTA />
       </main>
