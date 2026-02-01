@@ -96,52 +96,82 @@ const PhoneFrame = ({ children, activeTab = 'inbox' }: { children: React.ReactNo
 
 // Screen 1: Push Notifications
 const NotificationsScreen = () => (
-  <div className="px-4 sm:px-5 py-4 sm:py-5 pb-24 sm:pb-28 h-full">
-    <div className="text-sm sm:text-base font-bold text-white mb-4 sm:mb-5">Notifications</div>
+  <div className="px-4 sm:px-5 py-4 sm:py-5 pb-24 sm:pb-28 h-full overflow-y-auto">
+    <div className="text-sm sm:text-base font-bold text-white mb-3 sm:mb-4">Notifications</div>
     
     {/* Notification stack */}
-    <div className="space-y-3 sm:space-y-4">
+    <div className="space-y-2.5 sm:space-y-3">
       <div 
-        className="bg-primary/20 rounded-2xl p-3 sm:p-4 border border-primary/30"
+        className="bg-primary/20 rounded-xl p-2.5 sm:p-3 border border-primary/30"
         style={{ animation: 'notifSlideDown1 6s ease-out infinite' }}
       >
-        <div className="flex items-start gap-3 sm:gap-4">
-          <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-primary flex items-center justify-center flex-shrink-0">
-            <MessageSquare className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
+        <div className="flex items-center gap-2.5 sm:gap-3">
+          <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-primary flex items-center justify-center flex-shrink-0">
+            <MessageSquare className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
           </div>
           <div className="min-w-0 flex-1">
-            <div className="text-xs sm:text-sm font-semibold text-white truncate">New SMS</div>
-            <div className="text-[11px] sm:text-xs text-primary truncate mt-0.5">Thanks for the quick reply!</div>
+            <div className="text-[11px] sm:text-xs font-semibold text-white truncate">New SMS</div>
+            <div className="text-[10px] sm:text-[11px] text-primary truncate">Thanks for the quick reply!</div>
           </div>
         </div>
       </div>
       
       <div 
-        className="bg-emerald-500/20 rounded-2xl p-3 sm:p-4 border border-emerald-500/30"
+        className="bg-emerald-500/20 rounded-xl p-2.5 sm:p-3 border border-emerald-500/30"
         style={{ animation: 'notifSlideDown2 6s ease-out infinite' }}
       >
-        <div className="flex items-start gap-3 sm:gap-4">
-          <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-emerald-500 flex items-center justify-center flex-shrink-0">
-            <Calendar className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
+        <div className="flex items-center gap-2.5 sm:gap-3">
+          <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-emerald-500 flex items-center justify-center flex-shrink-0">
+            <Calendar className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
           </div>
           <div className="min-w-0 flex-1">
-            <div className="text-xs sm:text-sm font-semibold text-white truncate">Upcoming Meeting</div>
-            <div className="text-[11px] sm:text-xs text-emerald-400 truncate mt-0.5">Tomorrow at 2pm</div>
+            <div className="text-[11px] sm:text-xs font-semibold text-white truncate">Upcoming Meeting</div>
+            <div className="text-[10px] sm:text-[11px] text-emerald-400 truncate">Tomorrow at 2pm</div>
           </div>
         </div>
       </div>
       
       <div 
-        className="bg-amber-500/20 rounded-2xl p-3 sm:p-4 border border-amber-500/30"
+        className="bg-amber-500/20 rounded-xl p-2.5 sm:p-3 border border-amber-500/30"
         style={{ animation: 'notifSlideDown3 6s ease-out infinite' }}
       >
-        <div className="flex items-start gap-3 sm:gap-4">
-          <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-amber-500 flex items-center justify-center flex-shrink-0">
-            <Users className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
+        <div className="flex items-center gap-2.5 sm:gap-3">
+          <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-amber-500 flex items-center justify-center flex-shrink-0">
+            <Users className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
           </div>
           <div className="min-w-0 flex-1">
-            <div className="text-xs sm:text-sm font-semibold text-white truncate">New Lead</div>
-            <div className="text-[11px] sm:text-xs text-amber-400 truncate mt-0.5">James K. via website form</div>
+            <div className="text-[11px] sm:text-xs font-semibold text-white truncate">New Lead</div>
+            <div className="text-[10px] sm:text-[11px] text-amber-400 truncate">James K. via website form</div>
+          </div>
+        </div>
+      </div>
+      
+      <div 
+        className="bg-violet-500/20 rounded-xl p-2.5 sm:p-3 border border-violet-500/30"
+        style={{ animation: 'notifSlideDown4 6s ease-out infinite' }}
+      >
+        <div className="flex items-center gap-2.5 sm:gap-3">
+          <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-violet-500 flex items-center justify-center flex-shrink-0">
+            <Bell className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
+          </div>
+          <div className="min-w-0 flex-1">
+            <div className="text-[11px] sm:text-xs font-semibold text-white truncate">Task Reminder</div>
+            <div className="text-[10px] sm:text-[11px] text-violet-400 truncate">Follow up with Lisa P.</div>
+          </div>
+        </div>
+      </div>
+      
+      <div 
+        className="bg-sky-500/20 rounded-xl p-2.5 sm:p-3 border border-sky-500/30"
+        style={{ animation: 'notifSlideDown5 6s ease-out infinite' }}
+      >
+        <div className="flex items-center gap-2.5 sm:gap-3">
+          <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-sky-500 flex items-center justify-center flex-shrink-0">
+            <Inbox className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
+          </div>
+          <div className="min-w-0 flex-1">
+            <div className="text-[11px] sm:text-xs font-semibold text-white truncate">New Email</div>
+            <div className="text-[10px] sm:text-[11px] text-sky-400 truncate">Re: Investment strategy</div>
           </div>
         </div>
       </div>
@@ -149,19 +179,24 @@ const NotificationsScreen = () => (
     
     <style>{`
       @keyframes notifSlideDown1 {
-        0%, 20% { opacity: 0; transform: translateY(-20px) scale(0.95); }
-        25%, 75% { opacity: 1; transform: translateY(0) scale(1); }
-        85%, 100% { opacity: 0; transform: translateY(-20px) scale(0.95); }
+        0%, 10% { opacity: 0; transform: translateY(-20px) scale(0.95); }
+        15%, 100% { opacity: 1; transform: translateY(0) scale(1); }
       }
       @keyframes notifSlideDown2 {
-        0%, 35% { opacity: 0; transform: translateY(-20px) scale(0.95); }
-        40%, 75% { opacity: 1; transform: translateY(0) scale(1); }
-        85%, 100% { opacity: 0; transform: translateY(-20px) scale(0.95); }
+        0%, 22% { opacity: 0; transform: translateY(-20px) scale(0.95); }
+        27%, 100% { opacity: 1; transform: translateY(0) scale(1); }
       }
       @keyframes notifSlideDown3 {
-        0%, 50% { opacity: 0; transform: translateY(-20px) scale(0.95); }
-        55%, 75% { opacity: 1; transform: translateY(0) scale(1); }
-        85%, 100% { opacity: 0; transform: translateY(-20px) scale(0.95); }
+        0%, 34% { opacity: 0; transform: translateY(-20px) scale(0.95); }
+        39%, 100% { opacity: 1; transform: translateY(0) scale(1); }
+      }
+      @keyframes notifSlideDown4 {
+        0%, 46% { opacity: 0; transform: translateY(-20px) scale(0.95); }
+        51%, 100% { opacity: 1; transform: translateY(0) scale(1); }
+      }
+      @keyframes notifSlideDown5 {
+        0%, 58% { opacity: 0; transform: translateY(-20px) scale(0.95); }
+        63%, 100% { opacity: 1; transform: translateY(0) scale(1); }
       }
     `}</style>
   </div>
@@ -265,28 +300,50 @@ const PipelineScreen = () => (
     <div className="relative h-[calc(100%-70px)] overflow-hidden">
       {/* Stage 1: Leads */}
       <div 
-        className="absolute inset-0 space-y-3 sm:space-y-4"
+        className="absolute inset-0 space-y-2 sm:space-y-2.5 overflow-y-auto"
         style={{ animation: 'stageSwipe1 6s ease-in-out infinite' }}
       >
-        <div className="bg-slate-800/60 rounded-2xl p-3 sm:p-4 border border-slate-700/50">
-          <div className="flex items-center gap-3 sm:gap-4">
-            <div className="w-11 h-11 sm:w-14 sm:h-14 rounded-full bg-slate-600 flex items-center justify-center">
-              <span className="text-[11px] sm:text-sm font-bold text-white">JK</span>
+        <div className="bg-slate-800/60 rounded-xl p-2.5 sm:p-3 border border-slate-700/50">
+          <div className="flex items-center gap-2.5 sm:gap-3">
+            <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-slate-600 flex items-center justify-center">
+              <span className="text-[10px] sm:text-xs font-bold text-white">JK</span>
             </div>
             <div className="flex-1 min-w-0">
-              <div className="text-xs sm:text-sm font-semibold text-white truncate">James Kim</div>
-              <div className="text-[10px] sm:text-xs text-slate-400 mt-0.5">Via website form</div>
+              <div className="text-[11px] sm:text-xs font-semibold text-white truncate">James Kim</div>
+              <div className="text-[9px] sm:text-[10px] text-slate-400">Via website form</div>
             </div>
           </div>
         </div>
-        <div className="bg-slate-800/60 rounded-2xl p-3 sm:p-4 border border-slate-700/50">
-          <div className="flex items-center gap-3 sm:gap-4">
-            <div className="w-11 h-11 sm:w-14 sm:h-14 rounded-full bg-slate-600 flex items-center justify-center">
-              <span className="text-[11px] sm:text-sm font-bold text-white">LP</span>
+        <div className="bg-slate-800/60 rounded-xl p-2.5 sm:p-3 border border-slate-700/50">
+          <div className="flex items-center gap-2.5 sm:gap-3">
+            <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-slate-600 flex items-center justify-center">
+              <span className="text-[10px] sm:text-xs font-bold text-white">LP</span>
             </div>
             <div className="flex-1 min-w-0">
-              <div className="text-xs sm:text-sm font-semibold text-white truncate">Lisa Park</div>
-              <div className="text-[10px] sm:text-xs text-slate-400 mt-0.5">Referral from Mike</div>
+              <div className="text-[11px] sm:text-xs font-semibold text-white truncate">Lisa Park</div>
+              <div className="text-[9px] sm:text-[10px] text-slate-400">Referral from Mike</div>
+            </div>
+          </div>
+        </div>
+        <div className="bg-slate-800/60 rounded-xl p-2.5 sm:p-3 border border-slate-700/50">
+          <div className="flex items-center gap-2.5 sm:gap-3">
+            <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-slate-600 flex items-center justify-center">
+              <span className="text-[10px] sm:text-xs font-bold text-white">RJ</span>
+            </div>
+            <div className="flex-1 min-w-0">
+              <div className="text-[11px] sm:text-xs font-semibold text-white truncate">Rachel Johnson</div>
+              <div className="text-[9px] sm:text-[10px] text-slate-400">LinkedIn connection</div>
+            </div>
+          </div>
+        </div>
+        <div className="bg-slate-800/60 rounded-xl p-2.5 sm:p-3 border border-slate-700/50">
+          <div className="flex items-center gap-2.5 sm:gap-3">
+            <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-slate-600 flex items-center justify-center">
+              <span className="text-[10px] sm:text-xs font-bold text-white">DM</span>
+            </div>
+            <div className="flex-1 min-w-0">
+              <div className="text-[11px] sm:text-xs font-semibold text-white truncate">David Martinez</div>
+              <div className="text-[9px] sm:text-[10px] text-slate-400">Cold email reply</div>
             </div>
           </div>
         </div>
@@ -294,28 +351,50 @@ const PipelineScreen = () => (
       
       {/* Stage 2: Meeting */}
       <div 
-        className="absolute inset-0 space-y-3 sm:space-y-4"
+        className="absolute inset-0 space-y-2 sm:space-y-2.5 overflow-y-auto"
         style={{ animation: 'stageSwipe2 6s ease-in-out infinite' }}
       >
-        <div className="bg-rose-500/20 rounded-2xl p-3 sm:p-4 border border-rose-500/30">
-          <div className="flex items-center gap-3 sm:gap-4">
-            <div className="w-11 h-11 sm:w-14 sm:h-14 rounded-full bg-rose-500 flex items-center justify-center">
-              <span className="text-[11px] sm:text-sm font-bold text-white">SD</span>
+        <div className="bg-rose-500/20 rounded-xl p-2.5 sm:p-3 border border-rose-500/30">
+          <div className="flex items-center gap-2.5 sm:gap-3">
+            <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-rose-500 flex items-center justify-center">
+              <span className="text-[10px] sm:text-xs font-bold text-white">SD</span>
             </div>
             <div className="flex-1 min-w-0">
-              <div className="text-xs sm:text-sm font-semibold text-white truncate">Sarah Davis</div>
-              <div className="text-[10px] sm:text-xs text-rose-400 mt-0.5">Today 2pm</div>
+              <div className="text-[11px] sm:text-xs font-semibold text-white truncate">Sarah Davis</div>
+              <div className="text-[9px] sm:text-[10px] text-rose-400">Today 2pm</div>
             </div>
           </div>
         </div>
-        <div className="bg-rose-500/20 rounded-2xl p-3 sm:p-4 border border-rose-500/30">
-          <div className="flex items-center gap-3 sm:gap-4">
-            <div className="w-11 h-11 sm:w-14 sm:h-14 rounded-full bg-rose-500 flex items-center justify-center">
-              <span className="text-[11px] sm:text-sm font-bold text-white">TW</span>
+        <div className="bg-rose-500/20 rounded-xl p-2.5 sm:p-3 border border-rose-500/30">
+          <div className="flex items-center gap-2.5 sm:gap-3">
+            <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-rose-500 flex items-center justify-center">
+              <span className="text-[10px] sm:text-xs font-bold text-white">TW</span>
             </div>
             <div className="flex-1 min-w-0">
-              <div className="text-xs sm:text-sm font-semibold text-white truncate">Tom Wilson</div>
-              <div className="text-[10px] sm:text-xs text-rose-400 mt-0.5">Tomorrow 10am</div>
+              <div className="text-[11px] sm:text-xs font-semibold text-white truncate">Tom Wilson</div>
+              <div className="text-[9px] sm:text-[10px] text-rose-400">Tomorrow 10am</div>
+            </div>
+          </div>
+        </div>
+        <div className="bg-rose-500/20 rounded-xl p-2.5 sm:p-3 border border-rose-500/30">
+          <div className="flex items-center gap-2.5 sm:gap-3">
+            <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-rose-500 flex items-center justify-center">
+              <span className="text-[10px] sm:text-xs font-bold text-white">EB</span>
+            </div>
+            <div className="flex-1 min-w-0">
+              <div className="text-[11px] sm:text-xs font-semibold text-white truncate">Emma Brown</div>
+              <div className="text-[9px] sm:text-[10px] text-rose-400">Wed 3pm</div>
+            </div>
+          </div>
+        </div>
+        <div className="bg-rose-500/20 rounded-xl p-2.5 sm:p-3 border border-rose-500/30">
+          <div className="flex items-center gap-2.5 sm:gap-3">
+            <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-rose-500 flex items-center justify-center">
+              <span className="text-[10px] sm:text-xs font-bold text-white">KN</span>
+            </div>
+            <div className="flex-1 min-w-0">
+              <div className="text-[11px] sm:text-xs font-semibold text-white truncate">Kevin Nguyen</div>
+              <div className="text-[9px] sm:text-[10px] text-rose-400">Friday 11am</div>
             </div>
           </div>
         </div>
@@ -323,34 +402,55 @@ const PipelineScreen = () => (
       
       {/* Stage 3: Won */}
       <div 
-        className="absolute inset-0 space-y-3 sm:space-y-4"
+        className="absolute inset-0 space-y-2 sm:space-y-2.5 overflow-y-auto"
         style={{ animation: 'stageSwipe3 6s ease-in-out infinite' }}
       >
-        <div className="bg-emerald-500/20 rounded-2xl p-3 sm:p-4 border border-emerald-500/30">
-          <div className="flex items-center gap-3 sm:gap-4">
-            <div className="w-11 h-11 sm:w-14 sm:h-14 rounded-full bg-emerald-500 flex items-center justify-center">
-              <span className="text-sm sm:text-base text-white">✓</span>
+        <div className="bg-emerald-500/20 rounded-xl p-2.5 sm:p-3 border border-emerald-500/30">
+          <div className="flex items-center gap-2.5 sm:gap-3">
+            <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-emerald-500 flex items-center justify-center">
+              <span className="text-xs sm:text-sm text-white">✓</span>
             </div>
             <div className="flex-1 min-w-0">
-              <div className="text-xs sm:text-sm font-semibold text-white truncate">Mike Chen</div>
-              <div className="text-[10px] sm:text-xs text-emerald-400 mt-0.5">$850K signed</div>
+              <div className="text-[11px] sm:text-xs font-semibold text-white truncate">Mike Chen</div>
+              <div className="text-[9px] sm:text-[10px] text-emerald-400">$850K signed</div>
             </div>
           </div>
         </div>
-        <div className="bg-emerald-500/20 rounded-2xl p-3 sm:p-4 border border-emerald-500/30">
-          <div className="flex items-center gap-3 sm:gap-4">
-            <div className="w-11 h-11 sm:w-14 sm:h-14 rounded-full bg-emerald-500 flex items-center justify-center">
-              <span className="text-sm sm:text-base text-white">✓</span>
+        <div className="bg-emerald-500/20 rounded-xl p-2.5 sm:p-3 border border-emerald-500/30">
+          <div className="flex items-center gap-2.5 sm:gap-3">
+            <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-emerald-500 flex items-center justify-center">
+              <span className="text-xs sm:text-sm text-white">✓</span>
             </div>
             <div className="flex-1 min-w-0">
-              <div className="text-xs sm:text-sm font-semibold text-white truncate">Amy Lee</div>
-              <div className="text-[10px] sm:text-xs text-emerald-400 mt-0.5">$1.2M signed</div>
+              <div className="text-[11px] sm:text-xs font-semibold text-white truncate">Amy Lee</div>
+              <div className="text-[9px] sm:text-[10px] text-emerald-400">$1.2M signed</div>
+            </div>
+          </div>
+        </div>
+        <div className="bg-emerald-500/20 rounded-xl p-2.5 sm:p-3 border border-emerald-500/30">
+          <div className="flex items-center gap-2.5 sm:gap-3">
+            <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-emerald-500 flex items-center justify-center">
+              <span className="text-xs sm:text-sm text-white">✓</span>
+            </div>
+            <div className="flex-1 min-w-0">
+              <div className="text-[11px] sm:text-xs font-semibold text-white truncate">Robert Taylor</div>
+              <div className="text-[9px] sm:text-[10px] text-emerald-400">$620K signed</div>
+            </div>
+          </div>
+        </div>
+        <div className="bg-emerald-500/20 rounded-xl p-2.5 sm:p-3 border border-emerald-500/30">
+          <div className="flex items-center gap-2.5 sm:gap-3">
+            <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-emerald-500 flex items-center justify-center">
+              <span className="text-xs sm:text-sm text-white">✓</span>
+            </div>
+            <div className="flex-1 min-w-0">
+              <div className="text-[11px] sm:text-xs font-semibold text-white truncate">Jennifer White</div>
+              <div className="text-[9px] sm:text-[10px] text-emerald-400">$950K signed</div>
             </div>
           </div>
         </div>
       </div>
     </div>
-    
     <style>{`
       @keyframes stageActive1 {
         0%, 30% { background: hsl(217 91% 60% / 0.3); color: white; }
