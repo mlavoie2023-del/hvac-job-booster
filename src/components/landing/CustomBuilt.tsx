@@ -34,29 +34,29 @@ const CustomBuilt = () => {
             </h2>
           </div>
 
-          {/* Two-column layout - vertically centered */}
-          <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
-            {/* Left: Founder quote card */}
-            <div className="rounded-xl border border-border/50 bg-card/50 p-8 lg:p-10 h-full flex items-center">
+          {/* Two-column layout - 1/3 and 2/3 split */}
+          <div className="grid lg:grid-cols-3 gap-8 lg:gap-10 items-center">
+            {/* Left: Founder quote card - 1/3 width */}
+            <div className="lg:col-span-1 rounded-xl border border-border/50 bg-card/50 p-6 h-full flex items-center">
               <div className="flex flex-col items-center text-center w-full">
                 <img
                   src={mattLavoie}
                   alt="Matt Lavoie"
-                  className="h-24 w-24 rounded-full object-cover border-2 border-primary/30 shadow-lg mb-6"
+                  className="h-20 w-20 rounded-full object-cover border-2 border-primary/30 shadow-lg mb-4"
                   style={{ objectPosition: "center 25%" }}
                 />
-                <blockquote className="text-lg text-body italic leading-relaxed">
+                <blockquote className="text-sm text-body italic leading-relaxed">
                   "I watched too many planners waste hours on software that wasn't built for them. So I started building systems that actually fit how solo practices work."
                 </blockquote>
-                <div className="mt-6 flex flex-col items-center">
-                  <span className="font-semibold text-foreground">Matt Lavoie</span>
-                  <span className="text-sm text-muted-foreground">Founder, Lavoie Systems</span>
+                <div className="mt-4 flex flex-col items-center">
+                  <span className="font-semibold text-foreground text-sm">Matt Lavoie</span>
+                  <span className="text-xs text-muted-foreground">Founder, Lavoie Systems</span>
                 </div>
               </div>
             </div>
 
-            {/* Right: How It Works */}
-            <div className="flex flex-col h-full">
+            {/* Right: How It Works - 2/3 width */}
+            <div className="lg:col-span-2 flex flex-col h-full">
               {/* Headline above cards */}
               <h3 className="text-lg font-semibold text-primary mb-6 text-center lg:text-left">
                 How It Works
