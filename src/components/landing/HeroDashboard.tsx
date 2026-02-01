@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef, useCallback } from "react";
+import { useEffect, useState, useRef } from "react";
 import { 
   Users, Calendar, DollarSign, TrendingUp, Bell, Search, ChevronRight, 
   Plus, Clock, ArrowUpRight, LayoutGrid, MessageCircle,
@@ -15,33 +15,12 @@ const HeroDashboard = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [activeTab, setActiveTab] = useState<TabType>("dashboard");
   const containerRef = useRef<HTMLDivElement>(null);
-  const intervalRef = useRef<NodeJS.Timeout | null>(null);
-
-  const tabOrder: TabType[] = ["dashboard", "conversations", "calendars", "contacts", "opportunities", "payments", "marketing", "automation", "sites", "reporting"];
-
-  const startTimer = useCallback(() => {
-    if (intervalRef.current) {
-      clearInterval(intervalRef.current);
-    }
-    intervalRef.current = setInterval(() => {
-      setActiveTab(prev => {
-        const currentIdx = tabOrder.indexOf(prev);
-        return tabOrder[(currentIdx + 1) % tabOrder.length];
-      });
-    }, 6000);
-  }, []);
-
-  const handleTabClick = useCallback((id: TabType) => {
-    setActiveTab(id);
-    startTimer(); // Reset timer when user clicks
-  }, [startTimer]);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
           setIsVisible(true);
-          startTimer(); // Start cycling when visible
         }
       },
       { threshold: 0.1 }
@@ -49,13 +28,8 @@ const HeroDashboard = () => {
     if (containerRef.current) {
       observer.observe(containerRef.current);
     }
-    return () => {
-      observer.disconnect();
-      if (intervalRef.current) {
-        clearInterval(intervalRef.current);
-      }
-    };
-  }, [startTimer]);
+    return () => observer.disconnect();
+  }, []);
 
   const sidebarItems: { icon: typeof LayoutGrid; label: string; id: TabType; showLabel?: boolean }[] = [
     { icon: LayoutGrid, label: "Dashboard", id: "dashboard", showLabel: true },
@@ -139,7 +113,7 @@ const HeroDashboard = () => {
             {sidebarItems.map((item) => (
               <div
                 key={item.id}
-                onClick={() => handleTabClick(item.id)}
+                onClick={() => setActiveTab(item.id)}
                 className={`w-12 rounded-lg flex flex-col items-center justify-center cursor-pointer transition-all duration-200 group ${
                   item.showLabel ? "py-1.5 gap-0.5" : "h-10"
                 } ${
