@@ -4,7 +4,7 @@ import {
   Plus, Clock, ArrowUpRight, LayoutGrid, MessageCircle,
   Contact, Receipt, Send, PlayCircle, Globe, LineChart, Smartphone,
   Phone, Video, MoreHorizontal, Paperclip, Smile, ChevronLeft, ChevronDown, Filter,
-  Mail, MessageSquare, Linkedin
+  Mail, MessageSquare, Linkedin, PhoneCall, Users2
 } from "lucide-react";
 import lavoieLogo from "@/assets/lavoie-logo-square.png";
 
@@ -468,22 +468,28 @@ const CalendarContent = ({ events }: { events: { title: string; time: string; du
         ))}
       </div>
       <div className="grid grid-cols-7 gap-1 text-center">
-        {Array.from({ length: 28 }, (_, i) => i + 1).map((day) => (
-          <div 
-            key={day} 
-            className={`text-[7px] py-1 rounded cursor-pointer transition-colors ${
-              day === 1 ? "bg-primary text-primary-foreground" : 
-              [5, 12, 18, 25].includes(day) ? "bg-primary/20 text-primary" :
-              "text-muted-foreground hover:bg-muted/30"
-            }`}
-          >
-            {day}
-          </div>
-        ))}
+        {Array.from({ length: 28 }, (_, i) => i + 1).map((day) => {
+          const hasAppointment = [5, 12, 18, 25].includes(day);
+          const isToday = day === 1;
+          return (
+            <div 
+              key={day} 
+              className={`relative text-[7px] py-1 rounded cursor-pointer transition-colors ${
+                isToday ? "bg-primary text-primary-foreground" : 
+                "text-muted-foreground hover:bg-muted/30"
+              }`}
+            >
+              {day}
+              {hasAppointment && !isToday && (
+                <div className="absolute top-0.5 right-0.5 w-1 h-1 rounded-full bg-primary" />
+              )}
+            </div>
+          );
+        })}
       </div>
       <div className="mt-3 pt-3 border-t border-border/20">
         <div className="text-[8px] text-muted-foreground mb-1">Today</div>
-        <div className="text-[10px] font-medium text-foreground">Saturday, Feb 1</div>
+        <div className="text-[10px] font-medium text-foreground">Sunday, Feb 1</div>
         <div className="text-[8px] text-primary mt-0.5">4 appointments</div>
       </div>
     </div>
@@ -513,10 +519,10 @@ const CalendarContent = ({ events }: { events: { title: string; time: string; du
             <div className="flex-1">
               <div className="text-[9px] font-medium text-foreground">{event.title}</div>
               <div className="flex items-center gap-2 mt-1">
-                <span className={`text-[7px] px-1.5 py-0.5 rounded ${
+                <span className={`flex items-center gap-1 text-[7px] px-1.5 py-0.5 rounded ${
                   event.type === "call" ? "bg-emerald-400/20 text-emerald-400" : "bg-primary/20 text-primary"
                 }`}>
-                  {event.type === "call" ? "📞 Call" : "👥 Meeting"}
+                  {event.type === "call" ? <><PhoneCall className="w-2 h-2" /> Call</> : <><Users2 className="w-2 h-2" /> Meeting</>}
                 </span>
               </div>
             </div>
