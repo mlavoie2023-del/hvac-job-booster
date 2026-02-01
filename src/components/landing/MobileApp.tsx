@@ -249,22 +249,24 @@ const QuickReplyScreen = () => (
     
     {/* Reply input with typing animation */}
     <div 
-      className="mt-3 sm:mt-4 flex items-center gap-3 bg-muted/20 rounded-full px-4 sm:px-5 py-3 sm:py-3.5 relative overflow-hidden"
+      className="mt-3 sm:mt-4 flex items-center gap-3 bg-muted/20 rounded-full px-4 sm:px-5 py-3 sm:py-3.5 relative"
       style={{ animation: 'inputAppear 6s ease-out infinite' }}
     >
       {/* Typing text with cursor */}
-      <div className="flex-1 relative overflow-hidden">
-        <div 
-          className="text-[11px] sm:text-xs text-white/70 whitespace-nowrap"
-          style={{ animation: 'typeText 6s steps(32, end) infinite' }}
-        >
-          Sounds great! Looking forward to it
+      <div className="flex-1 overflow-hidden">
+        <div className="relative inline-flex items-center">
+          <div 
+            className="text-[11px] sm:text-xs text-white/70 whitespace-nowrap overflow-hidden"
+            style={{ animation: 'typeReveal 6s steps(35, end) infinite' }}
+          >
+            Sounds great! Looking forward to it
+          </div>
+          {/* Blinking cursor */}
+          <div 
+            className="w-[2px] h-3 sm:h-3.5 bg-primary ml-[1px] flex-shrink-0"
+            style={{ animation: 'cursorBlink 0.6s step-end infinite, cursorHide 6s ease-out infinite' }}
+          />
         </div>
-        {/* Blinking cursor */}
-        <div 
-          className="absolute top-0 h-full w-[2px] bg-primary"
-          style={{ animation: 'cursorMove 6s steps(32, end) infinite, cursorBlink 0.6s step-end infinite' }}
-        />
       </div>
       {/* Send button with pulse on send */}
       <div style={{ animation: 'sendPulse 6s ease-out infinite' }}>
@@ -290,19 +292,18 @@ const QuickReplyScreen = () => (
         38%, 82% { opacity: 1; }
         85%, 100% { opacity: 0; }
       }
-      @keyframes typeText {
-        0%, 38% { width: 0; }
-        70% { width: 100%; }
-        100% { width: 100%; }
-      }
-      @keyframes cursorMove {
-        0%, 38% { left: 0; opacity: 1; }
-        70% { left: 100%; opacity: 1; }
-        75%, 100% { left: 100%; opacity: 0; }
+      @keyframes typeReveal {
+        0%, 38% { max-width: 0; }
+        70% { max-width: 220px; }
+        100% { max-width: 220px; }
       }
       @keyframes cursorBlink {
         0%, 50% { opacity: 1; }
         51%, 100% { opacity: 0; }
+      }
+      @keyframes cursorHide {
+        0%, 72% { opacity: 1; }
+        75%, 100% { opacity: 0; }
       }
       @keyframes sendPulse {
         0%, 72% { transform: scale(1); }
