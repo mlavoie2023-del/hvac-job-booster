@@ -4,7 +4,7 @@ import Problem from "@/components/landing/Problem";
 import WhoIsFor from "@/components/landing/WhoIsFor";
 import WhatYouGet from "@/components/landing/WhatYouGet";
 import MobileApp from "@/components/landing/MobileApp";
-import DashboardPreview from "@/components/landing/DashboardPreview";
+import TryIt from "@/components/landing/TryIt";
 import CustomBuilt from "@/components/landing/CustomBuilt";
 
 import FounderCredibility from "@/components/landing/FounderCredibility";
@@ -18,7 +18,7 @@ const Index = () => {
       <Header />
       <main>
         <Hero />
-        <DashboardPreview />
+        <TryIt />
         <WhatYouGet />
         <MobileApp />
         <CustomBuilt />
