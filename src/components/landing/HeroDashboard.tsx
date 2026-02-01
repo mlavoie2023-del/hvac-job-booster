@@ -1036,7 +1036,7 @@ const MarketingContent = () => {
   const [activeMarketingTab, setActiveMarketingTab] = useState<"social" | "email" | "sms">("social");
 
   const marketingTabs = [
-    { id: "social" as const, label: "Social Planner", icon: Linkedin },
+    { id: "social" as const, label: "Social Planner", icon: Smartphone },
     { id: "email" as const, label: "Email", icon: Mail },
     { id: "sms" as const, label: "SMS", icon: MessageSquare },
   ];
@@ -1185,17 +1185,36 @@ const SocialPlannerContent = () => {
           <span>Social</span>
         </div>
         
-        {/* Empty State */}
-        <div className="flex-1 flex flex-col items-center justify-center py-6">
-          <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center mb-2">
-            <FileText className="w-4 h-4 text-primary" />
-          </div>
-          <div className="text-[9px] font-medium text-foreground mb-1">No post found</div>
-          <div className="text-[7px] text-muted-foreground mb-3">Find all your social media posts in this section</div>
-          <button className="flex items-center gap-1 px-3 py-1.5 rounded-md bg-primary text-primary-foreground text-[8px] font-medium hover:bg-primary/90 transition-colors">
-            <Plus className="w-3 h-3" />
-            New Post
-          </button>
+        {/* Posts */}
+        <div className="divide-y divide-border/10">
+          {[
+            { id: 1, caption: "🚀 Excited to share our Q4 results! Record growth...", media: "Image", status: "Published", type: "Post", date: "Jan 28", hasImage: true },
+            { id: 2, caption: "Looking for talented engineers to join our team...", media: "None", status: "Scheduled", type: "Post", date: "Feb 3", hasImage: false },
+            { id: 3, caption: "Great insights from today's fintech conference...", media: "Image", status: "Published", type: "Post", date: "Jan 25", hasImage: true },
+            { id: 4, caption: "New blog post: 5 Tips for Financial Planning in 2026", media: "Link", status: "Draft", type: "Article", date: "Feb 5", hasImage: false },
+          ].map((post) => (
+            <div key={post.id} className="grid grid-cols-[20px_1fr_60px_60px_50px_60px_40px] gap-2 px-3 py-2 items-center hover:bg-muted/20 transition-colors">
+              <div className="flex items-center">
+                <div className="w-3 h-3 rounded border border-border/50" />
+              </div>
+              <span className="text-[7px] text-foreground truncate">{post.caption}</span>
+              <span className="text-[7px] text-muted-foreground">{post.media}</span>
+              <span className={`text-[6px] px-1.5 py-0.5 rounded font-medium w-fit ${
+                post.status === "Published" ? "bg-emerald-500/20 text-emerald-400" :
+                post.status === "Scheduled" ? "bg-primary/20 text-primary" :
+                "bg-muted/30 text-muted-foreground"
+              }`}>
+                {post.status}
+              </span>
+              <span className="text-[7px] text-muted-foreground">{post.type}</span>
+              <span className="text-[7px] text-muted-foreground">{post.date}</span>
+              <div className="flex items-center justify-center">
+                <div className="w-4 h-4 rounded-sm bg-[#0077B5] flex items-center justify-center">
+                  <Linkedin className="w-2.5 h-2.5 text-white" />
+                </div>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </div>
