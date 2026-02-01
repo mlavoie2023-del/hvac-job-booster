@@ -1,6 +1,6 @@
 import HeroDashboard from "./HeroDashboard";
 
-const DashboardPreview = () => {
+const TryIt = () => {
   return (
     <section className="relative py-20 lg:py-28 overflow-hidden spotlight-section">
       {/* Extra ambient glow */}
@@ -9,10 +9,10 @@ const DashboardPreview = () => {
       <div className="section-container">
         <div className="mx-auto max-w-3xl text-center mb-16">
           <h2 className="text-3xl font-bold text-foreground sm:text-4xl lg:text-5xl">
-            From Chaos to Clarity
+            Try It Yourself
           </h2>
           <p className="mx-auto mt-4 max-w-2xl text-lg text-body">
-            Stop juggling a dozen different platforms. One unified system does it all.
+            Explore the dashboard and see how everything works together.
           </p>
         </div>
 
@@ -23,4 +23,4 @@ const DashboardPreview = () => {
   );
 };
 
-export default DashboardPreview;
+export default TryIt;
