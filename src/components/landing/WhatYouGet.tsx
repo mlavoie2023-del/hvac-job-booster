@@ -2038,8 +2038,6 @@ const WhatYouGet = () => {
 
   return (
     <section className="relative py-20 lg:py-28 overflow-hidden spotlight-section-purple">
-      {/* Ambient glow */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_50%_40%_at_80%_70%,hsl(270_80%_60%/0.04),transparent)] pointer-events-none" />
       
       <div className="section-container">
         {/* Section Header */}

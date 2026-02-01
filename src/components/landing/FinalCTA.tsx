@@ -3,8 +3,6 @@ import { Link } from "react-router-dom";
 const FinalCTA = () => {
   return (
     <section className="relative py-24 lg:py-32 spotlight-section">
-      {/* Gradual spotlight that builds toward CTA */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_50%_50%,hsl(217_91%_60%/0.15),transparent)] pointer-events-none" />
 
       <div className="section-container relative">
         <div className="mx-auto max-w-3xl text-center">

@@ -24,7 +24,6 @@ const steps = [
 const CustomBuilt = () => {
   return (
     <section id="how-it-works" className="relative py-20 lg:py-28 spotlight-section-warm">
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_50%_at_70%_80%,hsl(190_90%_50%/0.04),transparent)] pointer-events-none" />
       <div className="section-container relative">
         <div className="mx-auto max-w-5xl">
           {/* Centered headline */}
