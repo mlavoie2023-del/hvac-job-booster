@@ -90,15 +90,12 @@ const Hero = () => {
           </p>
 
           <div
-            className={`mt-10 flex flex-col sm:flex-row items-center justify-center gap-4 transition-all duration-700 delay-200 ${
+            className={`mt-10 flex justify-center transition-all duration-700 delay-200 ${
               isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
             }`}
           >
-            <button onClick={scrollToProcess} className="btn-primary px-8 py-4 text-lg">
-              See How It Works
-            </button>
-            <Link to="/book" className="link-accent text-lg font-medium">
-              Book a Discovery Call →
+            <Link to="/book" className="btn-primary px-8 py-4 text-lg">
+              Book a Discovery Call
             </Link>
           </div>
 
