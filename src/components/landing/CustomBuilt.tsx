@@ -34,8 +34,8 @@ const CustomBuilt = () => {
             </h2>
           </div>
 
-          {/* Two-column layout - 1/3 and 2/3 split */}
-          <div className="grid lg:grid-cols-3 gap-8 lg:gap-10 items-center">
+          {/* Two-column layout - 1/3 and 2/3 split, centered */}
+          <div className="grid lg:grid-cols-3 gap-8 lg:gap-10 items-center justify-center mx-auto">
             {/* Left: Founder quote card - 1/3 width */}
             <div className="lg:col-span-1 rounded-xl border border-border/50 bg-card/50 p-6 h-full flex items-center">
               <div className="flex flex-col items-center text-center w-full">
