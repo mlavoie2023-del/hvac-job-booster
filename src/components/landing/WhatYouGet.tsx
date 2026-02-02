@@ -2874,12 +2874,12 @@ const WhatYouGet = () => {
         {/* Section Header */}
         <div className="mx-auto max-w-3xl text-center mb-8">
           <h2 className="text-3xl font-bold text-foreground sm:text-4xl lg:text-5xl">
-            We'll Automate it For You
+            Let us Simplify Your Practice
           </h2>
           
           
           <p className="mx-auto mt-4 max-w-2xl text-lg text-body">
-            That way you can focus on serving your clients
+            One platform to manage your entire business.
           </p>
         </div>
 
