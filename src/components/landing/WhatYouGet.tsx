@@ -2208,7 +2208,7 @@ const WhatYouGet = () => {
                               {!isWaiting ? (
                                 <div 
                                   key={`anim-${activeCategory}-${index}-${desktopAnimatingIndex >= index}`}
-                                  className="transform scale-110 origin-center"
+                                  className="transform scale-110 origin-center animation-play-once"
                                 >
                                   {feature.animation}
                                 </div>
@@ -2307,7 +2307,7 @@ const WhatYouGet = () => {
                                 {!isWaiting ? (
                                   <div 
                                     key={`anim-mobile-${category.id}-${featureIndex}-${mobileAnimatingIndex >= featureIndex}`}
-                                    className="transform scale-[0.6] origin-top-left w-[166.67%] h-[166.67%]"
+                                    className="transform scale-[0.6] origin-top-left w-[166.67%] h-[166.67%] animation-play-once"
                                   >
                                     {feature.animation}
                                   </div>
@@ -2446,6 +2446,14 @@ const WhatYouGet = () => {
         @keyframes pulseConnection {
           0%, 100% { opacity: 0.4; }
           50% { opacity: 1; }
+        }
+      `}</style>
+      
+      {/* CSS to make animations play once and freeze at final state */}
+      <style>{`
+        .animation-play-once * {
+          animation-iteration-count: 1 !important;
+          animation-fill-mode: forwards !important;
         }
       `}</style>
     </section>
