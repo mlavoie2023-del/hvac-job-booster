@@ -558,6 +558,34 @@ const LandingPageAnimation = () => (
 
 const FormsAnimation = () => (
   <div className="relative h-40 flex items-center justify-center">
+    <style>{`
+      @keyframes formTyping {
+        0% { max-width: 0; }
+        60% { max-width: 200px; }
+        100% { max-width: 200px; }
+      }
+      @keyframes formCursorBlink {
+        0%, 60% { opacity: 1; }
+        61%, 100% { opacity: 0; }
+      }
+      @keyframes formSubmitClick {
+        0%, 65% { transform: scale(1); background: rgba(16, 185, 129, 0.8); }
+        70% { transform: scale(0.95); background: rgba(16, 185, 129, 1); }
+        75%, 100% { transform: scale(1); background: rgba(16, 185, 129, 1); }
+      }
+      @keyframes formSubmitText {
+        0%, 70% { opacity: 1; }
+        75%, 100% { opacity: 0; }
+      }
+      @keyframes formSuccessText {
+        0%, 72% { opacity: 0; transform: scale(0.8); }
+        80%, 100% { opacity: 1; transform: scale(1); }
+      }
+      @keyframes formSuccessCheck {
+        0%, 75% { opacity: 0; transform: scale(0); }
+        85%, 100% { opacity: 1; transform: scale(1); }
+      }
+    `}</style>
     <div className="w-52 bg-card/50 rounded-lg border border-border/50 p-2.5">
       <div className="text-[8px] font-semibold text-foreground mb-2">Financial Goals Intake</div>
       
@@ -576,12 +604,15 @@ const FormsAnimation = () => (
           <div className="text-[6px] text-muted-foreground mb-0.5">What are your financial goals?</div>
           <div className="h-5 bg-muted/30 rounded px-1.5 flex items-center border border-primary/30">
             <span 
-              className="text-[6px] text-foreground/80 whitespace-nowrap overflow-hidden animate-[typing_4s_steps(35)_infinite]"
-              style={{ maxWidth: 0 }}
+              className="text-[6px] text-foreground/80 whitespace-nowrap overflow-hidden"
+              style={{ maxWidth: 0, animation: 'formTyping 5s ease-out forwards' }}
             >
               I want to start investing for retirement
             </span>
-            <span className="inline-block w-0.5 h-2 bg-primary animate-[blink_1s_infinite] flex-shrink-0" />
+            <span 
+              className="inline-block w-0.5 h-2 bg-primary flex-shrink-0"
+              style={{ animation: 'formCursorBlink 0.8s step-end infinite, formCursorBlink 5s ease-out forwards' }}
+            />
           </div>
         </div>
         
@@ -602,9 +633,31 @@ const FormsAnimation = () => (
         </div>
       </div>
       
-      {/* Submit button */}
-      <div className="mt-2 h-4 bg-emerald-500/80 rounded flex items-center justify-center">
-        <span className="text-[6px] font-medium text-white">Submit</span>
+      {/* Submit button with click animation */}
+      <div 
+        className="mt-2 h-4 rounded flex items-center justify-center gap-1 relative"
+        style={{ animation: 'formSubmitClick 5s ease-out forwards' }}
+      >
+        <span 
+          className="text-[6px] font-medium text-white absolute"
+          style={{ animation: 'formSubmitText 5s ease-out forwards' }}
+        >
+          Submit
+        </span>
+        <div 
+          className="flex items-center gap-1 absolute"
+          style={{ opacity: 0, animation: 'formSuccessText 5s ease-out forwards' }}
+        >
+          <svg 
+            className="w-2.5 h-2.5 text-white" 
+            viewBox="0 0 12 12" 
+            fill="none"
+            style={{ opacity: 0, animation: 'formSuccessCheck 5s ease-out forwards' }}
+          >
+            <path d="M2 6l3 3 5-5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+          </svg>
+          <span className="text-[6px] font-medium text-white">Success!</span>
+        </div>
       </div>
     </div>
   </div>
