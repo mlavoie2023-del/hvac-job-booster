@@ -2237,29 +2237,60 @@ const WhatYouGet = () => {
   const [touchEnd, setTouchEnd] = useState<number | null>(null);
   const minSwipeDistance = 50;
 
-  // Reset and sequence desktop animations when category changes
+  // Get category IDs for cycling
+  const categoryIds = categories.map(c => c.id);
+  
+  // Reset and sequence desktop animations when category changes, then auto-advance to next category
   useEffect(() => {
     setDesktopAnimatingIndex(0);
     
-    const timer1 = setTimeout(() => setDesktopAnimatingIndex(1), ANIMATION_DURATION);
-    const timer2 = setTimeout(() => setDesktopAnimatingIndex(2), ANIMATION_DURATION * 2);
+    const currentCategoryData = categories.find(c => c.id === activeCategory);
+    const featureCount = currentCategoryData?.features.length || 3;
+    
+    // Create timers for each feature animation
+    const timers: ReturnType<typeof setTimeout>[] = [];
+    
+    for (let i = 1; i < featureCount; i++) {
+      timers.push(setTimeout(() => setDesktopAnimatingIndex(i), ANIMATION_DURATION * i));
+    }
+    
+    // After all features in this category complete, switch to next category
+    const nextCategoryTimer = setTimeout(() => {
+      const currentIndex = categoryIds.indexOf(activeCategory);
+      const nextIndex = (currentIndex + 1) % categoryIds.length;
+      setActiveCategory(categoryIds[nextIndex]);
+    }, ANIMATION_DURATION * featureCount);
+    
+    timers.push(nextCategoryTimer);
     
     return () => {
-      clearTimeout(timer1);
-      clearTimeout(timer2);
+      timers.forEach(timer => clearTimeout(timer));
     };
   }, [activeCategory]);
 
-  // Reset and sequence mobile animations when category changes
+  // Reset and sequence mobile animations when category changes, then auto-advance to next category
   useEffect(() => {
     setMobileAnimatingIndex(0);
     
-    const timer1 = setTimeout(() => setMobileAnimatingIndex(1), ANIMATION_DURATION);
-    const timer2 = setTimeout(() => setMobileAnimatingIndex(2), ANIMATION_DURATION * 2);
+    const currentCategoryData = categories[mobileCategoryIndex];
+    const featureCount = currentCategoryData?.features.length || 3;
+    
+    // Create timers for each feature animation
+    const timers: ReturnType<typeof setTimeout>[] = [];
+    
+    for (let i = 1; i < featureCount; i++) {
+      timers.push(setTimeout(() => setMobileAnimatingIndex(i), ANIMATION_DURATION * i));
+    }
+    
+    // After all features in this category complete, switch to next category
+    const nextCategoryTimer = setTimeout(() => {
+      setMobileCategoryIndex(prev => (prev + 1) % categories.length);
+    }, ANIMATION_DURATION * featureCount);
+    
+    timers.push(nextCategoryTimer);
     
     return () => {
-      clearTimeout(timer1);
-      clearTimeout(timer2);
+      timers.forEach(timer => clearTimeout(timer));
     };
   }, [mobileCategoryIndex]);
 
