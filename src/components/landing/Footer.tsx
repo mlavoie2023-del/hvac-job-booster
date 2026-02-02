@@ -20,23 +20,29 @@ const Footer = () => {
 
           {/* Links */}
           <div className="flex flex-wrap justify-center gap-6">
-            <a href="#how-it-works" className="link-accent text-sm">
+            <a href="#features" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+              Features
+            </a>
+            <a href="#how-it-works" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
               How It Works
             </a>
-            <Link to="/book" className="link-accent text-sm">
-              Schedule a Discovery Call
-            </Link>
-            <Link to="/privacy" className="link-accent text-sm">
+            <a href="#try-it" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+              Try It
+            </a>
+            <Link to="/privacy" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
               Privacy
+            </Link>
+            <Link to="/terms" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+              Terms
             </Link>
           </div>
 
           {/* Email */}
           <a
-            href="mailto:hello@lavoiesystems.com"
+            href="mailto:hello@mail.lavoiesystems.com"
             className="text-sm text-muted-foreground hover:text-foreground transition-colors"
           >
-            hello@lavoiesystems.com
+            hello@mail.lavoiesystems.com
           </a>
         </div>
       </div>
