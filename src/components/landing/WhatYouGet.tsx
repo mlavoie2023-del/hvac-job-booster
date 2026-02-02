@@ -1048,33 +1048,128 @@ const EmailCampaignAnimation = () => (
 
 const SMSAnimation = () => (
   <div className="relative h-40 flex items-center justify-center p-3">
-    <div className="w-full bg-card/30 rounded-lg border border-border/30 p-4">
-      <div className="flex items-start gap-4">
-        {/* Phone mockup */}
-        <div className="w-24 bg-card/80 rounded-xl border border-border/50 p-2">
-          <div className="h-1 w-8 mx-auto bg-muted/40 rounded mb-2" />
-          <div className="space-y-1.5">
-            <div className="ml-auto max-w-[80%] px-2 py-1 bg-orange-500/20 rounded-l-lg rounded-tr-lg animate-[smsSlide_4s_ease-out_infinite]">
-              <div className="text-[6px] text-foreground/80">Hey! It's time for your annual review. Let's schedule a call!</div>
-            </div>
-            <div className="max-w-[60%] px-2 py-1 bg-muted/30 rounded-r-lg rounded-tl-lg animate-[smsSlide_4s_ease-out_infinite]" style={{ animationDelay: '1s' }}>
-              <div className="text-[6px] text-foreground/60">Sounds great, I'm free next week!</div>
+    <style>{`
+      @keyframes smsTypeChar {
+        0% { max-width: 0; }
+        50% { max-width: 100%; }
+        100% { max-width: 100%; }
+      }
+      @keyframes smsSendBtn {
+        0%, 50% { opacity: 0.5; transform: scale(1); }
+        55% { opacity: 1; transform: scale(1); }
+        60% { transform: scale(0.95); }
+        65% { transform: scale(1); background: hsl(160 84% 39%); }
+        100% { transform: scale(1); background: hsl(160 84% 39%); }
+      }
+      @keyframes smsFly {
+        0%, 65% { opacity: 0; transform: translateX(0) translateY(0) scale(1); }
+        70% { opacity: 1; transform: translateX(0) translateY(0) scale(1); }
+        100% { opacity: 0; transform: translateX(var(--fly-x)) translateY(var(--fly-y)) scale(0.3); }
+      }
+      @keyframes smsContactReceive {
+        0%, 75% { opacity: 0.4; border-color: rgba(255,255,255,0.1); }
+        85%, 100% { opacity: 1; border-color: hsl(160 84% 39% / 0.5); }
+      }
+      @keyframes smsCheckAppear {
+        0%, 80% { opacity: 0; transform: scale(0); }
+        90%, 100% { opacity: 1; transform: scale(1); }
+      }
+      @keyframes smsSentCounter {
+        0%, 75% { opacity: 0; }
+        85%, 100% { opacity: 1; }
+      }
+    `}</style>
+    
+    <div className="w-full flex gap-3">
+      {/* SMS composer - Phone mockup */}
+      <div className="w-28 bg-card/80 rounded-xl border border-border/50 p-2">
+        <div className="h-1 w-8 mx-auto bg-muted/40 rounded mb-2" />
+        
+        {/* Message being typed */}
+        <div className="mb-2">
+          <div className="ml-auto max-w-[95%] px-2 py-1.5 bg-orange-500/20 rounded-l-lg rounded-tr-lg overflow-hidden">
+            <div 
+              className="text-[6px] text-foreground/80 whitespace-nowrap overflow-hidden"
+              style={{ maxWidth: 0, animation: 'smsTypeChar 8s ease-out forwards' }}
+            >
+              Hey! It's time for your annual review. Let's schedule a call!
             </div>
           </div>
         </div>
         
-        {/* Campaign info */}
-        <div className="flex-1">
-          <div className="text-[8px] font-medium text-foreground mb-2">Annual Review Reminder</div>
-          <div className="space-y-1.5">
-            <div className="flex items-center gap-2">
-              <div className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
-              <span className="text-[6px] text-muted-foreground">98% delivery rate</span>
+        {/* Send button */}
+        <div 
+          className="w-full h-4 bg-primary/30 rounded flex items-center justify-center gap-1"
+          style={{ animation: 'smsSendBtn 8s ease-out forwards' }}
+        >
+          <Send className="w-2 h-2 text-primary-foreground" />
+          <span className="text-[5px] font-medium text-primary-foreground">Send All</span>
+        </div>
+      </div>
+      
+      {/* Contact list receiving */}
+      <div className="flex-1 space-y-1">
+        <div className="text-[6px] text-muted-foreground mb-1">Broadcast to:</div>
+        
+        {/* Flying SMS icons */}
+        <div className="absolute left-[35%] top-1/2 pointer-events-none">
+          {[0, 1, 2, 3].map((i) => (
+            <div 
+              key={i}
+              className="absolute w-2.5 h-2.5 bg-emerald-400/80 rounded-sm flex items-center justify-center"
+              style={{ 
+                '--fly-x': `${40 + i * 8}px`,
+                '--fly-y': `${-25 + i * 18}px`,
+                animation: `smsFly 8s ease-out ${i * 0.05}s forwards`
+              } as React.CSSProperties}
+            >
+              <MessageSquare className="w-1.5 h-1.5 text-emerald-900" />
             </div>
-            <div className="flex items-center gap-2">
-              <div className="w-1.5 h-1.5 rounded-full bg-primary" />
-              <span className="text-[6px] text-muted-foreground">A2P compliant</span>
+          ))}
+        </div>
+        
+        {/* Contact cards */}
+        {[
+          { initials: 'JD', name: 'John D.', phone: '•••-1234' },
+          { initials: 'SK', name: 'Sarah K.', phone: '•••-5678' },
+          { initials: 'MC', name: 'Mike C.', phone: '•••-9012' },
+          { initials: 'LW', name: 'Lisa W.', phone: '•••-3456' },
+        ].map((contact, i) => (
+          <div 
+            key={i}
+            className="flex items-center gap-1.5 p-1 bg-card/40 rounded border border-border/30 relative"
+            style={{ animation: `smsContactReceive 8s ease-out ${i * 0.1}s forwards` }}
+          >
+            <div className="w-4 h-4 rounded-full bg-emerald-500/20 flex items-center justify-center">
+              <span className="text-[5px] font-bold text-emerald-400">{contact.initials}</span>
             </div>
+            <div className="flex-1 min-w-0">
+              <div className="text-[6px] text-foreground/80">{contact.name}</div>
+              <div className="text-[5px] text-muted-foreground">{contact.phone}</div>
+            </div>
+            <div 
+              className="w-2.5 h-2.5 bg-emerald-500 rounded-full flex items-center justify-center"
+              style={{ opacity: 0, animation: `smsCheckAppear 8s ease-out ${i * 0.1}s forwards` }}
+            >
+              <svg className="w-1.5 h-1.5 text-white" viewBox="0 0 12 12" fill="none">
+                <path d="M2 6l3 3 5-5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </div>
+          </div>
+        ))}
+        
+        {/* Delivery stats */}
+        <div 
+          className="flex gap-2 mt-1"
+          style={{ opacity: 0, animation: 'smsSentCounter 8s ease-out forwards' }}
+        >
+          <div className="flex-1 text-center p-1 bg-emerald-500/10 rounded border border-emerald-500/30">
+            <div className="text-[5px] text-emerald-400">Delivered</div>
+            <div className="text-[7px] font-bold text-emerald-400">98%</div>
+          </div>
+          <div className="flex-1 text-center p-1 bg-primary/10 rounded border border-primary/30">
+            <div className="text-[5px] text-primary">A2P</div>
+            <div className="text-[7px] font-bold text-primary">✓</div>
           </div>
         </div>
       </div>
