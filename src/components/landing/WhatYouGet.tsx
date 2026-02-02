@@ -1663,7 +1663,7 @@ const ReportsAnimation = () => (
 );
 
 const AttributionAnimation = () => (
-  <div className="relative h-40 flex items-center justify-center p-3">
+  <div className="relative h-52 sm:h-40 flex items-center justify-center p-4 sm:p-3">
     <style>{`
       @keyframes attrHeaderFade {
         0% { opacity: 0; }
@@ -1722,85 +1722,85 @@ const AttributionAnimation = () => (
         90%, 100% { opacity: 1; }
       }
     `}</style>
-    <div className="w-full bg-card/30 rounded-lg border border-border/30 p-3">
+    <div className="w-full bg-card/30 rounded-lg border border-border/30 p-4 sm:p-3">
       <div 
-        className="flex items-center justify-between mb-2"
+        className="flex items-center justify-between mb-3 sm:mb-2"
         style={{ opacity: 0, animation: 'attrHeaderFade 8s ease-out forwards' }}
       >
-        <div className="text-[8px] font-medium text-foreground">Lead Source Attribution</div>
-        <div className="px-1.5 py-0.5 bg-primary/20 rounded text-[6px] text-primary">This Quarter</div>
+        <div className="text-[11px] sm:text-[8px] font-medium text-foreground">Lead Source Attribution</div>
+        <div className="px-2 sm:px-1.5 py-1 sm:py-0.5 bg-primary/20 rounded text-[9px] sm:text-[6px] text-primary">This Quarter</div>
       </div>
       
       {/* Visual funnel-style sources */}
-      <div className="space-y-1.5">
+      <div className="space-y-2 sm:space-y-1.5">
         <div 
-          className="flex items-center gap-2 px-2 py-1.5 rounded-lg border bg-emerald-500/20 border-emerald-500/30"
+          className="flex items-center gap-3 sm:gap-2 px-3 sm:px-2 py-2 sm:py-1.5 rounded-lg border bg-emerald-500/20 border-emerald-500/30"
           style={{ opacity: 0, animation: 'attrSlideIn1 8s ease-out forwards' }}
         >
-          <Users className="w-3 h-3 text-emerald-400" />
-          <span className="text-[7px] text-foreground/80 flex-1">Client Referrals</span>
-          <div className="flex items-center gap-1">
-            <span className="text-[8px] font-bold text-emerald-400" style={{ opacity: 0, animation: 'attrCountUp1 8s ease-out forwards' }}>12</span>
-            <span className="text-[6px] text-muted-foreground">leads</span>
+          <Users className="w-4 h-4 sm:w-3 sm:h-3 text-emerald-400" />
+          <span className="text-[10px] sm:text-[7px] text-foreground/80 flex-1">Client Referrals</span>
+          <div className="flex items-center gap-1.5 sm:gap-1">
+            <span className="text-[11px] sm:text-[8px] font-bold text-emerald-400" style={{ opacity: 0, animation: 'attrCountUp1 8s ease-out forwards' }}>12</span>
+            <span className="text-[9px] sm:text-[6px] text-muted-foreground">leads</span>
           </div>
-          <div className="w-3 h-3 rounded-full bg-emerald-500/30 flex items-center justify-center" style={{ opacity: 0, animation: 'attrCheckPop1 8s ease-out forwards' }}>
-            <span className="text-[5px] text-emerald-400">✓</span>
+          <div className="w-4 h-4 sm:w-3 sm:h-3 rounded-full bg-emerald-500/30 flex items-center justify-center" style={{ opacity: 0, animation: 'attrCheckPop1 8s ease-out forwards' }}>
+            <span className="text-[7px] sm:text-[5px] text-emerald-400">✓</span>
           </div>
         </div>
         
         <div 
-          className="flex items-center gap-2 px-2 py-1.5 rounded-lg border bg-primary/20 border-primary/30"
+          className="flex items-center gap-3 sm:gap-2 px-3 sm:px-2 py-2 sm:py-1.5 rounded-lg border bg-primary/20 border-primary/30"
           style={{ opacity: 0, animation: 'attrSlideIn2 8s ease-out forwards' }}
         >
-          <Mail className="w-3 h-3 text-primary" />
-          <span className="text-[7px] text-foreground/80 flex-1">Email Campaigns</span>
-          <div className="flex items-center gap-1">
-            <span className="text-[8px] font-bold text-primary" style={{ opacity: 0, animation: 'attrCountUp2 8s ease-out forwards' }}>8</span>
-            <span className="text-[6px] text-muted-foreground">leads</span>
+          <Mail className="w-4 h-4 sm:w-3 sm:h-3 text-primary" />
+          <span className="text-[10px] sm:text-[7px] text-foreground/80 flex-1">Email Campaigns</span>
+          <div className="flex items-center gap-1.5 sm:gap-1">
+            <span className="text-[11px] sm:text-[8px] font-bold text-primary" style={{ opacity: 0, animation: 'attrCountUp2 8s ease-out forwards' }}>8</span>
+            <span className="text-[9px] sm:text-[6px] text-muted-foreground">leads</span>
           </div>
-          <div className="w-3 h-3 rounded-full bg-emerald-500/30 flex items-center justify-center" style={{ opacity: 0, animation: 'attrCheckPop2 8s ease-out forwards' }}>
-            <span className="text-[5px] text-emerald-400">✓</span>
+          <div className="w-4 h-4 sm:w-3 sm:h-3 rounded-full bg-emerald-500/30 flex items-center justify-center" style={{ opacity: 0, animation: 'attrCheckPop2 8s ease-out forwards' }}>
+            <span className="text-[7px] sm:text-[5px] text-emerald-400">✓</span>
           </div>
         </div>
         
         <div 
-          className="flex items-center gap-2 px-2 py-1.5 rounded-lg border bg-amber-500/20 border-amber-500/30"
+          className="flex items-center gap-3 sm:gap-2 px-3 sm:px-2 py-2 sm:py-1.5 rounded-lg border bg-amber-500/20 border-amber-500/30"
           style={{ opacity: 0, animation: 'attrSlideIn3 8s ease-out forwards' }}
         >
-          <ClipboardCheck className="w-3 h-3 text-amber-400" />
-          <span className="text-[7px] text-foreground/80 flex-1">Website Forms</span>
-          <div className="flex items-center gap-1">
-            <span className="text-[8px] font-bold text-amber-400" style={{ opacity: 0, animation: 'attrCountUp3 8s ease-out forwards' }}>6</span>
-            <span className="text-[6px] text-muted-foreground">leads</span>
+          <ClipboardCheck className="w-4 h-4 sm:w-3 sm:h-3 text-amber-400" />
+          <span className="text-[10px] sm:text-[7px] text-foreground/80 flex-1">Website Forms</span>
+          <div className="flex items-center gap-1.5 sm:gap-1">
+            <span className="text-[11px] sm:text-[8px] font-bold text-amber-400" style={{ opacity: 0, animation: 'attrCountUp3 8s ease-out forwards' }}>6</span>
+            <span className="text-[9px] sm:text-[6px] text-muted-foreground">leads</span>
           </div>
-          <div className="w-3 h-3 rounded-full bg-emerald-500/30 flex items-center justify-center" style={{ opacity: 0, animation: 'attrCheckPop3 8s ease-out forwards' }}>
-            <span className="text-[5px] text-emerald-400">✓</span>
+          <div className="w-4 h-4 sm:w-3 sm:h-3 rounded-full bg-emerald-500/30 flex items-center justify-center" style={{ opacity: 0, animation: 'attrCheckPop3 8s ease-out forwards' }}>
+            <span className="text-[7px] sm:text-[5px] text-emerald-400">✓</span>
           </div>
         </div>
         
         <div 
-          className="flex items-center gap-2 px-2 py-1.5 rounded-lg border bg-pink-500/20 border-pink-500/30"
+          className="flex items-center gap-3 sm:gap-2 px-3 sm:px-2 py-2 sm:py-1.5 rounded-lg border bg-pink-500/20 border-pink-500/30"
           style={{ opacity: 0, animation: 'attrSlideIn4 8s ease-out forwards' }}
         >
-          <Globe className="w-3 h-3 text-pink-400" />
-          <span className="text-[7px] text-foreground/80 flex-1">Social Media</span>
-          <div className="flex items-center gap-1">
-            <span className="text-[8px] font-bold text-pink-400" style={{ opacity: 0, animation: 'attrCountUp4 8s ease-out forwards' }}>5</span>
-            <span className="text-[6px] text-muted-foreground">leads</span>
+          <Globe className="w-4 h-4 sm:w-3 sm:h-3 text-pink-400" />
+          <span className="text-[10px] sm:text-[7px] text-foreground/80 flex-1">Social Media</span>
+          <div className="flex items-center gap-1.5 sm:gap-1">
+            <span className="text-[11px] sm:text-[8px] font-bold text-pink-400" style={{ opacity: 0, animation: 'attrCountUp4 8s ease-out forwards' }}>5</span>
+            <span className="text-[9px] sm:text-[6px] text-muted-foreground">leads</span>
           </div>
-          <div className="w-3 h-3 rounded-full bg-emerald-500/30 flex items-center justify-center" style={{ opacity: 0, animation: 'attrCheckPop4 8s ease-out forwards' }}>
-            <span className="text-[5px] text-emerald-400">✓</span>
+          <div className="w-4 h-4 sm:w-3 sm:h-3 rounded-full bg-emerald-500/30 flex items-center justify-center" style={{ opacity: 0, animation: 'attrCheckPop4 8s ease-out forwards' }}>
+            <span className="text-[7px] sm:text-[5px] text-emerald-400">✓</span>
           </div>
         </div>
       </div>
       
       {/* Total */}
       <div 
-        className="flex items-center justify-between mt-2 pt-2 border-t border-border/20"
+        className="flex items-center justify-between mt-3 sm:mt-2 pt-2 border-t border-border/20"
         style={{ opacity: 0, animation: 'attrTotalFade 8s ease-out forwards' }}
       >
-        <span className="text-[6px] text-muted-foreground">Total New Leads</span>
-        <span className="text-[9px] font-bold text-foreground">31 this quarter</span>
+        <span className="text-[9px] sm:text-[6px] text-muted-foreground">Total New Leads</span>
+        <span className="text-[12px] sm:text-[9px] font-bold text-foreground">31 this quarter</span>
       </div>
     </div>
   </div>
