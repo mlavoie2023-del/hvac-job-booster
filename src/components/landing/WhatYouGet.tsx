@@ -38,10 +38,10 @@ import lavoieLogo from "@/assets/lavoie-logo-square.png";
 
 // Animation duration in ms for each animation - tuned to when each animation actually finishes
 const ANIMATION_DURATIONS: { [key: string]: number } = {
-  // CRM - all use 8s animations
+  // CRM animations
   "Unified Inbox": 4500,           // 3 rows slide in by 2.1s + buffer
   "Contact Management": 4000,      // Last element at 3.1s + buffer
-  "Pipelines": 6000,               // 10s infinite but meaningful action by 80%
+  "Pipelines": 9000,               // 10s animation - S.Kim reaches Won at 80%
   
   // Lead Capture - shorter animations
   "Landing Pages": 4000,           // Cursor animation 3s
