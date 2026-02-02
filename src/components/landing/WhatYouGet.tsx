@@ -461,11 +461,48 @@ const LandingPageAnimation = () => (
               Book Discovery Call
             </div>
             
-            {/* Animated cursor */}
-            <div className="absolute -right-1 top-1 animate-[cursorClick_3s_ease-in-out_infinite]">
+            {/* Animated cursor - starts farther away */}
+            <div 
+              className="absolute"
+              style={{
+                animation: 'landingCursorMove 3s ease-in-out forwards',
+              }}
+            >
               <MousePointer className="w-3 h-3 text-foreground fill-foreground/30" />
             </div>
           </div>
+          
+          <style>{`
+            @keyframes landingCursorMove {
+              0% { 
+                opacity: 0;
+                right: -40px;
+                top: -20px;
+              }
+              20% {
+                opacity: 1;
+                right: -40px;
+                top: -20px;
+              }
+              50% {
+                opacity: 1;
+                right: -1px;
+                top: 1px;
+              }
+              60% {
+                transform: scale(0.9);
+              }
+              70% {
+                transform: scale(1);
+              }
+              100% {
+                opacity: 1;
+                right: -1px;
+                top: 1px;
+                transform: scale(1);
+              }
+            }
+          `}</style>
         </div>
         
         {/* Right - person silhouette placeholder */}
