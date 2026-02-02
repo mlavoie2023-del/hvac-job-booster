@@ -2707,6 +2707,10 @@ const WhatYouGet = () => {
   const [activeCategory, setActiveCategory] = useState<string>("crm");
   const [mobileCategoryIndex, setMobileCategoryIndex] = useState(0);
   const tabsContainerRef = useRef<HTMLDivElement>(null);
+  const sectionRef = useRef<HTMLElement>(null);
+  
+  // Track if section is in view to start animations
+  const [isInView, setIsInView] = useState(false);
   
   // Sequential animation tracking
   const [desktopAnimatingIndex, setDesktopAnimatingIndex] = useState(0);
@@ -2721,8 +2725,31 @@ const WhatYouGet = () => {
   // Get category IDs for cycling
   const categoryIds = categories.map(c => c.id);
   
+  // Intersection Observer to detect when section enters viewport
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && !isInView) {
+            setIsInView(true);
+          }
+        });
+      },
+      { threshold: 0.2 } // Trigger when 20% of section is visible
+    );
+    
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+    
+    return () => observer.disconnect();
+  }, [isInView]);
+  
   // Reset and sequence desktop animations when category changes, then auto-advance to next category
   useEffect(() => {
+    // Only start animations when section is in view
+    if (!isInView) return;
+    
     setDesktopAnimatingIndex(0);
     
     const currentCategoryData = categories.find(c => c.id === activeCategory);
@@ -2758,10 +2785,13 @@ const WhatYouGet = () => {
     return () => {
       timers.forEach(timer => clearTimeout(timer));
     };
-  }, [activeCategory]);
+  }, [activeCategory, isInView]);
 
   // Reset and sequence mobile animations when category changes, then auto-advance to next category
   useEffect(() => {
+    // Only start animations when section is in view
+    if (!isInView) return;
+    
     setMobileAnimatingIndex(0);
     
     const currentCategoryData = categories[mobileCategoryIndex];
@@ -2795,7 +2825,7 @@ const WhatYouGet = () => {
     return () => {
       timers.forEach(timer => clearTimeout(timer));
     };
-  }, [mobileCategoryIndex]);
+  }, [mobileCategoryIndex, isInView]);
 
   // Auto-scroll tabs when category changes
   useEffect(() => {
@@ -2838,7 +2868,7 @@ const WhatYouGet = () => {
   const activeData = categories.find(c => c.id === activeCategory);
 
   return (
-    <section id="features" className="relative py-20 lg:py-28 overflow-hidden">
+    <section ref={sectionRef} id="features" className="relative py-20 lg:py-28 overflow-hidden">
       
       <div className="section-container">
         {/* Section Header */}
