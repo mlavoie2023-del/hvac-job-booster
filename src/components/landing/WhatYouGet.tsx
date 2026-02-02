@@ -476,23 +476,23 @@ const LandingPageAnimation = () => (
             @keyframes landingCursorMove {
               0% { 
                 opacity: 0;
-                right: -40px;
-                top: -20px;
+                right: -80px;
+                top: -50px;
               }
-              20% {
+              15% {
                 opacity: 1;
-                right: -40px;
-                top: -20px;
+                right: -80px;
+                top: -50px;
               }
-              50% {
+              55% {
                 opacity: 1;
                 right: -1px;
                 top: 1px;
               }
-              60% {
-                transform: scale(0.9);
+              65% {
+                transform: scale(0.85);
               }
-              70% {
+              75% {
                 transform: scale(1);
               }
               100% {
