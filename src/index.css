@@ -450,39 +450,37 @@
       transform: translate(0, 0) scale(1);
       opacity: 0;
     }
-    35% {
+    40% {
       opacity: 1;
       transform: translate(0, 0) scale(1);
-    }
-    45% {
-      transform: translate(-2px, -2px) scale(0.9);
     }
     50% {
+      transform: translate(-2px, -2px) scale(0.9);
+    }
+    60% {
       transform: translate(0, 0) scale(1);
     }
-    70% {
-      opacity: 1;
-    }
     100% {
-      opacity: 0;
+      opacity: 1;
+      transform: translate(0, 0) scale(1);
     }
   }
 
   @keyframes typeText {
-    0%, 100% {
+    0% {
       width: 0;
       opacity: 0;
     }
     10% {
       opacity: 1;
     }
-    20%, 80% {
+    40% {
       width: 100%;
       opacity: 1;
     }
-    90%, 100% {
+    100% {
       width: 100%;
-      opacity: 0;
+      opacity: 1;
     }
   }
 
@@ -521,17 +519,14 @@
     0% {
       width: 0;
     }
-    5% {
+    10% {
       width: 0;
     }
-    50% {
-      width: 100%;
-    }
-    95% {
+    60% {
       width: 100%;
     }
     100% {
-      width: 0;
+      width: 100%;
     }
   }
 
@@ -539,11 +534,11 @@
     0%, 5% {
       max-width: 0;
     }
-    50%, 95% {
+    50% {
       max-width: 200px;
     }
     100% {
-      max-width: 0;
+      max-width: 200px;
     }
   }
 

@@ -132,9 +132,8 @@ const InboxAnimation = () => (
       <style>{`
         @keyframes inboxRowSlideIn {
           0% { opacity: 0; transform: translateX(-20px); }
-          6% { opacity: 1; transform: translateX(0); }
-          80% { opacity: 1; transform: translateX(0); }
-          90%, 100% { opacity: 0; transform: translateX(-20px); }
+          15% { opacity: 1; transform: translateX(0); }
+          100% { opacity: 1; transform: translateX(0); }
         }
       `}</style>
     </div>
@@ -216,30 +215,30 @@ const ContactAnimation = () => (
     <style>{`
       @keyframes contactReveal {
         0% { opacity: 0; transform: scale(0.95); }
-        8%, 80% { opacity: 1; transform: scale(1); }
-        92%, 100% { opacity: 0; transform: scale(0.95); }
+        15% { opacity: 1; transform: scale(1); }
+        100% { opacity: 1; transform: scale(1); }
       }
       @keyframes typeReveal {
         0% { opacity: 0; max-width: 0; }
-        8% { opacity: 1; max-width: 0; }
-        25%, 80% { opacity: 1; max-width: 200px; }
-        92%, 100% { opacity: 0; max-width: 200px; }
+        10% { opacity: 1; max-width: 0; }
+        40% { opacity: 1; max-width: 200px; }
+        100% { opacity: 1; max-width: 200px; }
       }
       @keyframes tagReveal {
         0% { opacity: 0; transform: scale(0.8); }
-        10%, 80% { opacity: 1; transform: scale(1); }
-        92%, 100% { opacity: 0; transform: scale(0.8); }
+        20% { opacity: 1; transform: scale(1); }
+        100% { opacity: 1; transform: scale(1); }
       }
       @keyframes dotPop {
         0% { opacity: 0; transform: scale(0); }
-        10%, 80% { opacity: 1; transform: scale(1); }
-        92%, 100% { opacity: 0; transform: scale(0); }
+        20% { opacity: 1; transform: scale(1); }
+        100% { opacity: 1; transform: scale(1); }
       }
       @keyframes goalReveal {
         0% { opacity: 0; max-width: 0; }
-        8% { opacity: 1; max-width: 0; }
-        30%, 80% { opacity: 1; max-width: 200px; }
-        92%, 100% { opacity: 0; max-width: 200px; }
+        10% { opacity: 1; max-width: 0; }
+        50% { opacity: 1; max-width: 200px; }
+        100% { opacity: 1; max-width: 200px; }
       }
     `}</style>
   </div>
@@ -603,39 +602,48 @@ const WorkflowAnimation = () => (
     <style>{`
       @keyframes stepComplete1 {
         0%, 10% { opacity: 0.4; }
-        15%, 100% { opacity: 1; }
+        20% { opacity: 1; }
+        100% { opacity: 1; }
       }
       @keyframes stepCheck1 {
-        0%, 12% { opacity: 0; transform: scale(0); }
-        18%, 100% { opacity: 1; transform: scale(1); }
+        0%, 15% { opacity: 0; transform: scale(0); }
+        25% { opacity: 1; transform: scale(1); }
+        100% { opacity: 1; transform: scale(1); }
       }
       @keyframes stepComplete2 {
         0%, 30% { opacity: 0.4; }
-        35%, 100% { opacity: 1; }
+        40% { opacity: 1; }
+        100% { opacity: 1; }
       }
       @keyframes stepCheck2 {
-        0%, 32% { opacity: 0; transform: scale(0); }
-        38%, 100% { opacity: 1; transform: scale(1); }
+        0%, 35% { opacity: 0; transform: scale(0); }
+        45% { opacity: 1; transform: scale(1); }
+        100% { opacity: 1; transform: scale(1); }
       }
       @keyframes stepComplete3 {
         0%, 50% { opacity: 0.4; }
-        55%, 100% { opacity: 1; }
+        60% { opacity: 1; }
+        100% { opacity: 1; }
       }
       @keyframes stepCheck3 {
-        0%, 52% { opacity: 0; transform: scale(0); }
-        58%, 100% { opacity: 1; transform: scale(1); }
+        0%, 55% { opacity: 0; transform: scale(0); }
+        65% { opacity: 1; transform: scale(1); }
+        100% { opacity: 1; transform: scale(1); }
       }
       @keyframes stepComplete4 {
         0%, 70% { opacity: 0.4; }
-        75%, 100% { opacity: 1; }
+        80% { opacity: 1; }
+        100% { opacity: 1; }
       }
       @keyframes stepCheck4 {
-        0%, 72% { opacity: 0; transform: scale(0); }
-        78%, 100% { opacity: 1; transform: scale(1); }
+        0%, 75% { opacity: 0; transform: scale(0); }
+        85% { opacity: 1; transform: scale(1); }
+        100% { opacity: 1; transform: scale(1); }
       }
       @keyframes progressFill {
         0% { width: 0; }
-        80%, 100% { width: 100%; }
+        90% { width: 100%; }
+        100% { width: 100%; }
       }
     `}</style>
     <div className="w-full bg-card/50 rounded-lg border border-border/50 p-2">
@@ -706,31 +714,38 @@ const AppointmentRemindersAnimation = () => (
     <style>{`
       @keyframes reminderNode1 {
         0%, 10% { opacity: 0.3; transform: scale(0.95); }
-        15%, 100% { opacity: 1; transform: scale(1); }
+        20% { opacity: 1; transform: scale(1); }
+        100% { opacity: 1; transform: scale(1); }
       }
       @keyframes reminderCheck1 {
-        0%, 15% { opacity: 0; transform: scale(0); }
-        20%, 100% { opacity: 1; transform: scale(1); }
+        0%, 18% { opacity: 0; transform: scale(0); }
+        28% { opacity: 1; transform: scale(1); }
+        100% { opacity: 1; transform: scale(1); }
       }
       @keyframes reminderNode2 {
         0%, 35% { opacity: 0.3; transform: scale(0.95); }
-        40%, 100% { opacity: 1; transform: scale(1); }
+        45% { opacity: 1; transform: scale(1); }
+        100% { opacity: 1; transform: scale(1); }
       }
       @keyframes reminderCheck2 {
-        0%, 40% { opacity: 0; transform: scale(0); }
-        45%, 100% { opacity: 1; transform: scale(1); }
+        0%, 43% { opacity: 0; transform: scale(0); }
+        53% { opacity: 1; transform: scale(1); }
+        100% { opacity: 1; transform: scale(1); }
       }
       @keyframes reminderNode3 {
         0%, 60% { opacity: 0.3; transform: scale(0.95); }
-        65%, 100% { opacity: 1; transform: scale(1); }
+        70% { opacity: 1; transform: scale(1); }
+        100% { opacity: 1; transform: scale(1); }
       }
       @keyframes reminderCheck3 {
-        0%, 65% { opacity: 0; transform: scale(0); }
-        70%, 100% { opacity: 1; transform: scale(1); }
+        0%, 68% { opacity: 0; transform: scale(0); }
+        78% { opacity: 1; transform: scale(1); }
+        100% { opacity: 1; transform: scale(1); }
       }
       @keyframes timelineFill {
         0% { height: 0; }
-        70%, 100% { height: 100%; }
+        80% { height: 100%; }
+        100% { height: 100%; }
       }
     `}</style>
     <div className="w-full bg-card/50 rounded-lg border border-border/50 p-3">
@@ -818,19 +833,23 @@ const ReferralRequestsAnimation = () => (
     <style>{`
       @keyframes referralSend {
         0%, 10% { opacity: 0; transform: translateX(-10px); }
-        20%, 100% { opacity: 1; transform: translateX(0); }
+        25% { opacity: 1; transform: translateX(0); }
+        100% { opacity: 1; transform: translateX(0); }
       }
       @keyframes referralForm {
         0%, 30% { opacity: 0; transform: translateY(5px); }
-        40%, 100% { opacity: 1; transform: translateY(0); }
+        50% { opacity: 1; transform: translateY(0); }
+        100% { opacity: 1; transform: translateY(0); }
       }
       @keyframes referralSuccess {
         0%, 55% { opacity: 0; transform: scale(0.8); }
-        65%, 100% { opacity: 1; transform: scale(1); }
+        70% { opacity: 1; transform: scale(1); }
+        100% { opacity: 1; transform: scale(1); }
       }
       @keyframes referralCount {
         0%, 70% { opacity: 0; }
-        80%, 100% { opacity: 1; }
+        85% { opacity: 1; }
+        100% { opacity: 1; }
       }
     `}</style>
     <div className="w-full bg-card/50 rounded-lg border border-border/50 p-3">
@@ -966,8 +985,9 @@ const SocialAnimation = () => (
   <div className="relative h-40 flex items-center justify-center p-3">
     <style>{`
       @keyframes aiTyping {
-        0%, 100% { width: 0; }
-        20%, 80% { width: 100%; }
+        0% { width: 0; }
+        30% { width: 100%; }
+        100% { width: 100%; }
       }
       @keyframes cursorBlink {
         0%, 50% { opacity: 1; }
@@ -975,21 +995,24 @@ const SocialAnimation = () => (
       }
       @keyframes sendButtonPulse {
         0%, 70% { transform: scale(1); background: rgba(59, 130, 246, 0.3); }
-        75% { transform: scale(1.1); background: rgba(59, 130, 246, 0.6); }
-        80%, 100% { transform: scale(1); background: rgba(16, 185, 129, 0.4); }
+        80% { transform: scale(1.1); background: rgba(59, 130, 246, 0.6); }
+        90% { transform: scale(1); background: rgba(16, 185, 129, 0.4); }
+        100% { transform: scale(1); background: rgba(16, 185, 129, 0.4); }
       }
       @keyframes sendCheck {
-        0%, 75% { opacity: 0; transform: scale(0); }
-        80%, 100% { opacity: 1; transform: scale(1); }
+        0%, 80% { opacity: 0; transform: scale(0); }
+        90% { opacity: 1; transform: scale(1); }
+        100% { opacity: 1; transform: scale(1); }
       }
       @keyframes sendArrow {
-        0%, 75% { opacity: 1; }
-        80%, 100% { opacity: 0; }
+        0%, 80% { opacity: 1; }
+        90% { opacity: 0; }
+        100% { opacity: 0; }
       }
       @keyframes platformNotify {
         0%, 80% { opacity: 0; transform: translateY(4px); }
-        85%, 95% { opacity: 1; transform: translateY(0); }
-        100% { opacity: 0; transform: translateY(-4px); }
+        90% { opacity: 1; transform: translateY(0); }
+        100% { opacity: 1; transform: translateY(0); }
       }
     `}</style>
     <div className="w-full bg-card/30 rounded-lg border border-border/30 p-3">
@@ -1097,13 +1120,13 @@ const DashboardAnimation = () => (
     <style>{`
       @keyframes lineReveal {
         0%, 5% { stroke-dashoffset: 200; }
-        40%, 95% { stroke-dashoffset: 0; }
-        100% { stroke-dashoffset: 200; }
+        50% { stroke-dashoffset: 0; }
+        100% { stroke-dashoffset: 0; }
       }
       @keyframes dotPop {
         0%, 20% { opacity: 0; transform: scale(0); }
-        30%, 90% { opacity: 1; transform: scale(1); }
-        100% { opacity: 0; transform: scale(0); }
+        40% { opacity: 1; transform: scale(1); }
+        100% { opacity: 1; transform: scale(1); }
       }
     `}</style>
     <div className="w-full bg-card/30 rounded-lg border border-border/30 p-3">
@@ -1230,23 +1253,23 @@ const AttributionAnimation = () => (
     <style>{`
       @keyframes attrSlideIn {
         0%, 2% { opacity: 0; transform: translateX(-20px); }
-        8%, 85% { opacity: 1; transform: translateX(0); }
-        92%, 100% { opacity: 0; transform: translateX(-20px); }
+        15% { opacity: 1; transform: translateX(0); }
+        100% { opacity: 1; transform: translateX(0); }
       }
       @keyframes attrCountUp {
         0%, 10% { opacity: 0; }
-        15%, 85% { opacity: 1; }
-        92%, 100% { opacity: 0; }
+        25% { opacity: 1; }
+        100% { opacity: 1; }
       }
       @keyframes attrCheckPop {
-        0%, 12% { opacity: 0; transform: scale(0); }
-        18%, 85% { opacity: 1; transform: scale(1); }
-        92%, 100% { opacity: 0; transform: scale(0); }
+        0%, 15% { opacity: 0; transform: scale(0); }
+        30% { opacity: 1; transform: scale(1); }
+        100% { opacity: 1; transform: scale(1); }
       }
       @keyframes attrTotalFade {
         0%, 50% { opacity: 0; }
-        58%, 85% { opacity: 1; }
-        92%, 100% { opacity: 0; }
+        70% { opacity: 1; }
+        100% { opacity: 1; }
       }
     `}</style>
     <div className="w-full bg-card/30 rounded-lg border border-border/30 p-3">
@@ -1572,8 +1595,8 @@ const MobileNotificationsAnimation = () => (
     <style>{`
       @keyframes notifSlideDown {
         0%, 5% { opacity: 0; transform: translateY(-6px); }
-        15%, 70% { opacity: 1; transform: translateY(0); }
-        85%, 100% { opacity: 0; transform: translateY(-6px); }
+        20% { opacity: 1; transform: translateY(0); }
+        100% { opacity: 1; transform: translateY(0); }
       }
     `}</style>
   </div>
@@ -1635,13 +1658,13 @@ const MobileConversationsAnimation = () => (
     <style>{`
       @keyframes msgSlide {
         0%, 5% { opacity: 0; transform: translateY(4px); }
-        12%, 75% { opacity: 1; transform: translateY(0); }
-        85%, 100% { opacity: 0; transform: translateY(4px); }
+        20% { opacity: 1; transform: translateY(0); }
+        100% { opacity: 1; transform: translateY(0); }
       }
       @keyframes replyType {
         0%, 35% { opacity: 0; }
-        45%, 75% { opacity: 1; }
-        85%, 100% { opacity: 0; }
+        55% { opacity: 1; }
+        100% { opacity: 1; }
       }
     `}</style>
   </div>
@@ -1769,38 +1792,37 @@ const MobilePipelineAnimation = () => (
     <style>{`
       @keyframes stageActive1 {
         0%, 30% { background: hsl(217 91% 60% / 0.3); color: white; }
-        33.33%, 100% { background: transparent; color: hsl(0 0% 60%); }
+        35% { background: transparent; color: hsl(0 0% 60%); }
+        100% { background: transparent; color: hsl(0 0% 60%); }
       }
       @keyframes stageActive2 {
-        0%, 33.32% { background: transparent; color: hsl(0 0% 60%); }
-        33.33%, 63.33% { background: hsl(217 91% 60% / 0.3); color: white; }
-        66.66%, 100% { background: transparent; color: hsl(0 0% 60%); }
+        0%, 33% { background: transparent; color: hsl(0 0% 60%); }
+        38%, 63% { background: hsl(217 91% 60% / 0.3); color: white; }
+        68% { background: transparent; color: hsl(0 0% 60%); }
+        100% { background: transparent; color: hsl(0 0% 60%); }
       }
       @keyframes stageActive3 {
-        0%, 66.65% { background: transparent; color: hsl(0 0% 60%); }
-        66.66%, 96.66% { background: hsl(217 91% 60% / 0.3); color: white; }
-        100% { background: transparent; color: hsl(0 0% 60%); }
+        0%, 66% { background: transparent; color: hsl(0 0% 60%); }
+        71% { background: hsl(217 91% 60% / 0.3); color: white; }
+        100% { background: hsl(217 91% 60% / 0.3); color: white; }
       }
       @keyframes stageSwipe1 {
         0% { opacity: 1; transform: translateX(0); }
         30% { opacity: 1; transform: translateX(0); }
-        33.33% { opacity: 0; transform: translateX(-100%); }
+        35% { opacity: 0; transform: translateX(-100%); }
         100% { opacity: 0; transform: translateX(-100%); }
       }
       @keyframes stageSwipe2 {
-        0%, 33.32% { opacity: 0; transform: translateX(100%); }
-        33.33% { opacity: 0; transform: translateX(100%); }
-        36% { opacity: 1; transform: translateX(0); }
-        63.33% { opacity: 1; transform: translateX(0); }
-        66.66% { opacity: 0; transform: translateX(-100%); }
+        0%, 33% { opacity: 0; transform: translateX(100%); }
+        38% { opacity: 1; transform: translateX(0); }
+        63% { opacity: 1; transform: translateX(0); }
+        68% { opacity: 0; transform: translateX(-100%); }
         100% { opacity: 0; transform: translateX(-100%); }
       }
       @keyframes stageSwipe3 {
-        0%, 66.65% { opacity: 0; transform: translateX(100%); }
-        66.66% { opacity: 0; transform: translateX(100%); }
-        69% { opacity: 1; transform: translateX(0); }
-        96.66% { opacity: 1; transform: translateX(0); }
-        100% { opacity: 0; transform: translateX(0); }
+        0%, 66% { opacity: 0; transform: translateX(100%); }
+        71% { opacity: 1; transform: translateX(0); }
+        100% { opacity: 1; transform: translateX(0); }
       }
     `}</style>
   </div>
