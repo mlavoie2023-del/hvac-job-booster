@@ -35,7 +35,7 @@ const features = [
 
 const DoneForYou = () => {
   return (
-    <section className="relative py-20 lg:py-28 bg-muted/30">
+    <section className="relative py-20 lg:py-28">
       <div className="section-container">
         <div className="mx-auto max-w-5xl">
           {/* Header */}
