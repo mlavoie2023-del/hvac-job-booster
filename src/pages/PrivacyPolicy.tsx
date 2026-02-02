@@ -34,9 +34,9 @@ const PrivacyPolicy = () => {
             <section>
               <h2 className="text-2xl font-semibold">1. Information We Collect</h2>
               <p className="mt-4 text-muted-foreground">
-                We collect information you provide directly to us, such as when you create an account, 
-                use our services, or contact us for support. This may include your name, email address, 
-                phone number, business information, and any other information you choose to provide.
+                We collect information you provide directly to us, such as when you inquire about our services, 
+                sign up for a subscription, or contact us for support. This may include your name, email address, 
+                phone number, business information, payment details, and any other information you choose to provide.
               </p>
             </section>
 
@@ -44,8 +44,8 @@ const PrivacyPolicy = () => {
               <h2 className="text-2xl font-semibold">2. How We Use Your Information</h2>
               <p className="mt-4 text-muted-foreground">
                 We use the information we collect to provide, maintain, and improve our services, 
-                process transactions, send you technical notices and support messages, and respond 
-                to your comments and questions.
+                process payments and transactions, send you technical notices and support messages, 
+                communicate about your subscription, and respond to your comments and questions.
               </p>
             </section>
 

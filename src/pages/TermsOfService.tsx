@@ -49,28 +49,34 @@ const TermsOfService = () => {
             </section>
 
             <section>
-              <h2 className="text-2xl font-semibold">3. Free Trial</h2>
+              <h2 className="text-2xl font-semibold">3. Setup Fee and Subscription</h2>
               <p className="mt-4 text-muted-foreground">
-                We offer a 14-day free trial after a 7-day build period. You may cancel at any time 
-                during the trial period without being charged. After the trial period, your subscription 
-                will automatically begin unless you cancel.
+                Our service requires a one-time setup fee of $1,997, payable upfront before your custom 
+                system build begins. This fee covers the initial configuration, customization, and deployment 
+                of your AI-powered system. The setup fee is waived if you prepay for 3 months of service.
+              </p>
+              <p className="mt-4 text-muted-foreground">
+                Following setup, you will be billed $497 per month on a recurring basis. There are no 
+                long-term contracts—you may cancel anytime after the initial 90-day period.
               </p>
             </section>
 
             <section>
               <h2 className="text-2xl font-semibold">4. Payment Terms</h2>
               <p className="mt-4 text-muted-foreground">
-                Subscription fees are billed on a recurring basis. You authorize us to charge your 
-                payment method for all fees due. All fees are non-refundable except as expressly 
-                stated in these terms.
+                The setup fee is due in full before work begins on your system. Subscription fees are 
+                billed monthly in advance. You authorize us to charge your payment method for all fees 
+                due. All fees are non-refundable except as expressly stated in these terms.
               </p>
             </section>
 
             <section>
               <h2 className="text-2xl font-semibold">5. Cancellation</h2>
               <p className="mt-4 text-muted-foreground">
-                You may cancel your subscription at any time. Cancellation will take effect at the end 
-                of your current billing period. No refunds will be provided for partial billing periods.
+                You may cancel your subscription at any time after the initial 90-day period. Cancellation 
+                will take effect at the end of your current billing period. No refunds will be provided 
+                for the setup fee or partial billing periods. If you cancel within the first 90 days, 
+                you remain responsible for the full 90-day commitment.
               </p>
             </section>
 
