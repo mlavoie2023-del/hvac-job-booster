@@ -75,7 +75,7 @@ const DoneForYou = () => {
           {/* CTA */}
           <div className="mt-12 text-center">
             <p className="text-muted-foreground text-sm mb-6">
-              You focus on your clients. I'll handle the tech.
+              You focus on your clients. I'll handle the backend.
             </p>
             <a 
               href="/book" 
