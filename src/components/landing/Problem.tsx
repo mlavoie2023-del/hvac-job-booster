@@ -16,7 +16,7 @@ const Problem = () => {
         <div className="mx-auto max-w-4xl">
           {/* Main headline */}
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-foreground text-center leading-tight">
-            Running a solo practice is more than just <span className="gradient-text">financial planning</span>
+            Running a <span className="gradient-text">solo</span> practice is more than just financial planning
           </h2>
 
           {/* Pain points as a flowing list */}
