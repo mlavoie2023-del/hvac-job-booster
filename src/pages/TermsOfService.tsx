@@ -51,37 +51,46 @@ const TermsOfService = () => {
             <section>
               <h2 className="text-2xl font-semibold">3. Setup Fee and Subscription</h2>
               <p className="mt-4 text-muted-foreground">
-                Our service requires a one-time setup fee of $1,997, payable upfront before your custom 
-                system build begins. This fee covers the initial configuration, customization, and deployment 
-                of your AI-powered system. The setup fee is waived if you prepay for 3 months of service.
-              </p>
-              <p className="mt-4 text-muted-foreground">
-                Following setup, you will be billed $497 per month on a recurring basis. There are no 
-                long-term contracts—you may cancel anytime after the initial 90-day period.
+                Our service requires a one-time setup fee, payable upfront before your custom system 
+                build begins. This fee covers the initial configuration, customization, and deployment 
+                of your system. Following setup, you will be billed a recurring monthly subscription 
+                fee for continued access to and use of the services.
               </p>
             </section>
 
             <section>
-              <h2 className="text-2xl font-semibold">4. Payment Terms</h2>
+              <h2 className="text-2xl font-semibold">4. Usage-Based Charges</h2>
+              <p className="mt-4 text-muted-foreground">
+                In addition to your monthly subscription, certain services incur usage-based charges 
+                that are billed separately. These include, but are not limited to, SMS messaging, email 
+                sending, AI-powered features, and other third-party services utilized through our platform. 
+                Usage charges will be calculated based on your actual consumption and billed in accordance 
+                with our current rate schedule, which may be updated from time to time.
+              </p>
+            </section>
+
+            <section>
+              <h2 className="text-2xl font-semibold">5. Payment Terms</h2>
               <p className="mt-4 text-muted-foreground">
                 The setup fee is due in full before work begins on your system. Subscription fees are 
-                billed monthly in advance. You authorize us to charge your payment method for all fees 
-                due. All fees are non-refundable except as expressly stated in these terms.
+                billed monthly in advance. Usage-based charges are billed in arrears based on your 
+                consumption during the billing period. You authorize us to charge your payment method 
+                for all fees due. All fees are non-refundable except as expressly stated in these terms.
               </p>
             </section>
 
             <section>
-              <h2 className="text-2xl font-semibold">5. Cancellation</h2>
+              <h2 className="text-2xl font-semibold">6. Cancellation</h2>
               <p className="mt-4 text-muted-foreground">
-                You may cancel your subscription at any time after the initial 90-day period. Cancellation 
-                will take effect at the end of your current billing period. No refunds will be provided 
-                for the setup fee or partial billing periods. If you cancel within the first 90 days, 
-                you remain responsible for the full 90-day commitment.
+                You may cancel your subscription at any time. Cancellation will take effect at the end 
+                of your current billing period. No refunds will be provided for the setup fee, unused 
+                subscription time, or partial billing periods. You remain responsible for any outstanding 
+                usage-based charges incurred prior to cancellation.
               </p>
             </section>
 
             <section>
-              <h2 className="text-2xl font-semibold">6. Limitation of Liability</h2>
+              <h2 className="text-2xl font-semibold">7. Limitation of Liability</h2>
               <p className="mt-4 text-muted-foreground">
                 Lavoie Systems shall not be liable for any indirect, incidental, special, consequential, 
                 or punitive damages resulting from your use of or inability to use our services.
@@ -89,7 +98,7 @@ const TermsOfService = () => {
             </section>
 
             <section>
-              <h2 className="text-2xl font-semibold">7. Changes to Terms</h2>
+              <h2 className="text-2xl font-semibold">8. Changes to Terms</h2>
               <p className="mt-4 text-muted-foreground">
                 We reserve the right to modify these terms at any time. We will notify you of any 
                 material changes by posting the new terms on our website. Your continued use of our 
@@ -98,7 +107,7 @@ const TermsOfService = () => {
             </section>
 
             <section>
-              <h2 className="text-2xl font-semibold">8. Contact Us</h2>
+              <h2 className="text-2xl font-semibold">9. Contact Us</h2>
               <p className="mt-4 text-muted-foreground">
                 If you have any questions about these Terms of Service, please contact us at{" "}
                 <a href="mailto:support@mail.lavoiesystems.com" className="text-primary hover:underline">
