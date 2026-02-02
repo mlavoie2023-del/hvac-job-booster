@@ -2203,16 +2203,20 @@ const WhatYouGet = () => {
                               <p className="text-body leading-relaxed text-base">{feature.description}</p>
                             </div>
                             
-                            {/* Animation area - paused when waiting */}
+                            {/* Animation area - only plays when it's this feature's turn */}
                             <div className="w-56 lg:w-72 flex-shrink-0 bg-muted/30 rounded-xl overflow-hidden border border-border/30">
-                              <div 
-                                className={cn(
-                                  "transform scale-110 origin-center transition-all duration-500",
-                                  isWaiting && "[&_*]:[animation-play-state:paused]"
-                                )}
-                              >
-                                {feature.animation}
-                              </div>
+                              {!isWaiting ? (
+                                <div 
+                                  key={`anim-${activeCategory}-${index}-${desktopAnimatingIndex >= index}`}
+                                  className="transform scale-110 origin-center"
+                                >
+                                  {feature.animation}
+                                </div>
+                              ) : (
+                                <div className="h-40 flex items-center justify-center">
+                                  <div className="text-muted-foreground/30 text-xs">Waiting...</div>
+                                </div>
+                              )}
                             </div>
                           </div>
                         </div>
@@ -2298,16 +2302,20 @@ const WhatYouGet = () => {
                                 isAnimating && "ring-1 ring-primary/30"
                               )}
                             >
-                              {/* Animation - scaled down for mobile, paused when waiting */}
+                              {/* Animation - scaled down for mobile, only plays when it's this feature's turn */}
                               <div className="mb-2 bg-muted/20 rounded-md overflow-hidden h-24">
-                                <div 
-                                  className={cn(
-                                    "transform scale-[0.6] origin-top-left w-[166.67%] h-[166.67%]",
-                                    isWaiting && "[&_*]:[animation-play-state:paused]"
-                                  )}
-                                >
-                                  {feature.animation}
-                                </div>
+                                {!isWaiting ? (
+                                  <div 
+                                    key={`anim-mobile-${category.id}-${featureIndex}-${mobileAnimatingIndex >= featureIndex}`}
+                                    className="transform scale-[0.6] origin-top-left w-[166.67%] h-[166.67%]"
+                                  >
+                                    {feature.animation}
+                                  </div>
+                                ) : (
+                                  <div className="h-full flex items-center justify-center">
+                                    <div className="text-muted-foreground/20 text-[10px]">Waiting...</div>
+                                  </div>
+                                )}
                               </div>
                               
                               {/* Content - compact */}
