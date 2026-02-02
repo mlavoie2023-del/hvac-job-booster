@@ -1215,40 +1215,45 @@ const SMSAnimation = () => (
 );
 
 const SocialAnimation = () => (
-  <div className="relative h-40 flex items-center justify-center p-3">
+  <div className="relative h-40 flex items-center justify-center p-3 overflow-hidden">
     <style>{`
-      @keyframes aiTyping {
+      @keyframes socialAiTyping {
         0% { width: 0; }
-        30% { width: 100%; }
+        25% { width: 100%; }
         100% { width: 100%; }
       }
-      @keyframes cursorBlink {
+      @keyframes socialCursorBlink {
         0%, 50% { opacity: 1; }
         51%, 100% { opacity: 0; }
       }
-      @keyframes sendButtonPulse {
-        0%, 70% { transform: scale(1); background: rgba(59, 130, 246, 0.3); }
-        80% { transform: scale(1.1); background: rgba(59, 130, 246, 0.6); }
-        90% { transform: scale(1); background: rgba(16, 185, 129, 0.4); }
-        100% { transform: scale(1); background: rgba(16, 185, 129, 0.4); }
+      @keyframes socialPostClick {
+        0%, 35% { transform: scale(1); background: rgba(59, 130, 246, 0.3); }
+        40% { transform: scale(0.95); background: rgba(59, 130, 246, 0.6); }
+        45%, 100% { transform: scale(1); background: rgba(16, 185, 129, 0.4); }
       }
-      @keyframes sendCheck {
-        0%, 80% { opacity: 0; transform: scale(0); }
-        90% { opacity: 1; transform: scale(1); }
-        100% { opacity: 1; transform: scale(1); }
+      @keyframes socialCheckAppear {
+        0%, 40% { opacity: 0; transform: scale(0); }
+        50%, 100% { opacity: 1; transform: scale(1); }
       }
-      @keyframes sendArrow {
-        0%, 80% { opacity: 1; }
-        90% { opacity: 0; }
-        100% { opacity: 0; }
+      @keyframes socialArrowHide {
+        0%, 40% { opacity: 1; }
+        50%, 100% { opacity: 0; }
       }
-      @keyframes platformNotify {
-        0%, 80% { opacity: 0; transform: translateY(4px); }
-        90% { opacity: 1; transform: translateY(0); }
-        100% { opacity: 1; transform: translateY(0); }
+      @keyframes socialDraftFadeOut {
+        0%, 50% { opacity: 1; transform: translateY(0); }
+        60%, 100% { opacity: 0; transform: translateY(-10px); }
+      }
+      @keyframes socialPostFadeIn {
+        0%, 55% { opacity: 0; transform: translateY(10px); }
+        70%, 100% { opacity: 1; transform: translateY(0); }
       }
     `}</style>
-    <div className="w-full bg-card/30 rounded-lg border border-border/30 p-3">
+    
+    {/* Draft view - fades out */}
+    <div 
+      className="absolute inset-3 w-[calc(100%-24px)] bg-card/30 rounded-lg border border-border/30 p-3"
+      style={{ animation: 'socialDraftFadeOut 8s ease-in-out forwards' }}
+    >
       {/* Header */}
       <div className="flex items-center gap-1.5 mb-2">
         <div className="w-4 h-4 rounded bg-gradient-to-br from-violet-500 to-primary flex items-center justify-center">
@@ -1262,13 +1267,13 @@ const SocialAnimation = () => (
         <div className="relative overflow-hidden">
           <div 
             className="text-[7px] text-foreground/80 whitespace-nowrap overflow-hidden"
-            style={{ animation: 'aiTyping 6s ease-in-out infinite' }}
+            style={{ animation: 'socialAiTyping 8s ease-in-out forwards' }}
           >
-            Planning for retirement? Here are 5 key strategies every pre-retiree should know...
+            Planning for retirement? Here are 5 key strategies...
           </div>
           <div 
             className="absolute right-0 top-0 w-0.5 h-3 bg-primary"
-            style={{ animation: 'cursorBlink 0.8s step-end infinite' }}
+            style={{ animation: 'socialCursorBlink 0.8s step-end infinite' }}
           />
         </div>
         <div className="flex items-center gap-1 mt-1.5">
@@ -1282,66 +1287,73 @@ const SocialAnimation = () => (
       {/* Action Bar */}
       <div className="flex items-center justify-between">
         <div className="flex gap-1">
-          {/* LinkedIn */}
-          <div className="relative px-1.5 py-0.5 bg-blue-500/10 rounded border border-blue-500/20 flex items-center gap-1">
+          <div className="px-1.5 py-0.5 bg-blue-500/10 rounded border border-blue-500/20 flex items-center gap-1">
             <svg className="w-2 h-2 text-blue-400" viewBox="0 0 24 24" fill="currentColor">
               <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
             </svg>
             <span className="text-[5px] text-blue-400">LinkedIn</span>
-            <div 
-              className="absolute -top-1 -right-1 w-2 h-2 bg-emerald-500 rounded-full flex items-center justify-center"
-              style={{ animation: 'platformNotify 6s ease-in-out infinite', animationDelay: '0s' }}
-            >
-              <span className="text-[4px] text-white">✓</span>
-            </div>
-          </div>
-          
-          {/* Facebook */}
-          <div className="relative px-1.5 py-0.5 bg-blue-500/10 rounded border border-blue-500/20 flex items-center gap-1">
-            <svg className="w-2 h-2 text-blue-400" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
-            </svg>
-            <span className="text-[5px] text-blue-400">Facebook</span>
-            <div 
-              className="absolute -top-1 -right-1 w-2 h-2 bg-emerald-500 rounded-full flex items-center justify-center"
-              style={{ animation: 'platformNotify 6s ease-in-out infinite', animationDelay: '0.1s' }}
-            >
-              <span className="text-[4px] text-white">✓</span>
-            </div>
-          </div>
-          
-          {/* Instagram */}
-          <div className="relative px-1.5 py-0.5 bg-blue-500/10 rounded border border-blue-500/20 flex items-center gap-1">
-            <svg className="w-2 h-2 text-blue-400" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
-            </svg>
-            <span className="text-[5px] text-blue-400">Instagram</span>
-            <div 
-              className="absolute -top-1 -right-1 w-2 h-2 bg-emerald-500 rounded-full flex items-center justify-center"
-              style={{ animation: 'platformNotify 6s ease-in-out infinite', animationDelay: '0.2s' }}
-            >
-              <span className="text-[4px] text-white">✓</span>
-            </div>
           </div>
         </div>
         
-        {/* Send Button */}
+        {/* Post Button */}
         <div 
-          className="px-2 py-1 rounded-lg border border-primary/40 flex items-center gap-1 cursor-pointer"
-          style={{ animation: 'sendButtonPulse 6s ease-in-out infinite' }}
+          className="px-2 py-1 rounded-lg border border-primary/40 flex items-center gap-1"
+          style={{ animation: 'socialPostClick 8s ease-in-out forwards' }}
         >
           <span className="text-[6px] font-medium text-primary">Post</span>
           <div className="relative w-2.5 h-2.5">
             <span 
               className="absolute inset-0 flex items-center justify-center text-[6px] text-primary"
-              style={{ animation: 'sendArrow 6s ease-in-out infinite' }}
+              style={{ animation: 'socialArrowHide 8s ease-in-out forwards' }}
             >→</span>
             <span 
               className="absolute inset-0 flex items-center justify-center text-[6px] text-emerald-400"
-              style={{ animation: 'sendCheck 6s ease-in-out infinite' }}
+              style={{ animation: 'socialCheckAppear 8s ease-in-out forwards' }}
             >✓</span>
           </div>
         </div>
+      </div>
+    </div>
+    
+    {/* LinkedIn Post Preview - fades in as final state */}
+    <div 
+      className="absolute inset-3 w-[calc(100%-24px)] bg-card/50 rounded-lg border border-border/50 p-2"
+      style={{ opacity: 0, animation: 'socialPostFadeIn 8s ease-in-out forwards' }}
+    >
+      {/* LinkedIn Header */}
+      <div className="flex items-center gap-2 mb-2 pb-2 border-b border-border/30">
+        <svg className="w-4 h-4 text-blue-500" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+        </svg>
+        <div>
+          <div className="text-[7px] font-semibold text-foreground">Your Financial Planning</div>
+          <div className="text-[5px] text-muted-foreground">Just now • 🌐</div>
+        </div>
+        <div className="ml-auto px-1.5 py-0.5 bg-emerald-500/20 rounded border border-emerald-500/30">
+          <span className="text-[5px] text-emerald-400 font-medium">Posted ✓</span>
+        </div>
+      </div>
+      
+      {/* Post Content */}
+      <div className="text-[6px] text-foreground/80 leading-relaxed mb-2">
+        Planning for retirement? Here are 5 key strategies every pre-retiree should know...
+      </div>
+      
+      {/* Engagement Stats */}
+      <div className="flex items-center gap-3 pt-2 border-t border-border/30">
+        <div className="flex items-center gap-1">
+          <div className="flex -space-x-1">
+            <div className="w-3 h-3 rounded-full bg-blue-500 flex items-center justify-center">
+              <span className="text-[4px]">👍</span>
+            </div>
+            <div className="w-3 h-3 rounded-full bg-red-500 flex items-center justify-center">
+              <span className="text-[4px]">❤️</span>
+            </div>
+          </div>
+          <span className="text-[5px] text-muted-foreground">24</span>
+        </div>
+        <span className="text-[5px] text-muted-foreground">5 comments</span>
+        <span className="text-[5px] text-muted-foreground">3 reposts</span>
       </div>
     </div>
   </div>
