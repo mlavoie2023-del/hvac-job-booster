@@ -539,7 +539,29 @@ const PipelineScreen = () => (
 
 const MobileApp = () => {
   const [activeFeature, setActiveFeature] = useState(0);
+  const [isInView, setIsInView] = useState(false);
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
+  const sectionRef = useRef<HTMLElement>(null);
+  
+  // Intersection Observer to detect when section enters viewport
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && !isInView) {
+            setIsInView(true);
+          }
+        });
+      },
+      { threshold: 0.2 } // Trigger when 20% of section is visible
+    );
+    
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+    
+    return () => observer.disconnect();
+  }, [isInView]);
   
   const startTimer = useCallback(() => {
     if (intervalRef.current) {
@@ -550,15 +572,17 @@ const MobileApp = () => {
     }, 6000);
   }, []);
   
-  // Auto-cycle through features
+  // Auto-cycle through features - only when in view
   useEffect(() => {
+    if (!isInView) return;
+    
     startTimer();
     return () => {
       if (intervalRef.current) {
         clearInterval(intervalRef.current);
       }
     };
-  }, [startTimer]);
+  }, [startTimer, isInView]);
   
   const handleFeatureClick = useCallback((idx: number) => {
     setActiveFeature(idx);
@@ -590,7 +614,7 @@ const MobileApp = () => {
   ];
 
   return (
-    <section className="relative py-20 lg:py-28 overflow-hidden">
+    <section ref={sectionRef} className="relative py-20 lg:py-28 overflow-hidden">
       
       <div className="section-container">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
