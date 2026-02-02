@@ -592,7 +592,7 @@ const MobileApp = () => {
   ];
 
   return (
-    <section className="relative py-20 lg:py-28 overflow-hidden spotlight-section-rose">
+    <section className="relative py-20 lg:py-28 overflow-hidden">
       
       <div className="section-container">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">

@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 const FinalCTA = () => {
   return (
-    <section className="relative py-24 lg:py-32 spotlight-section">
+    <section className="relative py-24 lg:py-32">
 
       <div className="section-container relative">
         <div className="mx-auto max-w-3xl text-center">

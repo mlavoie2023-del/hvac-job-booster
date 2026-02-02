@@ -12,18 +12,21 @@ import Footer from "@/components/landing/Footer";
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-background relative">
-      {/* Global flowing gradient background */}
+    <div className="min-h-screen relative overflow-hidden" style={{ background: 'hsl(0 0% 4%)' }}>
+      {/* Global flowing gradient background - scrolls with page */}
       <div 
-        className="fixed inset-0 pointer-events-none z-0"
+        className="absolute inset-0 pointer-events-none"
         style={{
           background: `
-            radial-gradient(ellipse 80% 40% at 20% 20%, hsl(217 91% 60% / 0.08), transparent 50%),
-            radial-gradient(ellipse 60% 50% at 80% 35%, hsl(270 80% 60% / 0.05), transparent 50%),
-            radial-gradient(ellipse 70% 40% at 30% 55%, hsl(340 82% 52% / 0.04), transparent 50%),
-            radial-gradient(ellipse 80% 50% at 70% 75%, hsl(190 90% 50% / 0.05), transparent 50%),
-            radial-gradient(ellipse 60% 40% at 40% 90%, hsl(160 80% 45% / 0.04), transparent 50%)
+            radial-gradient(ellipse 100% 30% at 50% 5%, hsl(217 91% 60% / 0.1), transparent 40%),
+            radial-gradient(ellipse 80% 40% at 15% 25%, hsl(270 80% 60% / 0.06), transparent 50%),
+            radial-gradient(ellipse 70% 35% at 85% 40%, hsl(340 82% 52% / 0.05), transparent 50%),
+            radial-gradient(ellipse 90% 40% at 50% 55%, hsl(217 91% 60% / 0.06), transparent 45%),
+            radial-gradient(ellipse 80% 35% at 20% 70%, hsl(190 90% 50% / 0.06), transparent 50%),
+            radial-gradient(ellipse 70% 40% at 80% 85%, hsl(160 80% 45% / 0.05), transparent 50%),
+            radial-gradient(ellipse 100% 30% at 50% 100%, hsl(217 91% 60% / 0.08), transparent 40%)
           `,
+          minHeight: '100%',
         }}
       />
       <div className="relative z-10">

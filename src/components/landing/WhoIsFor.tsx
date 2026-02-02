@@ -27,7 +27,7 @@ const notForList = [
 
 const WhoIsFor = () => {
   return (
-    <section className="relative py-20 lg:py-28 spotlight-section-emerald">
+    <section className="relative py-20 lg:py-28">
       <div className="section-container">
         <div className="mx-auto max-w-4xl">
           {/* Header */}
