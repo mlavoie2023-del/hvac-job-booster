@@ -2680,6 +2680,7 @@ const WhatYouGet = () => {
   // Sequential animation tracking
   const [desktopAnimatingIndex, setDesktopAnimatingIndex] = useState(0);
   const [mobileAnimatingIndex, setMobileAnimatingIndex] = useState(0);
+  const CATEGORY_SWITCH_BUFFER = 3000; // Extra time before switching categories
   
   // Touch/swipe handling for mobile
   const [touchStart, setTouchStart] = useState<number | null>(null);
@@ -2714,12 +2715,12 @@ const WhatYouGet = () => {
       cumulativeDelay += duration;
     }
     
-    // After all features in this category complete, switch to next category
+    // After all features in this category complete, switch to next category (with buffer)
     const nextCategoryTimer = setTimeout(() => {
       const currentIndex = categoryIds.indexOf(activeCategory);
       const nextIndex = (currentIndex + 1) % categoryIds.length;
       setActiveCategory(categoryIds[nextIndex]);
-    }, cumulativeDelay);
+    }, cumulativeDelay + CATEGORY_SWITCH_BUFFER);
     
     timers.push(nextCategoryTimer);
     
@@ -2753,10 +2754,10 @@ const WhatYouGet = () => {
       cumulativeDelay += duration;
     }
     
-    // After all features in this category complete, switch to next category
+    // After all features in this category complete, switch to next category (with buffer)
     const nextCategoryTimer = setTimeout(() => {
       setMobileCategoryIndex(prev => (prev + 1) % categories.length);
-    }, cumulativeDelay);
+    }, cumulativeDelay + CATEGORY_SWITCH_BUFFER);
     
     timers.push(nextCategoryTimer);
     
