@@ -1221,39 +1221,49 @@ const EmailCampaignAnimation = () => (
 const SMSAnimation = () => (
   <div className="relative h-40 flex items-center justify-center p-2 overflow-visible">
     <style>{`
-      @keyframes smsTypeChar {
-        0% { opacity: 0; }
-        10% { opacity: 1; }
-        100% { opacity: 1; }
+      @keyframes smsTypeLive {
+        0% { width: 0; }
+        45% { width: 100%; }
+        100% { width: 100%; }
+      }
+      @keyframes smsCursorBlink {
+        0%, 50% { opacity: 1; }
+        51%, 100% { opacity: 0; }
+      }
+      @keyframes smsCursorHide {
+        0%, 45% { opacity: 1; }
+        50%, 100% { opacity: 0; }
       }
       @keyframes smsSendBtn {
-        0%, 50% { opacity: 0.5; transform: scale(1); }
-        55% { opacity: 1; transform: scale(1); }
-        60% { transform: scale(0.95); }
-        65% { transform: scale(1); background: hsl(160 84% 39%); }
-        100% { transform: scale(1); background: hsl(160 84% 39%); }
+        0%, 48% { opacity: 0.5; transform: scale(1); background: rgba(59, 130, 246, 0.3); }
+        52% { opacity: 1; transform: scale(1); background: rgba(59, 130, 246, 0.5); }
+        56% { transform: scale(0.95); background: hsl(160 84% 39%); }
+        60%, 100% { transform: scale(1); background: hsl(160 84% 39%); }
+      }
+      @keyframes smsSendText {
+        0%, 55% { opacity: 1; }
+        60%, 100% { opacity: 0; }
+      }
+      @keyframes smsSentText {
+        0%, 58% { opacity: 0; transform: scale(0.8); }
+        65%, 100% { opacity: 1; transform: scale(1); }
       }
       @keyframes smsFly {
-        0%, 65% { opacity: 0; transform: translateX(0) translateY(0) scale(1); }
-        70% { opacity: 1; transform: translateX(0) translateY(0) scale(1); }
+        0%, 60% { opacity: 0; transform: translateX(0) translateY(0) scale(1); }
+        65% { opacity: 1; transform: translateX(0) translateY(0) scale(1); }
         100% { opacity: 0; transform: translateX(var(--fly-x)) translateY(var(--fly-y)) scale(0.3); }
       }
       @keyframes smsContactReceive {
-        0%, 75% { opacity: 0.4; border-color: rgba(255,255,255,0.1); }
-        85%, 100% { opacity: 1; border-color: hsl(160 84% 39% / 0.5); }
+        0%, 70% { opacity: 0.4; border-color: rgba(255,255,255,0.1); }
+        80%, 100% { opacity: 1; border-color: hsl(160 84% 39% / 0.5); }
       }
       @keyframes smsCheckAppear {
-        0%, 80% { opacity: 0; transform: scale(0); }
-        90%, 100% { opacity: 1; transform: scale(1); }
+        0%, 75% { opacity: 0; transform: scale(0); }
+        85%, 100% { opacity: 1; transform: scale(1); }
       }
       @keyframes smsSentCounter {
-        0%, 75% { opacity: 0; }
-        85%, 100% { opacity: 1; }
-      }
-      @keyframes smsTypeText {
-        0% { max-height: 0; }
-        40% { max-height: 50px; }
-        100% { max-height: 50px; }
+        0%, 80% { opacity: 0; }
+        90%, 100% { opacity: 1; }
       }
     `}</style>
     
@@ -1262,25 +1272,46 @@ const SMSAnimation = () => (
       <div className="w-24 bg-card/80 rounded-xl border border-border/50 p-1.5">
         <div className="h-1 w-6 mx-auto bg-muted/40 rounded mb-1.5" />
         
-        {/* Message being typed - wraps naturally */}
+        {/* Message being typed character by character */}
         <div className="mb-1.5">
-          <div className="ml-auto px-1.5 py-1 bg-orange-500/20 rounded-l-lg rounded-tr-lg overflow-hidden">
-            <div 
-              className="text-[5px] text-foreground/80 leading-tight overflow-hidden"
-              style={{ maxHeight: 0, animation: 'smsTypeText 8s ease-out forwards' }}
-            >
-              Hey! It's time for your annual review. Let's schedule a call!
+          <div className="ml-auto px-1.5 py-1 bg-orange-500/20 rounded-l-lg rounded-tr-lg">
+            <div className="relative">
+              <div 
+                className="text-[5px] text-foreground/80 leading-tight whitespace-nowrap overflow-hidden"
+                style={{ width: 0, animation: 'smsTypeLive 6.5s ease-out forwards' }}
+              >
+                Hey! It's time for your annual review. Let's schedule a call!
+              </div>
+              {/* Blinking cursor */}
+              <span 
+                className="absolute top-0 right-0 w-0.5 h-2.5 bg-primary"
+                style={{ animation: 'smsCursorBlink 0.6s step-end infinite, smsCursorHide 6.5s ease-out forwards' }}
+              />
             </div>
           </div>
         </div>
         
-        {/* Send button */}
+        {/* Send button with click animation */}
         <div 
-          className="w-full h-3.5 bg-primary/30 rounded flex items-center justify-center gap-0.5"
-          style={{ animation: 'smsSendBtn 8s ease-out forwards' }}
+          className="w-full h-3.5 rounded flex items-center justify-center gap-0.5 relative"
+          style={{ animation: 'smsSendBtn 6.5s ease-out forwards' }}
         >
-          <Send className="w-1.5 h-1.5 text-primary-foreground" />
-          <span className="text-[4px] font-medium text-primary-foreground">Send All</span>
+          <div 
+            className="flex items-center gap-0.5 absolute"
+            style={{ animation: 'smsSendText 6.5s ease-out forwards' }}
+          >
+            <Send className="w-1.5 h-1.5 text-primary-foreground" />
+            <span className="text-[4px] font-medium text-primary-foreground">Send All</span>
+          </div>
+          <div 
+            className="flex items-center gap-0.5 absolute"
+            style={{ opacity: 0, animation: 'smsSentText 6.5s ease-out forwards' }}
+          >
+            <svg className="w-1.5 h-1.5 text-white" viewBox="0 0 12 12" fill="none">
+              <path d="M2 6l3 3 5-5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+            <span className="text-[4px] font-medium text-white">Sent!</span>
+          </div>
         </div>
       </div>
       
@@ -1297,7 +1328,7 @@ const SMSAnimation = () => (
               style={{ 
                 '--fly-x': `${35 + i * 6}px`,
                 '--fly-y': `${-18 + i * 16}px`,
-                animation: `smsFly 8s ease-out ${i * 0.05}s forwards`
+                animation: `smsFly 6.5s ease-out ${i * 0.05}s forwards`
               } as React.CSSProperties}
             >
               <MessageSquare className="w-1 h-1 text-emerald-900" />
@@ -1314,7 +1345,7 @@ const SMSAnimation = () => (
           <div 
             key={i}
             className="flex items-center gap-1 p-0.5 bg-card/40 rounded border border-border/30 relative"
-            style={{ animation: `smsContactReceive 8s ease-out ${i * 0.1}s forwards` }}
+            style={{ animation: `smsContactReceive 6.5s ease-out ${i * 0.1}s forwards` }}
           >
             <div className="w-3 h-3 rounded-full bg-emerald-500/20 flex items-center justify-center">
               <span className="text-[4px] font-bold text-emerald-400">{contact.initials}</span>
@@ -1322,7 +1353,7 @@ const SMSAnimation = () => (
             <span className="text-[5px] text-foreground/80">{contact.name}</span>
             <div 
               className="absolute right-0.5 w-2 h-2 bg-emerald-500 rounded-full flex items-center justify-center"
-              style={{ opacity: 0, animation: `smsCheckAppear 8s ease-out ${i * 0.1}s forwards` }}
+              style={{ opacity: 0, animation: `smsCheckAppear 6.5s ease-out ${i * 0.1}s forwards` }}
             >
               <svg className="w-1 h-1 text-white" viewBox="0 0 12 12" fill="none">
                 <path d="M2 6l3 3 5-5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
@@ -1334,7 +1365,7 @@ const SMSAnimation = () => (
         {/* Delivery stats */}
         <div 
           className="flex gap-1 mt-0.5"
-          style={{ opacity: 0, animation: 'smsSentCounter 8s ease-out forwards' }}
+          style={{ opacity: 0, animation: 'smsSentCounter 6.5s ease-out forwards' }}
         >
           <div className="flex-1 text-center p-0.5 bg-emerald-500/10 rounded border border-emerald-500/30">
             <div className="text-[4px] text-emerald-400">Delivered</div>
