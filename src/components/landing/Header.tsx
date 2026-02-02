@@ -57,11 +57,13 @@ const Header = () => {
 
             {/* CTA */}
             <Button 
-              className="bg-primary hover:bg-primary/90 text-primary-foreground font-semibold shadow-primary"
+              className="bg-primary hover:bg-primary/90 text-primary-foreground font-semibold shadow-primary text-xs px-3 py-2 sm:text-sm sm:px-4 sm:py-2"
+              size="sm"
               asChild
             >
               <Link to="/book">
-                Book a Discovery Call
+                <span className="sm:hidden">Book Call</span>
+                <span className="hidden sm:inline">Book a Discovery Call</span>
               </Link>
             </Button>
           </div>
