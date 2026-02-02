@@ -4,8 +4,8 @@ import { Bell, MessageSquare, Users, Smartphone, Calendar, Inbox, Send } from "l
 // Realistic iPhone 15 Pro frame
 const PhoneFrame = ({ children, activeTab = 'inbox' }: { children: React.ReactNode; activeTab?: 'inbox' | 'contacts' | 'calendar' | 'notifications' }) => (
   <div className="relative">
-    {/* Outer glow */}
-    <div className="absolute -inset-8 bg-gradient-to-b from-rose-500/30 via-pink-500/20 to-purple-500/30 rounded-[80px] blur-3xl -z-10 opacity-60" />
+    {/* Subtle outer glow */}
+    <div className="absolute -inset-4 bg-gradient-to-b from-primary/15 via-primary/10 to-primary/5 rounded-[60px] blur-2xl -z-10 opacity-50" />
     
     {/* Phone frame - titanium style */}
     <div 
