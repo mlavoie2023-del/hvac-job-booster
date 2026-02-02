@@ -2037,7 +2037,7 @@ const WhatYouGet = () => {
   const activeData = categories.find(c => c.id === activeCategory);
 
   return (
-    <section className="relative py-20 lg:py-28 overflow-hidden">
+    <section id="features" className="relative py-20 lg:py-28 overflow-hidden">
       
       <div className="section-container">
         {/* Section Header */}
