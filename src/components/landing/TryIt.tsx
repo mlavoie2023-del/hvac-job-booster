@@ -2,7 +2,7 @@ import HeroDashboard from "./HeroDashboard";
 
 const TryIt = () => {
   return (
-    <section className="relative py-20 lg:py-28 overflow-hidden">
+    <section id="try-it" className="relative py-20 lg:py-28 overflow-hidden">
       
       <div className="section-container">
         <div className="mx-auto max-w-3xl text-center mb-16">

@@ -1,8 +1,18 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import lavoieLogo from "@/assets/lavoie-logo-square.png";
 
 const Header = () => {
+  const location = useLocation();
+  const isLandingPage = location.pathname === "/";
+
+  const scrollToSection = (id: string) => {
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
     <header className="sticky top-0 z-50 border-b border-border/50 bg-background/95 backdrop-blur-lg">
       <div className="section-container">
@@ -19,15 +29,42 @@ const Header = () => {
             </span>
           </Link>
 
-          {/* CTA */}
-          <Button 
-            className="bg-primary hover:bg-primary/90 text-primary-foreground font-semibold shadow-primary"
-            asChild
-          >
-            <Link to="/book">
-              Book a Discovery Call
-            </Link>
-          </Button>
+          {/* Navigation + CTA */}
+          <div className="flex items-center gap-6">
+            {/* Nav links - only on landing page */}
+            {isLandingPage && (
+              <nav className="hidden sm:flex items-center gap-6">
+                <button 
+                  onClick={() => scrollToSection("features")}
+                  className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+                >
+                  Features
+                </button>
+                <button 
+                  onClick={() => scrollToSection("how-it-works")}
+                  className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+                >
+                  How It Works
+                </button>
+                <button 
+                  onClick={() => scrollToSection("try-it")}
+                  className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+                >
+                  Try It
+                </button>
+              </nav>
+            )}
+
+            {/* CTA */}
+            <Button 
+              className="bg-primary hover:bg-primary/90 text-primary-foreground font-semibold shadow-primary"
+              asChild
+            >
+              <Link to="/book">
+                Book a Discovery Call
+              </Link>
+            </Button>
+          </div>
         </div>
       </div>
     </header>
