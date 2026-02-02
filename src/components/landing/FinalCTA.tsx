@@ -23,7 +23,7 @@ const FinalCTA = () => {
           </div>
 
           <p className="mt-8 text-sm text-muted-foreground">
-            No staff required · No technical skills needed · Built in 3 weeks
+            No staff required · No technical skills needed · Built in 2 weeks
           </p>
         </div>
       </div>
