@@ -2215,19 +2215,15 @@ const WhatYouGet = () => {
           >
             {/* Left swipe indicator */}
             {mobileCategoryIndex > 0 && (
-              <div className="absolute left-0 top-1/2 -translate-y-1/2 z-10 pointer-events-none">
-                <div className="flex items-center gap-1 bg-gradient-to-r from-background via-background/80 to-transparent pl-2 pr-6 py-4">
-                  <ChevronLeft className="w-5 h-5 text-muted-foreground animate-pulse" />
-                </div>
+              <div className="absolute -left-1 top-1/2 -translate-y-1/2 z-10 pointer-events-none">
+                <ChevronLeft className="w-4 h-4 text-muted-foreground/60 animate-pulse" />
               </div>
             )}
             
             {/* Right swipe indicator */}
             {mobileCategoryIndex < categories.length - 1 && (
-              <div className="absolute right-0 top-1/2 -translate-y-1/2 z-10 pointer-events-none">
-                <div className="flex items-center gap-1 bg-gradient-to-l from-background via-background/80 to-transparent pr-2 pl-6 py-4">
-                  <ChevronRight className="w-5 h-5 text-muted-foreground animate-pulse" />
-                </div>
+              <div className="absolute -right-1 top-1/2 -translate-y-1/2 z-10 pointer-events-none">
+                <ChevronRight className="w-4 h-4 text-muted-foreground/60 animate-pulse" />
               </div>
             )}
             
