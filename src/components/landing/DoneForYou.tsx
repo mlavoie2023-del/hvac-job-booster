@@ -40,9 +40,6 @@ const DoneForYou = () => {
         <div className="mx-auto max-w-5xl">
           {/* Header */}
           <div className="text-center mb-12">
-            <span className="inline-block rounded-full bg-primary/10 px-4 py-1.5 text-sm font-medium text-primary mb-4">
-              Zero Setup Required
-            </span>
             <h2 className="text-3xl font-bold text-foreground sm:text-4xl lg:text-5xl">
               100% <span className="gradient-text">Done For You</span>
             </h2>
