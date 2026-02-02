@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { 
   Workflow, 
   FileText, 
@@ -10,6 +10,8 @@ import {
   Megaphone,
   Send,
   MousePointerClick,
+  ChevronLeft,
+  ChevronRight,
   LucideIcon,
   Users,
   Target,
@@ -2005,11 +2007,28 @@ const CentralHub = ({ activeCategory }: { activeCategory: string | null }) => {
 const WhatYouGet = () => {
   const [activeCategory, setActiveCategory] = useState<string>("crm");
   const [mobileCategoryIndex, setMobileCategoryIndex] = useState(0);
+  const tabsContainerRef = useRef<HTMLDivElement>(null);
   
   // Touch/swipe handling for mobile
   const [touchStart, setTouchStart] = useState<number | null>(null);
   const [touchEnd, setTouchEnd] = useState<number | null>(null);
   const minSwipeDistance = 50;
+
+  // Auto-scroll tabs when category changes
+  useEffect(() => {
+    if (tabsContainerRef.current) {
+      const container = tabsContainerRef.current;
+      const activeTab = container.children[mobileCategoryIndex] as HTMLElement;
+      if (activeTab) {
+        const containerWidth = container.offsetWidth;
+        const tabLeft = activeTab.offsetLeft;
+        const tabWidth = activeTab.offsetWidth;
+        // Center the active tab
+        const scrollPosition = tabLeft - (containerWidth / 2) + (tabWidth / 2);
+        container.scrollTo({ left: scrollPosition, behavior: 'smooth' });
+      }
+    }
+  }, [mobileCategoryIndex]);
 
   const onTouchStart = (e: React.TouchEvent) => {
     setTouchEnd(null);
@@ -2163,7 +2182,10 @@ const WhatYouGet = () => {
         {/* Mobile: Horizontal Category Tabs with Stacked Features */}
         <div className="md:hidden">
           {/* Horizontal scrollable category tabs */}
-          <div className="flex overflow-x-auto gap-2 pb-3 px-1 scrollbar-hide mb-6">
+          <div 
+            ref={tabsContainerRef}
+            className="flex overflow-x-auto gap-2 pb-3 px-1 scrollbar-hide mb-6"
+          >
             {categories.map((category, index) => {
               const isActive = mobileCategoryIndex === index;
               return (
@@ -2191,6 +2213,24 @@ const WhatYouGet = () => {
             onTouchMove={onTouchMove}
             onTouchEnd={onTouchEnd}
           >
+            {/* Left swipe indicator */}
+            {mobileCategoryIndex > 0 && (
+              <div className="absolute left-0 top-1/2 -translate-y-1/2 z-10 pointer-events-none">
+                <div className="flex items-center gap-1 bg-gradient-to-r from-background via-background/80 to-transparent pl-2 pr-6 py-4">
+                  <ChevronLeft className="w-5 h-5 text-muted-foreground animate-pulse" />
+                </div>
+              </div>
+            )}
+            
+            {/* Right swipe indicator */}
+            {mobileCategoryIndex < categories.length - 1 && (
+              <div className="absolute right-0 top-1/2 -translate-y-1/2 z-10 pointer-events-none">
+                <div className="flex items-center gap-1 bg-gradient-to-l from-background via-background/80 to-transparent pr-2 pl-6 py-4">
+                  <ChevronRight className="w-5 h-5 text-muted-foreground animate-pulse" />
+                </div>
+              </div>
+            )}
+            
             <div className="overflow-hidden">
               <div 
                 className="flex transition-transform duration-300 ease-out"
@@ -2233,8 +2273,13 @@ const WhatYouGet = () => {
             </div>
           </div>
 
+          {/* Swipe hint text */}
+          <p className="text-center text-xs text-muted-foreground mt-4 mb-2">
+            Swipe to explore • {mobileCategoryIndex + 1} of {categories.length}
+          </p>
+
           {/* 6 category dot indicators */}
-          <div className="flex justify-center gap-2 mt-6">
+          <div className="flex justify-center gap-2">
             {categories.map((category, index) => (
               <button
                 key={category.id}
