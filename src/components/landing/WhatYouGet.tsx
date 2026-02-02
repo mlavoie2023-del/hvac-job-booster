@@ -869,7 +869,7 @@ const WorkflowAnimation = () => (
 );
 
 const AppointmentRemindersAnimation = () => (
-  <div className="relative h-40 flex items-center justify-center p-3">
+  <div className="relative h-48 sm:h-40 flex items-center justify-center p-3">
     <style>{`
       @keyframes reminderNode1 {
         0%, 10% { opacity: 0.3; transform: scale(0.95); }
