@@ -894,37 +894,152 @@ const ReferralRequestsAnimation = () => (
 // Marketing Animations
 const EmailCampaignAnimation = () => (
   <div className="relative h-40 flex items-center justify-center p-3">
-    <div className="w-full bg-card/30 rounded-lg border border-border/30 p-4">
-      {/* Email campaign preview */}
-      <div className="flex items-start gap-4">
-        {/* Email template */}
-        <div className="flex-1 bg-card/50 rounded-lg border border-border/50 p-2">
-          <div className="flex items-center gap-2 mb-2 pb-2 border-b border-border/30">
-            <div className="w-6 h-6 rounded bg-orange-500/20 border border-orange-500/30 flex items-center justify-center">
-              <Mail className="w-3 h-3 text-orange-400" />
-            </div>
-            <div>
-              <div className="text-[7px] font-medium text-foreground">March Newsletter</div>
-              <div className="text-[5px] text-muted-foreground">To: 1,247 subscribers</div>
-            </div>
+    <style>{`
+      @keyframes emailTypeLine1 {
+        0% { width: 0; }
+        20% { width: 100%; }
+        100% { width: 100%; }
+      }
+      @keyframes emailTypeLine2 {
+        0%, 20% { width: 0; }
+        40% { width: 85%; }
+        100% { width: 85%; }
+      }
+      @keyframes emailTypeLine3 {
+        0%, 40% { width: 0; }
+        55% { width: 70%; }
+        100% { width: 70%; }
+      }
+      @keyframes emailSendBtn {
+        0%, 55% { opacity: 0.5; transform: scale(1); }
+        60% { opacity: 1; transform: scale(1); }
+        65% { transform: scale(0.95); }
+        70% { transform: scale(1); background: hsl(160 84% 39%); }
+        100% { transform: scale(1); background: hsl(160 84% 39%); }
+      }
+      @keyframes emailFly {
+        0%, 70% { opacity: 0; transform: translateX(0) translateY(0) scale(1); }
+        75% { opacity: 1; transform: translateX(0) translateY(0) scale(1); }
+        100% { opacity: 0; transform: translateX(var(--fly-x)) translateY(var(--fly-y)) scale(0.3); }
+      }
+      @keyframes contactReceive {
+        0%, 80% { opacity: 0.4; border-color: rgba(255,255,255,0.1); }
+        90%, 100% { opacity: 1; border-color: hsl(160 84% 39% / 0.5); }
+      }
+      @keyframes checkAppear {
+        0%, 85% { opacity: 0; transform: scale(0); }
+        95%, 100% { opacity: 1; transform: scale(1); }
+      }
+      @keyframes sentCounter {
+        0%, 70% { opacity: 0; }
+        80%, 100% { opacity: 1; }
+      }
+    `}</style>
+    
+    <div className="w-full flex gap-3">
+      {/* Email composer */}
+      <div className="flex-1 bg-card/50 rounded-lg border border-border/50 p-2">
+        <div className="flex items-center gap-2 mb-2 pb-1.5 border-b border-border/30">
+          <div className="w-5 h-5 rounded bg-orange-500/20 border border-orange-500/30 flex items-center justify-center">
+            <Mail className="w-2.5 h-2.5 text-orange-400" />
           </div>
-          <div className="space-y-1">
-            <div className="h-1.5 w-full bg-muted/30 rounded" />
-            <div className="h-1.5 w-3/4 bg-muted/30 rounded" />
-            <div className="h-1.5 w-5/6 bg-muted/30 rounded" />
+          <div className="text-[7px] font-medium text-foreground">New Campaign</div>
+        </div>
+        
+        {/* Subject line */}
+        <div className="mb-2">
+          <div className="text-[5px] text-muted-foreground mb-0.5">Subject:</div>
+          <div className="h-4 bg-muted/20 rounded px-1 flex items-center overflow-hidden">
+            <div 
+              className="text-[6px] text-foreground whitespace-nowrap overflow-hidden"
+              style={{ animation: 'emailTypeLine1 8s ease-out forwards' }}
+            >
+              March Newsletter - Retirement Planning Tips
+            </div>
           </div>
         </div>
         
-        {/* Stats */}
-        <div className="w-20 space-y-2">
-          <div className="bg-emerald-500/10 rounded-lg border border-emerald-500/30 p-2 animate-[statPop_3s_ease-in-out_infinite]">
-            <div className="text-[6px] text-emerald-400 mb-0.5">Sent</div>
-            <div className="text-[10px] font-bold text-emerald-400">1,247</div>
+        {/* Email body typing */}
+        <div className="space-y-1 mb-2">
+          <div 
+            className="h-1.5 bg-primary/30 rounded"
+            style={{ width: 0, animation: 'emailTypeLine1 8s ease-out forwards' }}
+          />
+          <div 
+            className="h-1.5 bg-primary/20 rounded"
+            style={{ width: 0, animation: 'emailTypeLine2 8s ease-out forwards' }}
+          />
+          <div 
+            className="h-1.5 bg-primary/20 rounded"
+            style={{ width: 0, animation: 'emailTypeLine3 8s ease-out forwards' }}
+          />
+        </div>
+        
+        {/* Send button */}
+        <div 
+          className="w-full h-5 bg-primary/30 rounded flex items-center justify-center gap-1"
+          style={{ animation: 'emailSendBtn 8s ease-out forwards' }}
+        >
+          <Send className="w-2.5 h-2.5 text-primary-foreground" />
+          <span className="text-[6px] font-medium text-primary-foreground">Send to All</span>
+        </div>
+      </div>
+      
+      {/* Contact list receiving */}
+      <div className="w-24 space-y-1.5">
+        <div className="text-[6px] text-muted-foreground mb-1">Recipients</div>
+        
+        {/* Flying emails */}
+        <div className="absolute left-[45%] top-1/2 pointer-events-none">
+          {[0, 1, 2, 3].map((i) => (
+            <div 
+              key={i}
+              className="absolute w-3 h-2 bg-orange-400/80 rounded-sm"
+              style={{ 
+                '--fly-x': `${50 + i * 5}px`,
+                '--fly-y': `${-30 + i * 20}px`,
+                animation: `emailFly 8s ease-out ${i * 0.05}s forwards`
+              } as React.CSSProperties}
+            >
+              <Mail className="w-full h-full text-orange-900" />
+            </div>
+          ))}
+        </div>
+        
+        {/* Contact cards */}
+        {[
+          { initials: 'JD', name: 'John D.' },
+          { initials: 'SK', name: 'Sarah K.' },
+          { initials: 'MC', name: 'Mike C.' },
+          { initials: 'LW', name: 'Lisa W.' },
+        ].map((contact, i) => (
+          <div 
+            key={i}
+            className="flex items-center gap-1.5 p-1 bg-card/40 rounded border border-border/30 relative"
+            style={{ animation: `contactReceive 8s ease-out ${i * 0.1}s forwards` }}
+          >
+            <div className="w-4 h-4 rounded-full bg-primary/20 flex items-center justify-center">
+              <span className="text-[5px] font-bold text-primary">{contact.initials}</span>
+            </div>
+            <span className="text-[6px] text-foreground/80">{contact.name}</span>
+            <div 
+              className="absolute right-1 w-2.5 h-2.5 bg-emerald-500 rounded-full flex items-center justify-center"
+              style={{ opacity: 0, animation: `checkAppear 8s ease-out ${i * 0.1}s forwards` }}
+            >
+              <svg className="w-1.5 h-1.5 text-white" viewBox="0 0 12 12" fill="none">
+                <path d="M2 6l3 3 5-5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </div>
           </div>
-          <div className="bg-primary/10 rounded-lg border border-primary/30 p-2 animate-[statPop_3s_ease-in-out_infinite]" style={{ animationDelay: '0.5s' }}>
-            <div className="text-[6px] text-primary mb-0.5">Opened</div>
-            <div className="text-[10px] font-bold text-primary">42%</div>
-          </div>
+        ))}
+        
+        {/* Sent counter */}
+        <div 
+          className="text-center mt-1 p-1 bg-emerald-500/10 rounded border border-emerald-500/30"
+          style={{ opacity: 0, animation: 'sentCounter 8s ease-out forwards' }}
+        >
+          <div className="text-[5px] text-emerald-400">Sent</div>
+          <div className="text-[8px] font-bold text-emerald-400">1,247</div>
         </div>
       </div>
     </div>
