@@ -142,21 +142,37 @@ const InboxAnimation = () => (
 
 const ContactAnimation = () => (
   <div className="relative h-40 flex items-center justify-center p-3">
+    <style>{`
+      @keyframes contactFadeIn {
+        from { opacity: 0; transform: scale(0.95); }
+        to { opacity: 1; transform: scale(1); }
+      }
+      @keyframes contactTagPop {
+        from { opacity: 0; transform: scale(0.8); }
+        to { opacity: 1; transform: scale(1); }
+      }
+    `}</style>
     <div className="w-full bg-card/50 rounded-lg border border-border/50 p-3">
       {/* Header with avatar */}
       <div className="flex items-center gap-3 mb-3">
         <div 
-          className="w-10 h-10 rounded-full bg-gradient-to-br from-primary/40 to-primary/20 flex items-center justify-center opacity-0"
-          style={{ animation: 'contactReveal 8s ease-out 0.5s 1 forwards' }}
+          className="w-10 h-10 rounded-full bg-gradient-to-br from-primary/40 to-primary/20 flex items-center justify-center"
+          style={{ opacity: 0, animation: 'contactFadeIn 0.5s ease-out 0.2s forwards' }}
         >
           <span className="text-sm font-bold text-primary">JD</span>
         </div>
-        <div className="opacity-0" style={{ animation: 'contactReveal 8s ease-out 0.8s 1 forwards' }}>
-          <div className="text-[10px] font-medium text-foreground overflow-hidden whitespace-nowrap">
-            <span className="inline-block opacity-0" style={{ animation: 'typeReveal 8s steps(14) 0.9s 1 forwards' }}>John Davidson</span>
+        <div>
+          <div 
+            className="text-[10px] font-medium text-foreground"
+            style={{ opacity: 0, animation: 'contactFadeIn 0.4s ease-out 0.5s forwards' }}
+          >
+            John Davidson
           </div>
-          <div className="text-[8px] text-muted-foreground overflow-hidden whitespace-nowrap">
-            <span className="inline-block opacity-0" style={{ animation: 'typeReveal 8s steps(18) 1.3s 1 forwards' }}>Pre-Retiree • Age 58</span>
+          <div 
+            className="text-[8px] text-muted-foreground"
+            style={{ opacity: 0, animation: 'contactFadeIn 0.4s ease-out 0.7s forwards' }}
+          >
+            Pre-Retiree • Age 58
           </div>
         </div>
       </div>
@@ -164,14 +180,14 @@ const ContactAnimation = () => (
       {/* Tags */}
       <div className="flex gap-1.5 mb-3">
         <div 
-          className="px-2 py-0.5 bg-emerald-500/20 rounded text-[7px] text-emerald-400 opacity-0"
-          style={{ animation: 'tagReveal 8s ease-out 1.7s 1 forwards' }}
+          className="px-2 py-0.5 bg-emerald-500/20 rounded text-[7px] text-emerald-400"
+          style={{ opacity: 0, animation: 'contactTagPop 0.4s ease-out 1.2s forwards' }}
         >
           Active Client
         </div>
         <div 
-          className="px-2 py-0.5 bg-primary/20 rounded text-[7px] text-primary opacity-0"
-          style={{ animation: 'tagReveal 8s ease-out 2s 1 forwards' }}
+          className="px-2 py-0.5 bg-primary/20 rounded text-[7px] text-primary"
+          style={{ opacity: 0, animation: 'contactTagPop 0.4s ease-out 1.5s forwards' }}
         >
           $1.2M AUM
         </div>
@@ -179,31 +195,31 @@ const ContactAnimation = () => (
       
       {/* Notes section */}
       <div 
-        className="bg-muted/30 rounded p-2 border border-border/30 opacity-0"
-        style={{ animation: 'contactReveal 8s ease-out 2.3s 1 forwards' }}
+        className="bg-muted/30 rounded p-2 border border-border/30"
+        style={{ opacity: 0, animation: 'contactFadeIn 0.5s ease-out 2s forwards' }}
       >
         <div className="text-[7px] text-muted-foreground mb-1.5 font-medium">Financial Goals</div>
         <div className="space-y-1">
           <div className="flex items-center gap-1.5">
             <div 
-              className="w-1.5 h-1.5 rounded-full bg-emerald-500 opacity-0"
-              style={{ animation: 'dotPop 8s ease-out 2.7s 1 forwards' }}
+              className="w-1.5 h-1.5 rounded-full bg-emerald-500"
+              style={{ opacity: 0, animation: 'contactTagPop 0.3s ease-out 2.5s forwards' }}
             />
             <span 
-              className="text-[7px] text-foreground/70 overflow-hidden whitespace-nowrap opacity-0"
-              style={{ animation: 'goalReveal 8s ease-out 2.8s 1 forwards' }}
+              className="text-[7px] text-foreground/70"
+              style={{ opacity: 0, animation: 'contactFadeIn 0.4s ease-out 2.6s forwards' }}
             >
               Retire at 62 with $80K/year
             </span>
           </div>
           <div className="flex items-center gap-1.5">
             <div 
-              className="w-1.5 h-1.5 rounded-full bg-primary opacity-0"
-              style={{ animation: 'dotPop 8s ease-out 3.3s 1 forwards' }}
+              className="w-1.5 h-1.5 rounded-full bg-primary"
+              style={{ opacity: 0, animation: 'contactTagPop 0.3s ease-out 3s forwards' }}
             />
             <span 
-              className="text-[7px] text-foreground/70 overflow-hidden whitespace-nowrap opacity-0"
-              style={{ animation: 'goalReveal 8s ease-out 3.4s 1 forwards' }}
+              className="text-[7px] text-foreground/70"
+              style={{ opacity: 0, animation: 'contactFadeIn 0.4s ease-out 3.1s forwards' }}
             >
               Estate planning for 2 children
             </span>
@@ -211,31 +227,6 @@ const ContactAnimation = () => (
         </div>
       </div>
     </div>
-    
-    <style>{`
-      @keyframes contactReveal {
-        0% { opacity: 0; transform: scale(0.95); }
-        15%, 100% { opacity: 1; transform: scale(1); }
-      }
-      @keyframes typeReveal {
-        0% { opacity: 0; max-width: 0; }
-        10% { opacity: 1; max-width: 0; }
-        40%, 100% { opacity: 1; max-width: 200px; }
-      }
-      @keyframes tagReveal {
-        0% { opacity: 0; transform: scale(0.8); }
-        20%, 100% { opacity: 1; transform: scale(1); }
-      }
-      @keyframes dotPop {
-        0% { opacity: 0; transform: scale(0); }
-        20%, 100% { opacity: 1; transform: scale(1); }
-      }
-      @keyframes goalReveal {
-        0% { opacity: 0; max-width: 0; }
-        10% { opacity: 1; max-width: 0; }
-        50%, 100% { opacity: 1; max-width: 200px; }
-      }
-    `}</style>
   </div>
 );
 
