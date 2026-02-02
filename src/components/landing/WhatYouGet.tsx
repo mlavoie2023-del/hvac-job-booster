@@ -1602,53 +1602,161 @@ const AttributionAnimation = () => (
 
 // Payments & Documents Animations
 const InvoiceAnimation = () => (
-  <div className="relative h-40 flex items-center justify-center p-3">
-    <div className="w-full bg-card/30 rounded-lg border border-border/30 p-4">
-      <div className="flex gap-4">
-        {/* Invoice preview */}
-        <div className="flex-1 bg-card/50 rounded-lg border border-border/50 p-3">
-          <div className="flex items-center justify-between mb-2">
-            <div className="flex items-center gap-1.5">
-              <div className="w-5 h-5 rounded bg-violet-500/20 flex items-center justify-center">
-                <Receipt className="w-3 h-3 text-violet-400" />
-              </div>
-              <div>
-                <div className="text-[7px] font-medium text-foreground">Invoice #1247</div>
-                <div className="text-[5px] text-muted-foreground">Feb 15, 2026</div>
-              </div>
+  <div className="relative h-40 flex items-center justify-center p-2 overflow-hidden">
+    <style>{`
+      @keyframes invoiceHeaderFade {
+        0% { opacity: 0; }
+        10%, 100% { opacity: 1; }
+      }
+      @keyframes invoiceLine1 {
+        0%, 10% { opacity: 0; width: 0; }
+        25%, 100% { opacity: 1; width: 100%; }
+      }
+      @keyframes invoiceLine2 {
+        0%, 25% { opacity: 0; width: 0; }
+        40%, 100% { opacity: 1; width: 100%; }
+      }
+      @keyframes invoiceTotal {
+        0%, 40% { opacity: 0; }
+        50%, 100% { opacity: 1; }
+      }
+      @keyframes invoiceSendBtn {
+        0%, 50% { opacity: 0.5; transform: scale(1); }
+        55% { opacity: 1; }
+        60% { transform: scale(0.95); }
+        65% { transform: scale(1); background: hsl(160 84% 39%); }
+        100% { background: hsl(160 84% 39%); }
+      }
+      @keyframes invoiceSendIcon {
+        0%, 55% { opacity: 1; }
+        65%, 100% { opacity: 0; }
+      }
+      @keyframes invoiceCheckIcon {
+        0%, 60% { opacity: 0; transform: scale(0); }
+        70%, 100% { opacity: 1; transform: scale(1); }
+      }
+      @keyframes invoiceSentBadge {
+        0%, 65% { opacity: 0; transform: translateY(5px); }
+        75%, 100% { opacity: 1; transform: translateY(0); }
+      }
+      @keyframes invoiceFlyOut {
+        0%, 70% { opacity: 0; transform: translateX(0) translateY(0); }
+        75% { opacity: 1; transform: translateX(0) translateY(0); }
+        100% { opacity: 0; transform: translateX(60px) translateY(-20px); }
+      }
+    `}</style>
+    
+    <div className="w-full flex gap-2">
+      {/* Invoice being created */}
+      <div className="flex-1 bg-card/50 rounded-lg border border-border/50 p-2">
+        {/* Header */}
+        <div 
+          className="flex items-center justify-between mb-2 pb-1.5 border-b border-border/30"
+          style={{ opacity: 0, animation: 'invoiceHeaderFade 8s ease-out forwards' }}
+        >
+          <div className="flex items-center gap-1.5">
+            <div className="w-4 h-4 rounded bg-violet-500/20 flex items-center justify-center">
+              <Receipt className="w-2.5 h-2.5 text-violet-400" />
             </div>
-            <div className="px-1.5 py-0.5 bg-emerald-500/20 rounded text-[6px] text-emerald-400 animate-[statusPulse_2s_ease-in-out_infinite]">
-              Paid
+            <div>
+              <div className="text-[6px] font-medium text-foreground">New Invoice</div>
+              <div className="text-[5px] text-muted-foreground">To: John Davidson</div>
             </div>
-          </div>
-          
-          <div className="space-y-1 mb-2">
-            <div className="flex justify-between text-[6px]">
-              <span className="text-muted-foreground">Financial Planning</span>
-              <span className="text-foreground">$2,500</span>
-            </div>
-            <div className="flex justify-between text-[6px]">
-              <span className="text-muted-foreground">Tax Consultation</span>
-              <span className="text-foreground">$500</span>
-            </div>
-          </div>
-          
-          <div className="border-t border-border/30 pt-1 flex justify-between">
-            <span className="text-[7px] font-medium text-foreground">Total</span>
-            <span className="text-[8px] font-bold text-violet-400">$3,000</span>
           </div>
         </div>
         
-        {/* Stats */}
-        <div className="w-20 space-y-2">
-          <div className="bg-violet-500/10 rounded-lg border border-violet-500/30 p-2 animate-[statPop_3s_ease-in-out_infinite]">
-            <div className="text-[5px] text-violet-400/70">Monthly</div>
-            <div className="text-[9px] font-bold text-violet-400">$12.4K</div>
+        {/* Line items appearing */}
+        <div className="space-y-1 mb-2">
+          <div 
+            className="flex justify-between text-[5px] overflow-hidden"
+            style={{ opacity: 0, animation: 'invoiceLine1 8s ease-out forwards' }}
+          >
+            <span className="text-muted-foreground">Financial Planning</span>
+            <span className="text-foreground font-medium">$2,500</span>
           </div>
-          <div className="bg-emerald-500/10 rounded-lg border border-emerald-500/30 p-2 animate-[statPop_3s_ease-in-out_infinite]" style={{ animationDelay: '0.5s' }}>
-            <div className="text-[5px] text-emerald-400/70">Paid</div>
-            <div className="text-[9px] font-bold text-emerald-400">98%</div>
+          <div 
+            className="flex justify-between text-[5px] overflow-hidden"
+            style={{ opacity: 0, animation: 'invoiceLine2 8s ease-out forwards' }}
+          >
+            <span className="text-muted-foreground">Tax Consultation</span>
+            <span className="text-foreground font-medium">$500</span>
           </div>
+        </div>
+        
+        {/* Total */}
+        <div 
+          className="border-t border-border/30 pt-1 flex justify-between mb-2"
+          style={{ opacity: 0, animation: 'invoiceTotal 8s ease-out forwards' }}
+        >
+          <span className="text-[6px] font-medium text-foreground">Total</span>
+          <span className="text-[7px] font-bold text-violet-400">$3,000</span>
+        </div>
+        
+        {/* Send button */}
+        <div 
+          className="w-full h-4 bg-primary/30 rounded flex items-center justify-center gap-1 relative"
+          style={{ animation: 'invoiceSendBtn 8s ease-out forwards' }}
+        >
+          <div className="relative w-3 h-3">
+            <Send 
+              className="w-2 h-2 text-primary-foreground absolute inset-0 m-auto"
+              style={{ animation: 'invoiceSendIcon 8s ease-out forwards' }}
+            />
+            <svg 
+              className="w-2 h-2 text-white absolute inset-0 m-auto" 
+              viewBox="0 0 12 12" 
+              fill="none"
+              style={{ opacity: 0, animation: 'invoiceCheckIcon 8s ease-out forwards' }}
+            >
+              <path d="M2 6l3 3 5-5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+          </div>
+          <span className="text-[5px] font-medium text-primary-foreground">Send Invoice</span>
+        </div>
+        
+        {/* Flying invoice icon */}
+        <div 
+          className="absolute left-[40%] top-[40%] pointer-events-none"
+          style={{ opacity: 0, animation: 'invoiceFlyOut 8s ease-out forwards' }}
+        >
+          <div className="w-4 h-5 bg-violet-400/80 rounded-sm flex items-center justify-center">
+            <Receipt className="w-2.5 h-2.5 text-violet-900" />
+          </div>
+        </div>
+      </div>
+      
+      {/* Right side - Sent confirmation + stats */}
+      <div className="w-20 space-y-1.5">
+        {/* Sent confirmation */}
+        <div 
+          className="bg-emerald-500/10 rounded-lg border border-emerald-500/30 p-2 text-center"
+          style={{ opacity: 0, animation: 'invoiceSentBadge 8s ease-out forwards' }}
+        >
+          <div className="flex items-center justify-center gap-1 mb-0.5">
+            <svg className="w-2.5 h-2.5 text-emerald-400" viewBox="0 0 12 12" fill="none">
+              <path d="M2 6l3 3 5-5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+            <span className="text-[6px] font-bold text-emerald-400">Sent!</span>
+          </div>
+          <div className="text-[5px] text-emerald-400/70">Invoice #1247</div>
+        </div>
+        
+        {/* Monthly revenue */}
+        <div 
+          className="bg-violet-500/10 rounded-lg border border-violet-500/30 p-1.5"
+          style={{ opacity: 0, animation: 'invoiceSentBadge 8s ease-out 0.2s forwards' }}
+        >
+          <div className="text-[4px] text-violet-400/70">Monthly</div>
+          <div className="text-[8px] font-bold text-violet-400">$12.4K</div>
+        </div>
+        
+        {/* Paid rate */}
+        <div 
+          className="bg-emerald-500/10 rounded-lg border border-emerald-500/30 p-1.5"
+          style={{ opacity: 0, animation: 'invoiceSentBadge 8s ease-out 0.4s forwards' }}
+        >
+          <div className="text-[4px] text-emerald-400/70">Paid</div>
+          <div className="text-[8px] font-bold text-emerald-400">98%</div>
         </div>
       </div>
     </div>
