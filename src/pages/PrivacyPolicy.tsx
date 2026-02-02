@@ -36,7 +36,9 @@ const PrivacyPolicy = () => {
               <p className="mt-4 text-muted-foreground">
                 We collect information you provide directly to us, such as when you inquire about our services, 
                 sign up for a subscription, or contact us for support. This may include your name, email address, 
-                phone number, business information, payment details, and any other information you choose to provide.
+                phone number, financial planning practice information, payment details, and any other information 
+                you choose to provide in connection with our practice management solutions for solo fee-only 
+                financial planners.
               </p>
             </section>
 

@@ -42,9 +42,10 @@ const TermsOfService = () => {
             <section>
               <h2 className="text-2xl font-semibold">2. Description of Services</h2>
               <p className="mt-4 text-muted-foreground">
-                Lavoie Systems provides AI-powered software solutions for HVAC businesses, including 
-                automated call answering, lead follow-up, appointment scheduling, and customer relationship 
-                management tools.
+                Lavoie Systems provides custom-built practice management solutions for solo fee-only 
+                financial planners, including client management platforms, automated workflows, 
+                lead tracking, appointment scheduling, payment processing integrations, and mobile 
+                app access for on-the-go practice management.
               </p>
             </section>
 
