@@ -147,16 +147,16 @@ const ContactAnimation = () => (
       <div className="flex items-center gap-3 mb-3">
         <div 
           className="w-10 h-10 rounded-full bg-gradient-to-br from-primary/40 to-primary/20 flex items-center justify-center opacity-0"
-          style={{ animation: 'contactReveal 8s ease-out infinite backwards', animationDelay: '0.5s' }}
+          style={{ animation: 'contactReveal 8s ease-out 0.5s 1 forwards' }}
         >
           <span className="text-sm font-bold text-primary">JD</span>
         </div>
-        <div className="opacity-0" style={{ animation: 'contactReveal 8s ease-out infinite backwards', animationDelay: '0.8s' }}>
+        <div className="opacity-0" style={{ animation: 'contactReveal 8s ease-out 0.8s 1 forwards' }}>
           <div className="text-[10px] font-medium text-foreground overflow-hidden whitespace-nowrap">
-            <span className="inline-block opacity-0" style={{ animation: 'typeReveal 8s steps(14) infinite backwards', animationDelay: '0.9s' }}>John Davidson</span>
+            <span className="inline-block opacity-0" style={{ animation: 'typeReveal 8s steps(14) 0.9s 1 forwards' }}>John Davidson</span>
           </div>
           <div className="text-[8px] text-muted-foreground overflow-hidden whitespace-nowrap">
-            <span className="inline-block opacity-0" style={{ animation: 'typeReveal 8s steps(18) infinite backwards', animationDelay: '1.3s' }}>Pre-Retiree • Age 58</span>
+            <span className="inline-block opacity-0" style={{ animation: 'typeReveal 8s steps(18) 1.3s 1 forwards' }}>Pre-Retiree • Age 58</span>
           </div>
         </div>
       </div>
@@ -165,13 +165,13 @@ const ContactAnimation = () => (
       <div className="flex gap-1.5 mb-3">
         <div 
           className="px-2 py-0.5 bg-emerald-500/20 rounded text-[7px] text-emerald-400 opacity-0"
-          style={{ animation: 'tagReveal 8s ease-out infinite backwards', animationDelay: '1.7s' }}
+          style={{ animation: 'tagReveal 8s ease-out 1.7s 1 forwards' }}
         >
           Active Client
         </div>
         <div 
           className="px-2 py-0.5 bg-primary/20 rounded text-[7px] text-primary opacity-0"
-          style={{ animation: 'tagReveal 8s ease-out infinite backwards', animationDelay: '2s' }}
+          style={{ animation: 'tagReveal 8s ease-out 2s 1 forwards' }}
         >
           $1.2M AUM
         </div>
@@ -180,18 +180,18 @@ const ContactAnimation = () => (
       {/* Notes section */}
       <div 
         className="bg-muted/30 rounded p-2 border border-border/30 opacity-0"
-        style={{ animation: 'contactReveal 8s ease-out infinite backwards', animationDelay: '2.3s' }}
+        style={{ animation: 'contactReveal 8s ease-out 2.3s 1 forwards' }}
       >
         <div className="text-[7px] text-muted-foreground mb-1.5 font-medium">Financial Goals</div>
         <div className="space-y-1">
           <div className="flex items-center gap-1.5">
             <div 
               className="w-1.5 h-1.5 rounded-full bg-emerald-500 opacity-0"
-              style={{ animation: 'dotPop 8s ease-out infinite backwards', animationDelay: '2.7s' }}
+              style={{ animation: 'dotPop 8s ease-out 2.7s 1 forwards' }}
             />
             <span 
               className="text-[7px] text-foreground/70 overflow-hidden whitespace-nowrap opacity-0"
-              style={{ animation: 'goalReveal 8s ease-out infinite backwards', animationDelay: '2.8s' }}
+              style={{ animation: 'goalReveal 8s ease-out 2.8s 1 forwards' }}
             >
               Retire at 62 with $80K/year
             </span>
@@ -199,11 +199,11 @@ const ContactAnimation = () => (
           <div className="flex items-center gap-1.5">
             <div 
               className="w-1.5 h-1.5 rounded-full bg-primary opacity-0"
-              style={{ animation: 'dotPop 8s ease-out infinite backwards', animationDelay: '3.3s' }}
+              style={{ animation: 'dotPop 8s ease-out 3.3s 1 forwards' }}
             />
             <span 
               className="text-[7px] text-foreground/70 overflow-hidden whitespace-nowrap opacity-0"
-              style={{ animation: 'goalReveal 8s ease-out infinite backwards', animationDelay: '3.4s' }}
+              style={{ animation: 'goalReveal 8s ease-out 3.4s 1 forwards' }}
             >
               Estate planning for 2 children
             </span>
@@ -215,30 +215,25 @@ const ContactAnimation = () => (
     <style>{`
       @keyframes contactReveal {
         0% { opacity: 0; transform: scale(0.95); }
-        15% { opacity: 1; transform: scale(1); }
-        100% { opacity: 1; transform: scale(1); }
+        15%, 100% { opacity: 1; transform: scale(1); }
       }
       @keyframes typeReveal {
         0% { opacity: 0; max-width: 0; }
         10% { opacity: 1; max-width: 0; }
-        40% { opacity: 1; max-width: 200px; }
-        100% { opacity: 1; max-width: 200px; }
+        40%, 100% { opacity: 1; max-width: 200px; }
       }
       @keyframes tagReveal {
         0% { opacity: 0; transform: scale(0.8); }
-        20% { opacity: 1; transform: scale(1); }
-        100% { opacity: 1; transform: scale(1); }
+        20%, 100% { opacity: 1; transform: scale(1); }
       }
       @keyframes dotPop {
         0% { opacity: 0; transform: scale(0); }
-        20% { opacity: 1; transform: scale(1); }
-        100% { opacity: 1; transform: scale(1); }
+        20%, 100% { opacity: 1; transform: scale(1); }
       }
       @keyframes goalReveal {
         0% { opacity: 0; max-width: 0; }
         10% { opacity: 1; max-width: 0; }
-        50% { opacity: 1; max-width: 200px; }
-        100% { opacity: 1; max-width: 200px; }
+        50%, 100% { opacity: 1; max-width: 200px; }
       }
     `}</style>
   </div>
