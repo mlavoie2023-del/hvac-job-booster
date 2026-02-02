@@ -26,7 +26,7 @@ const Footer = () => {
             <a href="#how-it-works" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
               How It Works
             </a>
-            <a href="#try-it" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+            <a href="#try-it" className="hidden md:inline text-sm text-muted-foreground hover:text-foreground transition-colors">
               Try It
             </a>
             <Link to="/privacy" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
