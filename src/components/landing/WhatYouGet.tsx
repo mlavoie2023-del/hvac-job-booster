@@ -2874,7 +2874,7 @@ const WhatYouGet = () => {
         {/* Section Header */}
         <div className="mx-auto max-w-3xl text-center mb-8">
           <h2 className="text-3xl font-bold text-foreground sm:text-4xl lg:text-5xl">
-            Let us Simplify Your Practice
+            Let us <span className="gradient-text">Simplify</span> Your Practice
           </h2>
           
           
