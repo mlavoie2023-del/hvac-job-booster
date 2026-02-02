@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState } from "react";
 import { 
   Workflow, 
   FileText, 
@@ -10,8 +10,6 @@ import {
   Megaphone,
   Send,
   MousePointerClick,
-  ChevronLeft,
-  ChevronRight,
   LucideIcon,
   Users,
   Target,
@@ -1967,11 +1965,6 @@ const categories: Category[] = [
   },
 ];
 
-// All features flattened for mobile carousel
-const allFeatures = categories.flatMap(cat => 
-  cat.features.map(f => ({ ...f, categoryColor: cat.color, categoryTitle: cat.title }))
-);
-
 // ============= HUB COMPONENT =============
 
 const CentralHub = ({ activeCategory }: { activeCategory: string | null }) => {
@@ -2011,27 +2004,34 @@ const CentralHub = ({ activeCategory }: { activeCategory: string | null }) => {
 
 const WhatYouGet = () => {
   const [activeCategory, setActiveCategory] = useState<string>("crm");
-  const [currentSlide, setCurrentSlide] = useState(0);
-  const [isAutoPlaying, setIsAutoPlaying] = useState(true);
-  const carouselRef = useRef<HTMLDivElement>(null);
+  const [mobileCategoryIndex, setMobileCategoryIndex] = useState(0);
+  
+  // Touch/swipe handling for mobile
+  const [touchStart, setTouchStart] = useState<number | null>(null);
+  const [touchEnd, setTouchEnd] = useState<number | null>(null);
+  const minSwipeDistance = 50;
 
-  // Auto-play for mobile carousel
-  useEffect(() => {
-    if (!isAutoPlaying) return;
-    const interval = setInterval(() => {
-      setCurrentSlide(prev => (prev + 1) % allFeatures.length);
-    }, 4000);
-    return () => clearInterval(interval);
-  }, [isAutoPlaying]);
-
-  const nextSlide = () => {
-    setIsAutoPlaying(false);
-    setCurrentSlide(prev => (prev + 1) % allFeatures.length);
+  const onTouchStart = (e: React.TouchEvent) => {
+    setTouchEnd(null);
+    setTouchStart(e.targetTouches[0].clientX);
   };
 
-  const prevSlide = () => {
-    setIsAutoPlaying(false);
-    setCurrentSlide(prev => (prev - 1 + allFeatures.length) % allFeatures.length);
+  const onTouchMove = (e: React.TouchEvent) => {
+    setTouchEnd(e.targetTouches[0].clientX);
+  };
+
+  const onTouchEnd = () => {
+    if (!touchStart || !touchEnd) return;
+    const distance = touchStart - touchEnd;
+    const isLeftSwipe = distance > minSwipeDistance;
+    const isRightSwipe = distance < -minSwipeDistance;
+    
+    if (isLeftSwipe && mobileCategoryIndex < categories.length - 1) {
+      setMobileCategoryIndex(prev => prev + 1);
+    }
+    if (isRightSwipe && mobileCategoryIndex > 0) {
+      setMobileCategoryIndex(prev => prev - 1);
+    }
   };
 
   const activeData = categories.find(c => c.id === activeCategory);
@@ -2160,96 +2160,92 @@ const WhatYouGet = () => {
           </div>
         </div>
 
-        {/* Mobile: Horizontal Carousel with Platform Indicator */}
+        {/* Mobile: Horizontal Category Tabs with Stacked Features */}
         <div className="md:hidden">
-          {/* Sticky "1 Platform | 18 Tools" indicator */}
-          <div className="flex justify-center mb-6">
-            <div className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-card/80 border border-border">
-              <div className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
-              <span className="text-xs font-bold text-primary uppercase tracking-wider">1 Platform</span>
-              <div className="w-px h-4 bg-border" />
-              <span className="text-xs font-semibold text-foreground">
-                Tool {currentSlide + 1} of {allFeatures.length}
-              </span>
-            </div>
+          {/* Horizontal scrollable category tabs */}
+          <div className="flex overflow-x-auto gap-2 pb-3 px-1 scrollbar-hide mb-6">
+            {categories.map((category, index) => {
+              const isActive = mobileCategoryIndex === index;
+              return (
+                <button
+                  key={category.id}
+                  onClick={() => setMobileCategoryIndex(index)}
+                  className={cn(
+                    "flex-shrink-0 flex items-center gap-2 px-4 py-2.5 rounded-full transition-all duration-300",
+                    isActive 
+                      ? `bg-gradient-to-r ${category.color} text-white shadow-lg` 
+                      : "bg-card border border-border text-muted-foreground hover:border-primary/30"
+                  )}
+                >
+                  <category.icon className="w-4 h-4" />
+                  <span className="text-sm font-medium whitespace-nowrap">{category.title}</span>
+                </button>
+              );
+            })}
           </div>
           
-          <div className="relative" ref={carouselRef}>
-            {/* Carousel Container */}
-            <div className="overflow-hidden rounded-2xl">
+          {/* Stacked Features Container with swipe support */}
+          <div 
+            className="relative"
+            onTouchStart={onTouchStart}
+            onTouchMove={onTouchMove}
+            onTouchEnd={onTouchEnd}
+          >
+            <div className="overflow-hidden">
               <div 
-                className="flex transition-transform duration-500 ease-out"
-                style={{ transform: `translateX(-${currentSlide * 100}%)` }}
+                className="flex transition-transform duration-300 ease-out"
+                style={{ transform: `translateX(-${mobileCategoryIndex * 100}%)` }}
               >
-                {allFeatures.map((feature, index) => (
-                  <div 
-                    key={`${feature.title}-${index}`}
-                    className="w-full flex-shrink-0 px-2"
-                  >
-                    <div className="bg-card border border-border rounded-2xl p-6 mx-auto max-w-sm">
-                      {/* Category badge */}
-                      <div className={cn(
-                        "inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-medium mb-4 bg-gradient-to-r text-white",
-                        feature.categoryColor
-                      )}>
-                        {feature.categoryTitle}
-                      </div>
-                      
-                      {/* Animation */}
-                      <div className="mb-4 bg-muted/20 rounded-lg">
-                        {feature.animation}
-                      </div>
-                      
-                      {/* Content */}
-                      <div className="flex items-center gap-3 mb-3">
-                        <div className={cn(
-                          "w-10 h-10 rounded-xl flex items-center justify-center bg-gradient-to-br",
-                          feature.categoryColor
-                        )}>
-                          <feature.icon className="w-5 h-5 text-white" />
+                {categories.map((category) => (
+                  <div key={category.id} className="w-full flex-shrink-0 px-1">
+                    <div className="space-y-4">
+                      {category.features.map((feature) => (
+                        <div 
+                          key={feature.title}
+                          className="bg-card border border-border rounded-xl p-4"
+                        >
+                          {/* Animation */}
+                          <div className="mb-3 bg-muted/20 rounded-lg overflow-hidden">
+                            {feature.animation}
+                          </div>
+                          
+                          {/* Content */}
+                          <div className="flex items-center gap-3 mb-2">
+                            <div className={cn(
+                              "w-9 h-9 rounded-lg flex items-center justify-center bg-gradient-to-br",
+                              category.color
+                            )}>
+                              <feature.icon className="w-4 h-4 text-white" />
+                            </div>
+                            <h3 className="font-semibold text-base text-foreground">
+                              {feature.title}
+                            </h3>
+                          </div>
+                          <p className="text-sm text-body leading-relaxed">
+                            {feature.description}
+                          </p>
                         </div>
-                        <h3 className="font-semibold text-lg text-foreground">{feature.title}</h3>
-                      </div>
-                      <p className="text-body leading-relaxed">{feature.description}</p>
+                      ))}
                     </div>
                   </div>
                 ))}
               </div>
             </div>
-
-            {/* Navigation Arrows */}
-            <button
-              onClick={prevSlide}
-              className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-2 w-10 h-10 rounded-full bg-card border border-border flex items-center justify-center text-foreground shadow-lg hover:bg-primary/10 transition-colors"
-              aria-label="Previous feature"
-            >
-              <ChevronLeft className="w-5 h-5" />
-            </button>
-            <button
-              onClick={nextSlide}
-              className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-2 w-10 h-10 rounded-full bg-card border border-border flex items-center justify-center text-foreground shadow-lg hover:bg-primary/10 transition-colors"
-              aria-label="Next feature"
-            >
-              <ChevronRight className="w-5 h-5" />
-            </button>
           </div>
 
-          {/* Dots indicator with category grouping */}
-          <div className="flex justify-center gap-1.5 mt-6 flex-wrap px-4">
-            {allFeatures.map((feature, index) => (
+          {/* 6 category dot indicators */}
+          <div className="flex justify-center gap-2 mt-6">
+            {categories.map((category, index) => (
               <button
-                key={index}
-                onClick={() => {
-                  setIsAutoPlaying(false);
-                  setCurrentSlide(index);
-                }}
+                key={category.id}
+                onClick={() => setMobileCategoryIndex(index)}
                 className={cn(
-                  "w-2 h-2 rounded-full transition-all duration-300",
-                  currentSlide === index 
-                    ? "w-6 bg-primary" 
-                    : "bg-muted hover:bg-muted-foreground/50"
+                  "h-2.5 rounded-full transition-all duration-300",
+                  mobileCategoryIndex === index 
+                    ? `w-8 bg-gradient-to-r ${category.color}` 
+                    : "w-2.5 bg-muted hover:bg-muted-foreground/50"
                 )}
-                aria-label={`Go to ${feature.title}`}
+                aria-label={`Go to ${category.title}`}
               />
             ))}
           </div>
