@@ -36,6 +36,48 @@ import {
 import { cn } from "@/lib/utils";
 import lavoieLogo from "@/assets/lavoie-logo-square.png";
 
+// Animation duration in ms for each animation - tuned to when each animation actually finishes
+const ANIMATION_DURATIONS: { [key: string]: number } = {
+  // CRM - all use 8s animations
+  "Unified Inbox": 4500,           // 3 rows slide in by 2.1s + buffer
+  "Contact Management": 4000,      // Last element at 3.1s + buffer
+  "Pipelines": 6000,               // 10s infinite but meaningful action by 80%
+  
+  // Lead Capture - shorter animations
+  "Landing Pages": 4000,           // Cursor animation 3s
+  "Forms": 5000,                   // Typing animation 4s
+  "Calendar Scheduling": 5000,     // Calendar select + confirm 4s
+  
+  // Automation - 6s animations
+  "Workflows": 5500,               // Progress fill + steps complete by 85%
+  "Appointment Reminders": 5500,   // Timeline fill + checks by 78%
+  "Referral Requests": 5000,       // Success appears at 70%
+  
+  // Marketing - 8s animations  
+  "AI Powered Social Media Management": 6000, // Post fades in at 70%
+  "Email Campaigns": 6500,         // Sent counter at 80%
+  "SMS Campaigns": 6500,           // Delivery stats at 85%
+  
+  // Analytics - mixed durations
+  "Dashboard": 5000,               // 6s lines reveal
+  "Reports": 5000,                 // 4s pie animation
+  "Campaign Attribution": 6000,    // Total fades at 90% of 8s
+  
+  // Payments & Documents - 8s animations
+  "Invoicing & Subscriptions": 6000, // Sent badge at 75%
+  "Documents": 6000,               // Sent badge at 75%
+  "E-Signatures": 4500,            // 3s signature draw
+  
+  // Mobile - 5-6s animations
+  "Push Notifications": 4000,      // 5s notification slide
+  "Conversations": 5000,           // 6s message sequence
+  "Pipeline View": 5000,           // 6s stage swipe
+};
+
+const getAnimationDuration = (featureTitle: string): number => {
+  return ANIMATION_DURATIONS[featureTitle] || 5000; // default 5s
+};
+
 interface Feature {
   icon: LucideIcon;
   title: string;
@@ -2544,7 +2586,6 @@ const WhatYouGet = () => {
   // Sequential animation tracking
   const [desktopAnimatingIndex, setDesktopAnimatingIndex] = useState(0);
   const [mobileAnimatingIndex, setMobileAnimatingIndex] = useState(0);
-  const ANIMATION_DURATION = 8000; // 8 seconds per feature animation
   
   // Touch/swipe handling for mobile
   const [touchStart, setTouchStart] = useState<number | null>(null);
@@ -2559,13 +2600,24 @@ const WhatYouGet = () => {
     setDesktopAnimatingIndex(0);
     
     const currentCategoryData = categories.find(c => c.id === activeCategory);
-    const featureCount = currentCategoryData?.features.length || 3;
+    if (!currentCategoryData) return;
     
-    // Create timers for each feature animation
+    const features = currentCategoryData.features;
     const timers: ReturnType<typeof setTimeout>[] = [];
     
-    for (let i = 1; i < featureCount; i++) {
-      timers.push(setTimeout(() => setDesktopAnimatingIndex(i), ANIMATION_DURATION * i));
+    // Calculate cumulative delays based on each animation's actual duration
+    let cumulativeDelay = 0;
+    
+    for (let i = 0; i < features.length; i++) {
+      const duration = getAnimationDuration(features[i].title);
+      
+      if (i > 0) {
+        // Schedule this feature to start after previous ones complete
+        const delay = cumulativeDelay;
+        timers.push(setTimeout(() => setDesktopAnimatingIndex(i), delay));
+      }
+      
+      cumulativeDelay += duration;
     }
     
     // After all features in this category complete, switch to next category
@@ -2573,7 +2625,7 @@ const WhatYouGet = () => {
       const currentIndex = categoryIds.indexOf(activeCategory);
       const nextIndex = (currentIndex + 1) % categoryIds.length;
       setActiveCategory(categoryIds[nextIndex]);
-    }, ANIMATION_DURATION * featureCount);
+    }, cumulativeDelay);
     
     timers.push(nextCategoryTimer);
     
@@ -2587,19 +2639,30 @@ const WhatYouGet = () => {
     setMobileAnimatingIndex(0);
     
     const currentCategoryData = categories[mobileCategoryIndex];
-    const featureCount = currentCategoryData?.features.length || 3;
+    if (!currentCategoryData) return;
     
-    // Create timers for each feature animation
+    const features = currentCategoryData.features;
     const timers: ReturnType<typeof setTimeout>[] = [];
     
-    for (let i = 1; i < featureCount; i++) {
-      timers.push(setTimeout(() => setMobileAnimatingIndex(i), ANIMATION_DURATION * i));
+    // Calculate cumulative delays based on each animation's actual duration
+    let cumulativeDelay = 0;
+    
+    for (let i = 0; i < features.length; i++) {
+      const duration = getAnimationDuration(features[i].title);
+      
+      if (i > 0) {
+        // Schedule this feature to start after previous ones complete
+        const delay = cumulativeDelay;
+        timers.push(setTimeout(() => setMobileAnimatingIndex(i), delay));
+      }
+      
+      cumulativeDelay += duration;
     }
     
     // After all features in this category complete, switch to next category
     const nextCategoryTimer = setTimeout(() => {
       setMobileCategoryIndex(prev => (prev + 1) % categories.length);
-    }, ANIMATION_DURATION * featureCount);
+    }, cumulativeDelay);
     
     timers.push(nextCategoryTimer);
     
