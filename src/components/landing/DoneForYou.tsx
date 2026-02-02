@@ -72,11 +72,17 @@ const DoneForYou = () => {
             ))}
           </div>
 
-          {/* Bottom emphasis */}
+          {/* CTA */}
           <div className="mt-12 text-center">
-            <p className="text-muted-foreground text-sm">
+            <p className="text-muted-foreground text-sm mb-6">
               You focus on your clients. I'll handle the tech.
             </p>
+            <a 
+              href="/book" 
+              className="btn-primary inline-flex items-center gap-2"
+            >
+              Book a Discovery Call
+            </a>
           </div>
         </div>
       </div>
