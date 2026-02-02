@@ -1764,41 +1764,157 @@ const InvoiceAnimation = () => (
 );
 
 const DocumentAnimation = () => (
-  <div className="relative h-40 flex items-center justify-center p-3">
-    <div className="w-full bg-card/30 rounded-lg border border-border/30 p-4">
-      <div className="text-[8px] font-medium text-foreground mb-3">Document Templates</div>
-      
-      <div className="flex gap-3">
+  <div className="relative h-40 flex items-center justify-center p-2 overflow-hidden">
+    <style>{`
+      @keyframes docTemplatesFade {
+        0% { opacity: 0; }
+        10%, 100% { opacity: 1; }
+      }
+      @keyframes docTemplate1 {
+        0%, 5% { opacity: 0.4; border-color: rgba(255,255,255,0.1); transform: scale(1); }
+        15%, 100% { opacity: 1; border-color: rgba(255,255,255,0.1); transform: scale(1); }
+      }
+      @keyframes docTemplate2 {
+        0%, 10% { opacity: 0.4; border-color: rgba(255,255,255,0.1); transform: scale(1); }
+        20%, 100% { opacity: 1; border-color: rgba(255,255,255,0.1); transform: scale(1); }
+      }
+      @keyframes docTemplateSelect {
+        0%, 20% { opacity: 0.4; border-color: rgba(255,255,255,0.1); transform: scale(1); box-shadow: none; }
+        30% { opacity: 1; border-color: hsl(160 84% 39% / 0.6); transform: scale(1.05); box-shadow: 0 0 15px hsl(160 84% 39% / 0.3); }
+        40%, 100% { opacity: 1; border-color: hsl(160 84% 39% / 0.6); transform: scale(1); box-shadow: 0 0 10px hsl(160 84% 39% / 0.2); }
+      }
+      @keyframes docCursorMove {
+        0% { opacity: 0; right: 50px; top: -20px; }
+        15% { opacity: 1; right: 50px; top: -20px; }
+        30% { opacity: 1; right: 5px; top: 20px; }
+        35% { transform: scale(0.9); }
+        40%, 100% { opacity: 1; right: 5px; top: 20px; transform: scale(1); }
+      }
+      @keyframes docSendBtn {
+        0%, 45% { opacity: 0.5; }
+        50% { opacity: 1; }
+        55% { transform: scale(0.95); }
+        60% { transform: scale(1); background: hsl(160 84% 39%); }
+        100% { background: hsl(160 84% 39%); }
+      }
+      @keyframes docFlyOut {
+        0%, 60% { opacity: 0; transform: translateX(0) translateY(0); }
+        65% { opacity: 1; transform: translateX(0) translateY(0); }
+        100% { opacity: 0; transform: translateX(50px) translateY(-15px); }
+      }
+      @keyframes docSentBadge {
+        0%, 70% { opacity: 0; transform: scale(0.8); }
+        80%, 100% { opacity: 1; transform: scale(1); }
+      }
+    `}</style>
+    
+    <div className="w-full flex gap-2">
+      {/* Template selection area */}
+      <div className="flex-1">
+        <div 
+          className="text-[6px] font-medium text-foreground mb-2"
+          style={{ opacity: 0, animation: 'docTemplatesFade 8s ease-out forwards' }}
+        >
+          Select Template
+        </div>
+        
         {/* Template cards */}
-        {[
-          { name: "Onboarding Packet", icon: FileText, status: "Sent", color: "violet" },
-          { name: "Quarterly Review", icon: PieChart, status: "Draft", color: "amber" },
-          { name: "Planning Agreement", icon: FileSignature, status: "Signed", color: "emerald" }
-        ].map((doc, i) => (
+        <div className="space-y-1.5 relative">
+          {/* Template 1 */}
           <div 
-            key={doc.name}
-            className={`flex-1 bg-card/50 rounded-lg border p-2 animate-[docSlide_4s_ease-out_infinite] ${
-              doc.color === 'violet' ? 'border-violet-500/30' :
-              doc.color === 'amber' ? 'border-amber-500/30' : 'border-emerald-500/30'
-            }`}
-            style={{ animationDelay: `${i * 0.2}s` }}
+            className="flex items-center gap-2 p-1.5 bg-card/40 rounded-lg border border-border/30"
+            style={{ animation: 'docTemplate1 8s ease-out forwards' }}
           >
-            <div className={`w-6 h-6 rounded mb-1.5 flex items-center justify-center ${
-              doc.color === 'violet' ? 'bg-violet-500/20' :
-              doc.color === 'amber' ? 'bg-amber-500/20' : 'bg-emerald-500/20'
-            }`}>
-              <doc.icon className={`w-3 h-3 ${
-                doc.color === 'violet' ? 'text-violet-400' :
-                doc.color === 'amber' ? 'text-amber-400' : 'text-emerald-400'
-              }`} />
+            <div className="w-5 h-5 rounded bg-amber-500/20 flex items-center justify-center">
+              <FileText className="w-3 h-3 text-amber-400" />
             </div>
-            <div className="text-[6px] font-medium text-foreground mb-0.5 leading-tight">{doc.name}</div>
-            <div className={`text-[5px] ${
-              doc.color === 'violet' ? 'text-violet-400' :
-              doc.color === 'amber' ? 'text-amber-400' : 'text-emerald-400'
-            }`}>{doc.status}</div>
+            <div>
+              <div className="text-[5px] font-medium text-foreground">Quarterly Review</div>
+              <div className="text-[4px] text-muted-foreground">PDF • 4 pages</div>
+            </div>
           </div>
-        ))}
+          
+          {/* Template 2 - Selected */}
+          <div 
+            className="flex items-center gap-2 p-1.5 bg-card/40 rounded-lg border border-border/30 relative"
+            style={{ animation: 'docTemplateSelect 8s ease-out forwards' }}
+          >
+            <div className="w-5 h-5 rounded bg-emerald-500/20 flex items-center justify-center">
+              <ClipboardCheck className="w-3 h-3 text-emerald-400" />
+            </div>
+            <div>
+              <div className="text-[5px] font-medium text-foreground">Onboarding Packet</div>
+              <div className="text-[4px] text-muted-foreground">PDF • 8 pages</div>
+            </div>
+            {/* Selection checkmark */}
+            <div 
+              className="absolute right-1.5 w-3 h-3 bg-emerald-500 rounded-full flex items-center justify-center"
+              style={{ opacity: 0, animation: 'docSentBadge 8s ease-out forwards', animationDelay: '-4.5s' }}
+            >
+              <svg className="w-2 h-2 text-white" viewBox="0 0 12 12" fill="none">
+                <path d="M2 6l3 3 5-5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </div>
+            
+            {/* Cursor */}
+            <div 
+              className="absolute pointer-events-none"
+              style={{ animation: 'docCursorMove 8s ease-out forwards' }}
+            >
+              <MousePointer className="w-3 h-3 text-foreground fill-foreground/30" />
+            </div>
+          </div>
+          
+          {/* Template 3 */}
+          <div 
+            className="flex items-center gap-2 p-1.5 bg-card/40 rounded-lg border border-border/30"
+            style={{ animation: 'docTemplate2 8s ease-out forwards' }}
+          >
+            <div className="w-5 h-5 rounded bg-violet-500/20 flex items-center justify-center">
+              <FileSignature className="w-3 h-3 text-violet-400" />
+            </div>
+            <div>
+              <div className="text-[5px] font-medium text-foreground">Planning Agreement</div>
+              <div className="text-[4px] text-muted-foreground">PDF • 6 pages</div>
+            </div>
+          </div>
+        </div>
+        
+        {/* Send button */}
+        <div 
+          className="w-full h-4 mt-2 bg-primary/30 rounded flex items-center justify-center gap-1"
+          style={{ animation: 'docSendBtn 8s ease-out forwards' }}
+        >
+          <Send className="w-2 h-2 text-primary-foreground" />
+          <span className="text-[5px] font-medium text-primary-foreground">Send to Client</span>
+        </div>
+        
+        {/* Flying document */}
+        <div 
+          className="absolute left-[45%] top-[35%] pointer-events-none"
+          style={{ opacity: 0, animation: 'docFlyOut 8s ease-out forwards' }}
+        >
+          <div className="w-4 h-5 bg-emerald-400/80 rounded-sm flex items-center justify-center">
+            <FileText className="w-2.5 h-2.5 text-emerald-900" />
+          </div>
+        </div>
+      </div>
+      
+      {/* Right side - Sent confirmation */}
+      <div className="w-20 flex flex-col justify-center">
+        <div 
+          className="bg-emerald-500/10 rounded-lg border border-emerald-500/30 p-2 text-center"
+          style={{ opacity: 0, animation: 'docSentBadge 8s ease-out forwards' }}
+        >
+          <div className="flex items-center justify-center gap-1 mb-1">
+            <svg className="w-3 h-3 text-emerald-400" viewBox="0 0 12 12" fill="none">
+              <path d="M2 6l3 3 5-5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+            <span className="text-[7px] font-bold text-emerald-400">Sent!</span>
+          </div>
+          <div className="text-[5px] text-emerald-400/70 mb-1">Onboarding Packet</div>
+          <div className="text-[4px] text-muted-foreground">To: John Davidson</div>
+        </div>
       </div>
     </div>
   </div>
