@@ -2128,9 +2128,9 @@ const WhatYouGet = () => {
             {/* Right Side - Large Features Display */}
             <div className="flex-1 min-w-0">
               {activeData && (
-                <div className="bg-card/50 backdrop-blur-sm rounded-2xl border border-border p-6 lg:p-8 animate-fade-in">
+                <div key={activeCategory} className="bg-card/50 backdrop-blur-sm rounded-2xl border border-border p-6 lg:p-8">
                   {/* Category Header */}
-                  <div className="flex items-center gap-3 mb-6">
+                  <div className="flex items-center gap-3 mb-6 opacity-0 animate-fade-in" style={{ animationFillMode: 'forwards' }}>
                     <div className={cn(
                       "w-12 h-12 rounded-xl flex items-center justify-center bg-gradient-to-br shadow-lg",
                       activeData.color
@@ -2140,13 +2140,13 @@ const WhatYouGet = () => {
                     <h3 className="text-2xl lg:text-3xl font-bold text-foreground">{activeData.title}</h3>
                   </div>
                   
-                  {/* Features - Vertical Stack */}
+                  {/* Features - Vertical Stack with sequential animations */}
                   <div className="space-y-4">
                     {activeData.features.map((feature, index) => (
                       <div 
-                        key={feature.title}
-                        className="group relative bg-background/50 rounded-xl border border-border/50 p-5 lg:p-6 transition-all duration-300 hover:border-primary/30 hover:shadow-[0_0_30px_-10px_hsl(217_91%_60%/0.2)]"
-                        style={{ animationDelay: `${index * 100}ms` }}
+                        key={`${activeCategory}-${feature.title}`}
+                        className="group relative bg-background/50 rounded-xl border border-border/50 p-5 lg:p-6 transition-all duration-300 hover:border-primary/30 hover:shadow-[0_0_30px_-10px_hsl(217_91%_60%/0.2)] opacity-0 animate-fade-in"
+                        style={{ animationDelay: `${(index + 1) * 400}ms`, animationFillMode: 'forwards' }}
                       >
                         <div className="flex gap-6 items-start">
                           {/* Content - Now on left */}
@@ -2163,7 +2163,7 @@ const WhatYouGet = () => {
                             <p className="text-body leading-relaxed text-base">{feature.description}</p>
                           </div>
                           
-                          {/* Animation area - Now on right */}
+                          {/* Animation area */}
                           <div className="w-56 lg:w-72 flex-shrink-0 bg-muted/30 rounded-xl overflow-hidden border border-border/30">
                             <div className="transform scale-110 origin-center">
                               {feature.animation}
@@ -2232,41 +2232,51 @@ const WhatYouGet = () => {
                 className="flex transition-transform duration-300 ease-out"
                 style={{ transform: `translateX(-${mobileCategoryIndex * 100}%)` }}
               >
-                {categories.map((category) => (
-                  <div key={category.id} className="w-full flex-shrink-0 px-1">
-                    <div className="space-y-2">
-                      {category.features.map((feature) => (
-                        <div 
-                          key={feature.title}
-                          className="bg-card border border-border rounded-lg p-2.5"
-                        >
-                          {/* Animation - scaled down for mobile */}
-                          <div className="mb-2 bg-muted/20 rounded-md overflow-hidden h-24">
-                            <div className="transform scale-[0.6] origin-top-left w-[166.67%] h-[166.67%]">
-                              {feature.animation}
+                {categories.map((category, catIndex) => {
+                  const isActiveCategory = mobileCategoryIndex === catIndex;
+                  return (
+                    <div key={`${category.id}-${mobileCategoryIndex}`} className="w-full flex-shrink-0 px-1">
+                      <div className="space-y-2">
+                        {category.features.map((feature, featureIndex) => (
+                          <div 
+                            key={`mobile-${category.id}-${feature.title}`}
+                            className={cn(
+                              "bg-card border border-border rounded-lg p-2.5",
+                              isActiveCategory ? "opacity-0 animate-fade-in" : "opacity-100"
+                            )}
+                            style={isActiveCategory ? { 
+                              animationDelay: `${featureIndex * 400}ms`,
+                              animationFillMode: 'forwards'
+                            } : undefined}
+                          >
+                            {/* Animation - scaled down for mobile */}
+                            <div className="mb-2 bg-muted/20 rounded-md overflow-hidden h-24">
+                              <div className="transform scale-[0.6] origin-top-left w-[166.67%] h-[166.67%]">
+                                {feature.animation}
+                              </div>
                             </div>
-                          </div>
-                          
-                          {/* Content - compact */}
-                          <div className="flex items-center gap-2 mb-1">
-                            <div className={cn(
-                              "w-6 h-6 rounded flex items-center justify-center bg-gradient-to-br flex-shrink-0",
-                              category.color
-                            )}>
-                              <feature.icon className="w-3 h-3 text-white" />
+                            
+                            {/* Content - compact */}
+                            <div className="flex items-center gap-2 mb-1">
+                              <div className={cn(
+                                "w-6 h-6 rounded flex items-center justify-center bg-gradient-to-br flex-shrink-0",
+                                category.color
+                              )}>
+                                <feature.icon className="w-3 h-3 text-white" />
+                              </div>
+                              <h3 className="font-semibold text-sm text-foreground leading-tight">
+                                {feature.title}
+                              </h3>
                             </div>
-                            <h3 className="font-semibold text-sm text-foreground leading-tight">
-                              {feature.title}
-                            </h3>
+                            <p className="text-xs text-body leading-snug line-clamp-2">
+                              {feature.description}
+                            </p>
                           </div>
-                          <p className="text-xs text-body leading-snug line-clamp-2">
-                            {feature.description}
-                          </p>
-                        </div>
-                      ))}
+                        ))}
+                      </div>
                     </div>
-                  </div>
-                ))}
+                  );
+                })}
               </div>
             </div>
           </div>
