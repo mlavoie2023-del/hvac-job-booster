@@ -84,7 +84,7 @@ const Hero = () => {
               isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
             }`}
           >
-            The done-for-you automation system that handles follow-up, onboarding, and referrals so you can focus on planning, not admin work.
+            The done-for-you automation system that helps you with follow up, onboarding, and marketing so you can focus on planning, not admin work.
           </p>
 
           <div
