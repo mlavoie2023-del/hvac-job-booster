@@ -278,70 +278,70 @@ const PipelineAnimation = () => {
       <style>{`
         /* J. Davidson: Meeting -> Won (stacks below M. Chen at position 1) */
         @keyframes jdMove {
-          0%, 25% { left: calc(33.33% + 4px); top: 0; }
-          35%, 100% { left: calc(66.66% + 8px); top: 34px; }
+          0%, 10% { left: calc(33.33% + 4px); top: 0; }
+          25%, 100% { left: calc(66.66% + 8px); top: 34px; }
         }
         @keyframes jdToGreen {
-          0%, 30% { background: linear-gradient(135deg, #3b82f6, #2563eb); }
-          35%, 100% { background: #10b981; }
+          0%, 20% { background: linear-gradient(135deg, #3b82f6, #2563eb); }
+          25%, 100% { background: #10b981; }
         }
         @keyframes jdCardToGreen {
-          0%, 30% { background: rgba(59, 130, 246, 0.1); border-color: rgba(59, 130, 246, 0.4); }
-          35%, 100% { background: rgba(16, 185, 129, 0.1); border-color: rgba(16, 185, 129, 0.3); }
+          0%, 20% { background: rgba(59, 130, 246, 0.1); border-color: rgba(59, 130, 246, 0.4); }
+          25%, 100% { background: rgba(16, 185, 129, 0.1); border-color: rgba(16, 185, 129, 0.3); }
         }
         @keyframes jdShowCheck {
-          0%, 30% { opacity: 0; transform: scale(0); }
-          35%, 100% { opacity: 1; transform: scale(1); }
+          0%, 20% { opacity: 0; transform: scale(0); }
+          25%, 100% { opacity: 1; transform: scale(1); }
         }
         @keyframes jdHideInitials {
-          0%, 30% { opacity: 1; }
-          35%, 100% { opacity: 0; }
+          0%, 20% { opacity: 1; }
+          25%, 100% { opacity: 0; }
         }
         @keyframes jdStatusText {
-          0%, 30% { opacity: 1; }
-          35%, 100% { opacity: 0; }
+          0%, 20% { opacity: 1; }
+          25%, 100% { opacity: 0; }
         }
         @keyframes jdWonText {
-          0%, 30% { opacity: 0; }
-          35%, 100% { opacity: 1; }
+          0%, 20% { opacity: 0; }
+          25%, 100% { opacity: 1; }
         }
 
         /* S. Kim: Lead -> Meeting -> Won (stacks below J. Davidson at position 2) */
         @keyframes skMove {
-          0%, 40% { left: 0; top: 0; }
-          50%, 70% { left: calc(33.33% + 4px); top: 0; }
-          80%, 100% { left: calc(66.66% + 8px); top: 68px; }
+          0%, 30% { left: 0; top: 0; }
+          45%, 60% { left: calc(33.33% + 4px); top: 0; }
+          75%, 100% { left: calc(66.66% + 8px); top: 68px; }
         }
         @keyframes skAvatar {
-          0%, 45% { background: linear-gradient(135deg, #94a3b8, #64748b); }
-          50%, 75% { background: linear-gradient(135deg, #3b82f6, #2563eb); }
-          80%, 100% { background: #10b981; }
+          0%, 40% { background: linear-gradient(135deg, #94a3b8, #64748b); }
+          45%, 70% { background: linear-gradient(135deg, #3b82f6, #2563eb); }
+          75%, 100% { background: #10b981; }
         }
         @keyframes skCard {
-          0%, 45% { background: rgba(15, 23, 42, 0.6); border-color: rgba(148, 163, 184, 0.3); }
-          50%, 75% { background: rgba(59, 130, 246, 0.1); border-color: rgba(59, 130, 246, 0.4); }
-          80%, 100% { background: rgba(16, 185, 129, 0.1); border-color: rgba(16, 185, 129, 0.3); }
+          0%, 40% { background: rgba(15, 23, 42, 0.6); border-color: rgba(148, 163, 184, 0.3); }
+          45%, 70% { background: rgba(59, 130, 246, 0.1); border-color: rgba(59, 130, 246, 0.4); }
+          75%, 100% { background: rgba(16, 185, 129, 0.1); border-color: rgba(16, 185, 129, 0.3); }
         }
         @keyframes skShowCheck {
-          0%, 75% { opacity: 0; transform: scale(0); }
-          80%, 100% { opacity: 1; transform: scale(1); }
+          0%, 70% { opacity: 0; transform: scale(0); }
+          75%, 100% { opacity: 1; transform: scale(1); }
         }
         @keyframes skHideInitials {
-          0%, 75% { opacity: 1; }
-          80%, 100% { opacity: 0; }
+          0%, 70% { opacity: 1; }
+          75%, 100% { opacity: 0; }
         }
         @keyframes skStatusText {
-          0%, 45% { opacity: 1; }
-          50%, 100% { opacity: 0; }
+          0%, 40% { opacity: 1; }
+          45%, 100% { opacity: 0; }
         }
         @keyframes skMeetingText {
-          0%, 45% { opacity: 0; }
-          50%, 75% { opacity: 1; }
-          80%, 100% { opacity: 0; }
+          0%, 40% { opacity: 0; }
+          45%, 70% { opacity: 1; }
+          75%, 100% { opacity: 0; }
         }
         @keyframes skWonText {
-          0%, 75% { opacity: 0; }
-          80%, 100% { opacity: 1; }
+          0%, 70% { opacity: 0; }
+          75%, 100% { opacity: 1; }
         }
       `}</style>
       <div className="w-full h-full bg-card/40 rounded-lg border border-border/40 overflow-hidden">
