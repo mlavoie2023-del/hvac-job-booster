@@ -1608,11 +1608,11 @@ const DashboardAnimation = () => (
 );
 
 const ReportsAnimation = () => (
-  <div className="relative h-40 flex items-center justify-center p-3">
-    <div className="w-full bg-card/30 rounded-lg border border-border/30 p-4">
-      <div className="flex gap-4">
+  <div className="relative h-40 flex items-center justify-center p-3 sm:p-3 p-4">
+    <div className="w-full bg-card/30 rounded-lg border border-border/30 p-4 sm:p-4 p-5">
+      <div className="flex gap-4 sm:gap-4 gap-5">
         {/* Pie chart */}
-        <div className="relative w-20 h-20 flex-shrink-0">
+        <div className="relative w-24 h-24 sm:w-20 sm:h-20 flex-shrink-0">
           <svg viewBox="0 0 36 36" className="w-full h-full -rotate-90">
             <circle cx="18" cy="18" r="15.9" fill="none" stroke="hsl(var(--muted))" strokeWidth="3" opacity="0.2" />
             <circle 
@@ -1636,24 +1636,24 @@ const ReportsAnimation = () => (
           </svg>
           <div className="absolute inset-0 flex items-center justify-center">
             <div className="text-center">
-              <div className="text-[10px] font-bold text-foreground">$125K</div>
-              <div className="text-[5px] text-muted-foreground">Total</div>
+              <div className="text-xs sm:text-[10px] font-bold text-foreground">$125K</div>
+              <div className="text-[7px] sm:text-[5px] text-muted-foreground">Total</div>
             </div>
           </div>
         </div>
         
         {/* Legend */}
-        <div className="flex-1 flex flex-col justify-center gap-2">
-          <div className="text-[8px] font-medium text-foreground mb-1">Revenue by Source</div>
+        <div className="flex-1 flex flex-col justify-center gap-2.5 sm:gap-2">
+          <div className="text-[11px] sm:text-[8px] font-medium text-foreground mb-1">Revenue by Source</div>
           {[
             { label: "Retainer Clients", value: "45%", color: "bg-amber-500" },
             { label: "New Clients", value: "30%", color: "bg-emerald-500" },
             { label: "One-time", value: "25%", color: "bg-primary" }
           ].map((item, i) => (
-            <div key={item.label} className="flex items-center gap-2 animate-[legendSlide_4s_ease-out_infinite]" style={{ animationDelay: `${i * 0.2}s` }}>
-              <div className={`w-2 h-2 rounded-sm ${item.color}`} />
-              <span className="text-[6px] text-foreground/70 flex-1">{item.label}</span>
-              <span className="text-[7px] font-medium text-foreground">{item.value}</span>
+            <div key={item.label} className="flex items-center gap-2.5 sm:gap-2 animate-[legendSlide_4s_ease-out_infinite]" style={{ animationDelay: `${i * 0.2}s` }}>
+              <div className={`w-2.5 h-2.5 sm:w-2 sm:h-2 rounded-sm ${item.color}`} />
+              <span className="text-[9px] sm:text-[6px] text-foreground/70 flex-1">{item.label}</span>
+              <span className="text-[10px] sm:text-[7px] font-medium text-foreground">{item.value}</span>
             </div>
           ))}
         </div>
