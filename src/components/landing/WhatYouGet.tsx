@@ -612,16 +612,53 @@ const FormsAnimation = () => (
 
 const CalendarAnimation = () => (
   <div className="relative h-40 flex items-center justify-center p-2">
+    <style>{`
+      @keyframes calFadeIn {
+        0% { opacity: 0; transform: scale(0.95); }
+        100% { opacity: 1; transform: scale(1); }
+      }
+      @keyframes calHeaderFade {
+        0% { opacity: 0; }
+        100% { opacity: 1; }
+      }
+      @keyframes calDaysFade {
+        0% { opacity: 0; }
+        100% { opacity: 1; }
+      }
+      @keyframes calSelectPulse {
+        0%, 40% { opacity: 0; transform: scale(0.8); }
+        50% { opacity: 1; transform: scale(1.1); }
+        60%, 100% { opacity: 1; transform: scale(1); }
+      }
+      @keyframes calConfirmSlide {
+        0%, 55% { opacity: 0; transform: translateX(10px); }
+        70%, 100% { opacity: 1; transform: translateX(0); }
+      }
+    `}</style>
     <div className="flex gap-3 w-full">
       {/* Calendar */}
-      <div className="flex-1 bg-card/50 rounded-lg border border-border/50 p-3">
-        <div className="text-[9px] font-semibold text-foreground mb-2 text-center">February 2026</div>
-        <div className="grid grid-cols-7 gap-1 text-center mb-2">
+      <div 
+        className="flex-1 bg-card/50 rounded-lg border border-border/50 p-3"
+        style={{ opacity: 0, animation: 'calFadeIn 0.4s ease-out 0.2s forwards' }}
+      >
+        <div 
+          className="text-[9px] font-semibold text-foreground mb-2 text-center"
+          style={{ opacity: 0, animation: 'calHeaderFade 0.3s ease-out 0.5s forwards' }}
+        >
+          February 2026
+        </div>
+        <div 
+          className="grid grid-cols-7 gap-1 text-center mb-2"
+          style={{ opacity: 0, animation: 'calDaysFade 0.3s ease-out 0.8s forwards' }}
+        >
           {["S", "M", "T", "W", "T", "F", "S"].map((d, i) => (
             <div key={i} className="text-[6px] text-muted-foreground font-medium">{d}</div>
           ))}
         </div>
-        <div className="grid grid-cols-7 gap-1">
+        <div 
+          className="grid grid-cols-7 gap-1"
+          style={{ opacity: 0, animation: 'calDaysFade 0.4s ease-out 1s forwards' }}
+        >
           {[...Array(28)].map((_, i) => {
             const day = i + 1;
             const isSelected = day === 14;
@@ -632,11 +669,12 @@ const CalendarAnimation = () => (
                 className={cn(
                   "w-5 h-5 rounded flex items-center justify-center text-[7px] transition-all",
                   isSelected 
-                    ? "bg-emerald-500 text-white animate-[calendarSelect_4s_ease-in-out_infinite]" 
+                    ? "bg-emerald-500 text-white" 
                     : hasAppointment 
                       ? "bg-primary/40 text-primary-foreground" 
                       : "text-foreground/60"
                 )}
+                style={isSelected ? { opacity: 0, animation: 'calSelectPulse 5s ease-out forwards' } : undefined}
               >
                 {day}
               </div>
@@ -647,7 +685,10 @@ const CalendarAnimation = () => (
       
       {/* Confirmation message */}
       <div className="w-28 flex flex-col justify-center">
-        <div className="bg-card/50 rounded-lg border border-emerald-500/30 p-2.5 animate-[confirmSlideIn_4s_ease-out_infinite]" style={{ animationDelay: '2s' }}>
+        <div 
+          className="bg-card/50 rounded-lg border border-emerald-500/30 p-2.5"
+          style={{ opacity: 0, animation: 'calConfirmSlide 5s ease-out forwards' }}
+        >
           <div className="flex items-center gap-1.5 mb-1.5">
             <Smartphone className="w-3.5 h-3.5 text-emerald-500" />
             <span className="text-[8px] text-emerald-400 font-medium">Confirmed!</span>
