@@ -44,8 +44,9 @@ const PrivacyPolicy = () => {
               <h2 className="text-2xl font-semibold">2. How We Use Your Information</h2>
               <p className="mt-4 text-muted-foreground">
                 We use the information we collect to provide, maintain, and improve our services, 
-                process payments and transactions, send you technical notices and support messages, 
-                communicate about your subscription, and respond to your comments and questions.
+                process payments and transactions (including setup fees, subscription fees, and 
+                usage-based charges), send you technical notices and support messages, communicate 
+                about your subscription, and respond to your comments and questions.
               </p>
             </section>
 
