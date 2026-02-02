@@ -41,7 +41,7 @@ const ANIMATION_DURATIONS: { [key: string]: number } = {
   // CRM animations
   "Unified Inbox": 3500,           // 3 rows slide in by 2.1s + buffer
   "Contact Management": 4000,      // Last element at 3.1s + buffer
-  "Pipelines": 9000,               // 10s animation - S.Kim reaches Won at 80%
+  "Pipelines": 8000,               // 10s animation - S.Kim reaches Won at 75%
   
   // Lead Capture - shorter animations
   "Landing Pages": 4000,           // Cursor animation 3s
