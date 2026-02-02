@@ -11,7 +11,7 @@ const steps = [
     number: "2",
     title: "Build",
     description:
-      "We build out your custom platform, automations, and integrations in 1-2 weeks.",
+      "I build out your custom platform, automations, and integrations in 1-2 weeks.",
   },
   {
     number: "3",
