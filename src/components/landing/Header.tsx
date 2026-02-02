@@ -62,7 +62,7 @@ const Header = () => {
               asChild
             >
               <Link to="/book">
-                <span className="sm:hidden">Book Call</span>
+                <span className="sm:hidden">Book Discovery</span>
                 <span className="hidden sm:inline">Book a Discovery Call</span>
               </Link>
             </Button>
