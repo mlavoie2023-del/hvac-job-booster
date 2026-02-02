@@ -2715,7 +2715,7 @@ const WhatYouGet = () => {
   // Sequential animation tracking
   const [desktopAnimatingIndex, setDesktopAnimatingIndex] = useState(0);
   const [mobileAnimatingIndex, setMobileAnimatingIndex] = useState(0);
-  const CATEGORY_SWITCH_BUFFER = 3000; // Extra time before switching categories
+  const CATEGORY_SWITCH_BUFFER = 2000; // Extra time before switching categories
   
   // Touch/swipe handling for mobile
   const [touchStart, setTouchStart] = useState<number | null>(null);
