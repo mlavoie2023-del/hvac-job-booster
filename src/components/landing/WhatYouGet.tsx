@@ -907,22 +907,22 @@ const AppointmentRemindersAnimation = () => (
         100% { height: 100%; }
       }
     `}</style>
-    <div className="w-full bg-card/50 rounded-lg border border-border/50 p-3">
+    <div className="w-full bg-card/50 rounded-lg border border-border/50 p-3 sm:p-3 p-4">
       {/* Meeting header */}
-      <div className="flex items-center gap-2 mb-3 pb-2 border-b border-border/30">
-        <div className="w-8 h-8 rounded-lg bg-primary/20 border border-primary/30 flex items-center justify-center">
-          <Calendar className="w-4 h-4 text-primary" />
+      <div className="flex items-center gap-2 sm:gap-2 gap-3 mb-3 sm:mb-3 mb-4 pb-2 border-b border-border/30">
+        <div className="w-8 h-8 sm:w-8 sm:h-8 w-10 h-10 rounded-lg bg-primary/20 border border-primary/30 flex items-center justify-center">
+          <Calendar className="w-4 h-4 sm:w-4 sm:h-4 w-5 h-5 text-primary" />
         </div>
         <div>
-          <div className="text-[8px] font-semibold text-foreground">Meeting with John Davidson</div>
-          <div className="text-[6px] text-muted-foreground">Tomorrow at 2:00 PM</div>
+          <div className="text-[10px] sm:text-[8px] font-semibold text-foreground">Meeting with John Davidson</div>
+          <div className="text-[8px] sm:text-[6px] text-muted-foreground">Tomorrow at 2:00 PM</div>
         </div>
       </div>
       
       {/* Timeline of reminders */}
-      <div className="relative pl-4">
+      <div className="relative pl-5 sm:pl-4">
         {/* Timeline line */}
-        <div className="absolute left-1 top-0 bottom-0 w-0.5 bg-border/30">
+        <div className="absolute left-1.5 sm:left-1 top-0 bottom-0 w-0.5 bg-border/30">
           <div 
             className="w-full bg-gradient-to-b from-primary via-emerald-500 to-emerald-500"
             style={{ animation: 'timelineFill 6s ease-out infinite' }}
@@ -931,17 +931,17 @@ const AppointmentRemindersAnimation = () => (
         
         {/* 24 hours before - Email */}
         <div 
-          className="relative flex items-center gap-2 mb-2"
+          className="relative flex items-center gap-2 sm:gap-2 gap-3 mb-3 sm:mb-2"
           style={{ animation: 'reminderNode1 6s ease-out infinite' }}
         >
-          <div className="absolute -left-3 w-2 h-2 rounded-full bg-primary border-2 border-card" />
-          <div className="w-32 flex items-center justify-between gap-1.5 px-2 py-1 bg-primary/10 rounded border border-primary/30">
-            <div className="flex items-center gap-1.5">
-              <Mail className="w-3 h-3 text-primary" />
-              <span className="text-[6px] text-foreground/80">24h before</span>
+          <div className="absolute -left-4 sm:-left-3 w-2.5 h-2.5 sm:w-2 sm:h-2 rounded-full bg-primary border-2 border-card" />
+          <div className="flex-1 sm:w-32 sm:flex-none flex items-center justify-between gap-2 sm:gap-1.5 px-3 sm:px-2 py-2 sm:py-1 bg-primary/10 rounded border border-primary/30">
+            <div className="flex items-center gap-2 sm:gap-1.5">
+              <Mail className="w-4 h-4 sm:w-3 sm:h-3 text-primary" />
+              <span className="text-[10px] sm:text-[6px] text-foreground/80">24h before</span>
             </div>
             <span 
-              className="text-[6px] text-emerald-400"
+              className="text-[10px] sm:text-[6px] text-emerald-400"
               style={{ animation: 'reminderCheck1 6s ease-out infinite' }}
             >✓ Sent</span>
           </div>
@@ -949,17 +949,17 @@ const AppointmentRemindersAnimation = () => (
         
         {/* 2 hours before - SMS */}
         <div 
-          className="relative flex items-center gap-2 mb-2"
+          className="relative flex items-center gap-2 sm:gap-2 gap-3 mb-3 sm:mb-2"
           style={{ animation: 'reminderNode2 6s ease-out infinite' }}
         >
-          <div className="absolute -left-3 w-2 h-2 rounded-full bg-emerald-500 border-2 border-card" />
-          <div className="w-32 flex items-center justify-between gap-1.5 px-2 py-1 bg-emerald-500/10 rounded border border-emerald-500/30">
-            <div className="flex items-center gap-1.5">
-              <Smartphone className="w-3 h-3 text-emerald-400" />
-              <span className="text-[6px] text-foreground/80">2h before</span>
+          <div className="absolute -left-4 sm:-left-3 w-2.5 h-2.5 sm:w-2 sm:h-2 rounded-full bg-emerald-500 border-2 border-card" />
+          <div className="flex-1 sm:w-32 sm:flex-none flex items-center justify-between gap-2 sm:gap-1.5 px-3 sm:px-2 py-2 sm:py-1 bg-emerald-500/10 rounded border border-emerald-500/30">
+            <div className="flex items-center gap-2 sm:gap-1.5">
+              <Smartphone className="w-4 h-4 sm:w-3 sm:h-3 text-emerald-400" />
+              <span className="text-[10px] sm:text-[6px] text-foreground/80">2h before</span>
             </div>
             <span 
-              className="text-[6px] text-emerald-400"
+              className="text-[10px] sm:text-[6px] text-emerald-400"
               style={{ animation: 'reminderCheck2 6s ease-out infinite' }}
             >✓ Sent</span>
           </div>
@@ -967,17 +967,17 @@ const AppointmentRemindersAnimation = () => (
         
         {/* 15 minutes before - Final SMS */}
         <div 
-          className="relative flex items-center gap-2"
+          className="relative flex items-center gap-2 sm:gap-2 gap-3"
           style={{ animation: 'reminderNode3 6s ease-out infinite' }}
         >
-          <div className="absolute -left-3 w-2 h-2 rounded-full bg-emerald-500 border-2 border-card" />
-          <div className="w-32 flex items-center justify-between gap-1.5 px-2 py-1 bg-emerald-500/10 rounded border border-emerald-500/30">
-            <div className="flex items-center gap-1.5">
-              <Smartphone className="w-3 h-3 text-emerald-400" />
-              <span className="text-[6px] text-foreground/80">15m before</span>
+          <div className="absolute -left-4 sm:-left-3 w-2.5 h-2.5 sm:w-2 sm:h-2 rounded-full bg-emerald-500 border-2 border-card" />
+          <div className="flex-1 sm:w-32 sm:flex-none flex items-center justify-between gap-2 sm:gap-1.5 px-3 sm:px-2 py-2 sm:py-1 bg-emerald-500/10 rounded border border-emerald-500/30">
+            <div className="flex items-center gap-2 sm:gap-1.5">
+              <Smartphone className="w-4 h-4 sm:w-3 sm:h-3 text-emerald-400" />
+              <span className="text-[10px] sm:text-[6px] text-foreground/80">15m before</span>
             </div>
             <span 
-              className="text-[6px] text-emerald-400"
+              className="text-[10px] sm:text-[6px] text-emerald-400"
               style={{ animation: 'reminderCheck3 6s ease-out infinite' }}
             >✓ Sent</span>
           </div>
