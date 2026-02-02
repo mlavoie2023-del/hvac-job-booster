@@ -619,7 +619,7 @@ const MobileApp = () => {
       <div className="section-container">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
           {/* Left: Content */}
-          <div className="order-2 lg:order-1">
+          <div className="order-1 lg:order-1">
             <div className="flex items-center gap-2 mb-4">
               <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-rose-500 to-pink-500 flex items-center justify-center">
                 <Smartphone className="w-5 h-5 text-white" />
@@ -632,11 +632,11 @@ const MobileApp = () => {
             </h2>
             
             <p className="text-lg text-body mb-8 max-w-lg">
-              Stay connected to your business from anywhere. Respond to leads, check your pipeline, and never miss an opportunity—all from your phone.
+              Stay connected to your business from anywhere. Respond to leads, check your pipeline, and never miss an opportunity.
             </p>
             
-            {/* Feature list */}
-            <div className="space-y-3">
+            {/* Feature list - desktop only */}
+            <div className="hidden lg:block space-y-3">
               {features.map((feature, idx) => (
                 <button
                   key={idx}
@@ -672,7 +672,7 @@ const MobileApp = () => {
           </div>
           
           {/* Right: Phone mockup */}
-          <div className="order-1 lg:order-2 flex justify-center">
+          <div className="order-2 lg:order-2 flex justify-center">
             <PhoneFrame activeTab={features[activeFeature].activeTab}>
               {features[activeFeature].screen}
             </PhoneFrame>
