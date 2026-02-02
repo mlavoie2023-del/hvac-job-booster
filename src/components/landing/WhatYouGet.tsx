@@ -2238,30 +2238,32 @@ const WhatYouGet = () => {
               >
                 {categories.map((category) => (
                   <div key={category.id} className="w-full flex-shrink-0 px-1">
-                    <div className="space-y-4">
+                    <div className="space-y-2">
                       {category.features.map((feature) => (
                         <div 
                           key={feature.title}
-                          className="bg-card border border-border rounded-xl p-4"
+                          className="bg-card border border-border rounded-lg p-2.5"
                         >
-                          {/* Animation */}
-                          <div className="mb-3 bg-muted/20 rounded-lg overflow-hidden">
-                            {feature.animation}
+                          {/* Animation - scaled down for mobile */}
+                          <div className="mb-2 bg-muted/20 rounded-md overflow-hidden h-24">
+                            <div className="transform scale-[0.6] origin-top-left w-[166.67%] h-[166.67%]">
+                              {feature.animation}
+                            </div>
                           </div>
                           
-                          {/* Content */}
-                          <div className="flex items-center gap-3 mb-2">
+                          {/* Content - compact */}
+                          <div className="flex items-center gap-2 mb-1">
                             <div className={cn(
-                              "w-9 h-9 rounded-lg flex items-center justify-center bg-gradient-to-br",
+                              "w-6 h-6 rounded flex items-center justify-center bg-gradient-to-br flex-shrink-0",
                               category.color
                             )}>
-                              <feature.icon className="w-4 h-4 text-white" />
+                              <feature.icon className="w-3 h-3 text-white" />
                             </div>
-                            <h3 className="font-semibold text-base text-foreground">
+                            <h3 className="font-semibold text-sm text-foreground leading-tight">
                               {feature.title}
                             </h3>
                           </div>
-                          <p className="text-sm text-body leading-relaxed">
+                          <p className="text-xs text-body leading-snug line-clamp-2">
                             {feature.description}
                           </p>
                         </div>
