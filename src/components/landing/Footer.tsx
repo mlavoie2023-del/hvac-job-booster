@@ -3,7 +3,7 @@ import lavoieLogo from "@/assets/lavoie-logo-square.png";
 
 const Footer = () => {
   return (
-    <footer className="border-t border-border bg-background py-12">
+    <footer className="py-12 relative">
       <div className="section-container">
         <div className="flex flex-col items-center gap-8 text-center md:flex-row md:justify-between md:text-left">
           {/* Logo */}

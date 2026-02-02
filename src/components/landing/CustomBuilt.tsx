@@ -23,7 +23,7 @@ const steps = [
 
 const CustomBuilt = () => {
   return (
-    <section id="how-it-works" className="relative py-20 lg:py-28 spotlight-section-warm">
+    <section id="how-it-works" className="relative py-20 lg:py-28">
       <div className="section-container relative">
         <div className="mx-auto max-w-5xl">
           {/* Centered headline */}
