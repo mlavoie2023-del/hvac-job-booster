@@ -27,10 +27,9 @@ const Index = () => {
         aria-hidden="true"
         style={{
           background: `
-            radial-gradient(ellipse 120% 60% at 50% -20%, hsl(217 91% 60% / 0.12), transparent 60%),
-            radial-gradient(ellipse 100% 50% at 50% 120%, hsl(217 91% 60% / 0.08), transparent 50%),
-            radial-gradient(ellipse 80% 80% at -10% 50%, hsl(217 91% 60% / 0.06), transparent 50%),
-            radial-gradient(ellipse 80% 80% at 110% 50%, hsl(217 91% 60% / 0.06), transparent 50%)
+            radial-gradient(ellipse 100% 60% at 50% 0%, hsl(217 91% 60% / 0.14), transparent 55%),
+            radial-gradient(ellipse 80% 80% at 50% 50%, hsl(217 91% 60% / 0.08), transparent 60%),
+            radial-gradient(ellipse 90% 50% at 50% 100%, hsl(217 91% 60% / 0.10), transparent 50%)
           `,
         }}
       />
