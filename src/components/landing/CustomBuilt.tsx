@@ -11,7 +11,7 @@ const steps = [
     number: "2",
     title: "Build",
     description:
-      "I build your custom CRM with automations in 1-2 weeks, connected to tools you already use.",
+      "I build out your custom platform, automations, and integrations in 1-2 weeks.",
   },
   {
     number: "3",
