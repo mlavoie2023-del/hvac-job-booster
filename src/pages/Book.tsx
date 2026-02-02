@@ -1,8 +1,23 @@
 import { Link } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
+import { useEffect } from "react";
 import lavoieLogo from "@/assets/lavoie-logo-square.png";
 
 const Book = () => {
+  useEffect(() => {
+    // Load the booking widget script
+    const script = document.createElement("script");
+    script.src = "https://api.lavoiesystems.com/js/form_embed.js";
+    script.type = "text/javascript";
+    script.async = true;
+    document.body.appendChild(script);
+
+    return () => {
+      // Cleanup script on unmount
+      document.body.removeChild(script);
+    };
+  }, []);
+
   return (
     <div className="min-h-screen bg-background">
       {/* Header */}
@@ -33,11 +48,15 @@ const Book = () => {
             </p>
           </div>
 
-          {/* Calendar embed placeholder */}
-          <div className="rounded-2xl border border-border bg-card p-8 text-center">
-            <p className="text-muted-foreground">
-              [Calendar embed will go here]
-            </p>
+          {/* Calendar embed */}
+          <div className="rounded-2xl border border-border bg-card overflow-hidden">
+            <iframe 
+              src="https://api.lavoiesystems.com/widget/booking/RbdszjGc8cqHsJVEqQDr" 
+              style={{ width: "100%", border: "none", overflow: "hidden", minHeight: "700px" }}
+              scrolling="no" 
+              id="RbdszjGc8cqHsJVEqQDr_1769992610444"
+              title="Book a Discovery Call"
+            />
           </div>
         </div>
       </main>
