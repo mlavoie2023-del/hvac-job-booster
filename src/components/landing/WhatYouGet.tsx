@@ -2009,10 +2009,41 @@ const WhatYouGet = () => {
   const [mobileCategoryIndex, setMobileCategoryIndex] = useState(0);
   const tabsContainerRef = useRef<HTMLDivElement>(null);
   
+  // Sequential animation tracking
+  const [desktopAnimatingIndex, setDesktopAnimatingIndex] = useState(0);
+  const [mobileAnimatingIndex, setMobileAnimatingIndex] = useState(0);
+  const ANIMATION_DURATION = 8000; // 8 seconds per feature animation
+  
   // Touch/swipe handling for mobile
   const [touchStart, setTouchStart] = useState<number | null>(null);
   const [touchEnd, setTouchEnd] = useState<number | null>(null);
   const minSwipeDistance = 50;
+
+  // Reset and sequence desktop animations when category changes
+  useEffect(() => {
+    setDesktopAnimatingIndex(0);
+    
+    const timer1 = setTimeout(() => setDesktopAnimatingIndex(1), ANIMATION_DURATION);
+    const timer2 = setTimeout(() => setDesktopAnimatingIndex(2), ANIMATION_DURATION * 2);
+    
+    return () => {
+      clearTimeout(timer1);
+      clearTimeout(timer2);
+    };
+  }, [activeCategory]);
+
+  // Reset and sequence mobile animations when category changes
+  useEffect(() => {
+    setMobileAnimatingIndex(0);
+    
+    const timer1 = setTimeout(() => setMobileAnimatingIndex(1), ANIMATION_DURATION);
+    const timer2 = setTimeout(() => setMobileAnimatingIndex(2), ANIMATION_DURATION * 2);
+    
+    return () => {
+      clearTimeout(timer1);
+      clearTimeout(timer2);
+    };
+  }, [mobileCategoryIndex]);
 
   // Auto-scroll tabs when category changes
   useEffect(() => {
@@ -2023,7 +2054,6 @@ const WhatYouGet = () => {
         const containerWidth = container.offsetWidth;
         const tabLeft = activeTab.offsetLeft;
         const tabWidth = activeTab.offsetWidth;
-        // Center the active tab
         const scrollPosition = tabLeft - (containerWidth / 2) + (tabWidth / 2);
         container.scrollTo({ left: scrollPosition, behavior: 'smooth' });
       }
@@ -2130,7 +2160,7 @@ const WhatYouGet = () => {
               {activeData && (
                 <div key={activeCategory} className="bg-card/50 backdrop-blur-sm rounded-2xl border border-border p-6 lg:p-8">
                   {/* Category Header */}
-                  <div className="flex items-center gap-3 mb-6 opacity-0 animate-fade-in" style={{ animationFillMode: 'forwards' }}>
+                  <div className="flex items-center gap-3 mb-6">
                     <div className={cn(
                       "w-12 h-12 rounded-xl flex items-center justify-center bg-gradient-to-br shadow-lg",
                       activeData.color
@@ -2142,36 +2172,52 @@ const WhatYouGet = () => {
                   
                   {/* Features - Vertical Stack with sequential animations */}
                   <div className="space-y-4">
-                    {activeData.features.map((feature, index) => (
-                      <div 
-                        key={`${activeCategory}-${feature.title}`}
-                        className="group relative bg-background/50 rounded-xl border border-border/50 p-5 lg:p-6 transition-all duration-300 hover:border-primary/30 hover:shadow-[0_0_30px_-10px_hsl(217_91%_60%/0.2)] opacity-0 animate-fade-in"
-                        style={{ animationDelay: `${(index + 1) * 400}ms`, animationFillMode: 'forwards' }}
-                      >
-                        <div className="flex gap-6 items-start">
-                          {/* Content - Now on left */}
-                          <div className="flex-1 py-2">
-                            <div className="flex items-center gap-3 mb-3">
-                              <div className={cn(
-                                "w-9 h-9 rounded-lg flex items-center justify-center bg-gradient-to-br",
-                                activeData.color
-                              )}>
-                                <feature.icon className="w-4 h-4 text-white" />
+                    {activeData.features.map((feature, index) => {
+                      const isWaiting = index > desktopAnimatingIndex;
+                      const isAnimating = index === desktopAnimatingIndex;
+                      const isComplete = index < desktopAnimatingIndex;
+                      
+                      return (
+                        <div 
+                          key={`${activeCategory}-${feature.title}`}
+                          className={cn(
+                            "group relative bg-background/50 rounded-xl border border-border/50 p-5 lg:p-6 transition-all duration-500",
+                            isWaiting && "opacity-40 grayscale",
+                            (isAnimating || isComplete) && "opacity-100 grayscale-0",
+                            isAnimating && "ring-2 ring-primary/30 shadow-[0_0_30px_-10px_hsl(217_91%_60%/0.3)]"
+                          )}
+                        >
+                          <div className="flex gap-6 items-start">
+                            {/* Content - Now on left */}
+                            <div className="flex-1 py-2">
+                              <div className="flex items-center gap-3 mb-3">
+                                <div className={cn(
+                                  "w-9 h-9 rounded-lg flex items-center justify-center bg-gradient-to-br transition-all duration-500",
+                                  activeData.color,
+                                  isWaiting && "opacity-50"
+                                )}>
+                                  <feature.icon className="w-4 h-4 text-white" />
+                                </div>
+                                <h4 className="font-bold text-foreground text-lg lg:text-xl">{feature.title}</h4>
                               </div>
-                              <h4 className="font-bold text-foreground text-lg lg:text-xl">{feature.title}</h4>
+                              <p className="text-body leading-relaxed text-base">{feature.description}</p>
                             </div>
-                            <p className="text-body leading-relaxed text-base">{feature.description}</p>
-                          </div>
-                          
-                          {/* Animation area */}
-                          <div className="w-56 lg:w-72 flex-shrink-0 bg-muted/30 rounded-xl overflow-hidden border border-border/30">
-                            <div className="transform scale-110 origin-center">
-                              {feature.animation}
+                            
+                            {/* Animation area - paused when waiting */}
+                            <div className="w-56 lg:w-72 flex-shrink-0 bg-muted/30 rounded-xl overflow-hidden border border-border/30">
+                              <div 
+                                className={cn(
+                                  "transform scale-110 origin-center transition-all duration-500",
+                                  isWaiting && "[&_*]:[animation-play-state:paused]"
+                                )}
+                              >
+                                {feature.animation}
+                              </div>
                             </div>
                           </div>
                         </div>
-                      </div>
-                    ))}
+                      );
+                    })}
                   </div>
                 </div>
               )}
@@ -2237,42 +2283,52 @@ const WhatYouGet = () => {
                   return (
                     <div key={`${category.id}-${mobileCategoryIndex}`} className="w-full flex-shrink-0 px-1">
                       <div className="space-y-2">
-                        {category.features.map((feature, featureIndex) => (
-                          <div 
-                            key={`mobile-${category.id}-${feature.title}`}
-                            className={cn(
-                              "bg-card border border-border rounded-lg p-2.5",
-                              isActiveCategory ? "opacity-0 animate-fade-in" : "opacity-100"
-                            )}
-                            style={isActiveCategory ? { 
-                              animationDelay: `${featureIndex * 400}ms`,
-                              animationFillMode: 'forwards'
-                            } : undefined}
-                          >
-                            {/* Animation - scaled down for mobile */}
-                            <div className="mb-2 bg-muted/20 rounded-md overflow-hidden h-24">
-                              <div className="transform scale-[0.6] origin-top-left w-[166.67%] h-[166.67%]">
-                                {feature.animation}
+                        {category.features.map((feature, featureIndex) => {
+                          const isWaiting = isActiveCategory && featureIndex > mobileAnimatingIndex;
+                          const isAnimating = isActiveCategory && featureIndex === mobileAnimatingIndex;
+                          const isComplete = isActiveCategory && featureIndex < mobileAnimatingIndex;
+                          
+                          return (
+                            <div 
+                              key={`mobile-${category.id}-${feature.title}`}
+                              className={cn(
+                                "bg-card border border-border rounded-lg p-2.5 transition-all duration-500",
+                                isActiveCategory && isWaiting && "opacity-40 grayscale",
+                                isActiveCategory && (isAnimating || isComplete) && "opacity-100 grayscale-0",
+                                isAnimating && "ring-1 ring-primary/30"
+                              )}
+                            >
+                              {/* Animation - scaled down for mobile, paused when waiting */}
+                              <div className="mb-2 bg-muted/20 rounded-md overflow-hidden h-24">
+                                <div 
+                                  className={cn(
+                                    "transform scale-[0.6] origin-top-left w-[166.67%] h-[166.67%]",
+                                    isWaiting && "[&_*]:[animation-play-state:paused]"
+                                  )}
+                                >
+                                  {feature.animation}
+                                </div>
                               </div>
-                            </div>
-                            
-                            {/* Content - compact */}
-                            <div className="flex items-center gap-2 mb-1">
-                              <div className={cn(
-                                "w-6 h-6 rounded flex items-center justify-center bg-gradient-to-br flex-shrink-0",
-                                category.color
-                              )}>
-                                <feature.icon className="w-3 h-3 text-white" />
+                              
+                              {/* Content - compact */}
+                              <div className="flex items-center gap-2 mb-1">
+                                <div className={cn(
+                                  "w-6 h-6 rounded flex items-center justify-center bg-gradient-to-br flex-shrink-0 transition-opacity duration-500",
+                                  category.color,
+                                  isWaiting && "opacity-50"
+                                )}>
+                                  <feature.icon className="w-3 h-3 text-white" />
+                                </div>
+                                <h3 className="font-semibold text-sm text-foreground leading-tight">
+                                  {feature.title}
+                                </h3>
                               </div>
-                              <h3 className="font-semibold text-sm text-foreground leading-tight">
-                                {feature.title}
-                              </h3>
+                              <p className="text-xs text-body leading-snug line-clamp-2">
+                                {feature.description}
+                              </p>
                             </div>
-                            <p className="text-xs text-body leading-snug line-clamp-2">
-                              {feature.description}
-                            </p>
-                          </div>
-                        ))}
+                          );
+                        })}
                       </div>
                     </div>
                   );
