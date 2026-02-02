@@ -1498,29 +1498,68 @@ const ReportsAnimation = () => (
 const AttributionAnimation = () => (
   <div className="relative h-40 flex items-center justify-center p-3">
     <style>{`
-      @keyframes attrSlideIn {
-        0%, 2% { opacity: 0; transform: translateX(-20px); }
-        15% { opacity: 1; transform: translateX(0); }
-        100% { opacity: 1; transform: translateX(0); }
+      @keyframes attrHeaderFade {
+        0% { opacity: 0; }
+        10%, 100% { opacity: 1; }
       }
-      @keyframes attrCountUp {
-        0%, 10% { opacity: 0; }
-        25% { opacity: 1; }
-        100% { opacity: 1; }
+      @keyframes attrSlideIn1 {
+        0% { opacity: 0; transform: translateX(-20px); }
+        20%, 100% { opacity: 1; transform: translateX(0); }
       }
-      @keyframes attrCheckPop {
-        0%, 15% { opacity: 0; transform: scale(0); }
-        30% { opacity: 1; transform: scale(1); }
-        100% { opacity: 1; transform: scale(1); }
+      @keyframes attrSlideIn2 {
+        0%, 15% { opacity: 0; transform: translateX(-20px); }
+        35%, 100% { opacity: 1; transform: translateX(0); }
+      }
+      @keyframes attrSlideIn3 {
+        0%, 30% { opacity: 0; transform: translateX(-20px); }
+        50%, 100% { opacity: 1; transform: translateX(0); }
+      }
+      @keyframes attrSlideIn4 {
+        0%, 45% { opacity: 0; transform: translateX(-20px); }
+        65%, 100% { opacity: 1; transform: translateX(0); }
+      }
+      @keyframes attrCountUp1 {
+        0%, 20% { opacity: 0; }
+        30%, 100% { opacity: 1; }
+      }
+      @keyframes attrCountUp2 {
+        0%, 35% { opacity: 0; }
+        45%, 100% { opacity: 1; }
+      }
+      @keyframes attrCountUp3 {
+        0%, 50% { opacity: 0; }
+        60%, 100% { opacity: 1; }
+      }
+      @keyframes attrCountUp4 {
+        0%, 65% { opacity: 0; }
+        75%, 100% { opacity: 1; }
+      }
+      @keyframes attrCheckPop1 {
+        0%, 25% { opacity: 0; transform: scale(0); }
+        35%, 100% { opacity: 1; transform: scale(1); }
+      }
+      @keyframes attrCheckPop2 {
+        0%, 40% { opacity: 0; transform: scale(0); }
+        50%, 100% { opacity: 1; transform: scale(1); }
+      }
+      @keyframes attrCheckPop3 {
+        0%, 55% { opacity: 0; transform: scale(0); }
+        65%, 100% { opacity: 1; transform: scale(1); }
+      }
+      @keyframes attrCheckPop4 {
+        0%, 70% { opacity: 0; transform: scale(0); }
+        80%, 100% { opacity: 1; transform: scale(1); }
       }
       @keyframes attrTotalFade {
-        0%, 50% { opacity: 0; }
-        70% { opacity: 1; }
-        100% { opacity: 1; }
+        0%, 75% { opacity: 0; }
+        90%, 100% { opacity: 1; }
       }
     `}</style>
     <div className="w-full bg-card/30 rounded-lg border border-border/30 p-3">
-      <div className="flex items-center justify-between mb-2">
+      <div 
+        className="flex items-center justify-between mb-2"
+        style={{ opacity: 0, animation: 'attrHeaderFade 8s ease-out forwards' }}
+      >
         <div className="text-[8px] font-medium text-foreground">Lead Source Attribution</div>
         <div className="px-1.5 py-0.5 bg-primary/20 rounded text-[6px] text-primary">This Quarter</div>
       </div>
@@ -1529,60 +1568,60 @@ const AttributionAnimation = () => (
       <div className="space-y-1.5">
         <div 
           className="flex items-center gap-2 px-2 py-1.5 rounded-lg border bg-emerald-500/20 border-emerald-500/30"
-          style={{ animation: 'attrSlideIn 6s ease-out infinite' }}
+          style={{ opacity: 0, animation: 'attrSlideIn1 8s ease-out forwards' }}
         >
           <Users className="w-3 h-3 text-emerald-400" />
           <span className="text-[7px] text-foreground/80 flex-1">Client Referrals</span>
           <div className="flex items-center gap-1">
-            <span className="text-[8px] font-bold text-emerald-400" style={{ animation: 'attrCountUp 6s ease-out 0.3s infinite' }}>12</span>
+            <span className="text-[8px] font-bold text-emerald-400" style={{ opacity: 0, animation: 'attrCountUp1 8s ease-out forwards' }}>12</span>
             <span className="text-[6px] text-muted-foreground">leads</span>
           </div>
-          <div className="w-3 h-3 rounded-full bg-emerald-500/30 flex items-center justify-center" style={{ animation: 'attrCheckPop 6s ease-out 0.4s infinite' }}>
+          <div className="w-3 h-3 rounded-full bg-emerald-500/30 flex items-center justify-center" style={{ opacity: 0, animation: 'attrCheckPop1 8s ease-out forwards' }}>
             <span className="text-[5px] text-emerald-400">✓</span>
           </div>
         </div>
         
         <div 
           className="flex items-center gap-2 px-2 py-1.5 rounded-lg border bg-primary/20 border-primary/30"
-          style={{ animation: 'attrSlideIn 6s ease-out 0.5s infinite' }}
+          style={{ opacity: 0, animation: 'attrSlideIn2 8s ease-out forwards' }}
         >
           <Mail className="w-3 h-3 text-primary" />
           <span className="text-[7px] text-foreground/80 flex-1">Email Campaigns</span>
           <div className="flex items-center gap-1">
-            <span className="text-[8px] font-bold text-primary" style={{ animation: 'attrCountUp 6s ease-out 0.8s infinite' }}>8</span>
+            <span className="text-[8px] font-bold text-primary" style={{ opacity: 0, animation: 'attrCountUp2 8s ease-out forwards' }}>8</span>
             <span className="text-[6px] text-muted-foreground">leads</span>
           </div>
-          <div className="w-3 h-3 rounded-full bg-emerald-500/30 flex items-center justify-center" style={{ animation: 'attrCheckPop 6s ease-out 0.9s infinite' }}>
+          <div className="w-3 h-3 rounded-full bg-emerald-500/30 flex items-center justify-center" style={{ opacity: 0, animation: 'attrCheckPop2 8s ease-out forwards' }}>
             <span className="text-[5px] text-emerald-400">✓</span>
           </div>
         </div>
         
         <div 
           className="flex items-center gap-2 px-2 py-1.5 rounded-lg border bg-amber-500/20 border-amber-500/30"
-          style={{ animation: 'attrSlideIn 6s ease-out 1s infinite' }}
+          style={{ opacity: 0, animation: 'attrSlideIn3 8s ease-out forwards' }}
         >
           <ClipboardCheck className="w-3 h-3 text-amber-400" />
           <span className="text-[7px] text-foreground/80 flex-1">Website Forms</span>
           <div className="flex items-center gap-1">
-            <span className="text-[8px] font-bold text-amber-400" style={{ animation: 'attrCountUp 6s ease-out 1.3s infinite' }}>6</span>
+            <span className="text-[8px] font-bold text-amber-400" style={{ opacity: 0, animation: 'attrCountUp3 8s ease-out forwards' }}>6</span>
             <span className="text-[6px] text-muted-foreground">leads</span>
           </div>
-          <div className="w-3 h-3 rounded-full bg-emerald-500/30 flex items-center justify-center" style={{ animation: 'attrCheckPop 6s ease-out 1.4s infinite' }}>
+          <div className="w-3 h-3 rounded-full bg-emerald-500/30 flex items-center justify-center" style={{ opacity: 0, animation: 'attrCheckPop3 8s ease-out forwards' }}>
             <span className="text-[5px] text-emerald-400">✓</span>
           </div>
         </div>
         
         <div 
           className="flex items-center gap-2 px-2 py-1.5 rounded-lg border bg-pink-500/20 border-pink-500/30"
-          style={{ animation: 'attrSlideIn 6s ease-out 1.5s infinite' }}
+          style={{ opacity: 0, animation: 'attrSlideIn4 8s ease-out forwards' }}
         >
           <Globe className="w-3 h-3 text-pink-400" />
           <span className="text-[7px] text-foreground/80 flex-1">Social Media</span>
           <div className="flex items-center gap-1">
-            <span className="text-[8px] font-bold text-pink-400" style={{ animation: 'attrCountUp 6s ease-out 1.8s infinite' }}>5</span>
+            <span className="text-[8px] font-bold text-pink-400" style={{ opacity: 0, animation: 'attrCountUp4 8s ease-out forwards' }}>5</span>
             <span className="text-[6px] text-muted-foreground">leads</span>
           </div>
-          <div className="w-3 h-3 rounded-full bg-emerald-500/30 flex items-center justify-center" style={{ animation: 'attrCheckPop 6s ease-out 1.9s infinite' }}>
+          <div className="w-3 h-3 rounded-full bg-emerald-500/30 flex items-center justify-center" style={{ opacity: 0, animation: 'attrCheckPop4 8s ease-out forwards' }}>
             <span className="text-[5px] text-emerald-400">✓</span>
           </div>
         </div>
@@ -1591,7 +1630,7 @@ const AttributionAnimation = () => (
       {/* Total */}
       <div 
         className="flex items-center justify-between mt-2 pt-2 border-t border-border/20"
-        style={{ animation: 'attrTotalFade 6s ease-out infinite' }}
+        style={{ opacity: 0, animation: 'attrTotalFade 8s ease-out forwards' }}
       >
         <span className="text-[6px] text-muted-foreground">Total New Leads</span>
         <span className="text-[9px] font-bold text-foreground">31 this quarter</span>
