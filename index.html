@@ -44,6 +44,28 @@
       }
     }
     </script>
+    
+    <!-- GitHub Pages SPA redirect handler -->
+    <script>
+      (function() {
+        var redirect = sessionStorage.redirect;
+        delete sessionStorage.redirect;
+        if (redirect && redirect !== location.href) {
+          history.replaceState(null, null, redirect);
+        }
+      })();
+      
+      // Handle 404.html redirect query params
+      (function() {
+        var params = new URLSearchParams(window.location.search);
+        var path = params.get('p');
+        if (path) {
+          var newUrl = path + (params.get('q') ? '?' + params.get('q') : '') + window.location.hash;
+          history.replaceState(null, null, newUrl);
+        }
+      })();
+    </script>
+  </head>
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
