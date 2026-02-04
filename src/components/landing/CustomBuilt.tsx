@@ -45,7 +45,7 @@ const CustomBuilt = () => {
                   style={{ objectPosition: "center 25%" }}
                 />
                 <blockquote className="text-sm text-body italic leading-relaxed">
-                  "You shouldn't have to learn new software or spend weekends setting things up. I build it, connect it, and hand you the keys—ready to go."
+                  "I personally build every system from scratch. No templates, no DIY. You get a custom platform, fully built and ready to use."
                 </blockquote>
                 <div className="mt-4 flex flex-col items-center">
                   <span className="font-semibold text-foreground text-sm">Matt Lavoie</span>
