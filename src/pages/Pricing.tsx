@@ -29,7 +29,7 @@ const tiers = [
     href: "https://buy.stripe.com/28E6oHdy0cPE9CTgQy6Na04",
   },
   {
-    name: "6 Months Prepaid",
+    name: "Bi-Annually",
     subtitle: "Commit to growth and save",
     setupNote: null,
     price: "$2,382",
@@ -44,7 +44,7 @@ const tiers = [
     badge: "Most Popular",
   },
   {
-    name: "12 Months Prepaid",
+    name: "Annually",
     subtitle: "Maximum savings for committed planners",
     setupNote: null,
     price: "$3,970",
