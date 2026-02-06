@@ -40,7 +40,7 @@ const tiers = [
     fee: null,
     strikethrough: "$3,382",
     buttonLabel: "Get Started",
-    href: "https://buy.stripe.com/14A3cvdy07vk7uL1VE6Na05",
+    href: "https://buy.stripe.com/5kQfZh9hK4j8bL16bU6Na07",
     badge: "Most Popular",
   },
   {
@@ -55,7 +55,7 @@ const tiers = [
     fee: null,
     strikethrough: "$5,764",
     buttonLabel: "Get Started",
-    href: "https://buy.stripe.com/4gMeVdctW9Ds6qHbwe6Na06",
+    href: "https://buy.stripe.com/cNi6oHdy06rg5mD0RA6Na08",
   },
 ];
 
