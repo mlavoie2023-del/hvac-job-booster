@@ -33,11 +33,10 @@ const WhoIsFor = () => {
           {/* Header */}
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-foreground sm:text-4xl lg:text-5xl">
-              Built For <span className="gradient-text">Solo</span> Fee-Only Planners
+              Built For <span className="gradient-text">Solo Planners</span>
             </h2>
             <p className="mx-auto mt-4 max-w-2xl text-lg text-body">
-              I work exclusively with one-person planning firms. No RIAs. No teams. 
-              Just solo practitioners who want to scale without sacrificing their sanity.
+              I work exclusively with one-person planning firms who want to scale a lean practice without hiring employees.
             </p>
           </div>
 
