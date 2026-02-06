@@ -29,7 +29,7 @@ const tiers = [
     href: "https://buy.stripe.com/28E6oHdy0cPE9CTgQy6Na04",
   },
   {
-    name: "Bi-Annually",
+    name: "Semi-Annually",
     subtitle: "Commit to growth and save",
     setupNote: null,
     price: "$2,382",
