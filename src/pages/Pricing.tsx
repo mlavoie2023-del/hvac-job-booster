@@ -8,9 +8,9 @@ const features = [
   { label: "Custom Automations", icon: Zap },
   { label: "Client onboarding workflows", icon: Users },
   { label: "Referral generation system", icon: Share2 },
-  { label: "Direct text access to me for any changes", icon: MessageCircle },
-  { label: "Monthly optimization reviews", icon: BarChart3 },
   { label: "Unlimited technical support", icon: Headphones },
+  { label: "Monthly optimization reviews", icon: BarChart3 },
+  { label: "Direct text access to me for any changes", icon: MessageCircle },
 ];
 
 const tiers = [
@@ -180,7 +180,7 @@ const Pricing = () => {
               Everything you need to scale your practice, included from day one.
             </p>
             <div className="relative grid gap-4 sm:grid-cols-2 lg:grid-cols-3 max-w-4xl mx-auto">
-              {features.map((feature) => {
+              {features.slice(0, 6).map((feature) => {
                 const Icon = feature.icon;
                 return (
                   <div
@@ -196,6 +196,17 @@ const Pricing = () => {
                   </div>
                 );
               })}
+            </div>
+            {/* Last feature centered */}
+            <div className="relative mt-4 flex justify-center max-w-4xl mx-auto">
+              <div className="group flex items-start gap-3 rounded-xl border border-border/60 bg-secondary/40 p-4 transition-all duration-200 hover:border-primary/30 hover:bg-secondary/70 w-full sm:w-[calc(50%-0.5rem)] lg:w-[calc(33.333%-0.67rem)]">
+                <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary transition-colors group-hover:bg-primary/20">
+                  <MessageCircle className="h-4 w-4" />
+                </div>
+                <span className="text-sm font-medium text-muted-foreground group-hover:text-foreground transition-colors pt-1">
+                  {features[6].label}
+                </span>
+              </div>
             </div>
           </div>
 
