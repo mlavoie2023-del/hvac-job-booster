@@ -26,7 +26,7 @@ const tiers = [
     fee: "$1,000 setup fee included",
     strikethrough: null,
     buttonLabel: "Get Started",
-    href: "#",
+    href: "https://buy.stripe.com/28E6oHdy0cPE9CTgQy6Na04",
   },
   {
     name: "6 Months Prepaid",
@@ -40,7 +40,7 @@ const tiers = [
     fee: null,
     strikethrough: "$3,382",
     buttonLabel: "Get Started",
-    href: "#",
+    href: "https://buy.stripe.com/14A3cvdy07vk7uL1VE6Na05",
     badge: "Most Popular",
   },
   {
@@ -55,7 +55,7 @@ const tiers = [
     fee: null,
     strikethrough: "$5,764",
     buttonLabel: "Get Started",
-    href: "#",
+    href: "https://buy.stripe.com/4gMeVdctW9Ds6qHbwe6Na06",
   },
 ];
 
