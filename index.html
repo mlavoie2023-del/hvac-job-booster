@@ -54,16 +54,6 @@
           history.replaceState(null, null, redirect);
         }
       })();
-      
-      // Handle 404.html redirect query params
-      (function() {
-        var params = new URLSearchParams(window.location.search);
-        var path = params.get('p');
-        if (path) {
-          var newUrl = path + (params.get('q') ? '?' + params.get('q') : '') + window.location.hash;
-          history.replaceState(null, null, newUrl);
-        }
-      })();
     </script>
   </head>
   <body>
