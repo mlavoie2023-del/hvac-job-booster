@@ -89,14 +89,14 @@ const Pricing = () => {
           </div>
 
           {/* Pricing Grid */}
-          <div className="grid gap-6 lg:gap-8 md:grid-cols-3 items-start">
+          <div className="grid gap-6 lg:gap-8 md:grid-cols-3 items-stretch">
             {tiers.map((tier) => (
               <div
                 key={tier.name}
                 className={`
-                  relative rounded-2xl border p-6 lg:p-8 transition-all duration-300 hover:-translate-y-1
+                  relative rounded-2xl border p-6 lg:p-8 transition-all duration-300 hover:-translate-y-1 flex flex-col
                   ${tier.highlighted
-                    ? "border-primary/60 bg-card shadow-[0_0_40px_-10px_hsl(var(--primary)/0.25)] scale-[1.02] lg:scale-105"
+                    ? "border-primary/60 bg-card shadow-[0_0_40px_-10px_hsl(var(--primary)/0.25)]"
                     : "border-border bg-card hover:border-primary/30 hover:shadow-[0_0_30px_-10px_hsl(var(--primary)/0.15)]"
                   }
                 `}
@@ -141,18 +141,20 @@ const Pricing = () => {
                 </div>
 
                 {/* CTA Button */}
-                <a
-                  href={tier.href}
-                  className={`
-                    block w-full text-center rounded-xl py-3.5 text-sm font-semibold transition-all duration-200
-                    ${tier.highlighted
-                      ? "bg-primary text-primary-foreground hover:bg-primary/90 shadow-[0_10px_30px_-10px_hsl(var(--primary)/0.4)] hover:shadow-[0_10px_40px_-10px_hsl(var(--primary)/0.5)] hover:-translate-y-0.5"
-                      : "border-2 border-primary/30 bg-primary/5 text-primary hover:bg-primary/10 hover:border-primary/50"
-                    }
-                  `}
-                >
-                  {tier.buttonLabel}
-                </a>
+                <div className="mt-auto">
+                  <a
+                    href={tier.href}
+                    className={`
+                      block w-full text-center rounded-xl py-3.5 text-sm font-semibold transition-all duration-200
+                      ${tier.highlighted
+                        ? "bg-primary text-primary-foreground hover:bg-primary/90 shadow-[0_10px_30px_-10px_hsl(var(--primary)/0.4)] hover:shadow-[0_10px_40px_-10px_hsl(var(--primary)/0.5)] hover:-translate-y-0.5"
+                        : "border-2 border-primary/30 bg-primary/5 text-primary hover:bg-primary/10 hover:border-primary/50"
+                      }
+                    `}
+                  >
+                    {tier.buttonLabel}
+                  </a>
+                </div>
               </div>
             ))}
           </div>
