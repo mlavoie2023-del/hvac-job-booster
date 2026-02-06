@@ -84,10 +84,10 @@ const Pricing = () => {
           {/* Heading */}
           <div className="text-center mb-12 lg:mb-16">
             <h1 className="text-3xl font-bold text-foreground sm:text-4xl lg:text-5xl">
-              Simple, Transparent Pricing
+              One System<span className="gradient-text">.</span> Every Feature<span className="gradient-text">.</span>
             </h1>
             <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">
-              One system. Every feature included. Pick the plan that fits your commitment level.
+              Pick the plan that fits your commitment level — everything's included from day one.
             </p>
           </div>
 
