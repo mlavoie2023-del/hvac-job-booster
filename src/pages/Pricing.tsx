@@ -140,16 +140,6 @@ const Pricing = () => {
                   <p className="mt-2 text-xs text-muted-foreground">{tier.description}</p>
                 </div>
 
-                {/* Features */}
-                <ul className="space-y-3 mb-8">
-                  {features.map((feature) => (
-                    <li key={feature} className="flex items-start gap-3">
-                      <Check className="h-4 w-4 mt-0.5 shrink-0 text-primary" />
-                      <span className="text-sm text-muted-foreground">{feature}</span>
-                    </li>
-                  ))}
-                </ul>
-
                 {/* CTA Button */}
                 <a
                   href={tier.href}
@@ -165,6 +155,19 @@ const Pricing = () => {
                 </a>
               </div>
             ))}
+          </div>
+
+          {/* All Plans Include */}
+          <div className="mt-16 rounded-2xl border border-border bg-card p-8 lg:p-10">
+            <h3 className="text-center text-xl font-bold text-foreground mb-8">All Plans Include:</h3>
+            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 max-w-3xl mx-auto">
+              {features.map((feature) => (
+                <div key={feature} className="flex items-start gap-3">
+                  <Check className="h-4 w-4 mt-0.5 shrink-0 text-primary" />
+                  <span className="text-sm text-muted-foreground">{feature}</span>
+                </div>
+              ))}
+            </div>
           </div>
 
           {/* Footer note */}
