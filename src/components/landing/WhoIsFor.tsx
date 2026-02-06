@@ -21,7 +21,8 @@ const idealClient = [
 
 const notForList = [
   "Large RIAs with existing teams",
-  "Commission-based advisors", 
+  "Already have dedicated admin staff",
+  "Planners who prefer doing everything manually",
   "Planners happy staying small",
 ];
 
