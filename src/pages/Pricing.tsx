@@ -1,16 +1,16 @@
 import { Link } from "react-router-dom";
-import { ArrowLeft, Check } from "lucide-react";
+import { ArrowLeft, LayoutDashboard, Zap, Users, Share2, MessageCircle, BarChart3, Headphones } from "lucide-react";
 import lavoieLogo from "@/assets/lavoie-logo-square.png";
 import { Badge } from "@/components/ui/badge";
 
 const features = [
-  "Complete custom CRM build",
-  "Custom Automations",
-  "Client onboarding workflows",
-  "Referral generation system",
-  "Direct text access to me for any changes",
-  "Monthly optimization reviews",
-  "Unlimited technical support",
+  { label: "Complete custom CRM build", icon: LayoutDashboard },
+  { label: "Custom Automations", icon: Zap },
+  { label: "Client onboarding workflows", icon: Users },
+  { label: "Referral generation system", icon: Share2 },
+  { label: "Direct text access to me for any changes", icon: MessageCircle },
+  { label: "Monthly optimization reviews", icon: BarChart3 },
+  { label: "Unlimited technical support", icon: Headphones },
 ];
 
 const tiers = [
@@ -168,15 +168,34 @@ const Pricing = () => {
           </div>
 
           {/* All Plans Include */}
-          <div className="mt-16 rounded-2xl border border-border bg-card p-8 lg:p-10">
-            <h3 className="text-center text-xl font-bold text-foreground mb-8">All Plans Include:</h3>
-            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 max-w-3xl mx-auto">
-              {features.map((feature) => (
-                <div key={feature} className="flex items-start gap-3">
-                  <Check className="h-4 w-4 mt-0.5 shrink-0 text-primary" />
-                  <span className="text-sm text-muted-foreground">{feature}</span>
-                </div>
-              ))}
+          <div className="mt-16 relative rounded-2xl border border-border bg-card p-8 lg:p-10 overflow-hidden">
+            {/* Subtle glow */}
+            <div className="absolute inset-0 pointer-events-none" style={{
+              background: 'radial-gradient(ellipse 80% 60% at 50% 0%, hsl(217 91% 60% / 0.06), transparent 70%)'
+            }} />
+            <h3 className="relative text-center text-xl font-bold text-foreground mb-2">
+              All Plans Include<span className="gradient-text">:</span>
+            </h3>
+            <p className="relative text-center text-sm text-muted-foreground mb-8">
+              Everything you need to scale your practice, included from day one.
+            </p>
+            <div className="relative grid gap-4 sm:grid-cols-2 lg:grid-cols-3 max-w-4xl mx-auto">
+              {features.map((feature) => {
+                const Icon = feature.icon;
+                return (
+                  <div
+                    key={feature.label}
+                    className="group flex items-start gap-3 rounded-xl border border-border/60 bg-secondary/40 p-4 transition-all duration-200 hover:border-primary/30 hover:bg-secondary/70"
+                  >
+                    <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary transition-colors group-hover:bg-primary/20">
+                      <Icon className="h-4 w-4" />
+                    </div>
+                    <span className="text-sm font-medium text-muted-foreground group-hover:text-foreground transition-colors pt-1">
+                      {feature.label}
+                    </span>
+                  </div>
+                );
+              })}
             </div>
           </div>
 
