@@ -49,7 +49,7 @@ const tiers = [
     priceSuffix: " upfront",
     description: "12 months fully covered, then $397/month",
     highlighted: false,
-    savings: "Save $1,794 + 2 months FREE",
+    savings: "Save $1,000 + 2 months FREE",
     strikethrough: "$5,764",
     buttonLabel: "Get Started",
     href: "#",
