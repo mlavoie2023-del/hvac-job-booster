@@ -1,19 +1,62 @@
 import { Link } from "react-router-dom";
-import { ArrowLeft } from "lucide-react";
-import { useEffect } from "react";
+import { ArrowLeft, Check } from "lucide-react";
 import lavoieLogo from "@/assets/lavoie-logo-square.png";
+import { Badge } from "@/components/ui/badge";
+
+const features = [
+  "Complete custom CRM build",
+  "Custom Automations",
+  "Client onboarding workflows",
+  "Referral generation system",
+  "Direct text access to me for any changes",
+  "Monthly optimization reviews",
+  "Unlimited technical support",
+];
+
+const tiers = [
+  {
+    name: "Month-to-Month",
+    subtitle: "Get started with flexibility",
+    setupNote: "$1,000 setup fee",
+    price: "$397",
+    priceSuffix: "/month",
+    description: "Billed monthly after initial setup",
+    highlighted: false,
+    savings: null,
+    strikethrough: null,
+    buttonLabel: "Get Started",
+    href: "#", // placeholder for Stripe link
+  },
+  {
+    name: "6 Months Prepaid",
+    subtitle: "Commit to growth and save",
+    setupNote: null,
+    price: "$2,382",
+    priceSuffix: " upfront",
+    description: "Then $397/month after 6 months",
+    highlighted: true,
+    savings: "Save $1,000",
+    strikethrough: "$3,382",
+    buttonLabel: "Get Started",
+    href: "#",
+    badge: "Most Popular",
+  },
+  {
+    name: "12 Months Prepaid",
+    subtitle: "Maximum savings for committed planners",
+    setupNote: null,
+    price: "$3,970",
+    priceSuffix: " upfront",
+    description: "12 months fully covered, then $397/month",
+    highlighted: false,
+    savings: "Save $1,794 + 2 months FREE",
+    strikethrough: "$5,764",
+    buttonLabel: "Get Started",
+    href: "#",
+  },
+];
 
 const Pricing = () => {
-  useEffect(() => {
-    const script = document.createElement("script");
-    script.src = "https://js.stripe.com/v3/pricing-table.js";
-    script.async = true;
-    document.body.appendChild(script);
-    return () => {
-      document.body.removeChild(script);
-    };
-  }, []);
-
   return (
     <div className="min-h-screen bg-background">
       {/* Header */}
@@ -34,12 +77,100 @@ const Pricing = () => {
       </header>
 
       <main className="section-container py-12 lg:py-20">
-        <div className="mx-auto max-w-4xl">
-          {/* @ts-ignore */}
-          <stripe-pricing-table
-            pricing-table-id="prctbl_1SnZgwGWnVbnMOOOlK7TY0WA"
-            publishable-key="pk_live_51SNJR5GWnVbnMOOObb1g77kAxufDWK1WKC2ULoPuAV5PzanEwSMUR7HiFDxBwwoGH5sjufPKfNZ83Vghd5dTuXkz00eTKR0ryA"
-          />
+        <div className="mx-auto max-w-6xl">
+          {/* Heading */}
+          <div className="text-center mb-12 lg:mb-16">
+            <h1 className="text-3xl font-bold text-foreground sm:text-4xl lg:text-5xl">
+              Simple, Transparent Pricing
+            </h1>
+            <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">
+              One system. Every feature included. Pick the plan that fits your commitment level.
+            </p>
+          </div>
+
+          {/* Pricing Grid */}
+          <div className="grid gap-6 lg:gap-8 md:grid-cols-3 items-start">
+            {tiers.map((tier) => (
+              <div
+                key={tier.name}
+                className={`
+                  relative rounded-2xl border p-6 lg:p-8 transition-all duration-300 hover:-translate-y-1
+                  ${tier.highlighted
+                    ? "border-primary/60 bg-card shadow-[0_0_40px_-10px_hsl(var(--primary)/0.25)] scale-[1.02] lg:scale-105"
+                    : "border-border bg-card hover:border-primary/30 hover:shadow-[0_0_30px_-10px_hsl(var(--primary)/0.15)]"
+                  }
+                `}
+              >
+                {/* Badge */}
+                {tier.badge && (
+                  <div className="absolute -top-3 left-1/2 -translate-x-1/2">
+                    <Badge className="bg-primary text-primary-foreground px-4 py-1 text-xs font-semibold shadow-md">
+                      {tier.badge}
+                    </Badge>
+                  </div>
+                )}
+
+                {/* Tier Header */}
+                <div className="text-center mb-6">
+                  <h2 className="text-xl font-bold text-foreground">{tier.name}</h2>
+                  <p className="mt-1 text-sm text-muted-foreground">{tier.subtitle}</p>
+                </div>
+
+                {/* Price Block */}
+                <div className="text-center mb-6 pb-6 border-b border-border">
+                  {tier.setupNote && (
+                    <p className="text-sm text-muted-foreground mb-1">{tier.setupNote}</p>
+                  )}
+                  {tier.strikethrough && (
+                    <p className="text-sm text-muted-foreground line-through mb-1">{tier.strikethrough}</p>
+                  )}
+                  <div className="flex items-baseline justify-center gap-1">
+                    <span className="text-4xl lg:text-5xl font-extrabold text-foreground tracking-tight">
+                      {tier.price}
+                    </span>
+                    <span className="text-base text-muted-foreground font-medium">
+                      {tier.priceSuffix}
+                    </span>
+                  </div>
+                  {tier.savings && (
+                    <p className="mt-2 text-sm font-semibold text-[hsl(var(--success))]">
+                      {tier.savings}
+                    </p>
+                  )}
+                  <p className="mt-2 text-xs text-muted-foreground">{tier.description}</p>
+                </div>
+
+                {/* Features */}
+                <ul className="space-y-3 mb-8">
+                  {features.map((feature) => (
+                    <li key={feature} className="flex items-start gap-3">
+                      <Check className="h-4 w-4 mt-0.5 shrink-0 text-primary" />
+                      <span className="text-sm text-muted-foreground">{feature}</span>
+                    </li>
+                  ))}
+                </ul>
+
+                {/* CTA Button */}
+                <a
+                  href={tier.href}
+                  className={`
+                    block w-full text-center rounded-xl py-3.5 text-sm font-semibold transition-all duration-200
+                    ${tier.highlighted
+                      ? "bg-primary text-primary-foreground hover:bg-primary/90 shadow-[0_10px_30px_-10px_hsl(var(--primary)/0.4)] hover:shadow-[0_10px_40px_-10px_hsl(var(--primary)/0.5)] hover:-translate-y-0.5"
+                      : "border-2 border-primary/30 bg-primary/5 text-primary hover:bg-primary/10 hover:border-primary/50"
+                    }
+                  `}
+                >
+                  {tier.buttonLabel}
+                </a>
+              </div>
+            ))}
+          </div>
+
+          {/* Footer note */}
+          <p className="mt-10 text-center text-sm text-muted-foreground">
+            No long-term contracts. Cancel anytime after your commitment period.
+          </p>
         </div>
       </main>
     </div>
