@@ -2,7 +2,6 @@ import { Link } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
 import { useEffect } from "react";
 import lavoieLogo from "@/assets/lavoie-logo-square.png";
-import CustomBuilt from "@/components/landing/CustomBuilt";
 
 const Book = () => {
   useEffect(() => {
@@ -93,9 +92,6 @@ const Book = () => {
             </div>
           </div>
         </main>
-
-        {/* Custom Built Section */}
-        <CustomBuilt />
       </div>
     </>
   );
