@@ -23,6 +23,7 @@ const tiers = [
     description: "Then $397/month after first month",
     highlighted: false,
     savings: null,
+    fee: "$1,000 setup fee included",
     strikethrough: null,
     buttonLabel: "Get Started",
     href: "#",
@@ -36,6 +37,7 @@ const tiers = [
     description: "Then $397/month after 6 months",
     highlighted: true,
     savings: "Save $1,000",
+    fee: null,
     strikethrough: "$3,382",
     buttonLabel: "Get Started",
     href: "#",
@@ -50,6 +52,7 @@ const tiers = [
     description: "12 months fully covered, then $397/month",
     highlighted: false,
     savings: "Save $1,000 + 2 months FREE",
+    fee: null,
     strikethrough: "$5,764",
     buttonLabel: "Get Started",
     href: "#",
@@ -135,6 +138,11 @@ const Pricing = () => {
                   {tier.savings && (
                     <p className="mt-2 text-sm font-semibold text-[hsl(var(--success))]">
                       {tier.savings}
+                    </p>
+                  )}
+                  {tier.fee && (
+                    <p className="mt-2 text-sm font-semibold text-muted-foreground">
+                      {tier.fee}
                     </p>
                   )}
                   <p className="mt-2 text-xs text-muted-foreground">{tier.description}</p>
