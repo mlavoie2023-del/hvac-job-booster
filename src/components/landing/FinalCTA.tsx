@@ -8,12 +8,12 @@ const FinalCTA = () => {
         <div className="mx-auto max-w-3xl text-center">
           
           <h2 className="text-3xl font-bold text-foreground sm:text-4xl lg:text-5xl">
-            Stop Chasing Admin.{" "}
-            <span className="gradient-text">Start Scaling Your Practice.</span>
+            Ready to{" "}
+            <span className="gradient-text">Simplify Your Practice?</span>
           </h2>
 
           <p className="mx-auto mt-4 max-w-xl text-lg text-body">
-            I build you a custom system that handles follow-up, onboarding, and marketing so you can focus on financial planning.
+            Book a free call and I'll show you exactly how your custom system will save you hours every week.
           </p>
 
           <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
