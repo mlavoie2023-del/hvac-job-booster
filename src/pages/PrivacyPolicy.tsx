@@ -4,28 +4,7 @@ import lavoieLogo from "@/assets/lavoie-logo-square.png";
 
 const PrivacyPolicy = () => {
   return (
-    <>
-      {/* Base background */}
-      <div 
-        className="fixed inset-0 pointer-events-none z-0"
-        aria-hidden="true"
-        style={{
-          background: 'hsl(0 0% 4%)',
-        }}
-      />
-      {/* Smooth blue gradient accents */}
-      <div 
-        className="fixed inset-0 pointer-events-none z-0"
-        aria-hidden="true"
-        style={{
-          background: `
-            radial-gradient(ellipse 100% 60% at 50% 0%, hsl(217 91% 60% / 0.14), transparent 55%),
-            radial-gradient(ellipse 80% 80% at 50% 50%, hsl(217 91% 60% / 0.08), transparent 60%),
-            radial-gradient(ellipse 90% 50% at 50% 100%, hsl(217 91% 60% / 0.10), transparent 50%)
-          `,
-        }}
-      />
-      <div className="relative z-10 min-h-screen">
+    <div className="min-h-screen bg-background">
         {/* Header */}
         <header className="sticky top-0 z-50 border-b border-border/50 bg-background/95 backdrop-blur-lg">
           <div className="section-container">
@@ -66,9 +45,8 @@ const PrivacyPolicy = () => {
                 <p className="mt-4 text-muted-foreground">
                   We collect information you provide directly to us, such as when you inquire about our services, 
                   sign up for a subscription, or contact us for support. This may include your name, email address, 
-                  phone number, financial planning practice information, payment details, and any other information 
-                  you choose to provide in connection with our practice management solutions for solo fee-only 
-                  financial planners.
+                  phone number, salon business information, payment details, and any other information 
+                  you choose to provide in connection with our salon management solutions.
                 </p>
               </section>
 
@@ -117,16 +95,15 @@ const PrivacyPolicy = () => {
                 </p>
                 <p className="mt-4 text-muted-foreground">
                   <strong className="text-foreground">Address:</strong><br />
-                  1900 West Park Drive<br />
-                  Westborough, MA 01581<br />
+                  68 Harrison Ave, STE 605, #696786<br />
+                  Boston, MA 02111<br />
                   United States
                 </p>
               </section>
             </div>
           </div>
         </main>
-      </div>
-    </>
+    </div>
   );
 };
 
