@@ -4,28 +4,7 @@ import lavoieLogo from "@/assets/lavoie-logo-square.png";
 
 const TermsOfService = () => {
   return (
-    <>
-      {/* Base background */}
-      <div 
-        className="fixed inset-0 pointer-events-none z-0"
-        aria-hidden="true"
-        style={{
-          background: 'hsl(0 0% 4%)',
-        }}
-      />
-      {/* Smooth blue gradient accents */}
-      <div 
-        className="fixed inset-0 pointer-events-none z-0"
-        aria-hidden="true"
-        style={{
-          background: `
-            radial-gradient(ellipse 100% 60% at 50% 0%, hsl(217 91% 60% / 0.14), transparent 55%),
-            radial-gradient(ellipse 80% 80% at 50% 50%, hsl(217 91% 60% / 0.08), transparent 60%),
-            radial-gradient(ellipse 90% 50% at 50% 100%, hsl(217 91% 60% / 0.10), transparent 50%)
-          `,
-        }}
-      />
-      <div className="relative z-10 min-h-screen">
+    <div className="min-h-screen bg-background">
         {/* Header */}
         <header className="sticky top-0 z-50 border-b border-border/50 bg-background/95 backdrop-blur-lg">
           <div className="section-container">
@@ -72,10 +51,9 @@ const TermsOfService = () => {
               <section>
                 <h2 className="text-2xl font-semibold">2. Description of Services</h2>
                 <p className="mt-4 text-muted-foreground">
-                  Lavoie Systems provides custom-built practice management solutions for solo fee-only 
-                  financial planners, including client management platforms, automated workflows, 
-                  lead tracking, appointment scheduling, payment processing integrations, and mobile 
-                  app access for on-the-go practice management.
+                   Lavoie Systems provides custom-built salon management solutions, including client management 
+                  platforms, automated workflows, online booking, appointment scheduling, payment processing 
+                  integrations, marketing automation, and mobile app access for on-the-go salon management.
                 </p>
               </section>
 
@@ -147,16 +125,15 @@ const TermsOfService = () => {
                 </p>
                 <p className="mt-4 text-muted-foreground">
                   <strong className="text-foreground">Address:</strong><br />
-                  1900 West Park Drive<br />
-                  Westborough, MA 01581<br />
+                  68 Harrison Ave, STE 605, #696786<br />
+                  Boston, MA 02111<br />
                   United States
                 </p>
               </section>
             </div>
           </div>
         </main>
-      </div>
-    </>
+    </div>
   );
 };
 
